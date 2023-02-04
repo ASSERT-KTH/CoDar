@@ -1,0 +1,25 @@
+### Non-compliant code
+class MyThread extends Thread{
+
+  @Override
+  public void run(){
+    synchronized(this){
+      // ...
+      notify();  // Noncompliant
+    }
+  }
+}
+### Compliant code
+class MyThread extends Thread{
+
+  @Override
+  public void run(){
+    synchronized(this){
+      // ...
+      notifyAll();
+    }
+  }
+}
+### Non-compliant code
+{{BUGGY}}
+### Compliant code

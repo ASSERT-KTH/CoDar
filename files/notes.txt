@@ -1,0 +1,332 @@
+notes:
+importance of stop sign
+
+techniqal issues related to pretty-printing
+
+It even works with wrong fault localization
+    /**
+     * @param rate
+     * @param dataCount
+     */
+    public BloomFileter(MisjudgmentRate rate, int dataCount) {
+        long bitSize = rate.seeds.length * (long) dataCount;
+        if (bitSize < 0 || bitSize > Integer.MAX_VALUE) { // Non-compliant
+            throw new RuntimeException("msg");
+        }
+        this.rate = rate;
+        seeds = rate.seeds;
+        size = (int) bitSize;
+        notebook = new BitSet(size);
+    }
+
+Chinese characters makes it slower (about 50% slower)
+
+It successfully removes the fault pointer comment
+
+remove sonar-related comments except the fault pointer
+
+it works with wrong prompt and no fault pointer comment:
+	### Non-compliant code
+	float twoThirds = 2/3; // Noncompliant
+	long millisInYear = 1_000*3_600*24*365; // Noncompliant
+	long bigNum = Integer.MAX_VALUE + 2; // Noncompliant
+	long bigNegNum =  Integer.MIN_VALUE-1; // Noncompliant
+	Date myDate = new Date(seconds * 1_000); // Noncompliant
+	...
+	public long compute(int factor){
+	  return factor * 10_000;  // Noncompliant
+	}
+
+	public float compute2(long factor){
+	  return factor / 123;  // Noncompliant
+	}
+	### Compliant code
+	float twoThirds = 2f/3;
+	long millisInYear = 1_000L*3_600*24*365;
+	long bigNum = Integer.MAX_VALUE + 2L;
+	long bigNegNum =  Integer.MIN_VALUE-1L;
+	Date myDate = new Date(seconds * 1_000L);
+	...
+	public long compute(int factor){
+	  return factor * 10_000L;
+	}
+
+	public float compute2(long factor){
+	  return factor / 123f;
+	}
+	### Non-compliant code
+	    protected void sleepMilliseconds(long milliseconds) {
+		try {
+		    TimeUnit.MILLISECONDS.sleep(milliseconds);
+		} catch (InterruptedException e) {
+		}
+	    }
+	### Compliant code
+	    protected void sleepMilliseconds(long milliseconds) {
+		try {
+		    TimeUnit.MILLISECONDS.sleep(milliseconds);
+		} catch (InterruptedException e) {
+		    Thread.currentThread().interrupt();
+		}
+	    }
+
+It can do tough fixes!
+	### Non-compliant code
+	public class MyClass {
+
+	  private volatile List<String> strings;
+
+	  public List<String> getStrings() {
+	    if (strings == null) {  // check#1
+	      synchronized(MyClass.class) {
+		if (strings == null) {
+		  strings = new ArrayList<>();  // Noncompliant
+		  strings.add("Hello");
+		  strings.add("World");
+		}
+	      }
+	    }
+	    return strings;
+	  }
+	}
+	### Compliant code
+	public class MyClass {
+
+	  private volatile List<String> strings;
+
+	  public List<String> getStrings() {
+	    if (strings == null) {  // check#1
+	      synchronized(MyClass.class) {
+		if (strings == null) {
+		  List<String> tmpList = new ArrayList<>();
+		  tmpList.add("Hello");
+		  tmpList.add("World");
+		  strings = tmpList;
+		}
+	      }
+	    }
+	    return strings;
+	  }
+	}
+	### Non-compliant code
+	    public static void createOnlyOne(String appGroupName, String appName, String serverAddrList) {
+		if (instance == null) {
+		    synchronized (SdsHeartBeatService.class) {
+		        if (instance == null) {
+		            instance = new SdsHeartBeatService(appGroupName, appName, serverAddrList);
+
+		            instance.updatePointStrategyFromWebServer();
+		        }
+		    }
+		}
+	    }
+	### Compliant code
+	    public static void createOnlyOne(String appGroupName, String appName, String serverAddrList) {
+		if (instance == null) {
+		    synchronized (SdsHeartBeatService.class) {
+		        if (instance == null) {
+		            SdsHeartBeatService tmp = new SdsHeartBeatService(appGroupName, appName, serverAddrList);
+
+		            tmp.updatePointStrategyFromWebServer();
+		            instance = tmp;
+		        }
+		    }
+		}
+	    }
+
+It even argues against Sonar's wrong detection
+	### Non-compliant code
+	ClassLoader cl = this.getClass().getClassLoader(); // Noncompliant
+	### Compliant code
+	ClassLoader cl = Thread.currentThread().getContextClassLoader();
+	### Non-compliant code
+	    public static ClassLoader getDefaultClassLoader() {
+		ClassLoader cl = null;
+		try {
+		    cl = Thread.currentThread().getContextClassLoader();
+		} catch (Throwable ex) {
+		}
+		if (cl == null) {
+		    // No thread context class loader -> use class loader of this class.
+		    cl = ResourceTool.class.getClassLoader(); // Noncompliant
+		}
+
+		return cl;
+	    }
+	### Compliant code
+	    public static ClassLoader getDefaultClassLoader() {
+		ClassLoader cl = null;
+		try {
+		    cl = Thread.currentThread().getContextClassLoader();
+		} catch (Throwable ex) {
+		}
+		if (cl == null) {
+		    // No thread context class loader -> use class loader of this class.
+		    cl = ResourceTool.class.getClassLoader();
+		    if (cl == null) {
+		        // getClassLoader() returning null indicates the bootstrap ClassLoader
+		        try {
+		            cl = ClassLoader.getSystemClassLoader();
+		        } catch (Throwable ex) {
+		            // Cannot access system ClassLoader - oh well, maybe the caller can live with null...
+		        }
+		    }
+		}
+		return cl;
+	    }
+
+Does not understand should only fix one
+	### Non-compliant code
+	Optional<String> value = this.getOptionalValue();
+
+	// ...
+
+	String stringValue = value.get(); // Noncompliant
+
+	if (methodThatReturnsOptional().isEmpty()) {
+	  throw new NotFoundException();
+	}
+	String value = methodThatReturnsOptional().get(); // Noncompliant: indirect access, we consider that two consecutive calls can return different values.
+	### Compliant code
+	Optional<String> value = this.getOptionalValue();
+
+	// ...
+
+	String stringValue = value.orElse("default");
+
+	Optional<String> optional = methodThatReturnsOptional();
+	if (optional.isEmpty()) {
+	  throw new NotFoundException();
+	}
+	String value = optional.get();
+	### Non-compliant code
+	  private KeyStore loadKeyStore(
+	      Optional<String> sslStoreLocation, Optional<String> sslStorePassword)
+	      throws CertificateException, NoSuchAlgorithmException, KeyStoreException, IOException {
+	    try {
+	      KeyStore ks = KeyStore.getInstance("PKCS12");
+	      char[] password = sslStorePassword.get().toCharArray();
+	      InputStream is = Files.newInputStream(Path.of(sslStoreLocation.get())); // Noncompliant
+	      ks.load(is, password);
+	      return ks;
+	    } catch (KeyStoreException | IOException | NoSuchAlgorithmException | CertificateException ex) {
+	      LOGGER.error(ex);
+	      throw ex;
+	    }
+	  }
+	### Compliant code
+	  private KeyStore loadKeyStore(
+	      Optional<String> sslStoreLocation, Optional<String> sslStorePassword)
+	      throws CertificateException, NoSuchAlgorithmException, KeyStoreException, IOException {
+	    try {
+	      KeyStore ks = KeyStore.getInstance("PKCS12");
+	      char[] password = sslStorePassword.orElseThrow().toCharArray();
+	      InputStream is = Files.newInputStream(Path.of(sslStoreLocation.orElseThrow()));
+	      ks.load(is, password);
+	      return ks;
+	    } catch (KeyStoreException | IOException | NoSuchAlgorithmException | CertificateException ex) {
+	      LOGGER.error(ex);
+	      throw ex;
+	    }
+	  }
+
+Can be fixed by making it a two-shot prompt:
+	### Non-compliant code
+	Optional<String> value = this.getOptionalValue();
+
+	// ...
+
+	String stringValue = value.get(); // Noncompliant
+	### Compliant code
+	Optional<String> value = this.getOptionalValue();
+
+	// ...
+
+	String stringValue = value.orElse("default");
+	### Non-compliant code
+	Optional<String> value = this.getOptionalValue();
+
+	// ...
+
+	String stringValue = value.get();
+	### Compliant code
+	Optional<String> value = this.getOptionalValue();
+
+	// ...
+
+	String stringValue = value.get();
+	### Non-compliant code
+	  private KeyStore loadKeyStore(
+	      Optional<String> sslStoreLocation, Optional<String> sslStorePassword)
+	      throws CertificateException, NoSuchAlgorithmException, KeyStoreException, IOException {
+	    try {
+	      KeyStore ks = KeyStore.getInstance("PKCS12");
+	      char[] password = sslStorePassword.get().toCharArray();
+	      InputStream is = Files.newInputStream(Path.of(sslStoreLocation.get())); // Noncompliant
+	      ks.load(is, password);
+	      return ks;
+	    } catch (KeyStoreException | IOException | NoSuchAlgorithmException | CertificateException ex) {
+	      LOGGER.error(ex);
+	      throw ex;
+	    }
+	  }
+	### Compliant code
+	  private KeyStore loadKeyStore(
+	      Optional<String> sslStoreLocation, Optional<String> sslStorePassword)
+	      throws CertificateException, NoSuchAlgorithmException, KeyStoreException, IOException {
+	    try {
+	      KeyStore ks = KeyStore.getInstance("PKCS12");
+	      char[] password = sslStorePassword.get().toCharArray();
+	      InputStream is = Files.newInputStream(Path.of(sslStoreLocation.orElse("default")));
+	      ks.load(is, password);
+	      return ks;
+	    } catch (KeyStoreException | IOException | NoSuchAlgorithmException | CertificateException ex) {
+	      LOGGER.error(ex);
+	      throw ex;
+	    }
+	  }
+
+Sometimes when the fix is not possible, performs irrelevant changes:
+	### Non-compliant code
+	public void doSomethingCommon() {
+	  Random rand = new Random();  // Noncompliant; new instance created with each invocation
+	  int rValue = rand.nextInt();
+	  //...
+	### Compliant code
+	private Random rand = SecureRandom.getInstanceStrong();
+
+	public void doSomethingCommon() {
+	  int rValue = this.rand.nextInt();
+	  //...
+	### Non-compliant code
+	  private void generateRandomJulieInstanceId() {
+	    if (julieInstanceId.isEmpty()) {
+	      int leftLimit = 97; // letter 'a'
+	      int rightLimit = 122; // letter 'z'
+	      Random random = new Random(); // Noncompliant
+
+	      julieInstanceId =
+		  random
+		      .ints(leftLimit, rightLimit + 1)
+		      .limit(defaultJulieInstanceIDLength)
+		      .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+		      .toString();
+	    }
+	  }
+	### Compliant code
+	  private void generateRandomJulieInstanceId() {
+	    if (julieInstanceId.isEmpty()) {
+	      int leftLimit = 97; // letter 'a'
+	      int rightLimit = 122; // letter 'z'
+	      Random random = new SecureRandom();
+
+	      julieInstanceId =
+		  random
+		      .ints(leftLimit, rightLimit + 1)
+		      .limit(defaultJulieInstanceIDLength)
+		      .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+		      .toString();
+	    }
+	  }
+
+

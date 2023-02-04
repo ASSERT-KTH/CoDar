@@ -1,0 +1,40 @@
+### Non-compliant code
+public class MyClass {
+
+  private volatile List<String> strings;
+
+  public List<String> getStrings() {
+    if (strings == null) {  // check#1
+      synchronized(MyClass.class) {
+        if (strings == null) {
+          strings = new ArrayList<>();  // Noncompliant
+          strings.add("Hello");
+          strings.add("World");
+        }
+      }
+    }
+    return strings;
+  }
+}
+### Compliant code
+public class MyClass {
+
+  private volatile List<String> strings;
+
+  public List<String> getStrings() {
+    if (strings == null) {  // check#1
+      synchronized(MyClass.class) {
+        if (strings == null) {
+          List<String> tmpList = new ArrayList<>();
+          tmpList.add("Hello");
+          tmpList.add("World");
+          strings = tmpList;
+        }
+      }
+    }
+    return strings;
+  }
+}
+### Non-compliant code
+{{BUGGY}}
+### Compliant code
