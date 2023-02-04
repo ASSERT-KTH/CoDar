@@ -24,7 +24,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>se.kth.as</mainClass>
+                            <mainClass>se.kth.assertgroup.sonarcodex.Main</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
