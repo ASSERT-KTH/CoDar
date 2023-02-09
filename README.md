@@ -11,7 +11,7 @@ gh repo clone didi/sds
 cd CoNar
 mvn package
 export CODEX_API_TOKEN={{YOUR-OPENAI-API-TOKEN}}
-# java -jar target/sonar-codex-1.0-SNAPSHOT-jar-with-dependencies.jar {input-file-path} {output-file-path} {replacement-startline} {replacement-endline} {non-compliant-line} 2184
+# java -jar target/sonar-codex-1.0-SNAPSHOT-jar-with-dependencies.jar {input-file-path} {output-file-path} {replacement-startline} {replacement-endline} {non-compliant-line} {rule}
 java -jar target/sonar-codex-1.0-SNAPSHOT-jar-with-dependencies.jar ../sds/sds-admin/src/main/java/com/didiglobal/sds/admin/util/BloomFileter.java ../BloomFileter.java 28 28 28 2184
 git diff --no-index ../sds/sds-admin/src/main/java/com/didiglobal/sds/admin/util/BloomFileter.java ../BloomFileter.java
 ```
