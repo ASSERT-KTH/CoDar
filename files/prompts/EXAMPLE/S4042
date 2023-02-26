@@ -1,0 +1,14 @@
+### Noncompliant
+public void cleanUp(Path path) {
+  File file = new File(path);
+  if (!file.delete()) {  // Noncompliant
+    //...
+  }
+}
+### Compliant
+public void cleanUp(Path path) throws NoSuchFileException, DirectoryNotEmptyException, IOException {
+  Files.delete(path);
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

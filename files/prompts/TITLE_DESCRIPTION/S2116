@@ -1,0 +1,5 @@
+"hashCode" and "toString" should not be called on array instances
+While hashCode and toString are available on arrays, they are largely useless. hashCode returns the array’s "identity hash code", and toString returns nearly the same value. Neither method’s output actually reflects the array’s contents. Instead, you should pass the array to the relevant static Arrays method. 
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,13 @@
+### Noncompliant
+class Vegetable {  // does not implement Serializable
+  private transient Season ripe;  // Noncompliant
+  // ...
+}
+### Compliant
+class Vegetable {
+  private Season ripe;
+  // ...
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

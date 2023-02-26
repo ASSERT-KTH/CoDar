@@ -1,0 +1,10 @@
+A "while" loop should be used instead of a "for" loop
+When only the condition expression is defined in a for loop, and the initialization and increment expressions are missing, a while loop should be used instead to increase readability. 
+### Noncompliant
+for (;condition;) { /*...*/ }
+ 
+### Compliant
+while (condition) { /*...*/ }
+### Noncompliant
+{{BUGGY}}
+### Compliant

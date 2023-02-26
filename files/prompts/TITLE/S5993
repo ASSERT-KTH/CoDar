@@ -1,0 +1,4 @@
+Constructors of an "abstract" class should not be declared "public"
+### Noncompliant
+{{BUGGY}}
+### Compliant

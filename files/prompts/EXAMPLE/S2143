@@ -1,0 +1,12 @@
+### Noncompliant
+Date now = new Date();  // Noncompliant
+DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
+Calendar christmas  = Calendar.getInstance();  // Noncompliant
+christmas.setTime(df.parse("25.12.2020"));
+### Compliant
+LocalDate now = LocalDate.now();  // gets calendar date. no time component
+LocalTime now2 = LocalTime.now(); // gets current time. no date component
+LocalDate christmas = LocalDate.of(2020,12,25);
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,5 @@
+"toArray" should be passed an array of the proper type
+Given no arguments, the Collections.toArray method returns an Object [], which will cause a ClassCastException at runtime if you try to cast it to an array of the proper class. Instead, pass an array of the correct type in to the call. 
+### Noncompliant
+{{BUGGY}}
+### Compliant

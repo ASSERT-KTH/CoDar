@@ -1,0 +1,4 @@
+Loops with at most one iteration should be refactored
+### Noncompliant
+{{BUGGY}}
+### Compliant

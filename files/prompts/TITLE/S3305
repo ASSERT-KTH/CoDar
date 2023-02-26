@@ -1,0 +1,4 @@
+Factory method injection should be used in "@Configuration" classes
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,5 @@
+Sets with elements that are enum values should be replaced with EnumSet
+When all the elements in a Set are values from the same enum, the Set can be replaced with an EnumSet, which can be much more efficient than other sets because the underlying data structure is a simple bitmap. 
+### Noncompliant
+{{BUGGY}}
+### Compliant

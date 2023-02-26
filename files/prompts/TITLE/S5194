@@ -1,0 +1,4 @@
+Use Java 12 "switch" expression
+### Noncompliant
+{{BUGGY}}
+### Compliant

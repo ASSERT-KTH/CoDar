@@ -1,0 +1,4 @@
+"@Override" should be used on overriding and implementing methods
+### Noncompliant
+{{BUGGY}}
+### Compliant

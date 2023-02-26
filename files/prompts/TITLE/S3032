@@ -1,0 +1,4 @@
+JEE applications should not "getClassLoader"
+### Noncompliant
+{{BUGGY}}
+### Compliant

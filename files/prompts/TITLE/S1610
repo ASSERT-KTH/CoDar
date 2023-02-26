@@ -1,0 +1,4 @@
+Abstract classes without fields should be converted to interfaces
+### Noncompliant
+{{BUGGY}}
+### Compliant

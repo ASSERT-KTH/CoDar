@@ -1,0 +1,4 @@
+Classes should not be compared by name
+### Noncompliant
+{{BUGGY}}
+### Compliant

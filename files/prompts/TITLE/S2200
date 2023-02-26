@@ -1,0 +1,4 @@
+"compareTo" results should not be checked for specific values
+### Noncompliant
+{{BUGGY}}
+### Compliant

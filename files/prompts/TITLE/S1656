@@ -1,0 +1,4 @@
+Variables should not be self-assigned
+### Noncompliant
+{{BUGGY}}
+### Compliant

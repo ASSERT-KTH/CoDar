@@ -1,0 +1,13 @@
+### Noncompliant
+public class Greeter {
+  public static Foo foo = new Foo();
+  ...
+}
+### Compliant
+public class Greeter {
+  public static final Foo FOO = new Foo();
+  ...
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

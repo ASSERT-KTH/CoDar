@@ -1,0 +1,4 @@
+Constructor injection should be used instead of field injection
+### Noncompliant
+{{BUGGY}}
+### Compliant

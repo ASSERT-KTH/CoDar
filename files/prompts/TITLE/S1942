@@ -1,0 +1,4 @@
+Simple class names should be used
+### Noncompliant
+{{BUGGY}}
+### Compliant

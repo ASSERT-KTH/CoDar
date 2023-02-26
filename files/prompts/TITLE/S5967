@@ -1,0 +1,4 @@
+Tests method should not be annotated with competing annotations
+### Noncompliant
+{{BUGGY}}
+### Compliant

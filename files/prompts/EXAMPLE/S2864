@@ -1,0 +1,18 @@
+### Noncompliant
+public void doSomethingWithMap(Map<String,Object> map) {
+  for (String key : map.keySet()) {  // Noncompliant; for each key the value is retrieved
+    Object value = map.get(key);
+    // ...
+  }
+}
+### Compliant
+public void doSomethingWithMap(Map<String,Object> map) {
+  for (Map.Entry<String,Object> entry : map.entrySet()) {
+    String key = entry.getKey();
+    Object value = entry.getValue();
+    // ...
+  }
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

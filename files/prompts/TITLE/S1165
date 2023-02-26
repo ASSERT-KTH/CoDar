@@ -1,0 +1,4 @@
+Exception classes should be immutable
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,4 @@
+URIs should not be hardcoded
+### Noncompliant
+{{BUGGY}}
+### Compliant

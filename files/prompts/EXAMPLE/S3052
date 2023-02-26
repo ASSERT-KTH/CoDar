@@ -1,0 +1,17 @@
+### Noncompliant
+public class MyClass {
+
+  int count = 0;  // Noncompliant
+  // ...
+
+}
+### Compliant
+public class MyClass {
+
+  int count;
+  // ...
+
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

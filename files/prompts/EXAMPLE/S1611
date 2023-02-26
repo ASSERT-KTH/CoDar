@@ -1,0 +1,7 @@
+### Noncompliant
+(x) -> x * 2
+### Compliant
+x -> x * 2
+### Noncompliant
+{{BUGGY}}
+### Compliant

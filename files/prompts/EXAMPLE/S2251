@@ -1,0 +1,15 @@
+### Noncompliant
+public void doSomething(String [] strings) {
+  for (int i = 0; i < strings.length; i--) { // Noncompliant;
+    String string = strings[i];  // ArrayIndexOutOfBoundsException when i reaches -1
+    //...
+  }
+### Compliant
+public void doSomething(String [] strings) {
+  for (int i = 0; i < strings.length; i++) {
+    String string = strings[i];
+    //...
+  }
+### Noncompliant
+{{BUGGY}}
+### Compliant

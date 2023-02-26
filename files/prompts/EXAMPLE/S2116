@@ -1,0 +1,13 @@
+### Noncompliant
+public static void main( String[] args )
+{
+    String argStr = args.toString(); // Noncompliant
+    int argHash = args.hashCode(); // Noncompliant
+### Compliant
+public static void main( String[] args )
+{
+    String argStr = Arrays.toString(args);
+    int argHash = Arrays.hashCode(args);
+### Noncompliant
+{{BUGGY}}
+### Compliant

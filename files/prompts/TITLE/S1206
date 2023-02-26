@@ -1,0 +1,4 @@
+"equals(Object obj)" and "hashCode()" should be overridden in pairs
+### Noncompliant
+{{BUGGY}}
+### Compliant

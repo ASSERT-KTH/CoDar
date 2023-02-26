@@ -1,0 +1,4 @@
+A new session should be created during user authentication
+### Noncompliant
+{{BUGGY}}
+### Compliant

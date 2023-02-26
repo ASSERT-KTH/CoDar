@@ -1,0 +1,13 @@
+### Noncompliant
+public class Foo {
+   public Foo() {...}
+   public void Foo(String label) {...}  // Noncompliant
+}
+### Compliant
+public class Foo {
+   public Foo() {...}
+   public void foo(String label) {...}  
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

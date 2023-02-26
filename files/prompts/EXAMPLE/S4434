@@ -1,0 +1,17 @@
+### Noncompliant
+DirContext ctx = new InitialDirContext();
+// ...
+ctx.search(query, filter,
+        new SearchControls(scope, countLimit, timeLimit, attributes,
+            true, // Noncompliant; allows deserialization
+            deref));
+### Compliant
+DirContext ctx = new InitialDirContext();
+// ...
+ctx.search(query, filter,
+        new SearchControls(scope, countLimit, timeLimit, attributes,
+            false, 
+            deref));
+### Noncompliant
+{{BUGGY}}
+### Compliant

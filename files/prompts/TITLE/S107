@@ -1,0 +1,4 @@
+Methods should not have too many parameters
+### Noncompliant
+{{BUGGY}}
+### Compliant

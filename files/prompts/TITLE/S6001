@@ -1,0 +1,4 @@
+Back references in regular expressions should only refer to capturing groups that are matched before the reference
+### Noncompliant
+{{BUGGY}}
+### Compliant

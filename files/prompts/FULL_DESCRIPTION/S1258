@@ -1,0 +1,19 @@
+Classes and enums with private members should have a constructor
+Non-abstract classes and enums with non-static, private members should explicitly initialize those members, either in a constructor or with a default value. 
+### Noncompliant
+class A { // Noncompliant
+  private int field;
+}
+ 
+### Compliant
+class A {
+  private int field;
+
+  A(int field) {
+    this.field = field;
+  }
+}
+ Exceptions Class implementing a Builder Pattern (name ending with "Builder"). Java EE class annotated with: ManagedBean MessageDriven Singleton Stateful Stateless WebService WebFilter WebServlet Class and field annotated with: Plexus Component Annotations Maven Mojo Field annotated with: Resource EJB Inject Autowired
+### Noncompliant
+{{BUGGY}}
+### Compliant

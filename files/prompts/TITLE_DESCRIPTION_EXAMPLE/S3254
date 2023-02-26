@@ -1,0 +1,21 @@
+Default annotation parameter values should not be passed as arguments
+Specifying the default value for an annotation parameter is redundant. Such values should be omitted in the interests of readability. 
+### Noncompliant
+@MyAnnotation(arg = "def")  // Noncompliant
+public class MyClass {
+  // ...
+}
+public @interface MyAnnotation {
+  String arg() default "def";
+}
+### Compliant
+@MyAnnotation
+public class MyClass {
+  // ...
+}
+public @interface MyAnnotation {
+  String arg() default "def";
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

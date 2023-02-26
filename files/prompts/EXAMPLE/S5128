@@ -1,0 +1,44 @@
+### Noncompliant
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
+public class User {
+  @NotNull
+  private String name;
+}
+
+public class Group {
+  @NotNull
+  private List<User> users; // Noncompliant; User instances are not validated
+}
+
+public class MyService {
+  public void login(User user) { // Noncompliant; parameter "user" is not validated
+  }
+}
+### Compliant
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
+public class User {
+  @NotNull
+  private String name;
+}
+
+public class Group {
+  @Valid
+  @NotNull
+  private List<User> users; 
+
+  @NotNull
+  // preferred style as of Bean Validation 2.0
+  private List<@Valid User> users2; 
+}
+
+public class MyService {
+  public void login(@Valid User user) { 
+  }
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,4 @@
+Unused type parameters should be removed
+### Noncompliant
+{{BUGGY}}
+### Compliant

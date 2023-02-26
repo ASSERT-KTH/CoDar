@@ -1,0 +1,4 @@
+Getters and setters should access the expected fields
+### Noncompliant
+{{BUGGY}}
+### Compliant

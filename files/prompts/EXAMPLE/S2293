@@ -1,0 +1,9 @@
+### Noncompliant
+List<String> strings = new ArrayList<String>();  // Noncompliant
+Map<String,List<Integer>> map = new HashMap<String,List<Integer>>();  // Noncompliant
+### Compliant
+List<String> strings = new ArrayList<>();
+Map<String,List<Integer>> map = new HashMap<>();
+### Noncompliant
+{{BUGGY}}
+### Compliant

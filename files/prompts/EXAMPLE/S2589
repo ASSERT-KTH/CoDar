@@ -1,0 +1,29 @@
+### Noncompliant
+a = true;
+if (a) { // Noncompliant
+  doSomething();
+}
+
+if (b && a) { // Noncompliant; "a" is always "true"
+  doSomething();
+}
+
+if (c || !a) { // Noncompliant; "!a" is always "false"
+  doSomething();
+}
+### Compliant
+a = true;
+if (foo(a)) {
+  doSomething();
+}
+
+if (b) {
+  doSomething();
+}
+
+if (c) {
+  doSomething();
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

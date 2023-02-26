@@ -1,0 +1,11 @@
+### Noncompliant
+public void delete() throws IOException, SQLException {      // Noncompliant
+  /* ... */
+}
+### Compliant
+public void delete() throws SomeApplicationLevelException {
+  /* ... */
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

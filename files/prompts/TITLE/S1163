@@ -1,0 +1,4 @@
+Exceptions should not be thrown in finally blocks
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,4 @@
+"main" should not "throw" anything
+### Noncompliant
+{{BUGGY}}
+### Compliant

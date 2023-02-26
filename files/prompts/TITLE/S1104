@@ -1,0 +1,4 @@
+Class variable fields should not have public accessibility
+### Noncompliant
+{{BUGGY}}
+### Compliant

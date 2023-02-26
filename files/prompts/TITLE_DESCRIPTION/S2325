@@ -1,0 +1,5 @@
+"private" and "final" methods that don't access instance data should be "static"
+Non-overridable methods (private or final) that don’t access instance data can be static to prevent any misunderstanding about the contract of the method. 
+### Noncompliant
+{{BUGGY}}
+### Compliant

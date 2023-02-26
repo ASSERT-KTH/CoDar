@@ -1,0 +1,4 @@
+Reluctant quantifiers in regular expressions should be followed by an expression that can't match the empty string
+### Noncompliant
+{{BUGGY}}
+### Compliant

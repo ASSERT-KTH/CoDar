@@ -1,0 +1,26 @@
+### Noncompliant
+public int lengthPlus(String str) {
+  int len = 2;
+  try {
+    len += str.length();
+  }
+  catch (NullPointerException e) {
+    log.info("argument was null");
+  }
+  return len;
+}
+### Compliant
+public int lengthPlus(String str) {
+  int len = 2;
+
+  if (str != null) {
+    len += str.length();
+  }
+  else {
+    log.info("argument was null");
+  }
+  return len;
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

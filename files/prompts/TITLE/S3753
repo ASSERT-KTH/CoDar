@@ -1,0 +1,4 @@
+"@Controller" classes that use "@SessionAttributes" must call "setComplete" on their "SessionStatus" objects
+### Noncompliant
+{{BUGGY}}
+### Compliant

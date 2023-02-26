@@ -1,0 +1,4 @@
+Similar tests should be grouped in a single Parameterized test
+### Noncompliant
+{{BUGGY}}
+### Compliant

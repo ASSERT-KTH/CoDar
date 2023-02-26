@@ -1,0 +1,4 @@
+String multiline concatenation should be replaced with Text Blocks
+### Noncompliant
+{{BUGGY}}
+### Compliant

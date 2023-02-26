@@ -1,0 +1,28 @@
+Catches should be combined
+Since Java 7 it has been possible to catch multiple exceptions at once. Therefore, when multiple catch blocks have the same code, they should be combined for better readability. Note that this rule is automatically disabled when the project’s sonar.java.source is lower than 7. 
+### Noncompliant
+catch (IOException e) {
+  doCleanup();
+  logger.log(e);
+}
+catch (SQLException e) {  // Noncompliant
+  doCleanup();
+  logger.log(e);
+}
+catch (TimeoutException e) {  // Compliant; block contents are different
+  doCleanup();
+  throw e;
+}
+ 
+### Compliant
+catch (IOException|SQLException e) {
+  doCleanup();
+  logger.log(e);
+}
+catch (TimeoutException e) {
+  doCleanup();
+  throw e;
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

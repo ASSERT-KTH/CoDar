@@ -1,0 +1,4 @@
+"Serializable" inner classes of "Serializable" classes should be static
+### Noncompliant
+{{BUGGY}}
+### Compliant

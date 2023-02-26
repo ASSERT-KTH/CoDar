@@ -1,0 +1,15 @@
+### Noncompliant
+String textBlock = """
+        this is
+<tab>text block!
+        !!!!
+      """;
+### Compliant
+String textBlock = """
+        this is
+        text block!
+        !!!!
+      """;
+### Noncompliant
+{{BUGGY}}
+### Compliant

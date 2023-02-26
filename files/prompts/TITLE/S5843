@@ -1,0 +1,4 @@
+Regular expressions should not be too complicated
+### Noncompliant
+{{BUGGY}}
+### Compliant

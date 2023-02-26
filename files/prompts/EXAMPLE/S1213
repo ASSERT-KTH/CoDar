@@ -1,0 +1,17 @@
+### Noncompliant
+public class Foo{
+   private int field = 0;
+   public boolean isTrue() {...}
+   public Foo() {...}                         // Noncompliant, constructor defined after methods
+   public static final int OPEN = 4;  //Noncompliant, variable defined after constructors and methods
+}
+### Compliant
+public class Foo{
+   public static final int OPEN = 4;
+   private int field = 0;
+   public Foo() {...}
+   public boolean isTrue() {...}
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

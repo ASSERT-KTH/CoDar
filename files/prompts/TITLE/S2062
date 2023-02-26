@@ -1,0 +1,4 @@
+"readResolve" methods should be inheritable
+### Noncompliant
+{{BUGGY}}
+### Compliant

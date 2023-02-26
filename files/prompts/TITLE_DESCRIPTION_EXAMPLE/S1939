@@ -1,0 +1,31 @@
+Extensions and implementations should not be redundant
+All classes extend Object implicitly. Doing so explicitly is redundant. Further, declaring the implementation of an interface and one if its parents is also redundant. If you implement the interface, you also implicitly implement its parents and there’s no need to do so explicitly. 
+### Noncompliant
+public interface MyFace {
+  // ...
+}
+
+public interface MyOtherFace extends MyFace {
+  // ...
+}
+
+public class Foo
+    extends Object // Noncompliant
+    implements MyFace, MyOtherFace {  // Noncompliant
+  //...
+}
+### Compliant
+public interface MyFace {
+  // ...
+}
+
+public interface MyOtherFace extends MyFace {
+  // ...
+}
+
+public class Foo implements MyOtherFace {
+  //...
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

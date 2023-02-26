@@ -1,0 +1,25 @@
+### Noncompliant
+private volatile int count = 0;
+private volatile boolean boo = false;
+
+public void incrementCount() {
+  count++;  // Noncompliant
+}
+
+public void toggleBoo(){
+  boo = !boo;  // Noncompliant
+}
+### Compliant
+private AtomicInteger count = 0;
+private boolean boo = false;
+
+public void incrementCount() {
+  count.incrementAndGet();
+}
+
+public synchronized void toggleBoo() {
+  boo = !boo;
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

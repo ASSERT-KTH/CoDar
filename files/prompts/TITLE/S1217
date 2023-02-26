@@ -1,0 +1,4 @@
+"Thread.run()" should not be called directly
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,4 @@
+Switches should be used for sequences of simple "String" tests
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,4 @@
+Sets with elements that are enum values should be replaced with EnumSet
+### Noncompliant
+{{BUGGY}}
+### Compliant

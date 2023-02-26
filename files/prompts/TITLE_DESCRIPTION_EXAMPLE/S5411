@@ -1,0 +1,25 @@
+Avoid using boxed "Boolean" types directly in boolean expressions
+When boxed type java.lang.Boolean is used as an expression to determine the control flow (as described in Java Language Specification §4.2.5 The boolean Type and boolean Values) it will throw a NullPointerException if the value is null (as defined in Java Language Specification §5.1.8 Unboxing Conversion). It is safer to avoid such conversion altogether and handle the null value explicitly. Note, however, that no issues will be raised for Booleans that have already been null-checked. 
+### Noncompliant
+Boolean b = getBoolean();
+if (b) {  // Noncompliant, it will throw NPE when b == null
+  foo();
+} else {
+  bar();
+}
+### Compliant
+Boolean b = getBoolean();
+if (Boolean.TRUE.equals(b)) {
+  foo();
+} else {
+  bar();  // will be invoked for both b == false and b == null
+}
+
+
+Boolean b = getBoolean();
+if(b != null){
+  String test = b ? "test" : "";
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

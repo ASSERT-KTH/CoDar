@@ -1,0 +1,4 @@
+Composed "@RequestMapping" variants should be preferred
+### Noncompliant
+{{BUGGY}}
+### Compliant

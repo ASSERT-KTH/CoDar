@@ -1,0 +1,9 @@
+### Noncompliant
+private volatile int [] vInts;  // Noncompliant
+private volatile MyObj myObj;  // Noncompliant
+### Compliant
+private AtomicIntegerArray vInts;
+private MyObj myObj;
+### Noncompliant
+{{BUGGY}}
+### Compliant

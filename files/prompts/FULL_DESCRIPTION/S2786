@@ -1,0 +1,22 @@
+Nested "enum"s should not be declared static
+According to the Java Language Specification-8.9: Nested enum types are implicitly static. So there’s no need to declare them static explicitly. 
+### Noncompliant
+public class Flower {
+  static enum Color { // Noncompliant; static is redundant here
+    RED, YELLOW, BLUE, ORANGE
+  }
+
+  // ...
+}
+ 
+### Compliant
+public class Flower {
+  enum Color { // Compliant
+    RED, YELLOW, BLUE, ORANGE
+  }
+
+  // ...
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

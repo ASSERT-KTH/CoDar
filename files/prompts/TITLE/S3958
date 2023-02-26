@@ -1,0 +1,4 @@
+Intermediate Stream methods should not be left unused
+### Noncompliant
+{{BUGGY}}
+### Compliant

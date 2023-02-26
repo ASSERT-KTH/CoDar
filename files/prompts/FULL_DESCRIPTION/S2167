@@ -1,0 +1,16 @@
+"compareTo" should not return "Integer.MIN_VALUE"
+It is the sign, rather than the magnitude of the value returned from compareTo that matters. Returning Integer.MIN_VALUE does not convey a higher degree of inequality, and doing so can cause errors because the return value of compareTo is sometimes inversed, with the expectation that negative values become positive. However, inversing Integer.MIN_VALUE yields Integer.MIN_VALUE rather than Integer.MAX_VALUE. 
+### Noncompliant
+public int compareTo(MyClass) {
+  if (condition) {
+    return Integer.MIN_VALUE;  // Noncompliant
+  }
+ 
+### Compliant
+public int compareTo(MyClass) {
+  if (condition) {
+    return -1;
+  }
+### Noncompliant
+{{BUGGY}}
+### Compliant

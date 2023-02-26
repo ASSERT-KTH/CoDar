@@ -1,0 +1,5 @@
+Collapsible "if" statements should be merged
+Merging collapsible if statements increases the code’s readability. 
+### Noncompliant
+{{BUGGY}}
+### Compliant

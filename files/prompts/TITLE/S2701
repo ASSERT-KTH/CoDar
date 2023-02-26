@@ -1,0 +1,4 @@
+Literal boolean values and nulls should not be used in assertions
+### Noncompliant
+{{BUGGY}}
+### Compliant

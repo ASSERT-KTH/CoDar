@@ -1,0 +1,4 @@
+"equals(Object obj)" should be overridden along with the "compareTo(T obj)" method
+### Noncompliant
+{{BUGGY}}
+### Compliant

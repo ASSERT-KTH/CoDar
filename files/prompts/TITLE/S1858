@@ -1,0 +1,4 @@
+"toString()" should never be called on a String object
+### Noncompliant
+{{BUGGY}}
+### Compliant

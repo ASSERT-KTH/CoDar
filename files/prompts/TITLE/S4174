@@ -1,0 +1,4 @@
+Local constants should follow naming conventions for constants
+### Noncompliant
+{{BUGGY}}
+### Compliant

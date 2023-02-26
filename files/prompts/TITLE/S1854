@@ -1,0 +1,4 @@
+Unused assignments should be removed
+### Noncompliant
+{{BUGGY}}
+### Compliant

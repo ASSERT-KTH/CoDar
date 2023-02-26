@@ -1,0 +1,4 @@
+Arrays should not be created for varargs parameters
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,4 @@
+The ternary operator should not be used
+### Noncompliant
+{{BUGGY}}
+### Compliant

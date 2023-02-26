@@ -1,0 +1,9 @@
+### Noncompliant
+@RequestMapping("/greet", method = GET)
+private String greet(String greetee) {  // Noncompliant
+### Compliant
+@RequestMapping("/greet", method = GET)
+public String greet(String greetee) {
+### Noncompliant
+{{BUGGY}}
+### Compliant

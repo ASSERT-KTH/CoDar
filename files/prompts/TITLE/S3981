@@ -1,0 +1,4 @@
+Collection sizes and array length comparisons should make sense
+### Noncompliant
+{{BUGGY}}
+### Compliant

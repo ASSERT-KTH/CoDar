@@ -1,0 +1,5 @@
+Fields in non-serializable classes should not be "transient"
+transient is used to mark fields in a Serializable class which will not be written out to file (or stream). In a class that does not implement Serializable, this modifier is simply wasted keystrokes, and should be removed. 
+### Noncompliant
+{{BUGGY}}
+### Compliant

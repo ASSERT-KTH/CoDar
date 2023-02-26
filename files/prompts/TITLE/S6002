@@ -1,0 +1,4 @@
+Regex lookahead assertions should not be contradictory
+### Noncompliant
+{{BUGGY}}
+### Compliant

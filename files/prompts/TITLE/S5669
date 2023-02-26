@@ -1,0 +1,4 @@
+Vararg method arguments should not be confusing
+### Noncompliant
+{{BUGGY}}
+### Compliant

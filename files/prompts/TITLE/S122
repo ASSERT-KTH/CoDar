@@ -1,0 +1,4 @@
+Statements should be on separate lines
+### Noncompliant
+{{BUGGY}}
+### Compliant

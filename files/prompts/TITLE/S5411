@@ -1,0 +1,4 @@
+Avoid using boxed "Boolean" types directly in boolean expressions
+### Noncompliant
+{{BUGGY}}
+### Compliant

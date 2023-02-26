@@ -1,0 +1,20 @@
+Escape sequences should not be used in text blocks
+The use of escape sequences is mostly unnecessary in text blocks. 
+### Noncompliant
+\n can be replaced by simply introducing the newline, \"\"\" it is sufficient to escape only the first qoute. String textBlock = """
+        \"\"\" this \nis
+        text  block!
+        !!!!
+      """;
+ 
+### Compliant
+String textBlock = """
+        \""" this
+        is
+        text  block!
+        !!!!
+      """;
+ See JEP 378: Text Blocks Programmer’s Guide To Text Blocks, by Jim Laskey and Stuart Marks
+### Noncompliant
+{{BUGGY}}
+### Compliant

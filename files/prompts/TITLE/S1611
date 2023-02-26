@@ -1,0 +1,4 @@
+Parentheses should be removed from a single lambda input parameter when its type is inferred
+### Noncompliant
+{{BUGGY}}
+### Compliant

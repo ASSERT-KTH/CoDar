@@ -1,0 +1,11 @@
+### Noncompliant
+public int finalize(int someParameter) {        // Noncompliant
+  /* ... */
+}
+### Compliant
+public int someBetterName(int someParameter) {  
+  /* ... */
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

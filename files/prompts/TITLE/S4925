@@ -1,0 +1,4 @@
+"Class.forName()" should not load JDBC 4.0+ drivers
+### Noncompliant
+{{BUGGY}}
+### Compliant

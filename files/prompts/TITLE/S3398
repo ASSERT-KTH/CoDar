@@ -1,0 +1,4 @@
+"private" methods called only by inner classes should be moved to those classes
+### Noncompliant
+{{BUGGY}}
+### Compliant

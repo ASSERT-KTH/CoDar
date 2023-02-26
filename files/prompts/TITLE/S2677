@@ -1,0 +1,4 @@
+"read" and "readLine" return values should be used
+### Noncompliant
+{{BUGGY}}
+### Compliant

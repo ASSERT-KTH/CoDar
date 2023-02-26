@@ -1,0 +1,18 @@
+"Random" objects should be reused
+Creating a new Random object each time a random value is needed is inefficient and may produce numbers which are not random depending on the JDK. For better efficiency and randomness, create a single Random, then store, and reuse it. The Random() constructor tries to set the seed with a distinct value every time. However there is no guarantee that the seed will be random or even uniformly distributed. Some JDK will use the current time as seed, which makes the generated numbers not random at all. This rule finds cases where a new Random is created each time a method is invoked. 
+### Noncompliant
+public void doSomethingCommon() {
+  Random rand = new Random();  // Noncompliant; new instance created with each invocation
+  int rValue = rand.nextInt();
+  //...
+ 
+### Compliant
+private Random rand = SecureRandom.getInstanceStrong();  // SecureRandom is preferred to Random
+
+public void doSomethingCommon() {
+  int rValue = this.rand.nextInt();
+  //...
+ Exceptions A class which uses a Random in its constructor or in a static main function and nowhere else will be ignored by this rule. See OWASP Top 10 2017 Category A6 - Security Misconfiguration
+### Noncompliant
+{{BUGGY}}
+### Compliant

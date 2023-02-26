@@ -1,0 +1,4 @@
+Raw types should not be used
+### Noncompliant
+{{BUGGY}}
+### Compliant

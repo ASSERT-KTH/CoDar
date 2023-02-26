@@ -1,0 +1,7 @@
+### Noncompliant
+ClassLoader cl = this.getClass().getClassLoader();  // Noncompliant
+### Compliant
+ClassLoader cl = Thread.currentThread().getContextClassLoader();
+### Noncompliant
+{{BUGGY}}
+### Compliant

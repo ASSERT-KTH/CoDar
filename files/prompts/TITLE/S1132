@@ -1,0 +1,4 @@
+Strings literals should be placed on the left side when checking for equality
+### Noncompliant
+{{BUGGY}}
+### Compliant

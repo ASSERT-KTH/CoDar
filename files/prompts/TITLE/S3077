@@ -1,0 +1,4 @@
+Non-primitive fields should not be "volatile"
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,29 @@
+"notifyAll" should be used
+notify and notifyAll both wake up sleeping threads, but notify only rouses one, while notifyAll rouses all of them. Since notify might not wake up the right thread, notifyAll should be used instead. 
+### Noncompliant
+class MyThread extends Thread{
+
+  @Override
+  public void run(){
+    synchronized(this){
+      // ...
+      notify();  // Noncompliant
+    }
+  }
+}
+ 
+### Compliant
+class MyThread extends Thread{
+
+  @Override
+  public void run(){
+    synchronized(this){
+      // ...
+      notifyAll();
+    }
+  }
+}
+ See CERT, THI02-J. - Notify all waiting threads rather than a single thread
+### Noncompliant
+{{BUGGY}}
+### Compliant

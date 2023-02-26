@@ -1,0 +1,4 @@
+Lambdas should be replaced with method references
+### Noncompliant
+{{BUGGY}}
+### Compliant

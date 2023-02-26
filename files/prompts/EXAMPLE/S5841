@@ -1,0 +1,21 @@
+### Noncompliant
+List<String> logs = getLogs();
+
+assertThat(logs).allMatch(e -> e.contains(“error”)); // Noncompliant, this test pass if logs are empty!
+assertThat(logs).doesNotContain("error"); // Noncompliant, do you expect any log?
+### Compliant
+List<String> logs = getLogs();
+
+assertThat(logs).isNotEmpty().allMatch(e -> e.contains(“error”));
+// Or
+assertThat(logs).hasSize(5).allMatch(e -> e.contains(“error”));
+// Or
+assertThat(logs).isEmpty();
+
+// Despite being redundant, this is also acceptable since it explains why you expect an empty list
+assertThat(logs).doesNotContain("error").isEmpty();
+// or test the content of the list further
+assertThat(logs).contains("warning").doesNotContain("error");
+### Noncompliant
+{{BUGGY}}
+### Compliant

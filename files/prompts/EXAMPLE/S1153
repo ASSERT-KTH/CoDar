@@ -1,0 +1,11 @@
+### Noncompliant
+public void display(int i){
+  System.out.println("Output is " + String.valueOf(i));    // Noncompliant
+}
+### Compliant
+public void display(int i){
+  System.out.println("Output is " + i);                    
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,4 @@
+"Cloneables" should implement "clone"
+### Noncompliant
+{{BUGGY}}
+### Compliant

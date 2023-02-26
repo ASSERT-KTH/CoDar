@@ -1,0 +1,16 @@
+### Noncompliant
+void foo() {
+  outer: //label is not used.
+  for(int i = 0; i<10; i++) {
+    break;
+  }
+}
+### Compliant
+void foo() {
+  for(int i = 0; i<10; i++) {
+    break;
+  }
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

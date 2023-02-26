@@ -1,0 +1,37 @@
+Lambdas should be replaced with method references
+Method/constructor references are commonly agreed to be more readable than lambdas in most situations, and are therefore preferred. However, method references are sometimes less concise than lambdas. In such cases, it might be fine to keep the lambda if it is better for readability. This choice is ultimately up to the programmer. Therefore, this rule only raises issues on lambda functions that could be replaced by shorter method references. null checks can be replaced with references to the Objects::isNull and Objects::nonNull methods, casts can be replaced with SomeClass.class::cast and instanceof can be replaced with SomeClass.class::isInstance. Note that this rule is automatically disabled when the project’s sonar.java.source is lower than 8. 
+### Noncompliant
+class A {
+  void process(List<A> list) {
+    list.stream()
+      .filter(a -> a instanceof B)
+      .map(a -> (B) a)
+      .map(b -> b.<String>getObject())
+      .forEach(b -> { System.out.println(b); });
+  }
+}
+
+class B extends A {
+  <T> T getObject() {
+    return null;
+  }
+}
+### Compliant
+class A {
+  void process(List<A> list) {
+    list.stream()
+      .filter(B.class::isInstance)
+      .map(B.class::cast)            // Note: keeping the lambda would also be compliant here, since it is shorter
+      .map(B::<String>getObject)
+      .forEach(System.out::println);
+  }
+}
+
+class B extends A {
+  <T> T getObject() {
+    return null;
+  }
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,4 @@
+Unused labels should be removed
+### Noncompliant
+{{BUGGY}}
+### Compliant

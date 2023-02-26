@@ -1,0 +1,4 @@
+Empty lines should not be tested with regex MULTILINE flag
+### Noncompliant
+{{BUGGY}}
+### Compliant

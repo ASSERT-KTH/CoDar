@@ -1,0 +1,4 @@
+JUnit5 test classes and methods should have default package visibility
+### Noncompliant
+{{BUGGY}}
+### Compliant

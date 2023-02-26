@@ -1,0 +1,4 @@
+"URL.hashCode" and "URL.equals" should be avoided
+### Noncompliant
+{{BUGGY}}
+### Compliant

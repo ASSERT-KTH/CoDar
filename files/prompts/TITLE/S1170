@@ -1,0 +1,4 @@
+Public constants and fields initialized at declaration should be "static final" rather than merely "final"
+### Noncompliant
+{{BUGGY}}
+### Compliant

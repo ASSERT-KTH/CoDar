@@ -1,0 +1,4 @@
+"Serializable" classes should have a "serialVersionUID"
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,9 @@
+### Noncompliant
+try { /* ... */ } catch (Throwable t) { /* ... */ }
+try { /* ... */ } catch (Error e) { /* ... */ }
+### Compliant
+try { /* ... */ } catch (RuntimeException e) { /* ... */ }
+try { /* ... */ } catch (MyException e) { /* ... */ }
+### Noncompliant
+{{BUGGY}}
+### Compliant

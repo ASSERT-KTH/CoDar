@@ -1,0 +1,4 @@
+Non-thread-safe fields should not be static
+### Noncompliant
+{{BUGGY}}
+### Compliant

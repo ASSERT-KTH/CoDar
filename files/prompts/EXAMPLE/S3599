@@ -1,0 +1,14 @@
+### Noncompliant
+Map source = new HashMap(){{ // Noncompliant
+    put("firstName", "John");
+    put("lastName", "Smith");
+}};
+### Compliant
+Map source = new HashMap();
+// ...
+source.put("firstName", "John");
+source.put("lastName", "Smith");
+// ...
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,13 @@
+### Noncompliant
+Path myPath;
+if(java.nio.file.Files.exists(myPath)) {  // Noncompliant
+ // do something
+}
+### Compliant
+Path myPath;
+if(myPath.toFile().exists())) {
+ // do something
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

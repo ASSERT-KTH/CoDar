@@ -1,0 +1,4 @@
+"Iterator.next()" methods should throw "NoSuchElementException"
+### Noncompliant
+{{BUGGY}}
+### Compliant

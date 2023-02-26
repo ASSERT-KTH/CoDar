@@ -1,0 +1,4 @@
+"Random" objects should be reused
+### Noncompliant
+{{BUGGY}}
+### Compliant

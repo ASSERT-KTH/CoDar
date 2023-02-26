@@ -1,0 +1,5 @@
+"switch" statements should not contain non-case labels
+Even if it is legal, mixing case and non-case labels in the body of a switch statement is very confusing and can even be the result of a typing error. 
+### Noncompliant
+{{BUGGY}}
+### Compliant

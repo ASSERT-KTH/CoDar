@@ -1,0 +1,12 @@
+The default unnamed package should not be used
+According to the Java Language Specification: Unnamed packages are provided by the Java platform principally for convenience when developing small or temporary applications or when just beginning development. To enforce this best practice, classes located in default package can no longer be accessed from named ones since Java 1.4. 
+### Noncompliant
+public class MyClass { /* ... */ }
+ 
+### Compliant
+package org.example;
+
+public class MyClass{ /* ... */ }
+### Noncompliant
+{{BUGGY}}
+### Compliant

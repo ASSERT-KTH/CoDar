@@ -1,0 +1,4 @@
+Utility classes should not have public constructors
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,4 @@
+"Stream.peek" should be used with caution
+### Noncompliant
+{{BUGGY}}
+### Compliant

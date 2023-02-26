@@ -1,0 +1,4 @@
+Fields in non-serializable classes should not be "transient"
+### Noncompliant
+{{BUGGY}}
+### Compliant

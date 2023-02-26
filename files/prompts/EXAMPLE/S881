@@ -1,0 +1,12 @@
+### Noncompliant
+u8a = ++u8b + u8c--;
+foo = bar++ / 4;
+### Compliant
+++u8b;
+u8a = u8b + u8c;
+u8c--;
+foo = bar / 4;
+bar++;
+### Noncompliant
+{{BUGGY}}
+### Compliant

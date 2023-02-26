@@ -1,0 +1,9 @@
+Unicode Grapheme Clusters should be avoided inside regex character classes
+When placing Unicode Grapheme Clusters (characters which require to be encoded in multiple Code Points) inside a character class of a regular expression, this will likely lead to unintended behavior. For instance, the grapheme cluster c̈ requires two code points: one for 'c', followed by one for the umlaut modifier '\u{0308}'. If placed within a character class, such as [c̈], the regex will consider the character class being the enumeration [c\u{0308}] instead. It will, therefore, match every 'c' and every umlaut that isn’t expressed as a single codepoint, which is extremely unlikely to be the intended behavior. This rule raises an issue every time Unicode Grapheme Clusters are used within a character class of a regular expression. 
+### Noncompliant
+"cc̈d̈d".replaceAll("[c̈d̈]", "X"); // Noncompliant, print "XXXXXX" instead of expected "cXXd".
+### Compliant
+"cc̈d̈d".replaceAll("c̈|d̈", "X"); // print "cXXd"
+### Noncompliant
+{{BUGGY}}
+### Compliant

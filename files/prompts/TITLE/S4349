@@ -1,0 +1,4 @@
+"write(byte[],int,int)" should be overridden
+### Noncompliant
+{{BUGGY}}
+### Compliant

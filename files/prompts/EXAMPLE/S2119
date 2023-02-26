@@ -1,0 +1,14 @@
+### Noncompliant
+public void doSomethingCommon() {
+  Random rand = new Random();  // Noncompliant; new instance created with each invocation
+  int rValue = rand.nextInt();
+  //...
+### Compliant
+private Random rand = SecureRandom.getInstanceStrong();  // SecureRandom is preferred to Random
+
+public void doSomethingCommon() {
+  int rValue = this.rand.nextInt();
+  //...
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,11 @@
+### Noncompliant
+Configuration configuration = new Configuration(); // Noncompliant, this configuration will not be applied.
+configuration.setComparingPrivateFields(true);{code}
+### Compliant
+Configuration configuration = new Configuration();
+configuration.setComparingPrivateFields(true);
+configuration.applyAndDisplay();
+// Alternatively: configuration.apply();
+### Noncompliant
+{{BUGGY}}
+### Compliant

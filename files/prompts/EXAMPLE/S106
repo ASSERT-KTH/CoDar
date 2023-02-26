@@ -1,0 +1,7 @@
+### Noncompliant
+System.out.println("My Message");  // Noncompliant
+### Compliant
+logger.log("My Message");
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,5 @@
+"static" base class members should not be accessed via derived types
+In the interest of code clarity, static members of a base class should never be accessed using a derived type’s name. Doing so is confusing and could create the illusion that two different static members exist. 
+### Noncompliant
+{{BUGGY}}
+### Compliant

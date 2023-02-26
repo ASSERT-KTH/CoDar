@@ -1,0 +1,4 @@
+"java.nio.Files#delete" should be preferred
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,16 @@
+"Externalizable" classes should have no-arguments constructors
+An Externalizable class is one which handles its own Serialization and deserialization. During deserialization, the first step in the process is a default instantiation using the class' no-argument constructor. Therefore an Externalizable class without a no-arg constructor cannot be deserialized. 
+### Noncompliant
+public class Tomato implements Externalizable {  // Noncompliant; no no-arg constructor
+
+  public Tomato (String color, int weight) { ... }
+}
+### Compliant
+public class Tomato implements Externalizable {
+
+  public Tomato() { ... }
+  public Tomato (String color, int weight) { ... }
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

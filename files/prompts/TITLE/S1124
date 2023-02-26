@@ -1,0 +1,4 @@
+Modifiers should be declared in the correct order
+### Noncompliant
+{{BUGGY}}
+### Compliant

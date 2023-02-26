@@ -1,0 +1,4 @@
+"compareTo" should not return "Integer.MIN_VALUE"
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,11 @@
+### Noncompliant
+public String [] getStringArray(List<String> strings) {
+  return (String []) strings.toArray();  // Noncompliant; ClassCastException thrown
+}
+### Compliant
+public String [] getStringArray(List<String> strings) {
+  return strings.toArray(new String[0]);
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,12 @@
+Files opened in append mode should not be used with ObjectOutputStream
+ObjectOutputStreams are used with serialization, and the first thing an ObjectOutputStream writes is the serialization stream header. This header should appear once per file, at the beginning. Pass a file opened in append mode into an ObjectOutputStream constructor and the serialization stream header will be added to the end of the file before your object is then also appended. When you’re trying to read your object(s) back from the file, only the first one will be read successfully, and a StreamCorruptedException will be thrown after that. 
+### Noncompliant
+FileOutputStream fos = new FileOutputStream (fileName , true);  // fos opened in append mode
+ObjectOutputStream out = new ObjectOutputStream(fos);  // Noncompliant
+ 
+### Compliant
+FileOutputStream fos = new FileOutputStream (fileName);
+ObjectOutputStream out = new ObjectOutputStream(fos);
+### Noncompliant
+{{BUGGY}}
+### Compliant

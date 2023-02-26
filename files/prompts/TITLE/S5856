@@ -1,0 +1,4 @@
+Regular expressions should be syntactically valid
+### Noncompliant
+{{BUGGY}}
+### Compliant

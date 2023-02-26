@@ -1,0 +1,15 @@
+### Noncompliant
+Assert.assertTrue(a.equals(b));
+Assert.assertTrue(a == b);
+Assert.assertTrue(a == null);
+Assert.assertTrue(a != null);
+Assert.assertFalse(a.equals(b));
+### Compliant
+Assert.assertEquals(a, b);
+Assert.assertSame(a, b);
+Assert.assertNull(a);
+Assert.assertNotNull(a);
+Assert.assertNotEquals(a, b);
+### Noncompliant
+{{BUGGY}}
+### Compliant

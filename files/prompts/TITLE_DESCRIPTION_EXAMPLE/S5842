@@ -1,0 +1,14 @@
+Repeated patterns in regular expressions should not match the empty string
+A regex should never include a repetitive pattern whose body would match the empty string. This is usually a sign that a part of the regex is redundant or does not do what the author intended. 
+### Noncompliant
+"(?:)*"      // same as the empty regex, the '*' accomplishes nothing
+"(?:|x)*"    // same as the empty regex, the alternative has no effect
+"(?:x|)*"    // same as 'x*', the empty alternative has no effect
+"(?:x*|y*)*" // same as 'x*', the first alternative would always match, y* is never tried
+"(?:x?)*"    // same as 'x*'
+"(?:x?)+"    // same as 'x*'
+### Compliant
+"x*"
+### Noncompliant
+{{BUGGY}}
+### Compliant

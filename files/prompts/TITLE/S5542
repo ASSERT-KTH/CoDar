@@ -1,0 +1,4 @@
+Encryption algorithms should be used with secure mode and padding scheme
+### Noncompliant
+{{BUGGY}}
+### Compliant

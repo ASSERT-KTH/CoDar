@@ -1,0 +1,4 @@
+Case insensitive Unicode regular expressions should enable the "UNICODE_CASE" flag
+### Noncompliant
+{{BUGGY}}
+### Compliant

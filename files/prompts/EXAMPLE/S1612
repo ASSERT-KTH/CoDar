@@ -1,0 +1,35 @@
+### Noncompliant
+class A {
+  void process(List<A> list) {
+    list.stream()
+      .filter(a -> a instanceof B)
+      .map(a -> (B) a)
+      .map(b -> b.<String>getObject())
+      .forEach(b -> { System.out.println(b); });
+  }
+}
+
+class B extends A {
+  <T> T getObject() {
+    return null;
+  }
+}
+### Compliant
+class A {
+  void process(List<A> list) {
+    list.stream()
+      .filter(B.class::isInstance)
+      .map(B.class::cast)            // Note: keeping the lambda would also be compliant here, since it is shorter
+      .map(B::<String>getObject)
+      .forEach(System.out::println);
+  }
+}
+
+class B extends A {
+  <T> T getObject() {
+    return null;
+  }
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

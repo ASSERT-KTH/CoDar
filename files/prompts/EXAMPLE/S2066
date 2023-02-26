@@ -1,0 +1,19 @@
+### Noncompliant
+public class Pomegranate {
+  // ...
+
+  public class Seed implements Serializable {  // Noncompliant; serialization will fail
+    // ...
+  }
+}
+### Compliant
+public class Pomegranate {
+  // ...
+
+  public static class Seed implements Serializable {
+    // ...
+  }
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

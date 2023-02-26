@@ -1,0 +1,4 @@
+Standard functional interfaces should not be redefined
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,4 @@
+Nested "enum"s should not be declared static
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,4 @@
+Derived exceptions should not hide their parents' catch blocks
+### Noncompliant
+{{BUGGY}}
+### Compliant

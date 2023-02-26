@@ -1,0 +1,4 @@
+Unused local variables should be removed
+### Noncompliant
+{{BUGGY}}
+### Compliant

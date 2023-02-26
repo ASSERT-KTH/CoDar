@@ -1,0 +1,24 @@
+Exceptions should not be thrown from servlet methods
+Even though the signatures for methods in a servlet include throws IOException, ServletException, it’s a bad idea to let such exceptions be thrown. Failure to catch exceptions in a servlet could leave a system in a vulnerable state, possibly resulting in denial-of-service attacks, or the exposure of sensitive information because when a servlet throws an exception, the servlet container typically sends debugging information back to the user. And that information could be very valuable to an attacker. This rule checks all exceptions in methods named "do*" are explicitly handled in servlet classes. 
+### Noncompliant
+public void doGet(HttpServletRequest request, HttpServletResponse response)
+  throws IOException, ServletException {
+  String ip = request.getRemoteAddr();
+  InetAddress addr = InetAddress.getByName(ip); // Noncompliant; getByName(String) throws UnknownHostException
+  //...
+}
+### Compliant
+public void doGet(HttpServletRequest request, HttpServletResponse response)
+  throws IOException, ServletException {
+  try {
+    String ip = request.getRemoteAddr();
+    InetAddress addr = InetAddress.getByName(ip);
+    //...
+  }
+  catch (UnknownHostException uhex) {
+    //...
+  }
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

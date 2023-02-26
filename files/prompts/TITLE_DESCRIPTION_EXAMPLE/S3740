@@ -1,0 +1,11 @@
+Raw types should not be used
+Generic types shouldn’t be used raw (without type parameters) in variable declarations or return values. Doing so bypasses generic type checking, and defers the catch of unsafe code to runtime. 
+### Noncompliant
+List myList; // Noncompliant
+Set mySet; // Noncompliant
+### Compliant
+List<String> myList;
+Set<? extends Number> mySet;
+### Noncompliant
+{{BUGGY}}
+### Compliant

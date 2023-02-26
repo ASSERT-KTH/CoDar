@@ -1,0 +1,4 @@
+Spring beans should be considered by "@ComponentScan"
+### Noncompliant
+{{BUGGY}}
+### Compliant

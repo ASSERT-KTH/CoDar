@@ -1,0 +1,7 @@
+### Noncompliant
+"cc̈d̈d".replaceAll("[c̈d̈]", "X"); // Noncompliant, print "XXXXXX" instead of expected "cXXd".
+### Compliant
+"cc̈d̈d".replaceAll("c̈|d̈", "X"); // print "cXXd"
+### Noncompliant
+{{BUGGY}}
+### Compliant

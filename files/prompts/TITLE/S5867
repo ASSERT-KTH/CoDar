@@ -1,0 +1,4 @@
+Unicode-aware versions of character classes should be preferred
+### Noncompliant
+{{BUGGY}}
+### Compliant

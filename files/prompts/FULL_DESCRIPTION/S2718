@@ -1,0 +1,18 @@
+"DateUtils.truncate" from Apache Commons Lang library should not be used
+The use of the ZonedDateTime class introduced in Java 8 to truncate a date can be significantly faster than the DateUtils class from Commons Lang. Note that this rule is automatically disabled when the project’s sonar.java.source is lower than 8. 
+### Noncompliant
+public Date trunc(Date date) {
+  return DateUtils.truncate(date, Calendar.SECOND);  // Noncompliant
+}
+ 
+### Compliant
+public Date trunc(Date date) {
+  Instant instant = date.toInstant();
+  ZonedDateTime zonedDateTime = instant.atZone(ZoneId.systemDefault());
+  ZonedDateTime truncatedZonedDateTime = zonedDateTime.truncatedTo(ChronoUnit.SECONDS);
+  Instant truncatedInstant = truncatedZonedDateTime.toInstant();
+  return Date.from(truncatedInstant);
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

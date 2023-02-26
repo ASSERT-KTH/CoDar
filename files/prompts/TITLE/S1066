@@ -1,0 +1,4 @@
+Collapsible "if" statements should be merged
+### Noncompliant
+{{BUGGY}}
+### Compliant

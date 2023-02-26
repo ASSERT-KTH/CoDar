@@ -1,0 +1,4 @@
+Call to Mockito method "verify", "when" or "given" should be simplified
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,23 @@
+### Noncompliant
+class Parent {
+  public static int counter;
+}
+
+class Child extends Parent {
+  public Child() {
+    Child.counter++;  // Noncompliant
+  }
+}
+### Compliant
+class Parent {
+  public static int counter;
+}
+
+class Child extends Parent {
+  public Child() {
+    Parent.counter++;
+  }
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

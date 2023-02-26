@@ -1,0 +1,4 @@
+"toString()" and "clone()" methods should not return null
+### Noncompliant
+{{BUGGY}}
+### Compliant

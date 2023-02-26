@@ -1,0 +1,4 @@
+Regex boundaries should not be used in a way that can never be matched
+### Noncompliant
+{{BUGGY}}
+### Compliant

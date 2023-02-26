@@ -1,0 +1,37 @@
+### Noncompliant
+@FunctionalInterface
+public interface MyInterface { // Noncompliant
+	double toDouble(int a);
+}
+
+@FunctionalInterface
+public interface ExtendedBooleanSupplier { // Noncompliant
+  boolean get();
+  default boolean isFalse() {
+    return !get();
+  }
+}
+
+public class MyClass {
+    private int a;
+    public double myMethod(MyInterface instance){
+	return instance.toDouble(a);
+    }
+}
+### Compliant
+@FunctionalInterface
+public interface ExtendedBooleanSupplier extends BooleanSupplier { 
+  default boolean isFalse() {
+    return !getAsBoolean();
+  }
+}
+
+public class MyClass {
+    private int a;
+    public double myMethod(IntToDoubleFunction instance){
+	return instance.applyAsDouble(a);
+    }
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

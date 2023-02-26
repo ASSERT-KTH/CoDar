@@ -1,0 +1,4 @@
+Exception types should not be tested using "instanceof" in catch blocks
+### Noncompliant
+{{BUGGY}}
+### Compliant

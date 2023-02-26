@@ -1,0 +1,4 @@
+Unit tests should throw exceptions
+### Noncompliant
+{{BUGGY}}
+### Compliant

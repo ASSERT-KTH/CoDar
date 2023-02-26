@@ -1,0 +1,4 @@
+InputSteam.read() implementation should not return a signed byte
+### Noncompliant
+{{BUGGY}}
+### Compliant

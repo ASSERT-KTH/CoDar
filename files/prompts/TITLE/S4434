@@ -1,0 +1,4 @@
+Allowing deserialization of LDAP objects is security-sensitive
+### Noncompliant
+{{BUGGY}}
+### Compliant

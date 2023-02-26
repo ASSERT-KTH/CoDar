@@ -1,0 +1,4 @@
+"ThreadLocal.withInitial" should be preferred
+### Noncompliant
+{{BUGGY}}
+### Compliant

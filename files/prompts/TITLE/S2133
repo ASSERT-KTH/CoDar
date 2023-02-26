@@ -1,0 +1,4 @@
+Objects should not be created only to "getClass"
+### Noncompliant
+{{BUGGY}}
+### Compliant

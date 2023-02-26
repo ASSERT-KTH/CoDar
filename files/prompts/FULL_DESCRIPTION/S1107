@@ -1,0 +1,44 @@
+Close curly brace and the next "else", "catch" and "finally" keywords should be located on the same line
+Shared coding conventions make it possible for a team to collaborate efficiently. This rule makes it mandatory to place closing curly braces on the same line as the next else, catch or finally keywords. 
+### Noncompliant
+public void myMethod() {
+  if(something) {
+    executeTask();
+  } else if (somethingElse) {
+    doSomethingElse();
+  }
+  else {                               // Noncompliant
+     generateError();
+  }
+
+  try {
+    generateOrder();
+  } catch (Exception e) {
+    log(e);
+  }
+  finally {                            // Noncompliant
+    closeConnection();
+  }
+}
+ 
+### Compliant
+public void myMethod() {
+  if(something) {
+    executeTask();
+  } else if (somethingElse) {
+    doSomethingElse();
+  } else {
+     generateError();
+  }
+
+  try {
+    generateOrder();
+  } catch (Exception e) {
+    log(e);
+  } finally {
+    closeConnection();
+  }
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

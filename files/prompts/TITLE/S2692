@@ -1,0 +1,4 @@
+"indexOf" checks should not be for positive numbers
+### Noncompliant
+{{BUGGY}}
+### Compliant

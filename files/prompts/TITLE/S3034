@@ -1,0 +1,4 @@
+Raw byte values should not be used in bitwise operations in combination with shifts
+### Noncompliant
+{{BUGGY}}
+### Compliant

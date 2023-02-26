@@ -1,0 +1,11 @@
+### Noncompliant
+if (myClass.compareTo(arg) == -1) {  // Noncompliant
+  // ...
+}
+### Compliant
+if (myClass.compareTo(arg) < 0) {
+  // ...
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,4 @@
+"else" statements should be clearly matched with an "if"
+### Noncompliant
+{{BUGGY}}
+### Compliant

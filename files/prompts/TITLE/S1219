@@ -1,0 +1,4 @@
+"switch" statements should not contain non-case labels
+### Noncompliant
+{{BUGGY}}
+### Compliant

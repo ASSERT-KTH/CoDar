@@ -1,0 +1,19 @@
+### Noncompliant
+import java.util.List;
+import java.sql.Timestamp;
+
+//...
+
+java.util.List<String> myList;  // Noncompliant
+java.sql.Timestamp tStamp; // Noncompliant
+### Compliant
+import java.util.List;
+import java.sql.Timestamp;
+
+//...
+
+List<String> myList;
+Timestamp tStamp;
+### Noncompliant
+{{BUGGY}}
+### Compliant

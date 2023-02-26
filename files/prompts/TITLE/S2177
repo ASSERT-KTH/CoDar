@@ -1,0 +1,4 @@
+Child class methods named for parent class methods should be overrides
+### Noncompliant
+{{BUGGY}}
+### Compliant

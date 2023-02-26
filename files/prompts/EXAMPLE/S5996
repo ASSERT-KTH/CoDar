@@ -1,0 +1,8 @@
+### Noncompliant
+// This can never match because $ and ^ have been switched around
+Pattern.compile("$[a-z]+^"); // Noncompliant
+### Compliant
+Pattern.compile("^[a-z]+$");
+### Noncompliant
+{{BUGGY}}
+### Compliant

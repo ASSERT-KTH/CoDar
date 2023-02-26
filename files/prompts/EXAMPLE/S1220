@@ -1,0 +1,9 @@
+### Noncompliant
+public class MyClass { /* ... */ }
+### Compliant
+package org.example;
+
+public class MyClass{ /* ... */ }
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,4 @@
+Throwable and Error should not be caught
+### Noncompliant
+{{BUGGY}}
+### Compliant

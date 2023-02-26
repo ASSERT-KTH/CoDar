@@ -1,0 +1,4 @@
+Boolean expressions should not be gratuitous
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,9 @@
+### Noncompliant
+Pattern.compile("a|b|c"); // Noncompliant
+### Compliant
+Pattern.compile("[abc]");
+// or
+Pattern.compile("[a-c]");
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,19 @@
+### Noncompliant
+@SomeAnnotations({  // Noncompliant
+  @SomeAnnotation(..a..),
+  @SomeAnnotation(..b..),
+  @SomeAnnotation(..c..),
+})
+public class SomeClass {
+  ...
+}
+### Compliant
+@SomeAnnotation(..a..)
+@SomeAnnotation(..b..)
+@SomeAnnotation(..c..)
+public class SomeClass {
+  ...
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

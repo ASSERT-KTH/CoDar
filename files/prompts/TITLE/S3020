@@ -1,0 +1,4 @@
+"toArray" should be passed an array of the proper type
+### Noncompliant
+{{BUGGY}}
+### Compliant

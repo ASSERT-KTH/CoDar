@@ -1,0 +1,19 @@
+### Noncompliant
+String textBlock =
+               "<html>\n" +
+               "    <body>\n" +
+               "        <tag>\n" +
+               "        </tag>\n" +
+               "    </body>\n" +
+               "</html>";
+### Compliant
+String textBlock = """
+        <html>
+            <body>
+                <tag>
+                </tag>
+            </body>
+        </html>""";
+### Noncompliant
+{{BUGGY}}
+### Compliant

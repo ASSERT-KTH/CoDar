@@ -1,0 +1,4 @@
+Type parameters should not shadow other type parameters
+### Noncompliant
+{{BUGGY}}
+### Compliant

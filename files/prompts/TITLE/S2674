@@ -1,0 +1,4 @@
+The value returned from a stream read should be checked
+### Noncompliant
+{{BUGGY}}
+### Compliant

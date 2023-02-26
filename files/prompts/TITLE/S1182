@@ -1,0 +1,4 @@
+Classes that override "clone" should be "Cloneable" and call "super.clone()"
+### Noncompliant
+{{BUGGY}}
+### Compliant

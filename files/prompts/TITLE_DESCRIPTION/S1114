@@ -1,0 +1,5 @@
+"super.finalize()" should be called at the end of "Object.finalize()" implementations
+Overriding the Object.finalize() method must be done with caution to dispose some system resources. Calling the super.finalize() at the end of this method implementation is highly recommended in case parent implementations must also dispose some system resources. 
+### Noncompliant
+{{BUGGY}}
+### Compliant

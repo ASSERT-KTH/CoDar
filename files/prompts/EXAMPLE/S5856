@@ -1,0 +1,14 @@
+### Noncompliant
+Pattern.compile("([");
+str.matches("([");
+str.replaceAll("([", "{");
+str.matches("(\\w+-(\\d+)");
+### Compliant
+Pattern.compile("\\(\\[");
+Pattern.compile("([", Pattern.LITERAL);
+str.equals("([");
+str.replace("([", "{");
+str.matches("(\\w+)-(\\d+)");
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,4 @@
+"Externalizable" classes should have no-arguments constructors
+### Noncompliant
+{{BUGGY}}
+### Compliant

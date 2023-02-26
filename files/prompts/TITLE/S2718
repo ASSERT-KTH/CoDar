@@ -1,0 +1,4 @@
+"DateUtils.truncate" from Apache Commons Lang library should not be used
+### Noncompliant
+{{BUGGY}}
+### Compliant

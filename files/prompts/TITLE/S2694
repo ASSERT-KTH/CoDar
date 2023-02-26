@@ -1,0 +1,4 @@
+Inner classes which do not reference their owning classes should be "static"
+### Noncompliant
+{{BUGGY}}
+### Compliant

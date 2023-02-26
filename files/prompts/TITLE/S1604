@@ -1,0 +1,4 @@
+Anonymous inner classes containing only one method should become lambdas
+### Noncompliant
+{{BUGGY}}
+### Compliant

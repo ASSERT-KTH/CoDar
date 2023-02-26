@@ -1,0 +1,4 @@
+"switch" statements should have at least 3 "case" clauses
+### Noncompliant
+{{BUGGY}}
+### Compliant

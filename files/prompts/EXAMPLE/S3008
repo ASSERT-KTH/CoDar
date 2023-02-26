@@ -1,0 +1,11 @@
+### Noncompliant
+public final class MyClass {
+   private static String foo_bar;
+}
+### Compliant
+class MyClass {
+   private static String fooBar;
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

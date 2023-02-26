@@ -1,0 +1,22 @@
+Constant names should comply with a naming convention
+Shared coding conventions allow teams to collaborate efficiently. This rule checks that all constant names match a provided regular expression. 
+### Noncompliant
+With the default regular expression ^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$: public class MyClass {
+  public static final int first = 1;
+}
+
+public enum MyEnum {
+  first;
+}
+ 
+### Compliant
+public class MyClass {
+  public static final int FIRST = 1;
+}
+
+public enum MyEnum {
+  FIRST;
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,19 @@
+### Noncompliant
+public void doSomethingToAList(List<String> strings) {
+  for (String str : strings) {
+    doStep1(str);
+  }
+  for (String str : strings) {  // Noncompliant
+    doStep2(str);
+  }
+}
+### Compliant
+public void doSomethingToAList(List<String> strings) {
+  for (String str : strings) {
+    doStep1(str);
+    doStep2(str);
+  }
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

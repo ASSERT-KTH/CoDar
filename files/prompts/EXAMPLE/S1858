@@ -1,0 +1,9 @@
+### Noncompliant
+String message = "hello world";
+System.out.println(message.toString()); // Noncompliant;
+### Compliant
+String message = "hello world";
+System.out.println(message);
+### Noncompliant
+{{BUGGY}}
+### Compliant

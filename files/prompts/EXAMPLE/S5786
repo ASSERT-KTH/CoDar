@@ -1,0 +1,21 @@
+### Noncompliant
+import org.junit.jupiter.api.Test;
+
+public class MyClassTest { // Noncompliant - modifier can be removed
+  @Test
+  protected void test() { // Noncompliant - modifier can be removed
+    // ...
+  }
+}
+### Compliant
+import org.junit.jupiter.api.Test;
+
+class MyClassTest {
+  @Test
+  void test() {
+    // ...
+  }
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

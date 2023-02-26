@@ -1,0 +1,13 @@
+### Noncompliant
+private synchronized void readObject(java.io.ObjectInputStream in)
+     throws IOException, ClassNotFoundException { // Noncompliant
+  //...
+}
+### Compliant
+private void readObject(java.io.ObjectInputStream in)
+     throws IOException, ClassNotFoundException { 
+  //...
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

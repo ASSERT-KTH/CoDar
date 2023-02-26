@@ -1,0 +1,4 @@
+Classes with only "static" methods should not be instantiated
+### Noncompliant
+{{BUGGY}}
+### Compliant

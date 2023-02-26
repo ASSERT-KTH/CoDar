@@ -1,0 +1,8 @@
+### Noncompliant
+int a1 = b + c; // This is a trailing comment that can be very very long
+### Compliant
+// This very long comment is better placed before the line of code
+int a2 = b + c;
+### Noncompliant
+{{BUGGY}}
+### Compliant

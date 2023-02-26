@@ -1,0 +1,11 @@
+### Noncompliant
+String s = "e\u0300";
+Pattern p = Pattern.compile("é|ë|è"); // Noncompliant
+System.out.println(p.matcher(s).replaceAll("e")); // print 'è'
+### Compliant
+String s = "e\u0300";
+Pattern p = Pattern.compile("é|ë|è", Pattern.CANON_EQ);
+System.out.println(p.matcher(s).replaceAll("e")); // print 'e'
+### Noncompliant
+{{BUGGY}}
+### Compliant

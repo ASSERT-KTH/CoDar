@@ -1,0 +1,4 @@
+Parsing should be used to convert "Strings" to primitives
+### Noncompliant
+{{BUGGY}}
+### Compliant

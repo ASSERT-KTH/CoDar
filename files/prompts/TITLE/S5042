@@ -1,0 +1,4 @@
+Expanding archive files without controlling resource consumption is security-sensitive
+### Noncompliant
+{{BUGGY}}
+### Compliant

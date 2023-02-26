@@ -16,7 +16,7 @@ public class SonarFixPrompt {
     }
 
     public String getPromptAsStr() throws IOException {
-        String promptTemplate = FileUtils.readFileToString(new File(Constants.CODEX_PROMPTS_TEMPLATE_DIR + ruleKey),
+        String promptTemplate = FileUtils.readFileToString(new File(Constants.PROMPT_TEMPLATE_BASE + ruleKey),
                 "UTF-8");
         return promptTemplate.replace(Constants.CODEX_PROMPT_BUGGY_CODE_PLACEHOLDER, buggyCode);
     }

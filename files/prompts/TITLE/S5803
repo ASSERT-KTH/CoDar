@@ -1,0 +1,4 @@
+Class members annotated with "@VisibleForTesting" should not be accessed from production code
+### Noncompliant
+{{BUGGY}}
+### Compliant

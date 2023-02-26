@@ -1,0 +1,4 @@
+Variables should not be declared before they are relevant
+### Noncompliant
+{{BUGGY}}
+### Compliant

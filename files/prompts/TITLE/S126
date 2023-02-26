@@ -1,0 +1,4 @@
+"if ... else if" constructs should end with "else" clauses
+### Noncompliant
+{{BUGGY}}
+### Compliant

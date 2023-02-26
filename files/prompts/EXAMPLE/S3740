@@ -1,0 +1,9 @@
+### Noncompliant
+List myList; // Noncompliant
+Set mySet; // Noncompliant
+### Compliant
+List<String> myList;
+Set<? extends Number> mySet;
+### Noncompliant
+{{BUGGY}}
+### Compliant

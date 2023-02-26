@@ -1,0 +1,4 @@
+Extensions and implementations should not be redundant
+### Noncompliant
+{{BUGGY}}
+### Compliant

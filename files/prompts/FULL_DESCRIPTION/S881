@@ -1,0 +1,16 @@
+Increment (++) and decrement (--) operators should not be used in a method call or mixed with other operators in an expression
+The use of increment and decrement operators in method calls or in combination with other arithmetic operators is not recommended, because: It can significantly impair the readability of the code. It introduces additional side effects into a statement, with the potential for undefined behavior. It is safer to use these operators in isolation from any other arithmetic operators. 
+### Noncompliant
+u8a = ++u8b + u8c--;
+foo = bar++ / 4;
+ 
+### Compliant
+The following sequence is clearer and therefore safer: ++u8b;
+u8a = u8b + u8c;
+u8c--;
+foo = bar / 4;
+bar++;
+ See CERT, EXP30-C. - Do not depend on the order of evaluation for side effects CERT, EXP50-CPP. - Do not depend on the order of evaluation for side effects CERT, EXP05-J. - Do not follow a write by a subsequent write or read of the same object within an expression
+### Noncompliant
+{{BUGGY}}
+### Compliant

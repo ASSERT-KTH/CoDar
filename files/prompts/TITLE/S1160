@@ -1,0 +1,4 @@
+Public methods should throw at most one checked exception
+### Noncompliant
+{{BUGGY}}
+### Compliant

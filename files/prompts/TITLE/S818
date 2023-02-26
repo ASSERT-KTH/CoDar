@@ -1,0 +1,4 @@
+Literal suffixes should be upper case
+### Noncompliant
+{{BUGGY}}
+### Compliant

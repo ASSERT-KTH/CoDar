@@ -1,0 +1,9 @@
+### Noncompliant
+if (x < 0)
+  new IllegalArgumentException("x must be nonnegative");
+### Compliant
+if (x < 0)
+  throw new IllegalArgumentException("x must be nonnegative");
+### Noncompliant
+{{BUGGY}}
+### Compliant

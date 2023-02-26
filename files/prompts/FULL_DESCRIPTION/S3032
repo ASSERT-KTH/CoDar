@@ -1,0 +1,10 @@
+JEE applications should not "getClassLoader"
+Using the standard getClassLoader() may not return the right class loader in a JEE context. Instead, go through the currentThread. 
+### Noncompliant
+ClassLoader cl = this.getClass().getClassLoader();  // Noncompliant
+ 
+### Compliant
+ClassLoader cl = Thread.currentThread().getContextClassLoader();
+### Noncompliant
+{{BUGGY}}
+### Compliant

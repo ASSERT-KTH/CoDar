@@ -1,0 +1,4 @@
+Primitive wrappers should not be instantiated only for "toString" or "compareTo" calls
+### Noncompliant
+{{BUGGY}}
+### Compliant

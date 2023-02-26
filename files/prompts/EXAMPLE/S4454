@@ -1,0 +1,14 @@
+### Noncompliant
+public boolean equals(@javax.annotation.Nonnull Object obj) { // Noncompliant
+  // ...
+}
+### Compliant
+public boolean equals(Object obj) {
+  if (obj == null) {
+    return false;
+  }
+  // ...
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

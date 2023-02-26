@@ -1,0 +1,4 @@
+Blocks should be synchronized on "private final" fields
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,16 @@
+Non-constructor methods should not have the same name as the enclosing class
+Having a class and some of its methods sharing the same name is misleading, and leaves others to wonder whether it was done that way on purpose, or was the methods supposed to be a constructor. 
+### Noncompliant
+public class Foo {
+   public Foo() {...}
+   public void Foo(String label) {...}  // Noncompliant
+}
+ 
+### Compliant
+public class Foo {
+   public Foo() {...}
+   public void foo(String label) {...}  // Compliant
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

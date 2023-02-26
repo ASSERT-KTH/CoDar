@@ -1,0 +1,17 @@
+### Noncompliant
+public class MyClass {
+  public void doSomethingSynchronized(){
+    synchronized (this.getClass()) {  // Noncompliant
+      // ...
+    }
+  }
+### Compliant
+public class MyClass {
+  public void doSomethingSynchronized(){
+    synchronized (MyClass.class) {
+      // ...
+    }
+  }
+### Noncompliant
+{{BUGGY}}
+### Compliant

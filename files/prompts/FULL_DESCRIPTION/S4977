@@ -1,0 +1,30 @@
+Type parameters should not shadow other type parameters
+Shadowing makes it impossible to use the type parameter from the outer scope. Also, it can be confusing to distinguish which type parameter is being used. This rule raises an issue when a type parameter from an inner scope uses the same name as one in an outer scope. 
+### Noncompliant
+ public class TypeParameterHidesAnotherType<T> {
+
+    public class Inner<T> { // Noncompliant
+      //...
+    }
+
+    private <T> T method() { // Noncompliant
+      return null;
+    }
+
+  }
+ 
+### Compliant
+public class NoTypeParameterHiding<T> {
+
+    public class Inner<S> { // Compliant
+      List<S> listOfS;
+    }
+
+    private <V> V method() { // Compliant
+      return null;
+    }
+
+  }
+### Noncompliant
+{{BUGGY}}
+### Compliant

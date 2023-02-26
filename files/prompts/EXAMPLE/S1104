@@ -1,0 +1,27 @@
+### Noncompliant
+public class MyClass {
+
+  public static final int SOME_CONSTANT = 0;     // Compliant - constants are not checked
+
+  public String firstName;                       // Noncompliant
+
+}
+### Compliant
+public class MyClass {
+
+  public static final int SOME_CONSTANT = 0;     
+
+  private String firstName;                      
+
+  public String getFirstName() {
+    return firstName;
+  }
+
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
+  }
+
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,28 @@
+### Noncompliant
+if ("red".equals(choice)) {  // Noncompliant
+  dispenseRed();
+} else if ("blue".equals(choice)) {
+  dispenseBlue();
+} else if ("yellow".equals(choice)) {
+  dispenseYellow();
+} else {
+  promptUser();
+}
+### Compliant
+switch(choice) {
+  case "Red":
+    dispenseRed();
+    break;
+  case "Blue":
+    dispenseBlue():
+    break;
+  case "Yellow":
+    dispenseYellow();
+    break;
+  default:
+    promptUser();
+    break;
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

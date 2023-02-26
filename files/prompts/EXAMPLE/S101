@@ -1,0 +1,7 @@
+### Noncompliant
+class my_class {...}
+### Compliant
+class MyClass {...}
+### Noncompliant
+{{BUGGY}}
+### Compliant

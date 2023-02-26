@@ -1,0 +1,4 @@
+AssertJ assertions with "Consumer" arguments should contain assertion inside consumers
+### Noncompliant
+{{BUGGY}}
+### Compliant

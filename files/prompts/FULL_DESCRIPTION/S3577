@@ -1,0 +1,32 @@
+Test classes should comply with a naming convention
+Shared naming conventions allow teams to collaborate efficiently. This rule raises an issue when a test class name does not match the provided regular expression. 
+### Noncompliant
+With the default value: ^((Test|IT)[a-zA-Z0-9_]+|[A-Z][a-zA-Z0-9_]*(Test|Tests|TestCase|IT|ITCase))$ class Foo {  // Noncompliant
+  @Test
+  void check() {  }
+}
+
+class Bar {  // Noncompliant
+  @Nested
+  class PositiveCase {
+    @Test
+    void check() {  }
+  }
+}
+ 
+### Compliant
+class FooTest {
+  @Test
+  void check() {  }
+}
+
+class BarIT {
+  @Nested
+  class PositiveCase {
+    @Test
+    void check() {  }
+  }
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

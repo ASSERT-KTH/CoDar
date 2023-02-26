@@ -1,0 +1,4 @@
+Passwords should not be stored in plain-text or with a fast hashing algorithm
+### Noncompliant
+{{BUGGY}}
+### Compliant

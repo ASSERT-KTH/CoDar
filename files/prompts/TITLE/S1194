@@ -1,0 +1,4 @@
+"java.lang.Error" should not be extended
+### Noncompliant
+{{BUGGY}}
+### Compliant

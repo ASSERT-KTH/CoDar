@@ -1,0 +1,16 @@
+### Noncompliant
+String textBlock = """
+        \"\"\" this \nis
+        text  block!
+        !!!!
+      """;
+### Compliant
+String textBlock = """
+        \""" this
+        is
+        text  block!
+        !!!!
+      """;
+### Noncompliant
+{{BUGGY}}
+### Compliant

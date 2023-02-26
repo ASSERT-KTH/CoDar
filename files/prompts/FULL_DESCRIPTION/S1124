@@ -1,0 +1,12 @@
+Modifiers should be declared in the correct order
+The Java Language Specification recommends listing modifiers in the following order: Annotations public protected private abstract static final transient volatile synchronized native default strictfp Not following this convention has no technical impact, but will reduce the code’s readability because most developers are used to the standard order. 
+### Noncompliant
+static public void main(String[] args) {   // Noncompliant
+}
+ 
+### Compliant
+public static void main(String[] args) {   // Compliant
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

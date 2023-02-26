@@ -1,0 +1,5 @@
+Short-circuit logic should be used in boolean contexts
+The use of non-short-circuit logic in a boolean context is likely a mistake - one that could cause serious program errors as conditions are evaluated under the wrong circumstances. 
+### Noncompliant
+{{BUGGY}}
+### Compliant

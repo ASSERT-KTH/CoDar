@@ -1,0 +1,4 @@
+Test methods should not contain too many assertions
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,4 @@
+The diamond operator ("<>") should be used
+### Noncompliant
+{{BUGGY}}
+### Compliant

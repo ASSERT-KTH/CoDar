@@ -1,0 +1,4 @@
+Local variables should not be declared and then immediately returned or thrown
+### Noncompliant
+{{BUGGY}}
+### Compliant

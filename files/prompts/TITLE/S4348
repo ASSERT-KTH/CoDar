@@ -1,0 +1,4 @@
+"iterator" should not return "this"
+### Noncompliant
+{{BUGGY}}
+### Compliant

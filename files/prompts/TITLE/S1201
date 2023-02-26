@@ -1,0 +1,4 @@
+"equals" method overrides should accept "Object" parameters
+### Noncompliant
+{{BUGGY}}
+### Compliant

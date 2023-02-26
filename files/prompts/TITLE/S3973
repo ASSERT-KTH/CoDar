@@ -1,0 +1,4 @@
+A conditionally executed single line should be denoted by indentation
+### Noncompliant
+{{BUGGY}}
+### Compliant

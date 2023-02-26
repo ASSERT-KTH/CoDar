@@ -1,0 +1,4 @@
+Redundant pairs of parentheses should be removed
+### Noncompliant
+{{BUGGY}}
+### Compliant

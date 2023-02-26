@@ -1,0 +1,33 @@
+"private" and "final" methods that don't access instance data should be "static"
+Non-overridable methods (private or final) that don’t access instance data can be static to prevent any misunderstanding about the contract of the method. 
+### Noncompliant
+class Utilities {
+  private static String magicWord = "magic";
+
+  private String getMagicWord() { // Noncompliant
+    return magicWord;
+  }
+
+  private void setMagicWord(String value) { // Noncompliant
+    magicWord = value;
+  }
+
+}
+ 
+### Compliant
+class Utilities {
+  private static String magicWord = "magic";
+
+  private static String getMagicWord() {
+    return magicWord;
+  }
+
+  private static void setMagicWord(String value) {
+    magicWord = value;
+  }
+
+}
+ Exceptions When java.io.Serializable is implemented the following three methods are excluded by the rule: private void writeObject(java.io.ObjectOutputStream out) throws IOException; private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException; private void readObjectNoData() throws ObjectStreamException;
+### Noncompliant
+{{BUGGY}}
+### Compliant

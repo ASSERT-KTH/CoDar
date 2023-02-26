@@ -1,0 +1,7 @@
+### Noncompliant
+package org.exAmple; // Noncompliant
+### Compliant
+package org.example;
+### Noncompliant
+{{BUGGY}}
+### Compliant

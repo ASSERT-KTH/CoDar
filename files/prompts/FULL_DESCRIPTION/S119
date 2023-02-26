@@ -1,0 +1,16 @@
+Type parameter names should comply with a naming convention
+Shared naming conventions make it possible for a team to collaborate efficiently. Following the established convention of single-letter type parameter names helps users and maintainers of your code quickly see the difference between a type parameter and a poorly named class. This rule check that all type parameter names match a provided regular expression. The following code snippets use the default regular expression. 
+### Noncompliant
+public class MyClass<TYPE> { // Noncompliant
+  <TYPE> void method(TYPE t) { // Noncompliant
+  }
+}
+ 
+### Compliant
+public class MyClass<T> {
+  <T> void method(T t) {
+  }
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,18 @@
+### Noncompliant
+public class Foo implements Supplier<Integer> {  // Noncompliant
+    @Override
+    public Integer get() {
+      // ...
+    }
+}
+### Compliant
+public class Foo implements IntSupplier {
+
+  @Override
+  public int getAsInt() {
+    // ...
+  }
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

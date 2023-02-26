@@ -1,0 +1,29 @@
+### Noncompliant
+public interface MyFace {
+  // ...
+}
+
+public interface MyOtherFace extends MyFace {
+  // ...
+}
+
+public class Foo
+    extends Object // Noncompliant
+    implements MyFace, MyOtherFace {  // Noncompliant
+  //...
+}
+### Compliant
+public interface MyFace {
+  // ...
+}
+
+public interface MyOtherFace extends MyFace {
+  // ...
+}
+
+public class Foo implements MyOtherFace {
+  //...
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

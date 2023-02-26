@@ -1,0 +1,18 @@
+Escape sequences should not be used in text blocks
+The use of escape sequences is mostly unnecessary in text blocks. 
+### Noncompliant
+String textBlock = """
+        \"\"\" this \nis
+        text  block!
+        !!!!
+      """;
+### Compliant
+String textBlock = """
+        \""" this
+        is
+        text  block!
+        !!!!
+      """;
+### Noncompliant
+{{BUGGY}}
+### Compliant

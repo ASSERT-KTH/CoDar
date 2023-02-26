@@ -1,0 +1,4 @@
+Annotation repetitions should not be wrapped
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,4 @@
+Null checks should not be used with "instanceof"
+### Noncompliant
+{{BUGGY}}
+### Compliant

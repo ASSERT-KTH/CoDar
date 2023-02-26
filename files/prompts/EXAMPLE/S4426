@@ -1,0 +1,23 @@
+### Noncompliant
+KeyPairGenerator keyPairGen1 = KeyPairGenerator.getInstance("RSA");
+keyPairGen1.initialize(1024); // Noncompliant
+
+KeyPairGenerator keyPairGen5 = KeyPairGenerator.getInstance("EC");
+ECGenParameterSpec ecSpec1 = new ECGenParameterSpec("secp112r1"); // Noncompliant
+keyPairGen5.initialize(ecSpec1);
+
+KeyGenerator keyGen1 = KeyGenerator.getInstance("AES");
+keyGen1.init(64); // Noncompliant
+### Compliant
+KeyPairGenerator keyPairGen6 = KeyPairGenerator.getInstance("RSA");
+keyPairGen6.initialize(2048); 
+
+KeyPairGenerator keyPairGen5 = KeyPairGenerator.getInstance("EC");
+ECGenParameterSpec ecSpec10 = new ECGenParameterSpec("secp256r1"); // compliant
+keyPairGen5.initialize(ecSpec10);
+
+KeyGenerator keyGen2 = KeyGenerator.getInstance("AES");
+keyGen2.init(128); 
+### Noncompliant
+{{BUGGY}}
+### Compliant

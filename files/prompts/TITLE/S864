@@ -1,0 +1,4 @@
+Limited dependence should be placed on operator precedence
+### Noncompliant
+{{BUGGY}}
+### Compliant

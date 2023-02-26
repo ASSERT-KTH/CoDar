@@ -1,0 +1,11 @@
+### Noncompliant
+public class MyClass implements Enumeration {  // Non-Compliant
+  /* ... */
+}
+### Compliant
+public class MyClass implements Iterator {     
+  /* ... */
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

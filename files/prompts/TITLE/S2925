@@ -1,0 +1,4 @@
+"Thread.sleep" should not be used in tests
+### Noncompliant
+{{BUGGY}}
+### Compliant

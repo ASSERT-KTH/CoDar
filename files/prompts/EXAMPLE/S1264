@@ -1,0 +1,7 @@
+### Noncompliant
+for (;condition;) { /*...*/ }
+### Compliant
+while (condition) { /*...*/ }
+### Noncompliant
+{{BUGGY}}
+### Compliant

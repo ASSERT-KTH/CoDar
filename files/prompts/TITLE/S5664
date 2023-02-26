@@ -1,0 +1,4 @@
+Whitespace for text block indent should be consistent
+### Noncompliant
+{{BUGGY}}
+### Compliant

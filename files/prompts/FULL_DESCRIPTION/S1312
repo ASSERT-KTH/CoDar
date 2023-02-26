@@ -1,0 +1,11 @@
+Loggers should be "private static final" and should share a naming convention
+Regardless of the logging framework in use (logback, log4j, commons-logging, java.util.logging, …), loggers should be: private: never be accessible outside of its parent class. If another class needs to log something, it should instantiate its own logger. static: not be dependent on an instance of a class (an object). When logging something, contextual information can of course be provided in the messages but the logger should be created at class level to prevent creating a logger along with each object. final: be created once and only once per class. 
+### Noncompliant
+With a default regular expression of LOG(?:GER)?: public Logger logger = LoggerFactory.getLogger(Foo.class);  // Noncompliant
+ 
+### Compliant
+private static final Logger LOGGER = LoggerFactory.getLogger(Foo.class);
+ Exceptions Variables of type org.apache.maven.plugin.logging.Log are ignored.
+### Noncompliant
+{{BUGGY}}
+### Compliant

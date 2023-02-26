@@ -1,0 +1,5 @@
+String.valueOf() should not be appended to a String
+Appending String.valueOf() to a String decreases the code readability. The argument passed to String.valueOf() should be directly appended instead. 
+### Noncompliant
+{{BUGGY}}
+### Compliant

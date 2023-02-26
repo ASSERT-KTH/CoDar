@@ -1,0 +1,4 @@
+Dissimilar primitive wrappers should not be used with the ternary operator without explicit casting
+### Noncompliant
+{{BUGGY}}
+### Compliant

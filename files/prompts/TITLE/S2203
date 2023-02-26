@@ -1,0 +1,4 @@
+"collect" should be used with "Streams" instead of "list::add"
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,31 @@
+Boolean expressions should not be gratuitous
+If a boolean expression doesn’t change the evaluation of the condition, then it is entirely unnecessary, and can be removed. If it is gratuitous because it does not match the programmer’s intent, then it’s a bug and the expression should be fixed. 
+### Noncompliant
+a = true;
+if (a) { // Noncompliant
+  doSomething();
+}
+
+if (b && a) { // Noncompliant; "a" is always "true"
+  doSomething();
+}
+
+if (c || !a) { // Noncompliant; "!a" is always "false"
+  doSomething();
+}
+### Compliant
+a = true;
+if (foo(a)) {
+  doSomething();
+}
+
+if (b) {
+  doSomething();
+}
+
+if (c) {
+  doSomething();
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

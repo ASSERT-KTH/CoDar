@@ -1,0 +1,4 @@
+Close curly brace and the next "else", "catch" and "finally" keywords should be on two different lines
+### Noncompliant
+{{BUGGY}}
+### Compliant

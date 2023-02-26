@@ -1,0 +1,5 @@
+Local constants should follow naming conventions for constants
+Shared coding conventions allow teams to collaborate efficiently. This rule checks that all local, final, initialized, primitive variables, have names that match a provided regular expression. 
+### Noncompliant
+{{BUGGY}}
+### Compliant

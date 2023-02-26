@@ -1,0 +1,4 @@
+"public static" fields should be constant
+### Noncompliant
+{{BUGGY}}
+### Compliant

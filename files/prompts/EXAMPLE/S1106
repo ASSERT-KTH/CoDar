@@ -1,0 +1,22 @@
+### Noncompliant
+public void myMethod {  // Noncompliant
+  if(something) {  // Noncompliant
+    executeTask();
+  } else {  // Noncompliant
+    doSomethingElse();
+  }
+}
+### Compliant
+public void myMethod
+{
+  if(something)
+  {
+    executeTask();
+  } else
+  {
+    doSomethingElse();
+  }
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

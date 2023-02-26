@@ -1,0 +1,4 @@
+Constructors should not be used to instantiate "String", "BigInteger", "BigDecimal" and primitive-wrapper classes
+### Noncompliant
+{{BUGGY}}
+### Compliant

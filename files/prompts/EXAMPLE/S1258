@@ -1,0 +1,15 @@
+### Noncompliant
+class A { // Noncompliant
+  private int field;
+}
+### Compliant
+class A {
+  private int field;
+
+  A(int field) {
+    this.field = field;
+  }
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

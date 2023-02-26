@@ -1,0 +1,4 @@
+String literals should not be duplicated
+### Noncompliant
+{{BUGGY}}
+### Compliant

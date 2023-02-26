@@ -1,0 +1,5 @@
+LDAP connections should be authenticated
+An LDAP client authenticates to an LDAP server with a "bind request" which provides, among other, a simple authentication method. Simple authentication in LDAP can be used with three different mechanisms: Anonymous Authentication Mechanism by performing a bind request with a username and password value of zero length. Unauthenticated Authentication Mechanism by performing a bind request with a password value of zero length. Name/Password Authentication Mechanism by performing a bind request with a password value of non-zero length. Anonymous binds and unauthenticated binds allow access to information in the LDAP directory without providing a password, their use is therefore strongly discouraged. 
+### Noncompliant
+{{BUGGY}}
+### Compliant

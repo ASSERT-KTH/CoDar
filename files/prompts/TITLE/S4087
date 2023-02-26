@@ -1,0 +1,4 @@
+"close()" calls should not be redundant
+### Noncompliant
+{{BUGGY}}
+### Compliant

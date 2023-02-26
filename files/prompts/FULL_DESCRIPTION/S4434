@@ -1,0 +1,21 @@
+Allowing deserialization of LDAP objects is security-sensitive
+JNDI supports the deserialization of objects from LDAP directories, which can lead to remote code execution. This rule raises an issue when an LDAP search query is executed with SearchControls configured to allow deserialization. Ask Yourself Whether The application connects to an untrusted LDAP directory. User-controlled objects can be stored in the LDAP directory. There is a risk if you answered yes to any of those questions. Recommended Secure Coding Practices It is recommended to disable deserialization of LDAP objects. 
+### Noncompliant
+DirContext ctx = new InitialDirContext();
+// ...
+ctx.search(query, filter,
+        new SearchControls(scope, countLimit, timeLimit, attributes,
+            true, // Noncompliant; allows deserialization
+            deref));
+ 
+### Compliant
+DirContext ctx = new InitialDirContext();
+// ...
+ctx.search(query, filter,
+        new SearchControls(scope, countLimit, timeLimit, attributes,
+            false, // Compliant
+            deref));
+ See OWASP Top 10 2021 Category A8 - Software and Data Integrity Failures MITRE, CWE-502 - Deserialization of Untrusted Data OWASP Top 10 2017 Category A8 - Insecure Deserialization BlackHat presentation Derived from FindSecBugs rule LDAP_ENTRY_POISONING
+### Noncompliant
+{{BUGGY}}
+### Compliant

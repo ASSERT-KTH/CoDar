@@ -1,0 +1,4 @@
+Custom serialization method signatures should meet requirements
+### Noncompliant
+{{BUGGY}}
+### Compliant

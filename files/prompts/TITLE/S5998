@@ -1,0 +1,4 @@
+Regular expressions should not overflow the stack
+### Noncompliant
+{{BUGGY}}
+### Compliant

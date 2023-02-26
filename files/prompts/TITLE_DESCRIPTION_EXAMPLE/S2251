@@ -1,0 +1,17 @@
+A "for" loop update clause should move the counter in the right direction
+A for loop with a counter that moves in the wrong direction is not an infinite loop. Because of wraparound, the loop will eventually reach its stop condition, but in doing so, it will run many, many more times than anticipated, potentially causing unexpected behavior. 
+### Noncompliant
+public void doSomething(String [] strings) {
+  for (int i = 0; i < strings.length; i--) { // Noncompliant;
+    String string = strings[i];  // ArrayIndexOutOfBoundsException when i reaches -1
+    //...
+  }
+### Compliant
+public void doSomething(String [] strings) {
+  for (int i = 0; i < strings.length; i++) {
+    String string = strings[i];
+    //...
+  }
+### Noncompliant
+{{BUGGY}}
+### Compliant

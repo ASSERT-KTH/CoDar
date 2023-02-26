@@ -1,0 +1,37 @@
+### Noncompliant
+@Test
+public void testToString() {
+  // Do you expect get() or toString() throwing the exception?
+  org.junit.Assert.assertThrows(IndexOutOfBoundsException.class, () -> get().toString());
+}
+
+@Test
+public void testToStringTryCatchIdiom() {
+  try {
+    // Do you expect get() or toString() throwing the exception?
+    get().toString();
+    Assert.fail("Expected an IndexOutOfBoundsException to be thrown");
+  } catch (IndexOutOfBoundsException e) {
+    // Test exception message...
+  }
+}
+### Compliant
+@Test
+public void testToString() {
+   Object obj = get();
+   Assert.assertThrows(IndexOutOfBoundsException.class, () -> obj.toString());
+}
+
+@Test
+public void testToStringTryCatchIdiom() {
+  Object obj = get();
+  try {
+    obj.toString();
+    Assert.fail("Expected an IndexOutOfBoundsException to be thrown");
+  } catch (IndexOutOfBoundsException e) {
+    // Test exception message...
+  }
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,4 @@
+"clone" should not be overridden
+### Noncompliant
+{{BUGGY}}
+### Compliant

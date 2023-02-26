@@ -1,0 +1,4 @@
+Map "computeIfAbsent()" and "computeIfPresent()" should not be used to add "null" values.
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,4 @@
+Tests should use fixed data instead of randomized data
+### Noncompliant
+{{BUGGY}}
+### Compliant

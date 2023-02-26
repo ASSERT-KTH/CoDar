@@ -1,0 +1,8 @@
+### Noncompliant
+MyObject myOb = new MyObject();  // Noncompliant
+Class c = myOb.getClass();
+### Compliant
+Class c = MyObject.class;
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,29 @@
+Locks should be released on all paths
+If a lock is acquired and released within a method, then it must be released along all execution paths of that method. Failing to do so will expose the conditional locking logic to the method’s callers and hence be deadlock-prone. 
+### Noncompliant
+public class MyClass {
+  public void doSomething() {
+    Lock lock = new Lock();
+    lock.lock(); // Noncompliant
+    if (isInitialized()) {
+      // ...
+      lock.unlock();
+    }
+  }
+}
+ 
+### Compliant
+public class MyClass {
+  public void doSomething() {
+    Lock lock = new Lock();
+    if (isInitialized()) {
+      lock.lock();
+      // ...
+      lock.unlock();
+    }
+  }
+}
+ See MITRE, CWE-459 - Incomplete Cleanup
+### Noncompliant
+{{BUGGY}}
+### Compliant

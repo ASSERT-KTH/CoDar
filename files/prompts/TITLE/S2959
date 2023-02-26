@@ -1,0 +1,4 @@
+Unnecessary semicolons should be omitted
+### Noncompliant
+{{BUGGY}}
+### Compliant

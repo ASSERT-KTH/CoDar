@@ -1,0 +1,4 @@
+"=+" should not be used instead of "+="
+### Noncompliant
+{{BUGGY}}
+### Compliant

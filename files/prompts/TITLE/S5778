@@ -1,0 +1,4 @@
+Only one method invocation is expected when testing runtime exceptions
+### Noncompliant
+{{BUGGY}}
+### Compliant

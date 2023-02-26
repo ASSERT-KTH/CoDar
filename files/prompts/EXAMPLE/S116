@@ -1,0 +1,11 @@
+### Noncompliant
+class MyClass {
+   private int my_field;
+}
+### Compliant
+class MyClass {
+   private int myField;
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

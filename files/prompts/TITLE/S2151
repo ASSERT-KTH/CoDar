@@ -1,0 +1,4 @@
+"runFinalizersOnExit" should not be called
+### Noncompliant
+{{BUGGY}}
+### Compliant

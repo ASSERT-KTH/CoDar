@@ -1,0 +1,12 @@
+Primitive wrappers should not be instantiated only for "toString" or "compareTo" calls
+Creating temporary primitive wrapper objects only for String conversion or the use of the compareTo method is inefficient. Instead, the static toString or compare method of the primitive wrapper class should be used. 
+### Noncompliant
+new Integer(myInteger).toString();   // Noncompliant
+Integer.valueOf(myInt).compareTo(0); // Noncompliant
+ 
+### Compliant
+Integer.toString(myInteger);        // Compliant
+Integer.compare(myInteger, 0);      // Compliant
+### Noncompliant
+{{BUGGY}}
+### Compliant

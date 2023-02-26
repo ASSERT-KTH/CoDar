@@ -1,0 +1,65 @@
+### Noncompliant
+import javax.persistence.Entity;
+
+@Entity
+public class Wish {
+  Long productId;
+  Long quantity;
+  Client client;
+}
+
+@Entity
+public class Client {
+  String clientId;
+  String name;
+  String password;
+}
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class WishListController {
+
+  @PostMapping(path = "/saveForLater")
+  public String saveForLater(Wish wish) {
+    session.save(wish);
+  }
+
+  @RequestMapping(path = "/saveForLater", method = RequestMethod.POST)
+  public String saveForLater(Wish wish) {
+    session.save(wish);
+  }
+}
+### Compliant
+public class WishDTO {
+  Long productId;
+  Long quantity;
+  Long clientId;
+}
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class PurchaseOrderController {
+
+  @PostMapping(path = "/saveForLater")
+  public String saveForLater(WishDTO wish) {
+    Wish persistentWish = new Wish();
+    // do the mapping between "wish" and "persistentWish"
+    [...]
+    session.save(persistentWish);
+  }
+
+  @RequestMapping(path = "/saveForLater", method = RequestMethod.POST)
+  public String saveForLater(WishDTO wish) {
+    Wish persistentWish = new Wish();
+    // do the mapping between "wish" and "persistentWish"
+    [...]
+    session.save(persistentWish);
+  }
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

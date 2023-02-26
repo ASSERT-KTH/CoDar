@@ -1,0 +1,4 @@
+An abstract class should have both abstract and concrete methods
+### Noncompliant
+{{BUGGY}}
+### Compliant

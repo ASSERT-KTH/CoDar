@@ -1,0 +1,4 @@
+Regex alternatives should not be redundant
+### Noncompliant
+{{BUGGY}}
+### Compliant

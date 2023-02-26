@@ -1,0 +1,11 @@
+### Noncompliant
+package my.mypackage;
+
+public class Foo implements a.b.Foo { // Noncompliant
+### Compliant
+package my.mypackage;
+
+public class FooJr implements a.b.Foo {
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,4 @@
+"ActiveMQConnectionFactory" should not be vulnerable to malicious code deserialization
+### Noncompliant
+{{BUGGY}}
+### Compliant

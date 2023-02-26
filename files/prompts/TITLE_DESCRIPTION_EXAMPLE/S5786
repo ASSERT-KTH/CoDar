@@ -1,0 +1,23 @@
+JUnit5 test classes and methods should have default package visibility
+JUnit5 is more tolerant regarding the visibilities of Test classes than JUnit4, which required everything to be public. In this context, JUnit5 test classes can have any visibility but private, however, it is recommended to use the default package visibility, which improves readability of code. 
+### Noncompliant
+import org.junit.jupiter.api.Test;
+
+public class MyClassTest { // Noncompliant - modifier can be removed
+  @Test
+  protected void test() { // Noncompliant - modifier can be removed
+    // ...
+  }
+}
+### Compliant
+import org.junit.jupiter.api.Test;
+
+class MyClassTest {
+  @Test
+  void test() {
+    // ...
+  }
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

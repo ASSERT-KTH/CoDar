@@ -1,0 +1,11 @@
+Exceptions should not be created without being thrown
+Creating a new Throwable without actually throwing it is useless and is probably due to a mistake. 
+### Noncompliant
+if (x < 0)
+  new IllegalArgumentException("x must be nonnegative");
+### Compliant
+if (x < 0)
+  throw new IllegalArgumentException("x must be nonnegative");
+### Noncompliant
+{{BUGGY}}
+### Compliant

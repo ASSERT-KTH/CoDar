@@ -1,0 +1,4 @@
+Public methods should not contain selector arguments
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,17 @@
+### Noncompliant
+ModelAndView mav = getMyModelAndView();
+
+Assert.assertEquals("register", mav.getViewName());
+Assert.assertTrue((Boolean) mav.getModelMap().get("myAttribute"));
+Assert.assertFalse((Boolean) mav.getModelMap().get("myAttribute"));
+Assert.assertEquals(myObject, mav.getModelMap().get("myAttribute"));
+### Compliant
+ModelAndView mav = getMyModelAndView();
+
+ModelAndViewAssert.assertViewName(mav, "register");
+ModelAndViewAssert.assertModelAttributeValue(mav, "myAttribute", Boolean.TRUE);
+ModelAndViewAssert.assertModelAttributeValue(mav, "myAttribute", Boolean.FALSE);
+ModelAndViewAssert.assertModelAttributeValue(mav, "myAttribute", myObject);
+### Noncompliant
+{{BUGGY}}
+### Compliant

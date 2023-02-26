@@ -1,0 +1,10 @@
+### Noncompliant
+Random r = new Random();
+int rand = (int)r.nextDouble() * 50;  // Noncompliant way to get a pseudo-random value between 0 and 50
+int rand2 = (int)r.nextFloat(); // Noncompliant; will always be 0;
+### Compliant
+Random r = new Random();
+int rand = r.nextInt(50);  // returns pseudo-random value between 0 and 50
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,4 @@
+"enum" fields should not be publicly mutable
+### Noncompliant
+{{BUGGY}}
+### Compliant

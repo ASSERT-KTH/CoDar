@@ -1,0 +1,25 @@
+### Noncompliant
+@Test
+public void testDoSomething() {  // Noncompliant
+  MyClass myClass = new MyClass();
+  myClass.doSomething();
+}
+### Compliant
+import com.company.CompareToTester;
+
+@Test
+public void testDoSomething() {
+  MyClass myClass = new MyClass();
+  assertNull(myClass.doSomething());  // JUnit assertion
+  assertThat(myClass.doSomething()).isNull();  // Fest assertion
+}
+
+@Test
+public void testDoSomethingElse() {
+  MyClass myClass = new MyClass();
+  new CompareToTester().compareWith(myClass);  
+  CompareToTester.compareStatic(myClass);  
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

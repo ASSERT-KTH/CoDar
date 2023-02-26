@@ -1,0 +1,4 @@
+Printf-style format strings should not lead to unexpected behavior at runtime
+### Noncompliant
+{{BUGGY}}
+### Compliant

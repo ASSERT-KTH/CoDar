@@ -1,0 +1,4 @@
+"Collections.EMPTY_LIST", "EMPTY_MAP", and "EMPTY_SET" should not be used
+### Noncompliant
+{{BUGGY}}
+### Compliant

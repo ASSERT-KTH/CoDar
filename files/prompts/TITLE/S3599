@@ -1,0 +1,4 @@
+Double Brace Initialization should not be used
+### Noncompliant
+{{BUGGY}}
+### Compliant

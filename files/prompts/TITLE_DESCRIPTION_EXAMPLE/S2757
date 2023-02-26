@@ -1,0 +1,17 @@
+"=+" should not be used instead of "+="
+The use of operators pairs ( =+, =- or =! ) where the reversed, single operator was meant (+=, -= or !=) will compile and run, but not produce the expected results. This rule raises an issue when =+, =-, or =! is used without any spacing between the two operators and when there is at least one whitespace character after. 
+### Noncompliant
+int target = -5;
+int num = 3;
+
+target =- num;  // Noncompliant; target = -3. Is that really what's meant?
+target =+ num; // Noncompliant; target = 3
+### Compliant
+int target = -5;
+int num = 3;
+
+target = -num;  
+target += num;
+### Noncompliant
+{{BUGGY}}
+### Compliant

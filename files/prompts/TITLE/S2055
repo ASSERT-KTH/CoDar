@@ -1,0 +1,4 @@
+The non-serializable super class of a "Serializable" class should have a no-argument constructor
+### Noncompliant
+{{BUGGY}}
+### Compliant

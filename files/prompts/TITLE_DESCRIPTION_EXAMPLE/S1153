@@ -1,0 +1,13 @@
+String.valueOf() should not be appended to a String
+Appending String.valueOf() to a String decreases the code readability. The argument passed to String.valueOf() should be directly appended instead. 
+### Noncompliant
+public void display(int i){
+  System.out.println("Output is " + String.valueOf(i));    // Noncompliant
+}
+### Compliant
+public void display(int i){
+  System.out.println("Output is " + i);                    
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

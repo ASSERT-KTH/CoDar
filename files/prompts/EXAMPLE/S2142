@@ -1,0 +1,25 @@
+### Noncompliant
+public void run () {
+  try {
+    while (true) {
+      // do stuff
+    }
+  }catch (InterruptedException e) { // Noncompliant; logging is not enough
+    LOGGER.log(Level.WARN, "Interrupted!", e);
+  }
+}
+### Compliant
+public void run () {
+  try {
+    while (true) {
+      // do stuff
+    }
+  }catch (InterruptedException e) {
+    LOGGER.log(Level.WARN, "Interrupted!", e);
+    // Restore interrupted state...
+    Thread.currentThread().interrupt();
+  }
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

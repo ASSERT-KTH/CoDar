@@ -1,0 +1,4 @@
+Simple string literal should be used for single line strings
+### Noncompliant
+{{BUGGY}}
+### Compliant

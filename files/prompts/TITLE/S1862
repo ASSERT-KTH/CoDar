@@ -1,0 +1,4 @@
+Related "if/else if" statements should not have the same condition
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,12 @@
+### Noncompliant
+ActiveMQConnectionFactory factory = new ActiveMQConnectionFactory("tcp://localhost:61616");
+factory.setTrustAllPackages(true); // Noncompliant
+
+ActiveMQConnectionFactory factory = new ActiveMQConnectionFactory("tcp://localhost:61616");
+// no call to factory.setTrustedPackages(...);
+### Compliant
+ActiveMQConnectionFactory factory = new ActiveMQConnectionFactory("tcp://localhost:61616");
+factory.setTrustedPackages(Arrays.asList("org.mypackage1", "org.mypackage2"));
+### Noncompliant
+{{BUGGY}}
+### Compliant

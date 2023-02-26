@@ -1,0 +1,10 @@
+Objects should not be created only to "getClass"
+Creating an object for the sole purpose of calling getClass on it is a waste of memory and cycles. Instead, simply use the class' .class property. 
+### Noncompliant
+MyObject myOb = new MyObject();  // Noncompliant
+Class c = myOb.getClass();
+### Compliant
+Class c = MyObject.class;
+### Noncompliant
+{{BUGGY}}
+### Compliant

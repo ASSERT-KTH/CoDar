@@ -1,0 +1,4 @@
+Empty statements should be removed
+### Noncompliant
+{{BUGGY}}
+### Compliant

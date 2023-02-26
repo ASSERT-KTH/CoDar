@@ -1,0 +1,5 @@
+Classes with only "static" methods should not be instantiated
+static methods can be accessed without an instance of the enclosing class, so there’s no reason to instantiate a class that has only static methods. 
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,4 @@
+"StandardCharsets" constants should be preferred
+### Noncompliant
+{{BUGGY}}
+### Compliant

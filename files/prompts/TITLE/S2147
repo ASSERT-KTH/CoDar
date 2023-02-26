@@ -1,0 +1,4 @@
+Catches should be combined
+### Noncompliant
+{{BUGGY}}
+### Compliant

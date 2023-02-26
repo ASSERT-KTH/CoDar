@@ -1,0 +1,35 @@
+### Noncompliant
+public class Parent {
+
+  synchronized void foo() {
+    //...
+  }
+}
+
+public class Child extends Parent {
+
+ @Override
+  public void foo () {  // Noncompliant
+    // ...
+    super.foo();
+  }
+}
+### Compliant
+public class Parent {
+
+  synchronized void foo() {
+    //...
+  }
+}
+
+public class Child extends Parent {
+
+  @Override
+  synchronized void foo () {
+    // ...
+    super.foo();
+  }
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

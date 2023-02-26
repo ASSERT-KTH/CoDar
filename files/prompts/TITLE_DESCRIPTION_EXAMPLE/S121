@@ -1,0 +1,12 @@
+Control structures should use curly braces
+While not technically incorrect, the omission of curly braces can be misleading, and may lead to the introduction of errors during maintenance. 
+### Noncompliant
+if (condition)  // Noncompliant
+  executeSomething();
+### Compliant
+if (condition) {
+  executeSomething();
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

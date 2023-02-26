@@ -1,0 +1,4 @@
+Regex patterns should not be created needlessly
+### Noncompliant
+{{BUGGY}}
+### Compliant

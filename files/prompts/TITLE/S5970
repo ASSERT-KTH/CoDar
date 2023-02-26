@@ -1,0 +1,4 @@
+Spring's ModelAndViewAssert assertions should be used instead of other assertions
+### Noncompliant
+{{BUGGY}}
+### Compliant

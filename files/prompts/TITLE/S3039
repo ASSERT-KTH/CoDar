@@ -1,0 +1,4 @@
+"String" calls should not go beyond their bounds
+### Noncompliant
+{{BUGGY}}
+### Compliant

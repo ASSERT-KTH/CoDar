@@ -1,0 +1,11 @@
+### Noncompliant
+public void setName(String name) {
+  name = name;
+}
+### Compliant
+public void setName(String name) {
+  this.name = name;
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

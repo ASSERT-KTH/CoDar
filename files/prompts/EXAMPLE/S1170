@@ -1,0 +1,11 @@
+### Noncompliant
+public class Myclass {
+  public final int THRESHOLD = 3;
+}
+### Compliant
+public class Myclass {
+  public static final int THRESHOLD = 3;    
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

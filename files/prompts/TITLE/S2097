@@ -1,0 +1,4 @@
+"equals(Object obj)" should test argument type
+### Noncompliant
+{{BUGGY}}
+### Compliant

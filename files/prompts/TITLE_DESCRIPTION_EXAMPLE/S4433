@@ -1,0 +1,29 @@
+LDAP connections should be authenticated
+An LDAP client authenticates to an LDAP server with a "bind request" which provides, among other, a simple authentication method. Simple authentication in LDAP can be used with three different mechanisms: Anonymous Authentication Mechanism by performing a bind request with a username and password value of zero length. Unauthenticated Authentication Mechanism by performing a bind request with a password value of zero length. Name/Password Authentication Mechanism by performing a bind request with a password value of non-zero length. Anonymous binds and unauthenticated binds allow access to information in the LDAP directory without providing a password, their use is therefore strongly discouraged. 
+### Noncompliant
+// Set up the environment for creating the initial context
+Hashtable<String, Object> env = new Hashtable<String, Object>();
+env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
+env.put(Context.PROVIDER_URL, "ldap://localhost:389/o=JNDITutorial");
+
+// Use anonymous authentication
+env.put(Context.SECURITY_AUTHENTICATION, "none"); // Noncompliant
+
+// Create the initial context
+DirContext ctx = new InitialDirContext(env);
+### Compliant
+// Set up the environment for creating the initial context
+Hashtable<String, Object> env = new Hashtable<String, Object>();
+env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
+env.put(Context.PROVIDER_URL, "ldap://localhost:389/o=JNDITutorial");
+
+// Use simple authentication
+env.put(Context.SECURITY_AUTHENTICATION, "simple");
+env.put(Context.SECURITY_PRINCIPAL, "cn=S. User, ou=NewHires, o=JNDITutorial");
+env.put(Context.SECURITY_CREDENTIALS, getLDAPPassword());
+
+// Create the initial context
+DirContext ctx = new InitialDirContext(env);
+### Noncompliant
+{{BUGGY}}
+### Compliant

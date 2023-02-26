@@ -1,0 +1,11 @@
+### Noncompliant
+public int getVector()[] { /* ... */ }    // Noncompliant
+
+public int[] getMatrix()[] { /* ... */ }  // Noncompliant
+### Compliant
+public int[] getVector() { /* ... */ }
+
+public int[][] getMatrix() { /* ... */ }
+### Noncompliant
+{{BUGGY}}
+### Compliant

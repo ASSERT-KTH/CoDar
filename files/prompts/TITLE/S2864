@@ -1,0 +1,4 @@
+"entrySet()" should be iterated when both the key and value are needed
+### Noncompliant
+{{BUGGY}}
+### Compliant

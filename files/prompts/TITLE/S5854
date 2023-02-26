@@ -1,0 +1,4 @@
+Regexes containing characters subject to normalization should use the CANON_EQ flag
+### Noncompliant
+{{BUGGY}}
+### Compliant

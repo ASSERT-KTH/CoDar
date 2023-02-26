@@ -1,0 +1,9 @@
+### Noncompliant
+Thread myThread = new Thread(runnable);
+myThread.run(); // Noncompliant
+### Compliant
+Thread myThread = new Thread(runnable);
+myThread.start(); 
+### Noncompliant
+{{BUGGY}}
+### Compliant

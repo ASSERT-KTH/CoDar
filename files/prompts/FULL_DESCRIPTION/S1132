@@ -1,0 +1,13 @@
+Strings literals should be placed on the left side when checking for equality
+It is preferable to place string literals on the left-hand side of an equals() or equalsIgnoreCase() method call. This prevents null pointer exceptions from being raised, as a string literal can never be null by definition. 
+### Noncompliant
+String myString = null;
+
+System.out.println("Equal? " + myString.equals("foo"));                        // Noncompliant; will raise a NPE
+System.out.println("Equal? " + (myString != null && myString.equals("foo")));  // Noncompliant; null check could be removed
+ 
+### Compliant
+System.out.println("Equal?" + "foo".equals(myString));                         // properly deals with the null case
+### Noncompliant
+{{BUGGY}}
+### Compliant

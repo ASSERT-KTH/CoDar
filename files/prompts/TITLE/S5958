@@ -1,0 +1,4 @@
+AssertJ "assertThatThrownBy" should not be used alone
+### Noncompliant
+{{BUGGY}}
+### Compliant

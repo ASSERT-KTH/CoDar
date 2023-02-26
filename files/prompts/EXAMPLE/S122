@@ -1,0 +1,9 @@
+### Noncompliant
+if(someCondition) doSomething();
+### Compliant
+if(someCondition) {
+  doSomething();
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

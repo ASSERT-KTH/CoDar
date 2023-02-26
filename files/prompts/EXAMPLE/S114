@@ -1,0 +1,7 @@
+### Noncompliant
+public interface myInterface {...} // Noncompliant
+### Compliant
+public interface MyInterface {...}
+### Noncompliant
+{{BUGGY}}
+### Compliant

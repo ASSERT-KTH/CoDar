@@ -1,0 +1,4 @@
+"Stream" call chains should be simplified when possible
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,4 @@
+"HttpSecurity" URL patterns should be correctly ordered
+### Noncompliant
+{{BUGGY}}
+### Compliant

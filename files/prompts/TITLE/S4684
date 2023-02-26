@@ -1,0 +1,4 @@
+Persistent entities should not be used as arguments of "@RequestMapping" methods
+### Noncompliant
+{{BUGGY}}
+### Compliant

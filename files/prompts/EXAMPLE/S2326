@@ -1,0 +1,13 @@
+### Noncompliant
+int <T> Add(int a, int b) // Noncompliant; <T> is ignored
+{
+  return a + b;
+}
+### Compliant
+int Add(int a, int b)
+{
+  return a + b;
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

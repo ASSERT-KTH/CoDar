@@ -1,0 +1,4 @@
+The signature of "finalize()" should match that of "Object.finalize()"
+### Noncompliant
+{{BUGGY}}
+### Compliant

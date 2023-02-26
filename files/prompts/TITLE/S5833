@@ -1,0 +1,4 @@
+AssertJ methods setting the assertion context should come before an assertion
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,4 @@
+"Preconditions" and logging arguments should not require evaluation
+### Noncompliant
+{{BUGGY}}
+### Compliant

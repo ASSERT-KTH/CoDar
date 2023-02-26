@@ -1,0 +1,4 @@
+Escape sequences should not be used in text blocks
+### Noncompliant
+{{BUGGY}}
+### Compliant

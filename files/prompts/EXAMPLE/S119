@@ -1,0 +1,13 @@
+### Noncompliant
+public class MyClass<TYPE> { // Noncompliant
+  <TYPE> void method(TYPE t) { // Noncompliant
+  }
+}
+### Compliant
+public class MyClass<T> {
+  <T> void method(T t) {
+  }
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

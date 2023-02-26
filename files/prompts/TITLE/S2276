@@ -1,0 +1,4 @@
+"wait(...)" should be used instead of "Thread.sleep(...)" when a lock is held
+### Noncompliant
+{{BUGGY}}
+### Compliant

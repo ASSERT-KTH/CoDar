@@ -1,0 +1,14 @@
+### Noncompliant
+public class Tomato implements Externalizable {  // Noncompliant; no no-arg constructor
+
+  public Tomato (String color, int weight) { ... }
+}
+### Compliant
+public class Tomato implements Externalizable {
+
+  public Tomato() { ... }
+  public Tomato (String color, int weight) { ... }
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

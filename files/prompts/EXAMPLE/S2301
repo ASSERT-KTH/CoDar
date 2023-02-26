@@ -1,0 +1,29 @@
+### Noncompliant
+public String tempt(String name, boolean ofAge) {
+  if (ofAge) {
+    offerLiquor(name);
+  } else {
+    offerCandy(name);
+  }
+}
+
+// ...
+public void corrupt() {
+  tempt("Joe", false); // does this mean not to temp Joe?
+}
+### Compliant
+public void temptAdult(String name) {
+  offerLiquor(name);
+}
+
+public void temptChild(String name) {
+    offerCandy(name);
+}
+
+// ...
+public void corrupt() {
+  age < legalAge ? temptChild("Joe") : temptAdult("Joe");
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

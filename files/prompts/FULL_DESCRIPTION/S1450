@@ -1,0 +1,42 @@
+Private fields only used as local variables in methods should become local variables
+When the value of a private field is always assigned to in a class' methods before being read, then it is not being used to store class information. Therefore, it should become a local variable in the relevant methods to prevent any misunderstanding. 
+### Noncompliant
+public class Foo {
+  private int a;
+  private int b;
+
+  public void doSomething(int y) {
+    a = y + 5;
+    ...
+    if(a == 0) {
+      ...
+    }
+    ...
+  }
+
+  public void doSomethingElse(int y) {
+    b = y + 3;
+    ...
+  }
+}
+ 
+### Compliant
+public class Foo {
+
+  public void doSomething(int y) {
+    int a = y + 5;
+    ...
+    if(a == 0) {
+      ...
+    }
+  }
+
+  public void doSomethingElse(int y) {
+    int b = y + 3;
+    ...
+  }
+}
+ Exceptions This rule doesn’t raise any issue on annotated field.
+### Noncompliant
+{{BUGGY}}
+### Compliant

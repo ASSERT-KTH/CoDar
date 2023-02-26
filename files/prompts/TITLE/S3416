@@ -1,0 +1,4 @@
+Loggers should be named for their enclosing classes
+### Noncompliant
+{{BUGGY}}
+### Compliant

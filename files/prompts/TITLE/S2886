@@ -1,0 +1,4 @@
+Getters and setters should be synchronized in pairs
+### Noncompliant
+{{BUGGY}}
+### Compliant

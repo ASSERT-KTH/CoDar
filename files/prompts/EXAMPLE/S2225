@@ -1,0 +1,15 @@
+### Noncompliant
+public String toString () {
+  if (this.collection.isEmpty()) {
+    return null; // Noncompliant
+  } else {
+    // ...
+### Compliant
+public String toString () {
+  if (this.collection.isEmpty()) {
+    return "";
+  } else {
+    // ...
+### Noncompliant
+{{BUGGY}}
+### Compliant

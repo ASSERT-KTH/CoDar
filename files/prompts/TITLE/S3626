@@ -1,0 +1,4 @@
+Jump statements should not be redundant
+### Noncompliant
+{{BUGGY}}
+### Compliant

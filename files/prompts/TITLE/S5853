@@ -1,0 +1,4 @@
+Consecutive AssertJ "assertThat" statements should be chained
+### Noncompliant
+{{BUGGY}}
+### Compliant

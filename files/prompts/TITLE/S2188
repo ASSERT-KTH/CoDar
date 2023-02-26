@@ -1,0 +1,4 @@
+JUnit test cases should call super methods
+### Noncompliant
+{{BUGGY}}
+### Compliant

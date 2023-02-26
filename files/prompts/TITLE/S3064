@@ -1,0 +1,4 @@
+Assignment of lazy-initialized members should be the last step with double-checked locking
+### Noncompliant
+{{BUGGY}}
+### Compliant

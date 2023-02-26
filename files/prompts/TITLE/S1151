@@ -1,0 +1,4 @@
+"switch case" clauses should not have too many lines of code
+### Noncompliant
+{{BUGGY}}
+### Compliant

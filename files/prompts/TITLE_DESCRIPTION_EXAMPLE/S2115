@@ -1,0 +1,10 @@
+A secure password should be used when connecting to a database
+When relying on the password authentication mode for the database connection, a secure password should be chosen. This rule raises an issue when an empty password is used. 
+### Noncompliant
+Connection conn = DriverManager.getConnection("jdbc:derby:memory:myDB;create=true", "login", "");
+### Compliant
+String password = System.getProperty("database.password");
+Connection conn = DriverManager.getConnection("jdbc:derby:memory:myDB;create=true", "login", password);
+### Noncompliant
+{{BUGGY}}
+### Compliant

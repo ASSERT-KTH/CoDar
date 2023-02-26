@@ -1,0 +1,4 @@
+Method parameters should be declared with base types
+### Noncompliant
+{{BUGGY}}
+### Compliant

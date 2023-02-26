@@ -1,0 +1,4 @@
+"writeObject" should not be the only "synchronized" code in a class
+### Noncompliant
+{{BUGGY}}
+### Compliant

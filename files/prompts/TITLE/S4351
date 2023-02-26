@@ -1,0 +1,4 @@
+"compareTo" should not be overloaded
+### Noncompliant
+{{BUGGY}}
+### Compliant

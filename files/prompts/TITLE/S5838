@@ -1,0 +1,4 @@
+Chained AssertJ assertions should be simplified to the corresponding dedicated assertion
+### Noncompliant
+{{BUGGY}}
+### Compliant

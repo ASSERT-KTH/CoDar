@@ -1,0 +1,4 @@
+JUnit5 inner test classes should be annotated with @Nested
+### Noncompliant
+{{BUGGY}}
+### Compliant

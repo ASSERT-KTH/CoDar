@@ -1,0 +1,9 @@
+### Noncompliant
+int getBestNumber() {
+  return 12;  // Noncompliant
+}
+### Compliant
+static final int BEST_NUMBER = 12;
+### Noncompliant
+{{BUGGY}}
+### Compliant

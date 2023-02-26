@@ -1,0 +1,4 @@
+".equals()" should not be used to test the values of "Atomic" classes
+### Noncompliant
+{{BUGGY}}
+### Compliant

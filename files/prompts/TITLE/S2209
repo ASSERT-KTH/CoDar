@@ -1,0 +1,4 @@
+"static" members should be accessed statically
+### Noncompliant
+{{BUGGY}}
+### Compliant

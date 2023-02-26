@@ -1,0 +1,13 @@
+### Noncompliant
+map.computeIfAbsent(key, k -> null); // Noncompliant, the map will not contain an entry key->null.
+map.computeIfPresent(key, (k, oldValue) -> null); // Noncompliant
+### Compliant
+if (!map.containsKey(key)) {
+    map.put(key, null);
+}
+if (map.containsKey(key)) {
+    map.put(key, null);
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

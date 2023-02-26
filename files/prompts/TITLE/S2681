@@ -1,0 +1,4 @@
+Multiline blocks should be enclosed in curly braces
+### Noncompliant
+{{BUGGY}}
+### Compliant

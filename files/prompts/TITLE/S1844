@@ -1,0 +1,4 @@
+"Object.wait(...)" should never be called on objects that implement "java.util.concurrent.locks.Condition"
+### Noncompliant
+{{BUGGY}}
+### Compliant

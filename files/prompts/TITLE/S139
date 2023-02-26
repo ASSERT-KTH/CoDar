@@ -1,0 +1,4 @@
+Comments should not be located at the end of lines of code
+### Noncompliant
+{{BUGGY}}
+### Compliant

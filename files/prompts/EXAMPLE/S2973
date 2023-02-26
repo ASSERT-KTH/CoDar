@@ -1,0 +1,7 @@
+### Noncompliant
+String prefix = "n\u00E9e"; // Noncompliant
+### Compliant
+String prefix = "née";
+### Noncompliant
+{{BUGGY}}
+### Compliant

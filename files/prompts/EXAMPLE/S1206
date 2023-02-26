@@ -1,0 +1,26 @@
+### Noncompliant
+class MyClass {    // Noncompliant - should also override "hashCode()"
+
+  @Override
+  public boolean equals(Object obj) {
+    /* ... */
+  }
+
+}
+### Compliant
+class MyClass {    
+
+  @Override
+  public boolean equals(Object obj) {
+    /* ... */
+  }
+
+  @Override
+  public int hashCode() {
+    /* ... */
+  }
+
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

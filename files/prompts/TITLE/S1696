@@ -1,0 +1,4 @@
+"NullPointerException" should not be caught
+### Noncompliant
+{{BUGGY}}
+### Compliant

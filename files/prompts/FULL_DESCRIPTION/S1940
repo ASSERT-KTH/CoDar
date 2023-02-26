@@ -1,0 +1,12 @@
+Boolean checks should not be inverted
+It is needlessly complex to invert the result of a boolean comparison. The opposite comparison should be made instead. 
+### Noncompliant
+if ( !(a == 2)) { ...}  // Noncompliant
+boolean b = !(i < 10);  // Noncompliant
+ 
+### Compliant
+if (a != 2) { ...}
+boolean b = (i >= 10);
+### Noncompliant
+{{BUGGY}}
+### Compliant

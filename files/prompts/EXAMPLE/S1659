@@ -1,0 +1,23 @@
+### Noncompliant
+class MyClass {
+
+  private int a, b;
+
+  public void method(){
+    int c; int d;
+  }
+}
+### Compliant
+class MyClass {
+
+  private int a;
+  private int b;
+
+  public void method(){
+    int c;
+    int d;
+  }
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

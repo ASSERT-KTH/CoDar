@@ -1,0 +1,4 @@
+An open curly brace should be located at the beginning of a line
+### Noncompliant
+{{BUGGY}}
+### Compliant

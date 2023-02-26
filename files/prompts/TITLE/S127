@@ -1,0 +1,4 @@
+"for" loop stop conditions should be invariant
+### Noncompliant
+{{BUGGY}}
+### Compliant

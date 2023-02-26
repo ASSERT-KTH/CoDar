@@ -1,0 +1,13 @@
+### Noncompliant
+public int compareTo(MyClass) {
+  if (condition) {
+    return Integer.MIN_VALUE;  // Noncompliant
+  }
+### Compliant
+public int compareTo(MyClass) {
+  if (condition) {
+    return -1;
+  }
+### Noncompliant
+{{BUGGY}}
+### Compliant

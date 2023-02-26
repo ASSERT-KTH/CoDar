@@ -1,0 +1,4 @@
+Functional Interfaces should be as specialised as possible
+### Noncompliant
+{{BUGGY}}
+### Compliant

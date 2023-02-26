@@ -1,0 +1,13 @@
+### Noncompliant
+@Test
+public void foo() {  // Noncompliant
+  //...
+}
+### Compliant
+@Test
+public void testFoo() {
+  // ...
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,21 @@
+"super.finalize()" should be called at the end of "Object.finalize()" implementations
+Overriding the Object.finalize() method must be done with caution to dispose some system resources. Calling the super.finalize() at the end of this method implementation is highly recommended in case parent implementations must also dispose some system resources. 
+### Noncompliant
+protected void finalize() {   // Noncompliant; no call to super.finalize();
+  releaseSomeResources();
+}
+
+protected void finalize() {
+  super.finalize();  // Noncompliant; this call should come last
+  releaseSomeResources();
+}
+ 
+### Compliant
+protected void finalize() {
+  releaseSomeResources();
+  super.finalize();
+}
+ See MITRE, CWE-568 - finalize() Method Without super.finalize() CERT, MET12-J. - Do not use finalizers
+### Noncompliant
+{{BUGGY}}
+### Compliant

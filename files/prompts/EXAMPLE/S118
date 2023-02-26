@@ -1,0 +1,15 @@
+### Noncompliant
+abstract class MyClass { // Noncompliant
+}
+
+class AbstractLikeClass { // Noncompliant
+}
+### Compliant
+abstract class AbstractClass {
+}
+
+class LikeClass {
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

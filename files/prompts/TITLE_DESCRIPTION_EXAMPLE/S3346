@@ -1,0 +1,10 @@
+Expressions used in "assert" should not produce side effects
+Since assert statements aren’t executed by default (they must be enabled with JVM flags) developers should never rely on their execution the evaluation of any logic required for correct program function. 
+### Noncompliant
+assert myList.remove(myList.get(0));  // Noncompliant
+### Compliant
+boolean removed = myList.remove(myList.get(0));
+assert removed;
+### Noncompliant
+{{BUGGY}}
+### Compliant

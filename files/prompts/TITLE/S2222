@@ -1,0 +1,4 @@
+Locks should be released on all paths
+### Noncompliant
+{{BUGGY}}
+### Compliant

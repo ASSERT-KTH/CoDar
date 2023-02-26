@@ -1,0 +1,4 @@
+Repeated patterns in regular expressions should not match the empty string
+### Noncompliant
+{{BUGGY}}
+### Compliant

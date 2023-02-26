@@ -1,0 +1,4 @@
+"readObject" should not be "synchronized"
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,4 @@
+"BigDecimal(double)" should not be used
+### Noncompliant
+{{BUGGY}}
+### Compliant

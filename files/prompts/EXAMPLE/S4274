@@ -1,0 +1,15 @@
+### Noncompliant
+public void setPrice(int price) {
+  assert price >= 0 && price <= MAX_PRICE;
+  // Set the price
+ }
+### Compliant
+public void setPrice(int price) {
+  if (price < 0 || price > MAX_PRICE) {
+    throw new IllegalArgumentException("Invalid price: " + price);
+  }
+  // Set the price
+ }
+### Noncompliant
+{{BUGGY}}
+### Compliant

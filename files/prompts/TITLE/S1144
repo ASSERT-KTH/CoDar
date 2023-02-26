@@ -1,0 +1,4 @@
+Unused "private" methods should be removed
+### Noncompliant
+{{BUGGY}}
+### Compliant

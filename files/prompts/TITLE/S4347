@@ -1,0 +1,4 @@
+"SecureRandom" seeds should not be predictable
+### Noncompliant
+{{BUGGY}}
+### Compliant

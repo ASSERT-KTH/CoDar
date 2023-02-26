@@ -1,0 +1,26 @@
+Classes without "public" constructors should be "final"
+Classes with only private constructors should be marked final to prevent any mistaken extension attempts. 
+### Noncompliant
+public class PrivateConstructorClass {  // Noncompliant
+  private PrivateConstructorClass() {
+    // ...
+  }
+
+  public static int magic(){
+    return 42;
+  }
+}
+ 
+### Compliant
+public final class PrivateConstructorClass {  // Compliant
+  private PrivateConstructorClass() {
+    // ...
+  }
+
+  public static int magic(){
+    return 42;
+  }
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

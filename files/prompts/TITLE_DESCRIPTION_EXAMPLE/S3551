@@ -1,0 +1,37 @@
+Overrides should match their parent class methods in synchronization
+When @Overrides of synchronized methods are not themselves synchronized, the result can be improper synchronization as callers rely on the thread-safety promised by the parent class. 
+### Noncompliant
+public class Parent {
+
+  synchronized void foo() {
+    //...
+  }
+}
+
+public class Child extends Parent {
+
+ @Override
+  public void foo () {  // Noncompliant
+    // ...
+    super.foo();
+  }
+}
+### Compliant
+public class Parent {
+
+  synchronized void foo() {
+    //...
+  }
+}
+
+public class Child extends Parent {
+
+  @Override
+  synchronized void foo () {
+    // ...
+    super.foo();
+  }
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

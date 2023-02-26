@@ -1,0 +1,19 @@
+### Noncompliant
+public abstract class Car {
+  public abstract void start(Environment c);
+
+  public void stop(Environment c) {
+    c.freeze(this);
+  }
+}
+### Compliant
+public interface Car {
+  public void start(Environment c);
+
+  public default void stop(Environment c) {
+    c.freeze(this);
+  }
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

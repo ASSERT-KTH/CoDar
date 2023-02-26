@@ -1,0 +1,13 @@
+### Noncompliant
+final Lock lock = new ReentrantLock();
+final Condition notFull  = lock.newCondition();
+...
+notFull.wait();
+### Compliant
+final Lock lock = new ReentrantLock();
+final Condition notFull  = lock.newCondition();
+...
+notFull.await();
+### Noncompliant
+{{BUGGY}}
+### Compliant

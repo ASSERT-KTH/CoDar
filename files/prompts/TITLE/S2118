@@ -1,0 +1,4 @@
+Non-serializable classes should not be written
+### Noncompliant
+{{BUGGY}}
+### Compliant

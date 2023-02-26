@@ -1,0 +1,4 @@
+Methods and field names should not be the same or differ only by capitalization
+### Noncompliant
+{{BUGGY}}
+### Compliant

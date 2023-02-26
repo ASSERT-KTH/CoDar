@@ -1,0 +1,4 @@
+Java 8's "Files.exists" should not be used
+### Noncompliant
+{{BUGGY}}
+### Compliant

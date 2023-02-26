@@ -1,0 +1,4 @@
+"private" and "final" methods that don't access instance data should be "static"
+### Noncompliant
+{{BUGGY}}
+### Compliant

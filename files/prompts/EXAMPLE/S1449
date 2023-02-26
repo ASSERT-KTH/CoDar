@@ -1,0 +1,7 @@
+### Noncompliant
+myString.toLowerCase()
+### Compliant
+myString.toLowerCase(Locale.TR)
+### Noncompliant
+{{BUGGY}}
+### Compliant

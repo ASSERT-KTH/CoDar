@@ -1,0 +1,13 @@
+Static non-final field names should comply with a naming convention
+Shared naming conventions allow teams to collaborate efficiently. This rule checks that static non-final field names match a provided regular expression. 
+### Noncompliant
+public final class MyClass {
+   private static String foo_bar;
+}
+### Compliant
+class MyClass {
+   private static String fooBar;
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

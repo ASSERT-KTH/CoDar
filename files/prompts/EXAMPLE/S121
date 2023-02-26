@@ -1,0 +1,10 @@
+### Noncompliant
+if (condition)  // Noncompliant
+  executeSomething();
+### Compliant
+if (condition) {
+  executeSomething();
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

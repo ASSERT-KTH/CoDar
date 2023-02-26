@@ -1,0 +1,4 @@
+"Threads" should not be used where "Runnables" are expected
+### Noncompliant
+{{BUGGY}}
+### Compliant

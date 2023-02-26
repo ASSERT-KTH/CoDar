@@ -1,0 +1,4 @@
+"static" base class members should not be accessed via derived types
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,7 @@
+### Noncompliant
+public class MyException extends Error { /* ... */ }       // Noncompliant
+### Compliant
+public class MyException extends Exception { /* ... */ }   
+### Noncompliant
+{{BUGGY}}
+### Compliant

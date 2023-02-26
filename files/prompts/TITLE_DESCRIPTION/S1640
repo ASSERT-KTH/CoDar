@@ -1,0 +1,5 @@
+Maps with keys that are enum values should be replaced with EnumMap
+When all the keys of a Map are values from the same enum, the Map can be replaced with an EnumMap, which can be much more efficient than other sets because the underlying data structure is a simple array. 
+### Noncompliant
+{{BUGGY}}
+### Compliant

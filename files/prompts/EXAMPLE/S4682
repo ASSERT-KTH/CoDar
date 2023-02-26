@@ -1,0 +1,12 @@
+### Noncompliant
+@CheckForNull
+boolean isFoo() {
+ ...
+}
+### Compliant
+boolean isFoo() {
+ ...
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

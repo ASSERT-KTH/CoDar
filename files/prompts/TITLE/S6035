@@ -1,0 +1,4 @@
+Single-character alternations in regular expressions should be replaced with character classes
+### Noncompliant
+{{BUGGY}}
+### Compliant

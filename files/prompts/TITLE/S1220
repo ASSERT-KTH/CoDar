@@ -1,0 +1,4 @@
+The default unnamed package should not be used
+### Noncompliant
+{{BUGGY}}
+### Compliant

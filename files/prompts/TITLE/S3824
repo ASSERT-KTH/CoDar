@@ -1,0 +1,4 @@
+"Map.get" and value test should be replaced with single method call
+### Noncompliant
+{{BUGGY}}
+### Compliant

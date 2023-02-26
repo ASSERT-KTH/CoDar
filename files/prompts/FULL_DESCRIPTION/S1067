@@ -1,0 +1,11 @@
+Expressions should not be too complex
+The complexity of an expression is defined by the number of &&, || and condition ? ifTrue : ifFalse operators it contains. A single expression’s complexity should not become too high to keep the code readable. 
+### Noncompliant
+With the default threshold value of 3: if (((condition1 && condition2) || (condition3 && condition4)) && condition5) { ... }
+ 
+### Compliant
+if ( (myFirstCondition() || mySecondCondition()) && myLastCondition()) { ... }
+ Exceptions No issue is reported inside equals methods, because it is common to compare all the fields of a class for equality inside this kind of method.
+### Noncompliant
+{{BUGGY}}
+### Compliant

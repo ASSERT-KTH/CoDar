@@ -1,0 +1,4 @@
+"volatile" variables should not be used with compound operators
+### Noncompliant
+{{BUGGY}}
+### Compliant

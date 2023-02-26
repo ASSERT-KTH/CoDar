@@ -1,0 +1,4 @@
+Zero should not be a possible denominator
+### Noncompliant
+{{BUGGY}}
+### Compliant

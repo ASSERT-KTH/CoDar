@@ -1,0 +1,4 @@
+"ResultSet.isLast()" should not be used
+### Noncompliant
+{{BUGGY}}
+### Compliant

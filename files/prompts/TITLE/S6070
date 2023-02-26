@@ -1,0 +1,4 @@
+The regex escape sequence \cX should only be used with characters in the @-_ range
+### Noncompliant
+{{BUGGY}}
+### Compliant

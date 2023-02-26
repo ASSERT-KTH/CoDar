@@ -1,0 +1,4 @@
+Default annotation parameter values should not be passed as arguments
+### Noncompliant
+{{BUGGY}}
+### Compliant

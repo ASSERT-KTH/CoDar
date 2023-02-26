@@ -1,0 +1,5 @@
+Constructors should not be used to instantiate "String", "BigInteger", "BigDecimal" and primitive-wrapper classes
+Constructors for String, BigInteger, BigDecimal and the objects used to wrap primitives should never be used. Doing so is less clear and uses more memory than simply using the desired value in the case of strings, and using valueOf for everything else. 
+### Noncompliant
+{{BUGGY}}
+### Compliant

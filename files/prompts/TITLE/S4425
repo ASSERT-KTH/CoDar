@@ -1,0 +1,4 @@
+"Integer.toHexString" should not be used to build hexadecimal strings
+### Noncompliant
+{{BUGGY}}
+### Compliant

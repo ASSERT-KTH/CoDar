@@ -1,0 +1,13 @@
+"Thread.run()" should not be called directly
+The purpose of the Thread.run() method is to execute code in a separate, dedicated thread. Calling this method directly doesn’t make sense because it causes its code to be executed in the current thread. To get the expected behavior, call the Thread.start() method instead. 
+### Noncompliant
+Thread myThread = new Thread(runnable);
+myThread.run(); // Noncompliant
+ 
+### Compliant
+Thread myThread = new Thread(runnable);
+myThread.start(); // Compliant
+ See MITRE, CWE-572 - Call to Thread run() instead of start() CERT THI00-J. - Do not invoke Thread.run()
+### Noncompliant
+{{BUGGY}}
+### Compliant

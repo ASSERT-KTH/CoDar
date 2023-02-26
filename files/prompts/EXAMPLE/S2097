@@ -1,0 +1,19 @@
+### Noncompliant
+public boolean equals(Object obj) { // Noncompliant
+  MyClass mc = (MyClass)obj;
+  // ...
+}
+### Compliant
+public boolean equals(Object obj) {
+  if (obj == null)
+    return false;
+
+  if (this.getClass() != obj.getClass())
+    return false;
+
+  MyClass mc = (MyClass)obj;
+  // ...
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

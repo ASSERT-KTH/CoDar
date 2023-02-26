@@ -1,0 +1,4 @@
+Nested code blocks should not be used
+### Noncompliant
+{{BUGGY}}
+### Compliant

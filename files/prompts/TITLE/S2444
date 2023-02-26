@@ -1,0 +1,4 @@
+Lazy initialization of "static" fields should be "synchronized"
+### Noncompliant
+{{BUGGY}}
+### Compliant

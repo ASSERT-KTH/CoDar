@@ -1,0 +1,37 @@
+Loops should not be infinite
+An infinite loop is one that will never end while the program is running, i.e., you have to kill the program to get out of the loop. Whether it is by meeting the loop’s end condition or via a break, every loop should have an end condition. 
+### Noncompliant
+for (;;) {  // Noncompliant; end condition omitted
+  // ...
+}
+
+int j;
+while (true) { // Noncompliant; end condition omitted
+  j++;
+}
+
+int k;
+boolean b = true;
+while (b) { // Noncompliant; b never written to in loop
+  k++;
+}
+ 
+### Compliant
+int j;
+while (true) { // reachable end condition added
+  j++;
+  if (j  == Integer.MIN_VALUE) {  // true at Integer.MAX_VALUE +1
+    break;
+  }
+}
+
+int k;
+boolean b = true;
+while (b) {
+  k++;
+  b = k < Integer.MAX_VALUE;
+}
+ See CERT, MSC01-J. - Do not use an empty infinite loop
+### Noncompliant
+{{BUGGY}}
+### Compliant

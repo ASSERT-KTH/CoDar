@@ -1,0 +1,15 @@
+Literal boolean values and nulls should not be used in assertions
+There’s no reason to use literal boolean values or nulls in assertions. Instead of using them with assertEquals, assertNotEquals and similar methods, you should be using assertTrue, assertFalse, assertNull or assertNotNull instead (or isNull etc. when using Fest). Using them with assertions unrelated to equality (such as assertNull) is most likely a bug. Supported frameworks: JUnit3 JUnit4 JUnit5 Fest assert 
+### Noncompliant
+Assert.assertTrue(true);  // Noncompliant
+assertThat(null).isNull(); // Noncompliant
+
+assertEquals(true, something()); // Noncompliant
+assertNotEquals(null, something()); // Noncompliant
+ 
+### Compliant
+assertTrue(something());
+assertNotNull(something());
+### Noncompliant
+{{BUGGY}}
+### Compliant

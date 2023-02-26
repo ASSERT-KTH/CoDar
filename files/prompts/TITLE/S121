@@ -1,0 +1,4 @@
+Control structures should use curly braces
+### Noncompliant
+{{BUGGY}}
+### Compliant

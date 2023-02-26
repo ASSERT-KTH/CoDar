@@ -1,0 +1,4 @@
+Multiple variables should not be declared on the same line
+### Noncompliant
+{{BUGGY}}
+### Compliant

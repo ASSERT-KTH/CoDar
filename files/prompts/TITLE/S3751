@@ -1,0 +1,4 @@
+"@RequestMapping" methods should not be "private"
+### Noncompliant
+{{BUGGY}}
+### Compliant

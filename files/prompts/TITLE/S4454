@@ -1,0 +1,4 @@
+"equals" method parameters should not be marked "@Nonnull"
+### Noncompliant
+{{BUGGY}}
+### Compliant

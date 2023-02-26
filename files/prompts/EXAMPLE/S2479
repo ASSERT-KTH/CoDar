@@ -1,0 +1,11 @@
+### Noncompliant
+String tabInside = "A	B";  // Noncompliant, contains a tabulation
+String zeroWidthSpaceInside = "foo​bar"; // Noncompliant, it contains a U+200B character inside
+char tab = '	';
+### Compliant
+String tabInside = "A\tB";  
+String zeroWidthSpaceInside = "foo\u200Bbar";  
+char tab = '\t';
+### Noncompliant
+{{BUGGY}}
+### Compliant

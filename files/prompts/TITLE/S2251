@@ -1,0 +1,4 @@
+A "for" loop update clause should move the counter in the right direction
+### Noncompliant
+{{BUGGY}}
+### Compliant

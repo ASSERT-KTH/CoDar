@@ -1,0 +1,8 @@
+### Noncompliant
+assert myList.remove(myList.get(0));  // Noncompliant
+### Compliant
+boolean removed = myList.remove(myList.get(0));
+assert removed;
+### Noncompliant
+{{BUGGY}}
+### Compliant

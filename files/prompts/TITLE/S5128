@@ -1,0 +1,4 @@
+"Bean Validation" (JSR 380) should be properly configured
+### Noncompliant
+{{BUGGY}}
+### Compliant

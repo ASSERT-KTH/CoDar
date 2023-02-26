@@ -1,0 +1,9 @@
+### Noncompliant
+new Integer(myInteger).toString();   // Noncompliant
+Integer.valueOf(myInt).compareTo(0); // Noncompliant
+### Compliant
+Integer.toString(myInteger);        
+Integer.compare(myInteger, 0);      
+### Noncompliant
+{{BUGGY}}
+### Compliant

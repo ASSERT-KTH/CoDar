@@ -1,0 +1,4 @@
+Strings should not be concatenated using '+' in a loop
+### Noncompliant
+{{BUGGY}}
+### Compliant

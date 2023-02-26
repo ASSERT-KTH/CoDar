@@ -1,0 +1,5 @@
+Control structures should use curly braces
+While not technically incorrect, the omission of curly braces can be misleading, and may lead to the introduction of errors during maintenance. 
+### Noncompliant
+{{BUGGY}}
+### Compliant

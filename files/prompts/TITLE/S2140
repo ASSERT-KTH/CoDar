@@ -1,0 +1,4 @@
+Methods of "Random" that return floating point values should not be used in random integer generation
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,17 @@
+### Noncompliant
+protected void finalize() {   // Noncompliant; no call to super.finalize();
+  releaseSomeResources();
+}
+
+protected void finalize() {
+  super.finalize();  // Noncompliant; this call should come last
+  releaseSomeResources();
+}
+### Compliant
+protected void finalize() {
+  releaseSomeResources();
+  super.finalize();
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

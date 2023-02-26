@@ -1,0 +1,11 @@
+### Noncompliant
+if (myCollection.size() == 0) {  // Noncompliant
+  /* ... */
+}
+### Compliant
+if (myCollection.isEmpty()) {
+  /* ... */
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

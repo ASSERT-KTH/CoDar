@@ -1,0 +1,4 @@
+Synchronization should not be done on instances of value-based classes
+### Noncompliant
+{{BUGGY}}
+### Compliant

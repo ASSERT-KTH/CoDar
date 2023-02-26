@@ -1,0 +1,27 @@
+### Noncompliant
+public class MyClass {
+
+  public enum COLOR {
+    RED, GREEN, BLUE, ORANGE;
+  }
+
+  public void doSomething() {
+    Set<COLOR> warm = new HashSet<COLOR>();
+    warm.add(COLOR.RED);
+    warm.add(COLOR.ORANGE);
+  }
+}
+### Compliant
+public class MyClass {
+
+  public enum COLOR {
+    RED, GREEN, BLUE, ORANGE;
+  }
+
+  public void doSomething() {
+    Set<COLOR> warm = EnumSet.of(COLOR.RED, COLOR.ORANGE);
+  }
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

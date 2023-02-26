@@ -1,0 +1,7 @@
+### Noncompliant
+if(getTrue() | getFalse()) { ... } // Noncompliant; both sides evaluated
+### Compliant
+if(getTrue() || getFalse()) { ... } // true short-circuit logic
+### Noncompliant
+{{BUGGY}}
+### Compliant

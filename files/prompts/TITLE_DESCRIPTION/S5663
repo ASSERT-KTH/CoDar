@@ -1,0 +1,5 @@
+Simple string literal should be used for single line strings
+If a string fits on a single line, without concatenation and escaped newlines, you should probably continue to use a string literal. 
+### Noncompliant
+{{BUGGY}}
+### Compliant

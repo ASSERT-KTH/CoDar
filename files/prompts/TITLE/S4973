@@ -1,0 +1,4 @@
+Strings and Boxed types should be compared using "equals()"
+### Noncompliant
+{{BUGGY}}
+### Compliant

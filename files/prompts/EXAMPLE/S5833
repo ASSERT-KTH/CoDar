@@ -1,0 +1,11 @@
+### Noncompliant
+assertThat(actual).isEqualTo(expected).as("Description"); // Noncompliant
+assertThat(actual).isEqualTo(expected).withFailMessage("Fail message"); // Noncompliant
+assertThat(actual).isEqualTo(expected).usingComparator(new CustomComparator()); // Noncompliant
+### Compliant
+assertThat(actual).as("Description").isEqualTo(expected);
+assertThat(actual).withFailMessage("Fail message").isEqualTo(expected);
+assertThat(actual).usingComparator(new CustomComparator()).isEqualTo(expected);
+### Noncompliant
+{{BUGGY}}
+### Compliant

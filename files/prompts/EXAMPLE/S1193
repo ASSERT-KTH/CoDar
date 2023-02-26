@@ -1,0 +1,15 @@
+### Noncompliant
+try {
+  /* ... */
+} catch (Exception e) {
+  if(e instanceof IOException) { /* ... */ }         // Noncompliant
+  if(e instanceof NullPointerException{ /* ... */ }  // Noncompliant
+}
+### Compliant
+try {
+  /* ... */
+} catch (IOException e) { /* ... */ }                
+} catch (NullPointerException e) { /* ... */ }       
+### Noncompliant
+{{BUGGY}}
+### Compliant

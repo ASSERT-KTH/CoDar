@@ -1,0 +1,4 @@
+Values should not be uselessly incremented
+### Noncompliant
+{{BUGGY}}
+### Compliant

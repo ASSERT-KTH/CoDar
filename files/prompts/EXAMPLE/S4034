@@ -1,0 +1,7 @@
+### Noncompliant
+boolean hasRed = widgets.stream().filter(w -> w.getColor() == RED).findFirst().isPresent(); // Noncompliant
+### Compliant
+boolean hasRed = widgets.stream().anyMatch(w -> w.getColor() == RED);
+### Noncompliant
+{{BUGGY}}
+### Compliant

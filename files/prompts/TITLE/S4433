@@ -1,0 +1,4 @@
+LDAP connections should be authenticated
+### Noncompliant
+{{BUGGY}}
+### Compliant

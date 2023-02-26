@@ -1,0 +1,13 @@
+### Noncompliant
+ThreadLocal<List<String>> myThreadLocal =
+    new ThreadLocal<List<String>>() { // Noncompliant
+        @Override
+        protected List<String> initialValue() {
+            return new ArrayList<String>();
+        }
+    };
+### Compliant
+ThreadLocal<List<String>> myThreadLocal = ThreadLocal.withInitial(ArrayList::new);
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,4 @@
+String operations should not rely on the default system locale
+### Noncompliant
+{{BUGGY}}
+### Compliant

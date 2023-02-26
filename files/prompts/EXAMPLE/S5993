@@ -1,0 +1,15 @@
+### Noncompliant
+public abstract class AbstractClass1 {
+    public AbstractClass1 () { // Noncompliant, has public modifier
+        // do something here
+    }
+}
+### Compliant
+public abstract class AbstractClass2 {
+    protected AbstractClass2 () {
+        // do something here
+    }
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

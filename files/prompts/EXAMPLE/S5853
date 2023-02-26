@@ -1,0 +1,10 @@
+### Noncompliant
+assertThat(someList).hasSize(3);
+assertThat(someList).contains("something");
+### Compliant
+assertThat(someList)
+  .hasSize(3)
+  .contains("something");
+### Noncompliant
+{{BUGGY}}
+### Compliant

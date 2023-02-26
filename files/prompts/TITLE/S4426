@@ -1,0 +1,4 @@
+Cryptographic keys should be robust
+### Noncompliant
+{{BUGGY}}
+### Compliant

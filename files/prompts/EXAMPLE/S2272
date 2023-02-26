@@ -1,0 +1,23 @@
+### Noncompliant
+public class MyIterator implements Iterator<String>{
+  ...
+  public String next(){
+    if(!hasNext()){
+      return null;
+    }
+    ...
+  }
+}
+### Compliant
+public class MyIterator implements Iterator<String>{
+  ...
+  public String next(){
+    if(!hasNext()){
+      throw new NoSuchElementException();
+    }
+    ...
+  }
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

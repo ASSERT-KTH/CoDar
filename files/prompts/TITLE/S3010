@@ -1,0 +1,4 @@
+Static fields should not be updated in constructors
+### Noncompliant
+{{BUGGY}}
+### Compliant

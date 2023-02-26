@@ -1,0 +1,5 @@
+Static non-final field names should comply with a naming convention
+Shared naming conventions allow teams to collaborate efficiently. This rule checks that static non-final field names match a provided regular expression. 
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,4 @@
+"Arrays.stream" should be used for primitive arrays
+### Noncompliant
+{{BUGGY}}
+### Compliant

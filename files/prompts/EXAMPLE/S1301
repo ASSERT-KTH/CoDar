@@ -1,0 +1,18 @@
+### Noncompliant
+switch (variable) {
+  case 0:
+    doSomething();
+    break;
+  default:
+    doSomethingElse();
+    break;
+}
+### Compliant
+if (variable == 0) {
+  doSomething();
+} else {
+  doSomethingElse();
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

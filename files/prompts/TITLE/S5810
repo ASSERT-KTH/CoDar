@@ -1,0 +1,4 @@
+JUnit5 test classes and methods should not be silently ignored
+### Noncompliant
+{{BUGGY}}
+### Compliant

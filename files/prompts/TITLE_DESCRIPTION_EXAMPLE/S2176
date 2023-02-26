@@ -1,0 +1,13 @@
+Class names should not shadow interfaces or superclasses
+While it’s perfectly legal to give a class the same simple name as a class in another package that it extends or interface it implements, it’s confusing and could cause problems in the future. 
+### Noncompliant
+package my.mypackage;
+
+public class Foo implements a.b.Foo { // Noncompliant
+### Compliant
+package my.mypackage;
+
+public class FooJr implements a.b.Foo {
+### Noncompliant
+{{BUGGY}}
+### Compliant

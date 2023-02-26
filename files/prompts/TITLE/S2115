@@ -1,0 +1,4 @@
+A secure password should be used when connecting to a database
+### Noncompliant
+{{BUGGY}}
+### Compliant

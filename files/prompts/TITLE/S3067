@@ -1,0 +1,4 @@
+"getClass" should not be used for synchronization
+### Noncompliant
+{{BUGGY}}
+### Compliant

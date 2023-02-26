@@ -1,0 +1,7 @@
+### Noncompliant
+int count = stream.collect(counting());  // Noncompliant
+### Compliant
+int count = stream.count();
+### Noncompliant
+{{BUGGY}}
+### Compliant

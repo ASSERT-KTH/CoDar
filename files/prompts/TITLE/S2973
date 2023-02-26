@@ -1,0 +1,4 @@
+Escaped Unicode characters should not be used
+### Noncompliant
+{{BUGGY}}
+### Compliant

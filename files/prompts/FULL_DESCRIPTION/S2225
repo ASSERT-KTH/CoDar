@@ -1,0 +1,19 @@
+"toString()" and "clone()" methods should not return null
+Calling toString() or clone() on an object should always return a string or an object. Returning null instead contravenes the method’s implicit contract. 
+### Noncompliant
+public String toString () {
+  if (this.collection.isEmpty()) {
+    return null; // Noncompliant
+  } else {
+    // ...
+ 
+### Compliant
+public String toString () {
+  if (this.collection.isEmpty()) {
+    return "";
+  } else {
+    // ...
+ See MITRE, CWE-476 - NULL Pointer Dereference CERT, EXP01-J. - Do not use a null in a case where an object is required
+### Noncompliant
+{{BUGGY}}
+### Compliant

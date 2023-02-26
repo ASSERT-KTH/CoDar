@@ -1,0 +1,17 @@
+### Noncompliant
+@Test
+public void testMethod() {
+  try {
+            // Some code
+  } catch (MyException e) {
+    Assert.fail(e.getMessage());  // Noncompliant
+  }
+}
+### Compliant
+@Test
+public void testMethod() throws MyException {
+    // Some code
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

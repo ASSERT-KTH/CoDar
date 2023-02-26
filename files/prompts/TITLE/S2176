@@ -1,0 +1,4 @@
+Class names should not shadow interfaces or superclasses
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,8 @@
+### Noncompliant
+String question = """
+              What's the point, really?""";
+### Compliant
+String question = "What's the point, really?";
+### Noncompliant
+{{BUGGY}}
+### Compliant

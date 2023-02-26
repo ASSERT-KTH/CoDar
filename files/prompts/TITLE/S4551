@@ -1,0 +1,4 @@
+Enum values should be compared with "=="
+### Noncompliant
+{{BUGGY}}
+### Compliant

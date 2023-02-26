@@ -1,0 +1,12 @@
+### Noncompliant
+Lock lock = new MyLockImpl();
+synchronized(lock) {  // Noncompliant
+  //...
+}
+### Compliant
+Lock lock = new MyLockImpl();
+lock.tryLock();
+//...
+### Noncompliant
+{{BUGGY}}
+### Compliant

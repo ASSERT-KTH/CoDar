@@ -1,0 +1,4 @@
+Loggers should be "private static final" and should share a naming convention
+### Noncompliant
+{{BUGGY}}
+### Compliant

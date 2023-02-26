@@ -1,0 +1,23 @@
+### Noncompliant
+public void doSomething(){
+  ...
+  try {
+    ...
+    anObject.notify();
+    ...
+  } catch(IllegalMonitorStateException e) {
+    ...
+  }
+}
+### Compliant
+public void doSomething(){
+  ...
+  synchronized(anObject) {
+    ...
+    anObject.notify();
+    ...
+  }
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

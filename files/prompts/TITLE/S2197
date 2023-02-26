@@ -1,0 +1,4 @@
+Modulus results should not be checked for direct equality
+### Noncompliant
+{{BUGGY}}
+### Compliant

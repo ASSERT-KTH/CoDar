@@ -1,0 +1,27 @@
+### Noncompliant
+public class TypeParameterHidesAnotherType<T> {
+
+    public class Inner<T> { // Noncompliant
+      //...
+    }
+
+    private <T> T method() { // Noncompliant
+      return null;
+    }
+
+  }
+### Compliant
+public class NoTypeParameterHiding<T> {
+
+    public class Inner<S> { 
+      List<S> listOfS;
+    }
+
+    private <V> V method() { 
+      return null;
+    }
+
+  }
+### Noncompliant
+{{BUGGY}}
+### Compliant

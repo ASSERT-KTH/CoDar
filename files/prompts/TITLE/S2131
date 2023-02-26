@@ -1,0 +1,4 @@
+Primitives should not be boxed just for "String" conversion
+### Noncompliant
+{{BUGGY}}
+### Compliant

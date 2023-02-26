@@ -1,0 +1,13 @@
+Parsing should be used to convert "Strings" to primitives
+Rather than creating a boxed primitive from a String to extract the primitive value, use the relevant parse method instead. It will be clearer and more efficient. 
+### Noncompliant
+String myNum = "12.2";
+
+float f = (new Float(myNum)).floatValue();  // Noncompliant; creates & discards a Float
+### Compliant
+String myNum = "12.2";
+
+float f = Float.parseFloat(myNum);
+### Noncompliant
+{{BUGGY}}
+### Compliant

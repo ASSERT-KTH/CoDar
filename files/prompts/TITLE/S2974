@@ -1,0 +1,4 @@
+Classes without "public" constructors should be "final"
+### Noncompliant
+{{BUGGY}}
+### Compliant

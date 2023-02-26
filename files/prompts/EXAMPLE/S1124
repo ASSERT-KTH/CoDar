@@ -1,0 +1,9 @@
+### Noncompliant
+static public void main(String[] args) {   // Noncompliant
+}
+### Compliant
+public static void main(String[] args) {   
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

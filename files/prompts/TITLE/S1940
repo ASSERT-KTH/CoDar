@@ -1,0 +1,4 @@
+Boolean checks should not be inverted
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,21 @@
+### Noncompliant
+public long computeDurationInMilliseconds() {
+  long duration = (((hours * 60) + minutes) * 60 + seconds ) * 1000 ;
+  return duration;
+}
+
+public void doSomething() {
+  RuntimeException myException = new RuntimeException();
+  throw myException;
+}
+### Compliant
+public long computeDurationInMilliseconds() {
+  return (((hours * 60) + minutes) * 60 + seconds ) * 1000 ;
+}
+
+public void doSomething() {
+  throw new RuntimeException();
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant
