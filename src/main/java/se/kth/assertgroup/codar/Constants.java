@@ -1,9 +1,13 @@
-package se.kth.assertgroup.sonarcodex;
+package se.kth.assertgroup.codar;
 
 import java.io.File;
-import java.util.List;
 
 public class Constants {
+    public static final String CODAR_COMMAND_NAME = "CoDar";
+
+    public static final String ARG_SRC_DIR = "--src";
+    public static final String ARG_MINE_RES = "--mine-res";
+
     public static final String PROMPT_TEMPLATE_BASE = "files/prompts/";
     public static final String CODEX_PROMPT_BUGGY_CODE_PLACEHOLDER = "{{BUGGY}}";
     public static final String CODEX_API_TOKEN_ENV_NAME = "CODEX_API_TOKEN";

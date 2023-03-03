@@ -1,7 +1,7 @@
-package se.kth.assertgroup.sonarcodex.codex;
+package se.kth.assertgroup.codar.codex;
 
 import org.apache.commons.io.FileUtils;
-import se.kth.assertgroup.sonarcodex.Constants;
+import se.kth.assertgroup.codar.Constants;
 
 import java.io.File;
 import java.io.IOException;

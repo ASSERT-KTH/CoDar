@@ -1,11 +1,14 @@
-package se.kth.assertgroup.sonarcodex.repair;
+package se.kth.assertgroup.codar.repair;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.theokanning.openai.OpenAiService;
 import com.theokanning.openai.completion.CompletionChoice;
 import com.theokanning.openai.completion.CompletionRequest;
 import org.apache.commons.io.FileUtils;
-import se.kth.assertgroup.sonarcodex.Constants;
-import se.kth.assertgroup.sonarcodex.codex.SonarFixPrompt;
+import se.kth.assertgroup.codar.Constants;
+import se.kth.assertgroup.codar.codex.SonarFixPrompt;
+import sorald.event.collectors.MinerStatisticsCollector;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,7 +25,7 @@ public class CodexRepair implements RepairTool {
 
         for (int i = bugStartLine - 1; i <= bugEndLine - 1; i++) {
             buggyCode += lines.get(i);
-            if(i - 1 == nonCompliantLine)
+            if (i - 1 == nonCompliantLine)
                 buggyCode += " // Non-compliant";
             if (i < bugEndLine)
                 buggyCode += System.lineSeparator();
@@ -50,5 +53,8 @@ public class CodexRepair implements RepairTool {
         lines.set(nonCompliantLine - 1, fixedCode);
 
         FileUtils.writeLines(outputSrc, lines);
+    }
+
+    public void repair(File src, File mineRes) throws IOException {
     }
 }

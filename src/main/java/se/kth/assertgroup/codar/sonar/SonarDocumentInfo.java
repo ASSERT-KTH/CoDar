@@ -1,6 +1,6 @@
-package se.kth.assertgroup.sonarcodex.sonar;
+package se.kth.assertgroup.codar.sonar;
 
-import se.kth.assertgroup.sonarcodex.Constants;
+import se.kth.assertgroup.codar.Constants;
 
 import java.util.ArrayList;
 import java.util.Arrays;
