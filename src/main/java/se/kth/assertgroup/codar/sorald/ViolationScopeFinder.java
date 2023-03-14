@@ -4,6 +4,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import spoon.Launcher;
 import spoon.reflect.CtModel;
 import spoon.reflect.code.CtStatement;
+import spoon.reflect.declaration.CtField;
 import spoon.reflect.declaration.CtMethod;
 
 import java.util.Arrays;
@@ -20,7 +21,7 @@ public class ViolationScopeFinder {
 //        CtModel model;
 //    }
 
-    private Set<Pair<Integer, Integer>> extractScopes(String srcPath){
+    public Set<Pair<Integer, Integer>> extractScopes(String srcPath){
         Launcher launcher = new Launcher();
         launcher.getEnvironment().setCommentEnabled(true);
         launcher.addInputResource(srcPath);
@@ -28,7 +29,7 @@ public class ViolationScopeFinder {
         CtModel model = launcher.getModel();
 
         ElementScopeProcessor scopeProcessor =
-                new ElementScopeProcessor(new HashSet<>(), Arrays.asList(CtMethod.class, CtStatement.class));
+                new ElementScopeProcessor(new HashSet<>(), Arrays.asList(CtMethod.class, CtStatement.class, CtField.class));
         model.processWith(scopeProcessor);
 
         return scopeProcessor.getOuterScopes();
