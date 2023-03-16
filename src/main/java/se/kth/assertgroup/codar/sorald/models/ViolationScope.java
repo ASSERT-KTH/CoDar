@@ -27,6 +27,15 @@ public class ViolationScope {
         return Objects.hash(getSrcPath(), getStartLine(), getEndLine());
     }
 
+    @Override
+    public String toString() {
+        return "ViolationScope{" +
+                "srcPath='" + srcPath + '\'' +
+                ", startLine=" + startLine +
+                ", endLine=" + endLine +
+                '}';
+    }
+
     public String getSrcPath() {
         return srcPath;
     }

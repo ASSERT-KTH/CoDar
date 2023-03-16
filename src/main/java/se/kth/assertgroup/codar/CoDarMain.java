@@ -1,6 +1,7 @@
 package se.kth.assertgroup.codar;
 
 import picocli.CommandLine;
+import se.kth.assertgroup.codar.codex.PromptType;
 import se.kth.assertgroup.codar.repair.CodexRepair;
 
 import java.io.File;
@@ -15,18 +16,28 @@ import java.util.concurrent.Callable;
         synopsisSubcommandLabel = "<COMMAND>")
 public class CoDarMain implements Callable<Integer> {
     @CommandLine.Option(
-            names = {Constants.ARG_SRC_DIR},
+            names = {Constants.ARG_ROOT_DIR},
             description = "The path to the source root.")
-    File srcDir;
+    File rootDir;
 
     @CommandLine.Option(
             names = {Constants.ARG_MINE_RES},
             description = "The path to the mining result file.")
     File mineRes;
 
+    @CommandLine.Option(
+            names = {Constants.ARG_RULE},
+            description = "The rule whose violations should be fixed.")
+    String rule;
+
+    @CommandLine.Option(
+            names = {Constants.ARG_PROMPT_TYPE},
+            description = "The type of prompt that should be sent to Codex.")
+    PromptType promptType;
+
     @Override
     public Integer call() throws Exception {
-        new CodexRepair().repair(srcDir, mineRes);
+        new CodexRepair().repair(rootDir, mineRes, rule, promptType);
         return 0;
     }
 
