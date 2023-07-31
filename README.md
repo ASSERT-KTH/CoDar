@@ -1,4 +1,4 @@
-# Conar
+# CoNar
 Fixes SonarQube warnings using Codex!
 
 ## Handled Rules
