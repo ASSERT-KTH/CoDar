@@ -1,8 +1,11 @@
 package se.kth.assertgroup.codar.repair;
 
-import com.theokanning.openai.OpenAiService;
 import com.theokanning.openai.completion.CompletionChoice;
 import com.theokanning.openai.completion.CompletionRequest;
+import com.theokanning.openai.completion.chat.ChatCompletionChoice;
+import com.theokanning.openai.completion.chat.ChatCompletionRequest;
+import com.theokanning.openai.completion.chat.ChatMessage;
+import com.theokanning.openai.service.OpenAiService;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.json.simple.parser.ParseException;
@@ -15,6 +18,7 @@ import se.kth.assertgroup.codar.sorald.models.ViolationScope;
 import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -36,8 +40,8 @@ public class CodexRepair {
 
         String prompt = new SonarFixPrompt(ruleKey, buggyCode).getPromptAsStr();
 
-        String token = System.getenv(Constants.CODEX_API_TOKEN_ENV_NAME);
-        OpenAiService service = new OpenAiService(token, Duration.ofSeconds(Constants.CODEX_TIMEOUT));
+        String token = System.getenv(Constants.OPENAI_API_TOKEN_ENV_NAME);
+        OpenAiService service = new OpenAiService(token, Duration.ofSeconds(Constants.OPENAI_REQUEST_TIMEOUT));
 
         CompletionRequest completionRequest = CompletionRequest.builder()
                 .model("code-davinci-002")
@@ -71,38 +75,59 @@ public class CodexRepair {
                 mineResParser.getCodeScopeToViolations(root, mineRes, rule);
 
         for (Map.Entry<ViolationScope, Set<Integer>> e : scopeToRuleViolations.entrySet()) {
-            repair(root, e.getKey(), e.getValue(), rule, promptType);
+            int numberOfAddedLines = repairAndGetNumberOfAddedLines(root, e.getKey(), e.getValue(), rule, promptType);
+            updateScopeToRuleViolations(scopeToRuleViolations, e, numberOfAddedLines);
         }
     }
 
-    private void repair(File root, ViolationScope vs, Set<Integer> buggyLines, String rule, PromptType promptType)
+    private void updateScopeToRuleViolations(Map<ViolationScope, Set<Integer>> scopeToRuleViolations,
+                                             Map.Entry<ViolationScope, Set<Integer>> e, int numberOfAddedLines) {
+        scopeToRuleViolations.entrySet().stream()
+                .filter(entry -> entry.getKey().getSrcPath().equals(e.getKey().getSrcPath()))
+                .forEach(entry -> {
+                    if(entry.getKey().getStartLine() >= e.getKey().getStartLine())
+                        entry.getKey().setStartLine(entry.getKey().getStartLine() + numberOfAddedLines);
+                    if(entry.getKey().getEndLine() >= e.getKey().getEndLine())
+                        entry.getKey().setEndLine(entry.getKey().getEndLine() + numberOfAddedLines);
+                });
+    }
+
+    private int repairAndGetNumberOfAddedLines
+            (
+                    File root,
+                    ViolationScope vs,
+                    Set<Integer> buggyLines,
+                    String rule,
+                    PromptType promptType
+            )
             throws IOException {
         File src = new File(root.getPath() + File.separator + vs.getSrcPath());
 
         SonarFixPrompt prompt = generatePrompt(src, vs.getStartLine(), vs.getEndLine(), buggyLines, rule, promptType);
 
-        String token = System.getenv(Constants.CODEX_API_TOKEN_ENV_NAME);
-        OpenAiService service = new OpenAiService(token, Duration.ofSeconds(Constants.CODEX_TIMEOUT));
+        String token = System.getenv(Constants.OPENAI_API_TOKEN_ENV_NAME);
+        OpenAiService service = new OpenAiService(token, Duration.ofSeconds(Constants.OPENAI_REQUEST_TIMEOUT));
 
         int maxTokens = prompt.getBuggyCode().length() * 3;
 
-        if (maxTokens > Constants.CODEX_MAX_TOKENS)
+        if (maxTokens > Constants.OPENAI_REQUEST_MAX_TOKENS)
             throw new RuntimeException("The buggy code is too long for " + vs);
 
-        CompletionRequest completionRequest = CompletionRequest.builder()
-                .model(Constants.CODEX_MODEL)
-                .prompt(prompt.getPromptAsStr())
-                .echo(false)
+        ChatCompletionRequest completionRequest = ChatCompletionRequest.builder()
+                .model(Constants.TURBO_MODEL)
+                .messages(Arrays.asList(new ChatMessage("system",
+                                    "You are a super smart automated program repair tool." +
+                                            " You do not generate extra comments or logging statements."),
+                        new ChatMessage("assistant", prompt.getPromptAsStr())))
                 .maxTokens(maxTokens)
                 .stop(List.of("#"))
                 .n(1)
-                .bestOf(1)
                 .temperature(0.0)
                 .build();
 
         try {
-            List<CompletionChoice> choices = service.createCompletion(completionRequest).getChoices();
-            String fixedCode = choices.get(0).getText();
+            List<ChatCompletionChoice> choices = service.createChatCompletion(completionRequest).getChoices();
+            String fixedCode = choices.get(0).getMessage().getContent();
 
             while(fixedCode.charAt(fixedCode.length() - 1) == '\n'){
                 fixedCode = StringUtils.chomp(fixedCode);
@@ -112,8 +137,11 @@ public class CodexRepair {
             srcLines.subList(vs.getStartLine() - 1, vs.getEndLine()).clear();
             srcLines.add(vs.getStartLine() - 1, fixedCode);
             FileUtils.writeLines(src, srcLines);
+
+            return (fixedCode.split("\r\n|\r|\n").length) - (vs.getEndLine() - vs.getStartLine() + 1);
         } catch (Exception e) {
             e.printStackTrace();
+            return 0;
         }
     }
 
@@ -132,7 +160,7 @@ public class CodexRepair {
         for (int i = startLine - 1; i <= endLine - 1; i++) {
             buggyCode += lines.get(i);
             if (buggyLines.contains(i + 1))
-                buggyCode += " // " + Constants.CODEX_NONCOMPLIANT_KEYWORD;
+                buggyCode += " // " + Constants.PROMPT_NONCOMPLIANT_KEYWORD;
             if (i < endLine)
                 buggyCode += System.lineSeparator();
         }

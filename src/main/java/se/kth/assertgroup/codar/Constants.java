@@ -11,18 +11,20 @@ public class Constants {
     public static final String ARG_PROMPT_TYPE = "--prompt-type";
 
     public static final String PROMPT_TEMPLATE_BASE = "files/prompts/";
-    public static final String CODEX_PROMPT_BUGGY_CODE_PLACEHOLDER = "{{BUGGY}}";
-    public static final String CODEX_API_TOKEN_ENV_NAME = "CODEX_API_TOKEN";
-    public static final String CODEX_NONCOMPLIANT_KEYWORD = "Noncompliant";
-    public static final String CODEX_COMPLIANT_KEYWORD = "Compliant";
-    public static final String CODEX_NONCOMPLIANT_HEADER = "### " + CODEX_NONCOMPLIANT_KEYWORD;
-    public static final String CODEX_COMPLIANT_HEADER = "### " + CODEX_COMPLIANT_KEYWORD;
-    public static final String CODEX_PROMPT_ENDING = CODEX_NONCOMPLIANT_HEADER + System.lineSeparator()
-            + CODEX_PROMPT_BUGGY_CODE_PLACEHOLDER + System.lineSeparator()
-            + CODEX_COMPLIANT_HEADER + System.lineSeparator();
-    public static final int CODEX_TIMEOUT = 50;
-    public static final int CODEX_MAX_TOKENS = 2048;
+    public static final String PROMPT_BUGGY_CODE_PLACEHOLDER = "{{BUGGY}}";
+    public static final String OPENAI_API_TOKEN_ENV_NAME = "CODEX_API_TOKEN";
+    public static final String PROMPT_NONCOMPLIANT_KEYWORD = "Noncompliant";
+    public static final String PROMP_COMPLIANT_KEYWORD = "Compliant";
+    public static final String PROMPT_NONCOMPLIANT_HEADER = "### " + PROMPT_NONCOMPLIANT_KEYWORD;
+    public static final String PROMPT_COMPLIANT_HEADER = "### " + PROMP_COMPLIANT_KEYWORD;
+    public static final String PROMPT_ENDING = PROMPT_NONCOMPLIANT_HEADER + System.lineSeparator()
+            + PROMPT_BUGGY_CODE_PLACEHOLDER + System.lineSeparator()
+            + PROMPT_COMPLIANT_HEADER + System.lineSeparator();
+    public static final int OPENAI_REQUEST_TIMEOUT = 50;
+    public static final int OPENAI_REQUEST_MAX_TOKENS = 2048;
     public static final String CODEX_MODEL = "code-cushman-001";
+    public static final String TURBO_MODEL = "gpt-3.5-turbo";
+    public static final String GPT4_MODEL = "gpt-4";
 //    public static final String CODEX_MODEL = "code-davinci-002";
 
     public static final String SONAR_DOC_URL_TEMPLATE = "https://rules.sonarsource.com/java/RSPEC-{{rule}}";

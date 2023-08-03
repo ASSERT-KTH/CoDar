@@ -52,7 +52,7 @@ public class PromptTemplateGenerator {
 
     private void printFullDescriptionPromptTemplate(SonarDocumentInfo docInfo) throws IOException {
         String prompt = docInfo.getTitle() + System.lineSeparator()
-                + docInfo.getFullDescription() + System.lineSeparator() + Constants.CODEX_PROMPT_ENDING;
+                + docInfo.getFullDescription() + System.lineSeparator() + Constants.PROMPT_ENDING;
 
         FileUtils.write(new File(Constants.FULL_DESCRIPTION_PROMPTS_DIR + docInfo.getRule()),
                 prompt, "UTF-8");
@@ -68,7 +68,7 @@ public class PromptTemplateGenerator {
 
     private void printTitleDescriptionPromptTemplate(SonarDocumentInfo docInfo) throws IOException {
         String prompt = docInfo.getTitle() + System.lineSeparator() + docInfo.getDescriptionWithNoEx()
-                + System.lineSeparator() + Constants.CODEX_PROMPT_ENDING;
+                + System.lineSeparator() + Constants.PROMPT_ENDING;
 
         FileUtils.write(new File(Constants.TITLE_DESCRIPTION_PROMPTS_DIR + docInfo.getRule()),
                 prompt, "UTF-8");
@@ -76,7 +76,7 @@ public class PromptTemplateGenerator {
 
     private void printTitlePromptTemplate(SonarDocumentInfo docInfo) throws IOException {
         String prompt = docInfo.getTitle() + System.lineSeparator()
-                + Constants.CODEX_PROMPT_ENDING;
+                + Constants.PROMPT_ENDING;
 
         FileUtils.write(new File(Constants.TITLE_PROMPTS_DIR + docInfo.getRule()),
                 prompt, "UTF-8");
@@ -90,16 +90,16 @@ public class PromptTemplateGenerator {
     }
 
     private String getPromptExampleSection(SonarDocumentInfo docInfo) {
-        return Constants.CODEX_NONCOMPLIANT_HEADER + System.lineSeparator()
+        return Constants.PROMPT_NONCOMPLIANT_HEADER + System.lineSeparator()
                 + docInfo.getExamples().get(0).getNonCompliant() + System.lineSeparator()
-                +  Constants.CODEX_COMPLIANT_HEADER + System.lineSeparator()
+                +  Constants.PROMPT_COMPLIANT_HEADER + System.lineSeparator()
                 + docInfo.getExamples().get(0).getCompliant() + System.lineSeparator()
-                + Constants.CODEX_PROMPT_ENDING;
+                + Constants.PROMPT_ENDING;
     }
 
     private void printZeroShotPromptTemplate(SonarDocumentInfo docInfo) throws IOException {
         FileUtils.write(new File(Constants.ZERO_SHOT_PROMPTS_DIR + docInfo.getRule()),
-                Constants.CODEX_PROMPT_ENDING, "UTF-8");
+                Constants.PROMPT_ENDING, "UTF-8");
     }
 
     private void addExamplesToDocInfo(Document jsoupDoc, SonarDocumentInfo docInfo) {

@@ -26,7 +26,7 @@ public class SonarFixPrompt {
         String promptTemplate = FileUtils.readFileToString(new File(Constants.PROMPT_TEMPLATE_BASE +
                         promptType.toString() + File.separator + ruleKey),
                 "UTF-8");
-        return promptTemplate.replace(Constants.CODEX_PROMPT_BUGGY_CODE_PLACEHOLDER, buggyCode);
+        return promptTemplate.replace(Constants.PROMPT_BUGGY_CODE_PLACEHOLDER, buggyCode);
     }
 
     public String getBuggyCode(){

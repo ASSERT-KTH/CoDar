@@ -88,8 +88,8 @@
         </dependency>
         <dependency>
             <groupId>com.theokanning.openai-gpt3-java</groupId>
-            <artifactId>client</artifactId>
-            <version>0.9.0</version>
+            <artifactId>service</artifactId>
+            <version>0.14.0</version>
         </dependency>
         <dependency>
             <groupId>commons-io</groupId>

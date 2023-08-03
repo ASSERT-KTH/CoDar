@@ -43,8 +43,8 @@ public class SonarDocumentInfo {
         Arrays.asList(desLines).stream().collect(Collectors.joining(System.lineSeparator()));
 
         // Replacing example labels
-        fullDescription = fullDescription.replaceAll("Noncompliant Code Example", Constants.CODEX_NONCOMPLIANT_HEADER)
-                .replaceAll("Compliant Solution", Constants.CODEX_COMPLIANT_HEADER);
+        fullDescription = fullDescription.replaceAll("Noncompliant Code Example", Constants.PROMPT_NONCOMPLIANT_HEADER)
+                .replaceAll("Compliant Solution", Constants.PROMPT_COMPLIANT_HEADER);
     }
 
     public List<ViolationExample> getExamples() {
@@ -60,7 +60,7 @@ public class SonarDocumentInfo {
     }
 
     public String getDescriptionWithNoEx(){
-        return fullDescription.substring(0, fullDescription.indexOf(System.lineSeparator() + Constants.CODEX_NONCOMPLIANT_HEADER));
+        return fullDescription.substring(0, fullDescription.indexOf(System.lineSeparator() + Constants.PROMPT_NONCOMPLIANT_HEADER));
     }
 
     private void cleanExamples(){
