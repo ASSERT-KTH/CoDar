@@ -8,22 +8,29 @@ import com.theokanning.openai.completion.chat.ChatMessage;
 import com.theokanning.openai.service.OpenAiService;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.jetbrains.annotations.NotNull;
 import org.json.simple.parser.ParseException;
 import se.kth.assertgroup.codar.Constants;
 import se.kth.assertgroup.codar.codex.PromptType;
 import se.kth.assertgroup.codar.codex.SonarFixPrompt;
 import se.kth.assertgroup.codar.sorald.MineResParser;
 import se.kth.assertgroup.codar.sorald.models.ViolationScope;
+import se.kth.assertgroup.codar.utils.PH;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.time.Duration;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class CodexRepair {
+
+    private OpenAiService service;
+
+    public CodexRepair(){
+        String token = System.getenv(Constants.OPENAI_API_TOKEN_ENV_NAME);
+        service = new OpenAiService(token, Duration.ofSeconds(Constants.OPENAI_REQUEST_TIMEOUT));
+    }
 
     public void repairSingleLine(File inputSrc, File outputSrc,
                                  int bugStartLine, int bugEndLine, int nonCompliantLine, String ruleKey) throws IOException {
@@ -103,46 +110,127 @@ public class CodexRepair {
             throws IOException {
         File src = new File(root.getPath() + File.separator + vs.getSrcPath());
 
-        SonarFixPrompt prompt = generatePrompt(src, vs.getStartLine(), vs.getEndLine(), buggyLines, rule, promptType);
+        SonarFixPrompt initialPrompt =
+                generatePrompt(src, vs.getStartLine(), vs.getEndLine(), buggyLines, rule, promptType);
 
-        String token = System.getenv(Constants.OPENAI_API_TOKEN_ENV_NAME);
-        OpenAiService service = new OpenAiService(token, Duration.ofSeconds(Constants.OPENAI_REQUEST_TIMEOUT));
+        List<ChatMessage> messages = Arrays.asList(new ChatMessage("system",
+                        "You are a super smart automated program repair tool." +
+                                " You do not generate extra comments or logging statements."));
 
-        int maxTokens = prompt.getBuggyCode().length() * 3;
+        for(int i = 0; i < Constants.MAX_TRIES; i++) {
+            messages.add(new ChatMessage("user", initialPrompt.getPromptAsStr()));
 
-        if (maxTokens > Constants.OPENAI_REQUEST_MAX_TOKENS)
-            throw new RuntimeException("The buggy code is too long for " + vs);
+            ChatCompletionRequest completionRequest = ChatCompletionRequest.builder()
+                    .model(Constants.TURBO_MODEL)
+                    .messages(messages)
+                    .stop(List.of("#"))
+                    .n(1)
+                    .temperature(0.0)
+                    .build();
 
-        ChatCompletionRequest completionRequest = ChatCompletionRequest.builder()
-                .model(Constants.TURBO_MODEL)
-                .messages(Arrays.asList(new ChatMessage("system",
-                                    "You are a super smart automated program repair tool." +
-                                            " You do not generate extra comments or logging statements."),
-                        new ChatMessage("assistant", prompt.getPromptAsStr())))
-                .maxTokens(maxTokens)
-                .stop(List.of("#"))
-                .n(1)
-                .temperature(0.0)
-                .build();
+            try {
+                List<ChatCompletionChoice> choices = service.createChatCompletion(completionRequest).getChoices();
+                String fixedCode = choices.get(0).getMessage().getContent();
 
-        try {
-            List<ChatCompletionChoice> choices = service.createChatCompletion(completionRequest).getChoices();
-            String fixedCode = choices.get(0).getMessage().getContent();
+                while (fixedCode.charAt(fixedCode.length() - 1) == '\n') {
+                    fixedCode = StringUtils.chomp(fixedCode);
+                }
 
-            while(fixedCode.charAt(fixedCode.length() - 1) == '\n'){
-                fixedCode = StringUtils.chomp(fixedCode);
+                if (fixedCode.contains(Constants.OPENAI_RESPONSE_SNIPPET_SEPARATOR)) {
+                    fixedCode = extractCodeFromGPTResponse(fixedCode);
+                }
+
+                File backupOriginalSrc = Files.createTempFile("original_src", ".java").toFile();
+                FileUtils.copyFile(src, backupOriginalSrc);
+
+                List<String> srcLines = FileUtils.readLines(src, "UTF-8");
+                srcLines.subList(vs.getStartLine() - 1, vs.getEndLine()).clear();
+                srcLines.add(vs.getStartLine() - 1, fixedCode);
+                FileUtils.writeLines(src, srcLines);
+
+                String failureMessage = getMvnFailureMessage(root);
+
+                if (failureMessage != null) {
+                    FileUtils.copyFile(backupOriginalSrc, src);
+
+                    messages.add(new ChatMessage("assistant", fixedCode));
+                    messages.add(new ChatMessage("user", "This response is not correct." +
+                            " It gets the following error:" + System.lineSeparator() + failureMessage +
+                            System.lineSeparator() + "Please generate another response."));
+                    continue;
+                }
+
+                return (fixedCode.split("\r\n|\r|\n").length) - (vs.getEndLine() - vs.getStartLine() + 1);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return 0;
+            }
+        }
+
+        return 0;
+    }
+
+    private String getMvnFailureMessage(File root) throws IOException, InterruptedException {
+        File mvnOutput = Files.createTempFile("mvn_output", ".txt").toFile();
+        int exitVal = PH.run(mvnOutput, root, "Running maven ...", "mvn", "test");
+        if(exitVal != 0){
+            return "Unable to run Maven.";
+        }
+
+        List<String> mvnOutputLines = FileUtils.readLines(mvnOutput, "UTF-8");
+        int failureLine;
+
+        // finding the first line error / failure messages
+        for(failureLine = mvnOutputLines.size() - 1; failureLine >= 0; failureLine--) {
+            if (mvnOutputLines.get(failureLine).contains("BUILD SUCCESS"))
+                return null;
+            if (mvnOutputLines.get(failureLine).contains("BUILD FAILURE")){
+                for(; failureLine >= 0; failureLine--) {
+                    if(mvnOutputLines.get(failureLine).startsWith("[ERROR] Errors:") ||
+                            mvnOutputLines.get(failureLine).startsWith("[ERROR] COMPILATION ERROR :")) {
+                        failureLine++;
+                        break;
+                    }
+                }
+                break;
+            }
+        }
+
+        String errorMessage = "";
+
+        for(; failureLine < mvnOutputLines.size(); failureLine++) {
+            if(mvnOutputLines.get(failureLine).startsWith("[ERROR]")) {
+                String line = mvnOutputLines.get(failureLine);
+                line = line.substring("[ERROR] ".length());
+                errorMessage += line + System.lineSeparator();
+            } else if(mvnOutputLines.get(failureLine).startsWith("BUILD FAILURE")) {
+                break;
+            }
+        }
+
+        return errorMessage;
+    }
+
+    @NotNull
+    private static String extractCodeFromGPTResponse(String fixedCode) {
+        List<String> fixedCodeSourceLines = new ArrayList<>();
+        String[] fixedCodeLines = fixedCode.split("\r\n|\r|\n");
+
+        boolean isSource = false;
+
+        for (int i = 0; i < fixedCodeLines.length; i++) {
+            if (fixedCodeLines[i].startsWith(Constants.OPENAI_RESPONSE_SNIPPET_SEPARATOR)) {
+                isSource = !isSource;
+                continue;
             }
 
-            List<String> srcLines = FileUtils.readLines(src, "UTF-8");
-            srcLines.subList(vs.getStartLine() - 1, vs.getEndLine()).clear();
-            srcLines.add(vs.getStartLine() - 1, fixedCode);
-            FileUtils.writeLines(src, srcLines);
-
-            return (fixedCode.split("\r\n|\r|\n").length) - (vs.getEndLine() - vs.getStartLine() + 1);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return 0;
+            if (isSource) {
+                fixedCodeSourceLines.add(fixedCodeLines[i]);
+            }
         }
+
+        fixedCode = String.join(System.lineSeparator(), fixedCodeSourceLines);
+        return fixedCode;
     }
 
     private SonarFixPrompt generatePrompt

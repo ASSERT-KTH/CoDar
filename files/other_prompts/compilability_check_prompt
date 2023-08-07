@@ -1,0 +1,12 @@
+User
+You are taking an exam. The following text is given:
+
+<START OF TEXT>
+{{TEXT}}
+<END OF TEXT>
+
+You have to choose one of the following options:
+Option 1: This is a piece of compilable Java code.
+Option 2: This is not a piece of compilable Java code.
+
+Which option will you choose?

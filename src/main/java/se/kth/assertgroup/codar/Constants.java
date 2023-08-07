@@ -10,18 +10,27 @@ public class Constants {
     public static final String ARG_RULE = "--rule";
     public static final String ARG_PROMPT_TYPE = "--prompt-type";
 
-    public static final String PROMPT_TEMPLATE_BASE = "files/prompts/";
+    public static final String PROMPT_TEMPLATE_BASE = "files/repair_prompts/";
+    public static final String PROMPT_SETUP_PATH = "files/other_prompts/repair_setup_prompt";
     public static final String PROMPT_BUGGY_CODE_PLACEHOLDER = "{{BUGGY}}";
     public static final String OPENAI_API_TOKEN_ENV_NAME = "CODEX_API_TOKEN";
     public static final String PROMPT_NONCOMPLIANT_KEYWORD = "Noncompliant";
-    public static final String PROMP_COMPLIANT_KEYWORD = "Compliant";
+    public static final String PROMPT_COMPLIANT_KEYWORD = "Compliant";
     public static final String PROMPT_NONCOMPLIANT_HEADER = "### " + PROMPT_NONCOMPLIANT_KEYWORD;
-    public static final String PROMPT_COMPLIANT_HEADER = "### " + PROMP_COMPLIANT_KEYWORD;
+    public static final String PROMPT_COMPLIANT_HEADER = "### " + PROMPT_COMPLIANT_KEYWORD;
     public static final String PROMPT_ENDING = PROMPT_NONCOMPLIANT_HEADER + System.lineSeparator()
             + PROMPT_BUGGY_CODE_PLACEHOLDER + System.lineSeparator()
             + PROMPT_COMPLIANT_HEADER + System.lineSeparator();
+    public static final String PROMPT_SETUP_RULE_PLACEHOLDER = "{{RULE}}";
+    public static final int MAX_TRIES = 10;
+    public static final String COMPILE_CHECK_PROMPT_TEMPLATE_PATH =
+            "files/other_prompts/compilability_check_prompt";
+    public static final String COMPILABILITY_PROMPT_TEXT_PLACEHOLDER = "{{TEXT}}";
+    public static final String COMPILABILITY_POSITIVE_RES = "Option 1";
+    public static final String COMPILABILITY_NEGATIVE_RES = "Option 2";
     public static final int OPENAI_REQUEST_TIMEOUT = 50;
     public static final int OPENAI_REQUEST_MAX_TOKENS = 2048;
+    public static final String OPENAI_RESPONSE_SNIPPET_SEPARATOR = "```";
     public static final String CODEX_MODEL = "code-cushman-001";
     public static final String TURBO_MODEL = "gpt-3.5-turbo";
     public static final String GPT4_MODEL = "gpt-4";

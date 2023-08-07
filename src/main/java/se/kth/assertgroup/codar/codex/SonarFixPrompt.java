@@ -23,10 +23,13 @@ public class SonarFixPrompt {
     }
 
     public String getPromptAsStr() throws IOException {
-        String promptTemplate = FileUtils.readFileToString(new File(Constants.PROMPT_TEMPLATE_BASE +
-                        promptType.toString() + File.separator + ruleKey),
-                "UTF-8");
-        return promptTemplate.replace(Constants.PROMPT_BUGGY_CODE_PLACEHOLDER, buggyCode);
+        String promptSetupStr = FileUtils.readFileToString(new File(Constants.PROMPT_SETUP_PATH), "UTF-8")
+                .replace(Constants.PROMPT_SETUP_RULE_PLACEHOLDER, ruleKey);
+        String repairPrompt = promptSetupStr +
+                FileUtils.readFileToString(new File(Constants.PROMPT_TEMPLATE_BASE +
+                        promptType.toString() + File.separator + ruleKey), "UTF-8")
+                        .replace(Constants.PROMPT_BUGGY_CODE_PLACEHOLDER, buggyCode);
+        return repairPrompt;
     }
 
     public String getBuggyCode(){
