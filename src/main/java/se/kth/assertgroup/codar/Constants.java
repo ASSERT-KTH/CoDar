@@ -29,12 +29,16 @@ public class Constants {
     public static final String COMPILABILITY_POSITIVE_RES = "Option 1";
     public static final String COMPILABILITY_NEGATIVE_RES = "Option 2";
     public static final int OPENAI_REQUEST_TIMEOUT = 50;
+    public static final double OPENAI_LOW_TEMPERATURE = 0.0;
+    public static final double OPENAI_HIGH_TEMPERATURE = 0.8;
     public static final int OPENAI_REQUEST_MAX_TOKENS = 2048;
     public static final String OPENAI_RESPONSE_SNIPPET_SEPARATOR = "```";
     public static final String CODEX_MODEL = "code-cushman-001";
     public static final String TURBO_MODEL = "gpt-3.5-turbo";
     public static final String GPT4_MODEL = "gpt-4";
 //    public static final String CODEX_MODEL = "code-davinci-002";
+
+    public static final int MAX_FEEDBACK_LINES = 30;
 
     public static final String SONAR_DOC_URL_TEMPLATE = "https://rules.sonarsource.com/java/RSPEC-{{rule}}";
     public static final String SONAR_DOC_URL_RULE_PLACEHOLDER = "{{rule}}";

@@ -137,6 +137,11 @@ public class MineResParser {
             for (int j = 0; j < warnings.size(); j++) {
                 JSONObject warning = (JSONObject) warnings.get(j);
                 String filePath = warning.get("filePath").toString();
+
+                if(isTestDir(filePath)) {
+                    continue;
+                }
+
                 int startLine = Integer.parseInt(warning.get("startLine").toString());
 
                 if (!filePathToViolationLines.containsKey(filePath)) {
@@ -149,6 +154,10 @@ public class MineResParser {
         }
 
         return res;
+    }
+
+    private boolean isTestDir(String filePath) {
+        return filePath.contains("/src/test/java/");
     }
 
     public static void main(String[] args) throws IOException, ParseException {

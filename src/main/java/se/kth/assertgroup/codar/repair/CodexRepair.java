@@ -27,7 +27,7 @@ public class CodexRepair {
 
     private OpenAiService service;
 
-    public CodexRepair(){
+    public CodexRepair() {
         String token = System.getenv(Constants.OPENAI_API_TOKEN_ENV_NAME);
         service = new OpenAiService(token, Duration.ofSeconds(Constants.OPENAI_REQUEST_TIMEOUT));
     }
@@ -92,9 +92,9 @@ public class CodexRepair {
         scopeToRuleViolations.entrySet().stream()
                 .filter(entry -> entry.getKey().getSrcPath().equals(e.getKey().getSrcPath()))
                 .forEach(entry -> {
-                    if(entry.getKey().getStartLine() >= e.getKey().getStartLine())
+                    if (entry.getKey().getStartLine() >= e.getKey().getStartLine())
                         entry.getKey().setStartLine(entry.getKey().getStartLine() + numberOfAddedLines);
-                    if(entry.getKey().getEndLine() >= e.getKey().getEndLine())
+                    if (entry.getKey().getEndLine() >= e.getKey().getEndLine())
                         entry.getKey().setEndLine(entry.getKey().getEndLine() + numberOfAddedLines);
                 });
     }
@@ -113,19 +113,18 @@ public class CodexRepair {
         SonarFixPrompt initialPrompt =
                 generatePrompt(src, vs.getStartLine(), vs.getEndLine(), buggyLines, rule, promptType);
 
-        List<ChatMessage> messages = Arrays.asList(new ChatMessage("system",
-                        "You are a super smart automated program repair tool." +
-                                " You do not generate extra comments or logging statements."));
+        List<ChatMessage> messages = new ArrayList<>();
+        messages.add(new ChatMessage("system", "You are a super smart automated program repair tool." +
+                " You do not generate extra comments or logging statements."));
+        messages.add(new ChatMessage("user", initialPrompt.getPromptAsStr()));
 
-        for(int i = 0; i < Constants.MAX_TRIES; i++) {
-            messages.add(new ChatMessage("user", initialPrompt.getPromptAsStr()));
-
+        for (int i = 0; i < Constants.MAX_TRIES; i++) {
             ChatCompletionRequest completionRequest = ChatCompletionRequest.builder()
                     .model(Constants.TURBO_MODEL)
                     .messages(messages)
                     .stop(List.of("#"))
                     .n(1)
-                    .temperature(0.0)
+                    .temperature(Constants.OPENAI_LOW_TEMPERATURE)
                     .build();
 
             try {
@@ -136,14 +135,16 @@ public class CodexRepair {
                     fixedCode = StringUtils.chomp(fixedCode);
                 }
 
+                List<String> srcLines = FileUtils.readLines(src, "UTF-8");
+
                 if (fixedCode.contains(Constants.OPENAI_RESPONSE_SNIPPET_SEPARATOR)) {
-                    fixedCode = extractCodeFromGPTResponse(fixedCode);
+                    String functionFirstToken = srcLines.get(vs.getStartLine() - 1).trim().split(" ")[0];
+                    fixedCode = extractCodeFromGPTResponse(fixedCode, functionFirstToken);
                 }
 
                 File backupOriginalSrc = Files.createTempFile("original_src", ".java").toFile();
                 FileUtils.copyFile(src, backupOriginalSrc);
 
-                List<String> srcLines = FileUtils.readLines(src, "UTF-8");
                 srcLines.subList(vs.getStartLine() - 1, vs.getEndLine()).clear();
                 srcLines.add(vs.getStartLine() - 1, fixedCode);
                 FileUtils.writeLines(src, srcLines);
@@ -152,6 +153,11 @@ public class CodexRepair {
 
                 if (failureMessage != null) {
                     FileUtils.copyFile(backupOriginalSrc, src);
+
+                    if(messages.size() > 2) { // messages related to the previous response should be removed
+                        messages.remove(messages.size() - 1);
+                        messages.remove(messages.size() - 1);
+                    }
 
                     messages.add(new ChatMessage("assistant", fixedCode));
                     messages.add(new ChatMessage("user", "This response is not correct." +
@@ -172,38 +178,40 @@ public class CodexRepair {
 
     private String getMvnFailureMessage(File root) throws IOException, InterruptedException {
         File mvnOutput = Files.createTempFile("mvn_output", ".txt").toFile();
-        int exitVal = PH.run(mvnOutput, root, "Running maven ...", "mvn", "test");
-        if(exitVal != 0){
-            return "Unable to run Maven.";
-        }
+        PH.run(mvnOutput, root, "Running maven ...", "mvn", "test");
 
         List<String> mvnOutputLines = FileUtils.readLines(mvnOutput, "UTF-8");
         int failureLine;
 
         // finding the first line error / failure messages
-        for(failureLine = mvnOutputLines.size() - 1; failureLine >= 0; failureLine--) {
+        for (failureLine = mvnOutputLines.size() - 1; failureLine >= 0; failureLine--) {
             if (mvnOutputLines.get(failureLine).contains("BUILD SUCCESS"))
                 return null;
-            if (mvnOutputLines.get(failureLine).contains("BUILD FAILURE")){
-                for(; failureLine >= 0; failureLine--) {
-                    if(mvnOutputLines.get(failureLine).startsWith("[ERROR] Errors:") ||
-                            mvnOutputLines.get(failureLine).startsWith("[ERROR] COMPILATION ERROR :")) {
-                        failureLine++;
-                        break;
-                    }
-                }
+            if (mvnOutputLines.get(failureLine).contains("BUILD FAILURE"))
+                break;
+        }
+
+        if (failureLine < 0)
+            return "Maven ran unsuccessfully.";
+
+        String errorMessage = "";
+
+        for(failureLine = 0; failureLine < mvnOutputLines.size(); failureLine++){
+            if (mvnOutputLines.get(failureLine).startsWith("[ERROR] Errors:") ||
+                    mvnOutputLines.get(failureLine).startsWith("[ERROR] Failures:") ||
+                    mvnOutputLines.get(failureLine).startsWith("[ERROR] COMPILATION ERROR :")) {
                 break;
             }
         }
 
-        String errorMessage = "";
-
-        for(; failureLine < mvnOutputLines.size(); failureLine++) {
-            if(mvnOutputLines.get(failureLine).startsWith("[ERROR]")) {
+        int consideredLines = 0;
+        for (; failureLine < mvnOutputLines.size() && consideredLines < Constants.MAX_FEEDBACK_LINES; failureLine++) {
+            if (mvnOutputLines.get(failureLine).startsWith("[ERROR]")) {
                 String line = mvnOutputLines.get(failureLine);
                 line = line.substring("[ERROR] ".length());
                 errorMessage += line + System.lineSeparator();
-            } else if(mvnOutputLines.get(failureLine).startsWith("BUILD FAILURE")) {
+                consideredLines++;
+            } else if (mvnOutputLines.get(failureLine).contains("BUILD FAILURE")) {
                 break;
             }
         }
@@ -212,19 +220,25 @@ public class CodexRepair {
     }
 
     @NotNull
-    private static String extractCodeFromGPTResponse(String fixedCode) {
+    private static String extractCodeFromGPTResponse(String fixedCode, String functionFirstToken) {
         List<String> fixedCodeSourceLines = new ArrayList<>();
         String[] fixedCodeLines = fixedCode.split("\r\n|\r|\n");
 
-        boolean isSource = false;
+        boolean isSource = false, isNewFunction = false;
 
         for (int i = 0; i < fixedCodeLines.length; i++) {
             if (fixedCodeLines[i].startsWith(Constants.OPENAI_RESPONSE_SNIPPET_SEPARATOR)) {
                 isSource = !isSource;
+                if(fixedCodeLines.length > i + 1 && isSource){
+                    String codeFirstToken = fixedCodeLines[i + 1].trim().split(" ")[0];
+                    isNewFunction = codeFirstToken.equals(functionFirstToken);
+                }else{
+                    isNewFunction = false;
+                }
                 continue;
             }
 
-            if (isSource) {
+            if (isSource && isNewFunction) {
                 fixedCodeSourceLines.add(fixedCodeLines[i]);
             }
         }
@@ -247,7 +261,7 @@ public class CodexRepair {
 
         for (int i = startLine - 1; i <= endLine - 1; i++) {
             buggyCode += lines.get(i);
-            if (buggyLines.contains(i + 1))
+            if (buggyLines.contains(i))
                 buggyCode += " // " + Constants.PROMPT_NONCOMPLIANT_KEYWORD;
             if (i < endLine)
                 buggyCode += System.lineSeparator();
