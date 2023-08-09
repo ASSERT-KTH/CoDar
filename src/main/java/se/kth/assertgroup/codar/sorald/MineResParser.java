@@ -11,6 +11,7 @@ import se.kth.assertgroup.codar.sorald.models.ViolationScope;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.*;
 
 public class MineResParser {
@@ -90,6 +91,9 @@ public class MineResParser {
             throws IOException, ParseException {
         Map<String, Set<Integer>> fileToViolationLines = getRuleToViolations(mineResFile).get(rule);
 
+        if(fileToViolationLines == null)
+            return new HashMap<>();
+
         final Map<String, Set<Pair<Integer, Integer>>> fileToScopes =
                 getRelevantFileScopes(srcRoot, fileToViolationLines);
 
@@ -108,6 +112,12 @@ public class MineResParser {
         });
 
         return res;
+    }
+
+    public boolean containsViolation(File srcRoot, ViolationScope targetScope, String rule, File mineResFile)
+            throws IOException, ParseException {
+        Map<ViolationScope, Set<Integer>> scopesToViolations = getCodeScopeToViolations(srcRoot, mineResFile, rule);
+        return scopesToViolations.containsKey(targetScope);
     }
 
     private Pair<Integer, Integer> findCoveringScope(Integer targetLine, Set<Pair<Integer, Integer>> scopes) {
