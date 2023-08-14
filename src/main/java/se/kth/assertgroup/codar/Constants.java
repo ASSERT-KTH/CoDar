@@ -22,7 +22,7 @@ public class Constants {
             + PROMPT_BUGGY_CODE_PLACEHOLDER + System.lineSeparator()
             + PROMPT_COMPLIANT_HEADER + System.lineSeparator();
     public static final String PROMPT_SETUP_RULE_PLACEHOLDER = "{{RULE}}";
-    public static final int MAX_TRIES_WITH_LOW_TEMPERATURE = 3;
+    public static final int MAX_CONVERSATION_LENGTH = 3;
     public static final String COMPILE_CHECK_PROMPT_TEMPLATE_PATH =
             "files/other_prompts/compilability_check_prompt";
     public static final String COMPILABILITY_PROMPT_TEXT_PLACEHOLDER = "{{TEXT}}";
@@ -31,7 +31,7 @@ public class Constants {
     public static final int OPENAI_REQUEST_TIMEOUT = 50;
     public static final double OPENAI_LOW_TEMPERATURE = 0.0;
     public static final double OPENAI_MAX_TEMPERATURE = 1.0;
-    public static final double TEMPERATURE_INCREASE_STEP = 0.2;
+    public static final double TEMPERATURE_INCREASE_STEP = 0.3;
     public static final int OPENAI_REQUEST_MAX_TOKENS = 2048;
     public static final String OPENAI_RESPONSE_SNIPPET_SEPARATOR = "```";
     public static final String CODEX_MODEL = "code-cushman-001";

@@ -32,18 +32,49 @@ public class MineResParser {
             fileToLines.forEach((file, lines) -> {
                 lines.forEach(l -> {
                     Pair<Integer, Integer> coveringScope = findCoveringScope(l, fileToScopes.get(file));
+
+                    if (coveringScope == null) {
+                        return;
+                    }
+
                     ViolationScope vs = new ViolationScope(file, coveringScope.getLeft(), coveringScope.getRight());
-                    if (!res.containsKey(vs)) {
-                        res.put(vs, new HashMap<>());
-                    }
 
-                    HashMap<String, Set<Integer>> ruleToLines = (HashMap<String, Set<Integer>>) res.get(vs);
-                    if (!ruleToLines.containsKey(rule)) {
-                        ruleToLines.put(rule, new HashSet<>());
-                    }
+                    Map<String, Set<Integer>> ruleToLines = res.getOrDefault(vs, new HashMap<>());
 
-                    ruleToLines.get(rule).add(l);
+                    Set<Integer> curLines = ruleToLines.getOrDefault(rule, new HashSet<>());
+                    curLines.add(l);
+
+                    ruleToLines.put(rule, curLines);
+
+                    res.put(vs, ruleToLines);
                 });
+            });
+        });
+
+        return res;
+    }
+
+    public Map<String, Map<ViolationScope, Set<Integer>>> getRuleToScopeViolations
+            (
+                    File srcRoot,
+                    File mineResFile
+            ) throws IOException, ParseException {
+        Map<ViolationScope, Map<String, Set<Integer>>> scopeToViolations =
+                getCodeScopeToViolations(srcRoot, mineResFile);
+
+        Map<String, Map<ViolationScope, Set<Integer>>> res = new HashMap<>();
+
+        scopeToViolations.forEach((scope, ruleToLines) -> {
+            ruleToLines.forEach((rule, lines) -> {
+                Map<ViolationScope, Set<Integer>> ruleToViolations = res.getOrDefault(rule, new HashMap<>());
+
+                Set<Integer> curScopeToViolations = ruleToViolations.getOrDefault(scope, new HashSet<>());
+
+                curScopeToViolations.addAll(lines);
+
+                ruleToViolations.put(scope, curScopeToViolations);
+
+                res.put(rule, ruleToViolations);
             });
         });
 
@@ -56,7 +87,6 @@ public class MineResParser {
                     Map<String, Map<String, Set<Integer>>> ruleToViolations
             ) {
         final Map<String, Set<Pair<Integer, Integer>>> fileToScopes = new HashMap<>();
-
 
 
         final ViolationScopeFinder scopeFinder = new ViolationScopeFinder();
@@ -91,7 +121,7 @@ public class MineResParser {
             throws IOException, ParseException {
         Map<String, Set<Integer>> fileToViolationLines = getRuleToViolations(mineResFile).get(rule);
 
-        if(fileToViolationLines == null)
+        if (fileToViolationLines == null)
             return new HashMap<>();
 
         final Map<String, Set<Pair<Integer, Integer>>> fileToScopes =
@@ -102,12 +132,16 @@ public class MineResParser {
         fileToViolationLines.forEach((file, lines) -> {
             lines.forEach(l -> {
                 Pair<Integer, Integer> coveringScope = findCoveringScope(l, fileToScopes.get(file));
-                ViolationScope vs = new ViolationScope(file, coveringScope.getLeft(), coveringScope.getRight());
-                if (!res.containsKey(vs)) {
-                    res.put(vs, new HashSet<>());
+
+                if (coveringScope == null) {
+                    return;
                 }
 
-                res.get(vs).add(l);
+                ViolationScope vs = new ViolationScope(file, coveringScope.getLeft(), coveringScope.getRight());
+                Set<Integer> curLines = res.getOrDefault(vs, new HashSet<>());
+                curLines.add(l);
+
+                res.put(vs, curLines);
             });
         });
 
@@ -117,7 +151,7 @@ public class MineResParser {
     public boolean containsViolation(File srcRoot, ViolationScope targetScope, String rule, File mineResFile)
             throws IOException, ParseException {
         Map<ViolationScope, Set<Integer>> scopesToViolations = getCodeScopeToViolations(srcRoot, mineResFile, rule);
-        return scopesToViolations.containsKey(targetScope);
+        return scopesToViolations.keySet().stream().anyMatch(sc -> targetScope.getStartLine().equals(sc.getStartLine()));
     }
 
     private Pair<Integer, Integer> findCoveringScope(Integer targetLine, Set<Pair<Integer, Integer>> scopes) {
@@ -125,9 +159,9 @@ public class MineResParser {
                 scopes.stream().filter(s -> s.getKey() <= targetLine && s.getValue() >= targetLine).findFirst();
         if (!targetScope.isEmpty()) {
             return targetScope.get();
+        } else {
+            return null;
         }
-
-        throw new RuntimeException("Target scope not found");
     }
 
     // Returns a map from rule to a map of relative-file-path and violation lines set
@@ -148,7 +182,7 @@ public class MineResParser {
                 JSONObject warning = (JSONObject) warnings.get(j);
                 String filePath = warning.get("filePath").toString();
 
-                if(isTestDir(filePath)) {
+                if (isTestDir(filePath)) {
                     continue;
                 }
 

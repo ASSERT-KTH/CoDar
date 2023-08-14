@@ -40,13 +40,26 @@ public class CodexRepair {
         List<String> lines = FileUtils.readLines(inputSrc, "UTF-8");
         String buggyCode = "";
 
-        for (int i = bugStartLine - 1; i <= bugEndLine - 1; i++) {
-            buggyCode += lines.get(i);
-            if (i - 1 == nonCompliantLine)
-                buggyCode += " // Non-compliant";
-            if (i < bugEndLine)
+        boolean isFirstCurlyBracketPassed = false;
+
+        for (int i = 0; i <= bugEndLine - 1; i++) {
+            String currentLine = lines.get(i);
+            if (i >= bugStartLine - 1) {
+                buggyCode += currentLine;
+                if (i - 1 == nonCompliantLine)
+                    buggyCode += " // Non-compliant";
                 buggyCode += System.lineSeparator();
+            } else {
+                if (currentLine.trim().startsWith("import ")) {
+                    buggyCode += currentLine + System.lineSeparator();
+                } else if (currentLine.contains("{") && !isFirstCurlyBracketPassed) {
+                    buggyCode += currentLine + System.lineSeparator();
+                    isFirstCurlyBracketPassed = true;
+                }
+            }
         }
+
+        buggyCode += "}";
 
         String prompt = new SonarFixPrompt(ruleKey, buggyCode).getPromptAsStr();
 
@@ -81,13 +94,31 @@ public class CodexRepair {
      */
     public void repair(File root, File mineRes, String rule, PromptType promptType) throws IOException, ParseException {
         MineResParser mineResParser = new MineResParser();
-        Map<ViolationScope, Set<Integer>> scopeToRuleViolations =
-                mineResParser.getCodeScopeToViolations(root, mineRes, rule);
+        Map<String, Map<ViolationScope, Set<Integer>>> ruleToViolations =
+                mineResParser.getRuleToScopeViolations(root, mineRes);
 
-        for (Map.Entry<ViolationScope, Set<Integer>> e : scopeToRuleViolations.entrySet()) {
-            int numberOfAddedLines = repairAndGetNumberOfAddedLines(root, e.getKey(), e.getValue(), rule, promptType);
-            updateScopeToRuleViolations(scopeToRuleViolations, e, numberOfAddedLines);
+        for(Map.Entry<String, Map<ViolationScope, Set<Integer>>> e : ruleToViolations.entrySet()){
+            String curRule = e.getKey();
+            Map<ViolationScope, Set<Integer>> scopeToViolations = e.getValue();
+
+            if((rule == null && isHandled(curRule)) || curRule.equals(rule)){
+                for (Map.Entry<ViolationScope, Set<Integer>> scopeViolations : scopeToViolations.entrySet()) {
+                    int numberOfAddedLines = repairAndGetNumberOfAddedLines(root, scopeViolations.getKey(),
+                            scopeViolations.getValue(), rule, promptType);
+                    updateRuleToScopeViolations(ruleToViolations, scopeViolations, numberOfAddedLines);
+                }
+            }
         }
+    }
+
+    private void updateRuleToScopeViolations(Map<String, Map<ViolationScope, Set<Integer>>> ruleViolations,
+                                             Map.Entry<ViolationScope, Set<Integer>> e, int numberOfAddedLines) {
+        ruleViolations.forEach((rule, scopeToViolations)
+                -> updateScopeToRuleViolations(scopeToViolations, e, numberOfAddedLines));
+    }
+
+    private boolean isHandled(String rule) {
+        return true;
     }
 
     private void updateScopeToRuleViolations(Map<ViolationScope, Set<Integer>> scopeToRuleViolations,
@@ -125,13 +156,29 @@ public class CodexRepair {
 
         double temperature = Constants.OPENAI_LOW_TEMPERATURE;
 
-        for (int i = 0; temperature <= Constants.OPENAI_MAX_TEMPERATURE; i++) {
+        int currentConversationLen = 0;
+        boolean repeatedResponse = false;
+
+        while (temperature <= Constants.OPENAI_MAX_TEMPERATURE) {
+            if (repeatedResponse || currentConversationLen++ > Constants.MAX_CONVERSATION_LENGTH) {
+                temperature += Constants.TEMPERATURE_INCREASE_STEP;
+
+                if (temperature > Constants.OPENAI_MAX_TEMPERATURE) {
+                    break;
+                }
+
+                messages = messages.subList(0, 2);
+                currentConversationLen = 0;
+                repeatedResponse = false;
+                fixedCodes.clear();
+            }
+
             ChatCompletionRequest completionRequest = ChatCompletionRequest.builder()
                     .model(Constants.TURBO_MODEL)
                     .messages(messages)
                     .stop(List.of("#"))
                     .n(1)
-                    .temperature(i > 2 ? Constants.OPENAI_MAX_TEMPERATURE : Constants.OPENAI_LOW_TEMPERATURE)
+                    .temperature(temperature)
                     .build();
 
             try {
@@ -148,8 +195,12 @@ public class CodexRepair {
                     fixedCode = extractCodeFromGPTResponse(fixedCode);
                 }
 
-                if(fixedCodes.contains(fixedCode) || i >= Constants.MAX_TRIES_WITH_LOW_TEMPERATURE)
-                    temperature += Constants.TEMPERATURE_INCREASE_STEP;
+                fixedCode = extractFixedMethod(fixedCode);
+
+                if (fixedCodes.contains(fixedCode)) {
+                    repeatedResponse = true;
+                    continue;
+                }
 
                 fixedCodes.add(fixedCode);
 
@@ -162,22 +213,20 @@ public class CodexRepair {
 
                 String failureMessage = getMvnFailureMessage(root);
 
-                boolean issuesRemain = miner.containsViolation(root, vs, rule);
+                boolean issuesRemain = failureMessage != null ? false : miner.containsViolation(root, vs, rule);
 
                 if (failureMessage != null || issuesRemain) {
                     FileUtils.copyFile(backupOriginalSrc, src);
 
                     String userMessage;
-                    if(issuesRemain) {
-                        userMessage = "There are still some violations of rule " + rule + " in the code.";
-                        if(failureMessage != null)
-                            userMessage += " Moreover, the generated code causes the following error: " +
-                                    System.lineSeparator() + failureMessage + System.lineSeparator();
-                        else userMessage += System.lineSeparator();
-                    } else{
-                        userMessage = "All violations of rule " + rule + " are fixed. However, the generated code" +
-                                " causes the following error: " + System.lineSeparator() + failureMessage +
-                                System.lineSeparator();
+
+                    if (failureMessage != null) {
+                        userMessage = "The generated code causes the following error: " +
+                                System.lineSeparator() + failureMessage + System.lineSeparator()
+                                + "Generate another fixed version." + System.lineSeparator();
+                    } else {
+                        userMessage = "There are still some violations of rule " + rule + " in the code." +
+                                System.lineSeparator() + "Generate another fixed version." + System.lineSeparator();
                     }
 
                     messages.add(new ChatMessage("assistant", fixedCode));
@@ -193,6 +242,50 @@ public class CodexRepair {
         }
 
         return 0;
+    }
+
+    /**
+     * Extracts the method from the GPT response.
+     * The method is the first code snippet that is not an import statement and not the class definition.
+     *
+     * @param fixedCode the GPT response
+     * @return the method extracted from the GPT response
+     */
+    private String extractFixedMethod(String fixedCode) {
+        String[] lines = fixedCode.split("\r\n|\r|\n");
+        List<String> extractedLines = new ArrayList<>();
+        boolean isClassPassed = false, isFirstCurlyBracketPassed = false;
+        for (String line : lines) {
+            if (line.trim().startsWith("import ")) {
+                continue;
+            }
+            if (line.contains("class ")) {
+                isClassPassed = true;
+            }
+            if (line.contains("{")) {
+                if (isClassPassed && !isFirstCurlyBracketPassed) {
+                    isFirstCurlyBracketPassed = true;
+                    continue;
+                } else {
+                    isFirstCurlyBracketPassed = true;
+                }
+            }
+            if (isFirstCurlyBracketPassed) {
+                extractedLines.add(line);
+            }
+        }
+        if (isClassPassed) {
+            while (extractedLines.size() > 0) {
+                boolean shouldBreak = false;
+                if (extractedLines.get(extractedLines.size() - 1).contains("}"))
+                    shouldBreak = true;
+                extractedLines.remove(extractedLines.size() - 1);
+
+                if (shouldBreak)
+                    break;
+            }
+        }
+        return extractedLines.size() > 0 ? StringUtils.join(extractedLines, "\n") : fixedCode;
     }
 
     private String getMvnFailureMessage(File root) throws IOException, InterruptedException {
@@ -215,7 +308,7 @@ public class CodexRepair {
 
         String errorMessage = "";
 
-        for(failureLine = 0; failureLine < mvnOutputLines.size(); failureLine++){
+        for (failureLine = 0; failureLine < mvnOutputLines.size(); failureLine++) {
             if (mvnOutputLines.get(failureLine).startsWith("[ERROR] Errors:") ||
                     mvnOutputLines.get(failureLine).startsWith("[ERROR] Failures:") ||
                     mvnOutputLines.get(failureLine).contains("BUILD FAILURE") ||
@@ -233,8 +326,8 @@ public class CodexRepair {
                 errorMessage += line + System.lineSeparator();
                 consideredLines++;
             } else if (mvnOutputLines.get(failureLine).contains("BUILD FAILURE")) {
-                for(; failureLine < mvnOutputLines.size() && consideredLines < Constants.MAX_FEEDBACK_LINES; failureLine++) {
-                    if(mvnOutputLines.get(failureLine).startsWith("[ERROR] Failed to execute goal")){
+                for (; failureLine < mvnOutputLines.size() && consideredLines < Constants.MAX_FEEDBACK_LINES; failureLine++) {
+                    if (mvnOutputLines.get(failureLine).startsWith("[ERROR] Failed to execute goal")) {
                         String line = mvnOutputLines.get(failureLine);
                         line = line.substring("[ERROR] ".length());
                         errorMessage += line + System.lineSeparator();
@@ -257,7 +350,7 @@ public class CodexRepair {
 
         for (int i = fixedCodeLines.length - 1; i >= 0; i--) {
             if (fixedCodeLines[i].startsWith(Constants.OPENAI_RESPONSE_SNIPPET_SEPARATOR)) {
-                if(isSource)
+                if (isSource)
                     break;
                 isSource = true;
                 continue;
@@ -284,13 +377,31 @@ public class CodexRepair {
         List<String> lines = FileUtils.readLines(src, "UTF-8");
         String buggyCode = "";
 
-        for (int i = startLine - 1; i <= endLine - 1; i++) {
-            buggyCode += lines.get(i);
-            if (buggyLines.contains(i))
-                buggyCode += " // " + Constants.PROMPT_NONCOMPLIANT_KEYWORD;
-            if (i < endLine)
+        boolean isFirstCurlyBracketPassed = false, isClassPassed = false;
+
+        for (int i = 0; i <= endLine - 1; i++) {
+            String currentLine = lines.get(i);
+            if (i >= startLine - 1) {
+                buggyCode += currentLine;
+                if (buggyLines.contains(i + 1))
+                    buggyCode += " // " + Constants.PROMPT_NONCOMPLIANT_KEYWORD;
                 buggyCode += System.lineSeparator();
+            } else {
+                if (currentLine.contains("class ")) {
+                    isClassPassed = true;
+                }
+                if (currentLine.trim().startsWith("import ")) {
+                    buggyCode += currentLine + System.lineSeparator();
+                } else if (isClassPassed && !isFirstCurlyBracketPassed) {
+                    buggyCode += currentLine + System.lineSeparator();
+                    if (currentLine.contains("{")) {
+                        isFirstCurlyBracketPassed = true;
+                    }
+                }
+            }
         }
+
+        buggyCode += "}";
 
         return new SonarFixPrompt(rule, buggyCode, promptType);
     }

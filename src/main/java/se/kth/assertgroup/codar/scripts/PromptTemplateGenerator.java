@@ -1,4 +1,4 @@
-package se.kth.assertgroup.codar.sonar;
+package se.kth.assertgroup.codar.scripts;
 
 import org.apache.commons.io.FileUtils;
 import org.jsoup.Jsoup;
@@ -6,6 +6,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import se.kth.assertgroup.codar.Constants;
+import se.kth.assertgroup.codar.sonar.SonarDocumentInfo;
 
 import java.io.File;
 import java.io.IOException;
