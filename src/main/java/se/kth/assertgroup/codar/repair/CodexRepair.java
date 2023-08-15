@@ -20,6 +20,7 @@ import se.kth.assertgroup.codar.utils.PH;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.time.Duration;
 import java.util.*;
@@ -92,7 +93,7 @@ public class CodexRepair {
      * @param mineRes The output file of Sorald mining command.
      * @param rule    The ID of the rule whose violations should be fixed
      */
-    public void repair(File root, File mineRes, String rule, PromptType promptType) throws IOException, ParseException {
+    public void repair(File root, File mineRes, String rule, PromptType promptType) throws IOException, ParseException, URISyntaxException {
         MineResParser mineResParser = new MineResParser();
         Map<String, Map<ViolationScope, Set<Integer>>> ruleToViolations =
                 mineResParser.getRuleToScopeViolations(root, mineRes);

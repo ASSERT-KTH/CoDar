@@ -12,7 +12,7 @@ def repair(repo, promptType, rule):
     os.system(f'java -jar sorald.jar mine --source repo/ --stats-output-file {projName}-before.json')
     os.system(f'java -jar codar.jar --root {currentPath}/repo --mine-res {currentPath}/{projName}-before.json --rule {rule} --prompt-type {promptType}')
     os.system(f'java -jar sorald.jar mine --source repo/ --stats-output-file {projName}-after-{rule}-{promptType}.json')
-    os.system(f'rm -rf {repo}')
+    os.system(f'rm -rf repo')
 
 def process(repo, promptConfigsFile):
     with open(promptConfigsFile) as file:

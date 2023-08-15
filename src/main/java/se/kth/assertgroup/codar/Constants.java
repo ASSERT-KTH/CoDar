@@ -10,8 +10,8 @@ public class Constants {
     public static final String ARG_RULE = "--rule";
     public static final String ARG_PROMPT_TYPE = "--prompt-type";
 
-    public static final String PROMPT_TEMPLATE_BASE = "files/repair_prompts/";
-    public static final String PROMPT_SETUP_PATH = "files/other_prompts/repair_setup_prompt";
+    public static final String PROMPT_TEMPLATE_BASE = "repair_prompts/";
+    public static final String PROMPT_SETUP_PATH = "other_prompts/repair_setup_prompt";
     public static final String PROMPT_BUGGY_CODE_PLACEHOLDER = "{{BUGGY}}";
     public static final String OPENAI_API_TOKEN_ENV_NAME = "CODEX_API_TOKEN";
     public static final String PROMPT_NONCOMPLIANT_KEYWORD = "Noncompliant";
