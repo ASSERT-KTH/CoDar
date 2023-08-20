@@ -1,0 +1,26 @@
+Weak SSL/TLS protocols should not be used
+### Noncompliant
+import javax.net.ssl.SSLContext;
+import java.security.NoSuchAlgorithmException;
+
+public static void main(String[] args) {
+    try {
+        SSLContext.getInstance("TLSv1.1"); // Noncompliant
+    } catch (NoSuchAlgorithmException e) {
+        // ...
+    }
+}
+### Compliant
+import javax.net.ssl.SSLContext;
+import java.security.NoSuchAlgorithmException;
+
+public static void main(String[] args) {
+    try {
+        SSLContext.getInstance("TLSv1.2");
+    } catch (NoSuchAlgorithmException e) {
+        // ...
+    }
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

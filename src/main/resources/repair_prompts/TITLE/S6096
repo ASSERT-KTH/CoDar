@@ -1,0 +1,4 @@
+Extracting archives should not lead to zip slip vulnerabilities
+### Noncompliant
+{{BUGGY}}
+### Compliant

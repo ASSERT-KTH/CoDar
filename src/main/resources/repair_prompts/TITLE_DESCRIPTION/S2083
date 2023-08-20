@@ -1,0 +1,30 @@
+I/O function calls should not be vulnerable to path injection attacks
+Why is this an issue?
+
+Path injections occur when an application uses untrusted data to construct a file path and access this file without validating its path first.
+
+A user with malicious intent would inject specially crafted values, such as ../, to change the initial intended path. The resulting path would resolve somewhere in the filesystem where the user should not normally have access to.
+What is the potential impact?
+
+A web application is vulnerable to path injection and an attacker is able to exploit it.
+
+The files that can be affected are limited by the permission of the process that runs the application. Worst case scenario: the process runs with root privileges on Linux, and therefore any file can be affected.
+
+Below are some real-world scenarios that illustrate some impacts of an attacker exploiting the vulnerability.
+Override or delete arbitrary files
+
+The injected path component tampers with the location of a file the application is supposed to delete or write into. The vulnerability is exploited to remove or corrupt files that are critical for the application or for the system to work properly.
+
+It could result in data being lost or the application being unavailable.
+Read arbitrary files
+
+The injected path component tampers with the location of a file the application is supposed to read and output. The vulnerability is exploited to leak the content of arbitrary files from the file system, including sensitive files like SSH private keys.
+How to fix it in Java SE
+Code examples
+
+The following code is vulnerable to path injection as it creates a path using untrusted data without validation.
+
+An attacker can exploit the vulnerability in this code to delete arbitrary files.
+### Noncompliant
+{{BUGGY}}
+### Compliant

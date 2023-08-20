@@ -1,0 +1,21 @@
+### Noncompliant
+protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        Long time = Long.parseLong(req.getParameter("time"));
+        try {
+            Thread.sleep(time); // Noncompliant
+        } catch (InterruptedException e) {
+            resp.sendError(500);
+        }
+    }
+### Compliant
+protected void compliant(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        Long time = Long.parseLong(req.getParameter("time"));
+        try {
+            Thread.sleep(Math.min(time, 1000));
+        } catch (InterruptedException e) {
+            resp.sendError(500);
+        }
+    }
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,14 @@
+### Noncompliant
+DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance(); // Noncompliant
+### Compliant
+// Applicable to:
+// - DocumentBuilderFactory
+// - SAXParserFactory
+// - SchemaFactory
+factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+
+// For XMLInputFactory:
+factory.setProperty(XMLInputFactory.SUPPORT_DTD, false);
+### Noncompliant
+{{BUGGY}}
+### Compliant

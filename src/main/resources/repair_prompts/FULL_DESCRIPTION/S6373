@@ -1,0 +1,43 @@
+XML parsers should not allow inclusion of arbitrary files
+Why is this an issue?
+XML standard allows the inclusion of xml files with the xinclude element.
+XML processors will replace an xinclude element with the content of the file located at the URI defined in the href attribute, potentially from an external storage such as file system or network, which may lead, if no restrictions are put in place, to arbitrary file disclosures or server-side request forgery (SSRF) vulnerabilities.
+### Noncompliant
+For DocumentBuilder, SAXParser, XMLInput, Transformer and Schema JAPX factories:
+factory.setXIncludeAware(true); // Noncompliant
+// or
+factory.setFeature("http://apache.org/xml/features/xinclude", true); // Noncompliant
+
+For Dom4j library:
+
+SAXReader xmlReader = new SAXReader();
+xmlReader.setFeature("http://apache.org/xml/features/xinclude", true); // Noncompliant
+
+For Jdom2 library:
+
+SAXBuilder builder = new SAXBuilder();
+builder.setFeature("http://apache.org/xml/features/xinclude", true); // Noncompliant
+
+### Compliant
+
+Xinclude is disabled by default and can be explicitely disabled like below.
+
+For DocumentBuilder, SAXParser, XMLInput, Transformer and Schema JAPX factories:
+
+factory.setXIncludeAware(false);
+// or
+factory.setFeature("http://apache.org/xml/features/xinclude", false);
+
+For Dom4j library:
+
+SAXReader xmlReader = new SAXReader();
+xmlReader.setFeature("http://apache.org/xml/features/xinclude", false);
+
+For Jdom2 library:
+
+SAXBuilder builder = new SAXBuilder();
+builder.setFeature("http://apache.org/xml/features/xinclude", false);
+
+### Noncompliant
+{{BUGGY}}
+### Compliant

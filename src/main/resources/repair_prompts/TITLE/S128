@@ -1,0 +1,4 @@
+Switch cases should end with an unconditional "break" statement
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,62 @@
+NoSQL operations should not be vulnerable to injection attacks
+Why is this an issue?
+NoSQL injections occur when an application retrieves untrusted data and inserts it into a database query without sanitizing it first.
+What is the potential impact?
+In the context of a web application that is vulnerable to NoSQL injection:
+After discovering the injection point, attackers insert data into the vulnerable field to execute malicious commands in the affected databases.
+Below are some real-world scenarios that illustrate some impacts of an attacker exploiting the vulnerability.
+Identity spoofing and data leakage
+In the context of simple query logic breakouts, a malicious database query enables privilege escalation or direct data leakage from one or more databases.
+This threat is the most widespread impact.
+Data deletion and denial of service
+The malicious query makes it possible for the attacker to delete data in the affected databases.
+This threat is particularly insidious if the attacked organization does not maintain a disaster recovery plan (DRP) as missing data can disrupt the regular operations of an organization.
+Chaining NoSQL injections with other vulnerabilities
+Attackers who exploit NoSQL injections rely on other vulnerabilities to maximize their profits.
+Most of the time, organizations overlook some defense in depth measures because they assume attackers cannot reach certain points in the infrastructure. This misbehavior can lead to multiple attacks with great impact:
+    When secrets are stored unencrypted in databases: Secrets can be exfiltrated and lead to compromise of other components.
+    If server-side OS and/or database permissions are misconfigured, injection can lead to remote code execution (RCE).
+How to fix it in Legacy Mongo Java API
+Code examples
+The following code is vulnerable to NoSQL injections because untrusted data is concatenated to the $where operator. This operator indicates to the backend that the expression needs to be interpreted, resulting in code injection.
+### Noncompliant
+import com.mongodb.MongoClient;
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.BasicDBObject;
+
+protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws UnknownHostException
+{
+    String input = req.getParameter("input");
+
+    MongoClient mongoClient = new MongoClient();
+    DB database             = mongoClient.getDB("ExampleDatabase");
+    DBCollection collection = database.getCollection("exampleCollection");
+    BasicDBObject query     = new BasicDBObject();
+
+    query.append("$where", "this.field == \"" + input + "\"");
+
+    collection.find(query);
+}
+### Compliant
+import com.mongodb.MongoClient;
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.BasicDBObject;
+
+protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws UnknownHostException
+{
+    String input = req.getParameter("input");
+
+    MongoClient mongoClient = new MongoClient();
+    DB database             = mongoClient.getDB("ExampleDatabase");
+    DBCollection collection = database.getCollection("exampleCollection");
+    BasicDBObject query     = new BasicDBObject();
+
+    query.append("field", input);
+
+    collection.find(query);
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

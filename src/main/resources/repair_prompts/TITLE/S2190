@@ -1,0 +1,4 @@
+Recursion should not be infinite
+### Noncompliant
+{{BUGGY}}
+### Compliant

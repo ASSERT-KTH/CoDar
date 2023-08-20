@@ -1,0 +1,112 @@
+Server hostnames should be verified during SSL/TLS connections
+This vulnerability allows attackers to impersonate a trusted host.
+Why is this an issue?
+
+Transport Layer Security (TLS) provides secure communication between systems over the internet by encrypting the data sent between them. In this process, the role of hostname validation, combined with certificate validation, is to ensure that a system is indeed the one it claims to be, adding an extra layer of trust and security.
+
+When hostname validation is disabled, the client skips this critical check. This creates an opportunity for attackers to pose as a trusted entity and intercept, manipulate, or steal the data being transmitted.
+
+To do so, an attacker would obtain a valid certificate authenticating example.com, serve it using a different hostname, and the application code would still accept it.
+What is the potential impact?
+
+Establishing trust in a secure way is a non-trivial task. When you disable hostname validation, you are removing a key mechanism designed to build this trust in internet communication, opening your system up to a number of potential threats.
+Identity spoofing
+
+If a system does not validate hostnames, it cannot confirm the identity of the other party involved in the communication. An attacker can exploit this by creating a fake server and masquerading it as a legitimate one. For example, they might set up a server that looks like your bank’s server, tricking your system into thinking it is communicating with the bank. This scenario, called identity spoofing, allows the attacker to collect any data your system sends to them, potentially leading to significant data breaches.
+How to fix it in Apache Commons Email
+Code examples
+
+The following code contains examples of disabled hostname validation.
+
+The hostname validation gets disabled because setSSLCheckServerIdentity is omitted. To enable validation, set it to true.
+### Noncompliant
+import org.apache.commons.mail.DefaultAuthenticator;
+import org.apache.commons.mail.Email;
+import org.apache.commons.mail.SimpleEmail;
+import java.io.InputStream;
+import java.net.URL;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.HostnameVerifier;
+import java.util.Properties;
+
+public void sendMail(String message) {
+    Email email = new SimpleEmail();
+
+    email.setMsg(message);
+    email.setSmtpPort(465);
+    email.setAuthenticator(new DefaultAuthenticator(username, password));
+    email.setSSLOnConnect(true); // Noncompliant
+
+    email.send();
+}
+
+public InputStream doRequest() {
+    URL url                          = new URL("https://example.org/");
+    HttpsURLConnection urlConnection = (HttpsURLConnection)url.openConnection();
+
+    urlConnection.setHostnameVerifier(new HostnameVerifier() {
+      @Override
+      public boolean verify(String requestedHost, SSLSession remoteServerSession) {
+        return true;  // Noncompliant
+      }
+    });
+
+    return urlConnection.getInputStream();
+}
+
+public Properties prepareEmailConnection() {
+    Properties props = new Properties();
+
+    props.put("mail.smtp.host", "smtp.gmail.com");
+    props.put("mail.smtp.socketFactory.port", "465");
+    props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory"); // Noncompliant
+    props.put("mail.smtp.auth", "true");
+    props.put("mail.smtp.port", "465");
+
+    return props;
+}
+### Compliant
+import org.apache.commons.mail.DefaultAuthenticator;
+import org.apache.commons.mail.Email;
+import org.apache.commons.mail.SimpleEmail;
+import java.io.InputStream;
+import java.net.URL;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLSession;
+import java.util.Properties;
+
+public void sendMail(String message) {
+    Email email = new SimpleEmail();
+
+    email.setMsg(message);
+    email.setSmtpPort(465);
+    email.setAuthenticator(new DefaultAuthenticator(username, password));
+    email.setSSLCheckServerIdentity(true);
+    email.setSSLOnConnect(true);
+
+    email.send();
+}
+
+public InputStream doRequest() {
+    URL url                          = new URL("https://example.org/");
+    HttpsURLConnection urlConnection = (HttpsURLConnection)url.openConnection();
+
+    return urlConnection.getInputStream();
+}
+
+public Properties prepareEmailConnection() {
+    Properties props = new Properties();
+
+    props.put("mail.smtp.host", "smtp.gmail.com");
+    props.put("mail.smtp.socketFactory.port", "465");
+    props.put("mail.smtp.ssl.checkserveridentity", true);
+    props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+    props.put("mail.smtp.auth", "true");
+    props.put("mail.smtp.port", "465");
+
+    return props;
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

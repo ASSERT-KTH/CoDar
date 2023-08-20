@@ -1,0 +1,20 @@
+### Noncompliant
+import io.jsonwebtoken.Jwts;
+
+public void encode() {
+    Jwts.builder()
+        .setSubject(USER_LOGIN)
+        .compact(); // Noncompliant
+}
+### Compliant
+import io.jsonwebtoken.Jwts;
+
+public void encode() {
+    Jwts.builder()
+        .setSubject(USER_LOGIN)
+        .signWith(SignatureAlgorithm.HS256, SECRET_KEY)
+        .compact();
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

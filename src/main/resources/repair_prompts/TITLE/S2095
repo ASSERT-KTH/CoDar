@@ -1,0 +1,4 @@
+Resources should be closed
+### Noncompliant
+{{BUGGY}}
+### Compliant

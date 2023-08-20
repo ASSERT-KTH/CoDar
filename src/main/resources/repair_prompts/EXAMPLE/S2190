@@ -1,0 +1,15 @@
+### Noncompliant
+int myPow(int num, int exponent) {
+    num = num * myPow(num, exponent - 1); // Noncompliant
+    return num;  // this is never reached
+}
+### Compliant
+int myPow(int num, int exponent) {
+    if(exponent > 1) {
+      num = num * myPow(num, exponent - 1);
+    }
+    return num;
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

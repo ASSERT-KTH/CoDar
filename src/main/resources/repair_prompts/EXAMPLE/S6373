@@ -1,0 +1,19 @@
+### Noncompliant
+factory.setXIncludeAware(true); // Noncompliant
+// or
+factory.setFeature("http://apache.org/xml/features/xinclude", true); // Noncompliant
+SAXReader xmlReader = new SAXReader();
+xmlReader.setFeature("http://apache.org/xml/features/xinclude", true); // Noncompliant
+SAXBuilder builder = new SAXBuilder();
+builder.setFeature("http://apache.org/xml/features/xinclude", true); // Noncompliant
+### Compliant
+factory.setXIncludeAware(false);
+// or
+factory.setFeature("http://apache.org/xml/features/xinclude", false);
+SAXReader xmlReader = new SAXReader();
+xmlReader.setFeature("http://apache.org/xml/features/xinclude", false);
+SAXBuilder builder = new SAXBuilder();
+builder.setFeature("http://apache.org/xml/features/xinclude", false);
+### Noncompliant
+{{BUGGY}}
+### Compliant

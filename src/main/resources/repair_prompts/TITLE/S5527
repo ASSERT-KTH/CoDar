@@ -1,0 +1,4 @@
+Server hostnames should be verified during SSL/TLS connections
+### Noncompliant
+{{BUGGY}}
+### Compliant

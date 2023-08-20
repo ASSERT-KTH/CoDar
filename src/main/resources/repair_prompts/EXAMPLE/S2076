@@ -1,0 +1,33 @@
+### Noncompliant
+@Controller
+public class ExampleController
+{
+    @GetMapping(value = "/exec")
+    public void exec(@RequestParam("command") String command) throws IOException {
+
+        CommandLine cmd = new CommandLine(command);
+        DefaultExecutor executor = new DefaultExecutor();
+        executor.execute(cmd);
+    }
+}
+### Compliant
+@Controller
+public class ExampleController
+{
+    @GetMapping(value = "/exec")
+    public void exec(@RequestParam("command") String command) throws IOException {
+
+        List<String> allowedCmds = new ArrayList<String>();
+        allowedCmds.add("/bin/ls");
+        allowedCmds.add("/bin/cat");
+
+        if (allowedCmds.contains(command)){
+            CommandLine cmd = new CommandLine(command);
+            DefaultExecutor executor = new DefaultExecutor();
+            executor.execute(cmd);
+        }
+    }
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant
