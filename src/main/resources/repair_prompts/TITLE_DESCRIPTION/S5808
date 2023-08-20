@@ -1,0 +1,5 @@
+Authorizations should be based on strong decisions
+Why is this an issue? Authorizations granted or not to users to access resources of an application should be based on strong decisions. For instance, checking whether the user is authenticated or not, has the right roles/privileges. It may also depend on the user’s location, or the date, time when the user requests access. 
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,4 @@
+Annotated Mockito objects should be initialized
+### Noncompliant
+{{BUGGY}}
+### Compliant

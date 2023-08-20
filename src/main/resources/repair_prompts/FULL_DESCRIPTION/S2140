@@ -1,13 +1,14 @@
 Methods of "Random" that return floating point values should not be used in random integer generation
-There is no need to multiply the output of Random's nextDouble method to get a random integer. Use the nextInt method instead. This rule raises an issue when the return value of any of Random's methods that return a floating point value is converted to an integer. 
+Why is this an issue? Generating random floating point values to cast them into integers is inefficient. A random bounded integer value can be generated with a single proper method call. Use nextInt to make the code more efficient and the intent clearer. 
 ### Noncompliant
 Random r = new Random();
-int rand = (int)r.nextDouble() * 50;  // Noncompliant way to get a pseudo-random value between 0 and 50
-int rand2 = (int)r.nextFloat(); // Noncompliant; will always be 0;
+int rand = (int) (r.nextDouble() * 50);  // Noncompliant way to get a pseudo-random value between 0 and 50
+int rand2 = (int) r.nextFloat(); // Noncompliant; will always be 0;
  
 ### Compliant
 Random r = new Random();
 int rand = r.nextInt(50);  // returns pseudo-random value between 0 and 50
+int rand2 = 0;
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

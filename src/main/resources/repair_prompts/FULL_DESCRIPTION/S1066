@@ -1,5 +1,5 @@
 Collapsible "if" statements should be merged
-Merging collapsible if statements increases the code’s readability. 
+Why is this an issue? Merging collapsible if statements increases the code’s readability. 
 ### Noncompliant
 if (file != null) {
   if (file.isFile() || file.isDirectory()) {

@@ -1,6 +1,6 @@
 ### Noncompliant
 Thread myThread = new Thread(runnable);
-myThread.run(); // Noncompliant
+myThread.run(); // Noncompliant, does not start a thread
 ### Compliant
 Thread myThread = new Thread(runnable);
 myThread.start(); 

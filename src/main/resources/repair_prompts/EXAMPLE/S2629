@@ -11,11 +11,10 @@ Preconditions.checkState(condition, formatMessage());  // Noncompliant. formatMe
 
 Preconditions.checkState(condition, "message: %s", formatMessage());  // Noncompliant
 ### Compliant
-logger.log(Level.SEVERE, "Something went wrong: {0} ", message);  // String formatting only applied if needed
+logger.log(Level.DEBUG, "Something went wrong: {0} ", message);  // String formatting only applied if needed
+logger.log(Level.SEVERE, () -> "Something went wrong: " + message); // since Java 8, we can use Supplier , which will be evaluated lazily
 
 logger.fine("An exception occurred with message: {}", message);  // SLF4J, Log4j
-
-logger.log(Level.SEVERE, () -> "Something went wrong: " + message); // since Java 8, we can use Supplier , which will be evaluated lazily
 
 LOG.error("Unable to open file {0}", csvPath, e);
 

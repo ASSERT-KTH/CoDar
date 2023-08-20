@@ -1,0 +1,4 @@
+Child class fields should not shadow parent class fields
+### Noncompliant
+{{BUGGY}}
+### Compliant

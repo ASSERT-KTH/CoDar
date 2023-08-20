@@ -1,28 +1,22 @@
 ### Noncompliant
-public class Vegetable {  // neither implements Serializable nor extends a class that does
-  //...
+public class Vegetable {
+  // ...
 }
 
 public class Menu {
-  public void meal() throws IOException {
-    Vegetable veg;
-    //...
-    FileOutputStream fout = new FileOutputStream(veg.getName());
-    ObjectOutputStream oos = new ObjectOutputStream(fout);
-    oos.writeObject(veg);  // Noncompliant. Nothing will be written
+  public void meal(ObjectOutputStream oos) throws IOException {
+    Vegetable veg = new Vegetable();
+    oos.writeObject(veg);  // Noncompliant
   }
 }
 ### Compliant
-public class Vegetable implements Serializable {  // can now be serialized
-  //...
+public class Vegetable implements Serializable {
+  // ...
 }
 
 public class Menu {
-  public void meal() throws IOException {
-    Vegetable veg;
-    //...
-    FileOutputStream fout = new FileOutputStream(veg.getName());
-    ObjectOutputStream oos = new ObjectOutputStream(fout);
+  public void meal(ObjectOutputStream oos) throws IOException {
+    Vegetable veg = new Vegetable();
     oos.writeObject(veg);
   }
 }

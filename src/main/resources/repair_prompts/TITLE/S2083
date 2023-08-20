@@ -1,4 +1,0 @@
-I/O function calls should not be vulnerable to path injection attacks
-### Noncompliant
-{{BUGGY}}
-### Compliant

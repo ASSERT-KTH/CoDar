@@ -1,5 +1,5 @@
 Zero should not be a possible denominator
-If the denominator to a division or modulo operation is zero it would result in a fatal error. When working with double or float, no fatal error will be raised, but it will lead to unusual result and should be avoided anyway. This rule supports primitive int, long, double, float as well as BigDecimal and BigInteger. 
+Why is this an issue? If the denominator to a division or modulo operation is zero it would result in a fatal error. When working with double or float, no fatal error will be raised, but it will lead to unusual result and should be avoided anyway. This rule supports primitive int, long, double, float as well as BigDecimal and BigInteger. 
 ### Noncompliant
 void test_divide() {
   int z = 0;
@@ -24,7 +24,7 @@ void test_divide() {
   }
   z = 1 / z;
 }
- See MITRE, CWE-369 - Divide by zero CERT, NUM02-J. - Ensure that division and remainder operations do not result in divide-by-zero errors CERT, INT33-C. - Ensure that division and remainder operations do not result in divide-by-zero errors
+ Resources MITRE, CWE-369 - Divide by zero CERT, NUM02-J. - Ensure that division and remainder operations do not result in divide-by-zero errors CERT, INT33-C. - Ensure that division and remainder operations do not result in divide-by-zero errors
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

@@ -1,0 +1,4 @@
+"Exception" should not be caught when not required by called methods
+### Noncompliant
+{{BUGGY}}
+### Compliant

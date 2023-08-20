@@ -1,5 +1,5 @@
 Comparators should be "Serializable"
-A non-serializable Comparator can prevent an otherwise-Serializable ordered collection from being serializable. Since the overhead to make a Comparator serializable is usually low, doing so can be considered good defensive programming. 
+Why is this an issue? A non-serializable Comparator can prevent an otherwise-Serializable ordered collection from being serializable. Since the overhead to make a Comparator serializable is usually low, doing so can be considered good defensive programming. 
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

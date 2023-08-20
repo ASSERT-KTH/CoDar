@@ -1,0 +1,4 @@
+"finalize" should not set fields to "null"
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,5 +1,5 @@
 Anonymous inner classes containing only one method should become lambdas
-Before Java 8, the only way to partially support closures in Java was by using anonymous inner classes. But the syntax of anonymous classes may seem unwieldy and unclear. With Java 8, most uses of anonymous inner classes should be replaced by lambdas to highly increase the readability of the source code. Note that this rule is automatically disabled when the project’s sonar.java.source is lower than 8. 
+Why is this an issue? Before Java 8, the only way to partially support closures in Java was by using anonymous inner classes. Java 8 introduced lambdas, which are significantly more readable and should be used instead. This rule is automatically disabled when the project’s sonar.java.source is lower than 8, as lambda expressions were introduced in Java 8. Code examples 
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

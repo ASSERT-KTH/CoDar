@@ -1,0 +1,9 @@
+Assertions should not compare an object to itself
+Why is this an issue? Assertions comparing an object to itself are more likely to be bugs due to developer’s carelessness. This rule raises an issue when the actual expression matches the expected expression. 
+### Noncompliant
+assertThat(actual).isEqualTo(actual); // Noncompliant
+### Compliant
+assertThat(actual).isEqualTo(expected);
+### Noncompliant
+{{BUGGY}}
+### Compliant

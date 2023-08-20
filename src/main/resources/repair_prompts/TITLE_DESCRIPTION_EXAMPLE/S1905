@@ -1,0 +1,25 @@
+Redundant casts should not be used
+Why is this an issue? Unnecessary casting expressions make the code harder to read and understand. 
+### Noncompliant
+public void example() {
+  for (Foo obj : (List<Foo>) getFoos()) {  // Noncompliant; cast unnecessary because List<Foo> is what's returned
+    //...
+  }
+}
+
+public List<Foo> getFoos() {
+  return this.foos;
+}
+### Compliant
+public void example() {
+  for (Foo obj : getFoos()) {
+    //...
+  }
+}
+
+public List<Foo> getFoos() {
+  return this.foos;
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

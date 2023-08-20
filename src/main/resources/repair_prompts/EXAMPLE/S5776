@@ -1,0 +1,22 @@
+### Noncompliant
+@Rule
+public ExpectedException thrown = ExpectedException.none();
+
+@Test
+public void test() throws IndexOutOfBoundsException {
+  thrown.expect(IndexOutOfBoundsException.class); // Noncompliant
+  Object o = get();
+  // This test pass since execution will never get past this line.
+  Assert.assertEquals(0, 1);
+}
+
+private Object get() {
+  throw new IndexOutOfBoundsException();
+}
+### Compliant
+Assert.assertThrows(IndexOutOfBoundsException.class, () -> get());
+// This test correctly fails.
+Assert.assertEquals(0, 1);
+### Noncompliant
+{{BUGGY}}
+### Compliant

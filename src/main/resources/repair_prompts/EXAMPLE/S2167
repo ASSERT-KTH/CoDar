@@ -1,13 +1,15 @@
 ### Noncompliant
-public int compareTo(MyClass) {
+public int compareTo(Name name) {
   if (condition) {
-    return Integer.MIN_VALUE;  // Noncompliant
+    return Integer.MIN_VALUE; // Noncompliant
   }
+}
 ### Compliant
-public int compareTo(MyClass) {
+public int compareTo(Name name) {
   if (condition) {
-    return -1;
+    return -1; 
   }
+}
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

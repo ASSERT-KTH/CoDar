@@ -1,5 +1,5 @@
 Expressions used in "assert" should not produce side effects
-Since assert statements aren’t executed by default (they must be enabled with JVM flags) developers should never rely on their execution the evaluation of any logic required for correct program function. 
+Why is this an issue? Since assert statements aren’t executed by default (they must be enabled with JVM flags) developers should never rely on their execution the evaluation of any logic required for correct program function. 
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

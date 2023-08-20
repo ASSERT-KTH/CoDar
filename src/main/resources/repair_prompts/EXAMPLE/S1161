@@ -1,17 +1,17 @@
 ### Noncompliant
 class ParentClass {
-  public boolean doSomething(){...}
+  public boolean doSomething(){/*...*/}
 }
 class FirstChildClass extends ParentClass {
-  public boolean doSomething(){...}  // Noncompliant
+  public boolean doSomething(){/*...*/}  // Noncompliant
 }
 ### Compliant
 class ParentClass {
-  public boolean doSomething(){...}
+  public boolean doSomething(){/*...*/}
 }
 class FirstChildClass extends ParentClass {
   @Override
-  public boolean doSomething(){...}  
+  public boolean doSomething(){/*...*/}  
 }
 ### Noncompliant
 {{BUGGY}}

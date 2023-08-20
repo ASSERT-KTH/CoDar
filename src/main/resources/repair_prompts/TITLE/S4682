@@ -1,4 +1,0 @@
-"@CheckForNull" or "@Nullable" should not be used on primitive types
-### Noncompliant
-{{BUGGY}}
-### Compliant

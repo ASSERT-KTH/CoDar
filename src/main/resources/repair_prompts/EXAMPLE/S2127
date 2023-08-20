@@ -1,0 +1,9 @@
+### Noncompliant
+int i = 0x80003800;
+Double.longBitsToDouble(i);   // Noncompliant - NaN
+### Compliant
+long i = 0x80003800L;
+Double.longBitsToDouble(i);   
+### Noncompliant
+{{BUGGY}}
+### Compliant

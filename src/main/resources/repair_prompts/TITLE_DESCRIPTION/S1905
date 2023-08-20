@@ -1,0 +1,5 @@
+Redundant casts should not be used
+Why is this an issue? Unnecessary casting expressions make the code harder to read and understand. 
+### Noncompliant
+{{BUGGY}}
+### Compliant

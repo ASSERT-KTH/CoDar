@@ -1,5 +1,5 @@
 "wait(...)" should be used instead of "Thread.sleep(...)" when a lock is held
-If Thread.sleep(...) is called when the current thread holds a lock, it could lead to performance and scalability issues, or even worse to deadlocks because the execution of the thread holding the lock is frozen. It’s better to call wait(...) on the monitor object to temporarily release the lock and allow other threads to run. 
+Why is this an issue? If Thread.sleep(...) is called when the current thread holds a lock, it could lead to performance and scalability issues, or even worse to deadlocks because the execution of the thread holding the lock is frozen. It’s better to call wait(...) on the monitor object to temporarily release the lock and allow other threads to run. 
 ### Noncompliant
 public void doSomething(){
   synchronized(monitor) {
@@ -21,7 +21,7 @@ public void doSomething(){
   }
   ...
 }
- See CERT, LCK09-J. - Do not perform operations that can block while holding a lock
+ Resources CERT, LCK09-J. - Do not perform operations that can block while holding a lock
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

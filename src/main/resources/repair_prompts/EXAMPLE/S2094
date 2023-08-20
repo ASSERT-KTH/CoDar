@@ -1,0 +1,9 @@
+### Noncompliant
+public class Nothing {  // Noncompliant
+}
+### Compliant
+public interface Nothing {
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

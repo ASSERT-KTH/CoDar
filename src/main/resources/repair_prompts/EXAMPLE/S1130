@@ -1,0 +1,15 @@
+### Noncompliant
+void foo() throws MyException, MyException {}  // Noncompliant; should be listed once
+void bar() throws Throwable, Exception {}  // Noncompliant; Exception is a subclass of Throwable
+void boo() throws IOException { // Noncompliant; IOException cannot be thrown
+  System.out.println("Hi!");
+}
+### Compliant
+void foo() throws MyException {}
+void bar() throws Throwable {}
+void boo() {
+  System.out.println("Hi!");
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

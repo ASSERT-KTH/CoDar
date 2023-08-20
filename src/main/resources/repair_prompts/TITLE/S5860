@@ -1,0 +1,4 @@
+Names of regular expressions named groups should be used
+### Noncompliant
+{{BUGGY}}
+### Compliant

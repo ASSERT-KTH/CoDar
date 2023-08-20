@@ -1,4 +1,0 @@
-Unary prefix operators should not be repeated
-### Noncompliant
-{{BUGGY}}
-### Compliant

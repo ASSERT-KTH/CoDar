@@ -1,0 +1,36 @@
+### Noncompliant
+@NotThreadSafe
+public class DoubleCheckedLocking {
+    private static Resource resource;
+
+    public static Resource getInstance() {
+        if (resource == null) {
+            synchronized (DoubleCheckedLocking.class) {
+                if (resource == null)
+                    resource = new Resource();
+            }
+        }
+        return resource;
+    }
+
+    static class Resource {
+
+    }
+}
+### Compliant
+@ThreadSafe
+public class SafeLazyInitialization {
+    private static Resource resource;
+
+    public static synchronized Resource getInstance() {
+        if (resource == null)
+            resource = new Resource();
+        return resource;
+    }
+
+    static class Resource {
+    }
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,24 @@
+### Noncompliant
+public void doTheThing() {
+  // ...
+  actuallyDoTheThing(); // Noncompliant, call from non-transactional to transactional
+}
+
+@Transactional
+public void actuallyDoTheThing() {
+  // ...
+}
+### Compliant
+@Transactional
+public void doTheThing() {
+  // ...
+  actuallyDoTheThing(); 
+}
+
+@Transactional
+public void actuallyDoTheThing() {
+  // ...
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

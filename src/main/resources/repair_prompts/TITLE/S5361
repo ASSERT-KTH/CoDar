@@ -1,0 +1,4 @@
+"String#replace" should be preferred to "String#replaceAll"
+### Noncompliant
+{{BUGGY}}
+### Compliant

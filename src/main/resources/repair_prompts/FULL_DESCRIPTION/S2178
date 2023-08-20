@@ -1,11 +1,11 @@
 Short-circuit logic should be used in boolean contexts
-The use of non-short-circuit logic in a boolean context is likely a mistake - one that could cause serious program errors as conditions are evaluated under the wrong circumstances. 
+Why is this an issue? The use of non-short-circuit logic in a boolean context is likely a mistake - one that could cause serious program errors as conditions are evaluated under the wrong circumstances. 
 ### Noncompliant
 if(getTrue() | getFalse()) { ... } // Noncompliant; both sides evaluated
  
 ### Compliant
 if(getTrue() || getFalse()) { ... } // true short-circuit logic
- See CERT, EXP46-C. - Do not use a bitwise operator with a Boolean-like operand
+ Resources CERT, EXP46-C. - Do not use a bitwise operator with a Boolean-like operand
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

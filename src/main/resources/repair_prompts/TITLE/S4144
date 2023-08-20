@@ -1,4 +1,0 @@
-Methods should not have identical implementations
-### Noncompliant
-{{BUGGY}}
-### Compliant

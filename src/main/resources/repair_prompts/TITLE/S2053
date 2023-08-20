@@ -1,4 +1,0 @@
-Hashes should include an unpredictable salt
-### Noncompliant
-{{BUGGY}}
-### Compliant

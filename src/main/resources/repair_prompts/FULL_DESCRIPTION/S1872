@@ -1,5 +1,5 @@
 Classes should not be compared by name
-There is no requirement that class names be unique, only that they be unique within a package. Therefore trying to determine an object’s type based on its class name is an exercise fraught with danger. One of those dangers is that a malicious user will send objects of the same name as the trusted class and thereby gain trusted access. Instead, the instanceof operator or the Class.isAssignableFrom() method should be used to check the object’s underlying type. 
+Why is this an issue? There is no requirement that class names be unique, only that they be unique within a package. Therefore trying to determine an object’s type based on its class name is an exercise fraught with danger. One of those dangers is that a malicious user will send objects of the same name as the trusted class and thereby gain trusted access. Instead, the instanceof operator or the Class.isAssignableFrom() method should be used to check the object’s underlying type. 
 ### Noncompliant
 package computer;
 class Pear extends Laptop { ... }
@@ -41,7 +41,7 @@ class Store {
     return false;
   }
 }
- See MITRE, CWE-486 - Comparison of Classes by Name CERT, OBJ09-J. - Compare classes and not class names
+ Resources MITRE, CWE-486 - Comparison of Classes by Name CERT, OBJ09-J. - Compare classes and not class names
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

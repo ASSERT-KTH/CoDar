@@ -1,0 +1,17 @@
+Types should be used in lambdas
+Why is this an issue? Shared coding conventions allow teams to collaborate effectively. While types for lambda arguments are optional, specifying them anyway makes the code clearer and easier to read. 
+### Noncompliant
+Arrays.sort(rosterAsArray,
+    (a, b) -> {  // Noncompliant
+        return a.getBirthday().compareTo(b.getBirthday());
+    }
+);
+### Compliant
+Arrays.sort(rosterAsArray,
+    (Person a, Person b) -> {
+        return a.getBirthday().compareTo(b.getBirthday());
+    }
+);
+### Noncompliant
+{{BUGGY}}
+### Compliant

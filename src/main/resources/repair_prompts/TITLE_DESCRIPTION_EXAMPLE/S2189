@@ -1,5 +1,5 @@
 Loops should not be infinite
-An infinite loop is one that will never end while the program is running, i.e., you have to kill the program to get out of the loop. Whether it is by meeting the loop’s end condition or via a break, every loop should have an end condition. 
+Why is this an issue? An infinite loop is one that will never end while the program is running, i.e., you have to kill the program to get out of the loop. Whether it is by meeting the loop’s end condition or via a break, every loop should have an end condition. 
 ### Noncompliant
 for (;;) {  // Noncompliant; end condition omitted
   // ...

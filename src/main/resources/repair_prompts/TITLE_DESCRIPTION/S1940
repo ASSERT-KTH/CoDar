@@ -1,5 +1,5 @@
 Boolean checks should not be inverted
-It is needlessly complex to invert the result of a boolean comparison. The opposite comparison should be made instead. 
+Why is this an issue? It is needlessly complex to invert the result of a boolean comparison. The opposite comparison should be made instead. 
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

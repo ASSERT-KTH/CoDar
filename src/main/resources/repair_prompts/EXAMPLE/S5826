@@ -1,0 +1,12 @@
+### Noncompliant
+public void setUp() { ... } // Noncompliant; should be annotated with @Before
+public void tearDown() { ... }  // Noncompliant; should be annotated with @After
+### Compliant
+@Before
+public void setUp() { ... }
+
+@After
+public void tearDown() { ... }
+### Noncompliant
+{{BUGGY}}
+### Compliant

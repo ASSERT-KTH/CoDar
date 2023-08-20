@@ -1,5 +1,5 @@
 Multiple variables should not be declared on the same line
-Declaring multiple variables on one line is difficult to read. 
+Why is this an issue? Declaring multiple variables on one line is difficult to read. 
 ### Noncompliant
 class MyClass {
 
@@ -21,7 +21,7 @@ class MyClass {
     int d;
   }
 }
- See CERT, DCL52-J. - Do not declare more than one variable per declaration CERT, DCL04-C. - Do not declare more than one variable per declaration
+ Resources CERT, DCL52-J. - Do not declare more than one variable per declaration CERT, DCL04-C. - Do not declare more than one variable per declaration
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

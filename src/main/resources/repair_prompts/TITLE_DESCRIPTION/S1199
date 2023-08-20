@@ -1,5 +1,5 @@
 Nested code blocks should not be used
-Nested code blocks can be used to create a new scope and restrict the visibility of the variables defined inside it. Using this feature in a method typically indicates that the method has too many responsibilities, and should be refactored into smaller methods. 
+Why is this an issue? Nested code blocks can be used to create a new scope and restrict the visibility of the variables defined inside it. Using this feature in a method typically indicates that the method has too many responsibilities, and should be refactored into smaller methods. 
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

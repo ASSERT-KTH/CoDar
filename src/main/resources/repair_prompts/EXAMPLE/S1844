@@ -1,13 +1,15 @@
 ### Noncompliant
-final Lock lock = new ReentrantLock();
-final Condition notFull  = lock.newCondition();
-...
-notFull.wait();
+void doSomething(Condition condition) {
+    condition.wait(); // Noncompliant, Object.wait is called
+
+        ...
+}
 ### Compliant
-final Lock lock = new ReentrantLock();
-final Condition notFull  = lock.newCondition();
-...
-notFull.await();
+void doSomething(Condition condition) {
+    condition.await(); 
+
+        ...
+}
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

@@ -1,0 +1,13 @@
+### Noncompliant
+public void handle(String command){
+  command.toLowerCase(); // Noncompliant; result of method thrown away
+  ...
+}
+### Compliant
+public void handle(String command){
+  String formattedCommand = command.toLowerCase();
+  ...
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

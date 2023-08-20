@@ -1,0 +1,39 @@
+Authorizations should be based on strong decisions
+Why is this an issue? Authorizations granted or not to users to access resources of an application should be based on strong decisions. For instance, checking whether the user is authenticated or not, has the right roles/privileges. It may also depend on the user’s location, or the date, time when the user requests access. 
+### Noncompliant
+public class WeakNightVoter implements AccessDecisionVoter {
+    @Override
+    public int vote(Authentication authentication, Object object, Collection collection) {  // Noncompliant
+
+      Calendar calendar = Calendar.getInstance();
+
+      int currentHour = calendar.get(Calendar.HOUR_OF_DAY);
+
+      if(currentHour >= 8 && currentHour <= 19) {
+        return ACCESS_GRANTED; // Noncompliant
+      }
+
+      // when users connect during the night, do not make decision
+      return ACCESS_ABSTAIN; // Noncompliant
+    }
+}
+### Compliant
+public class StrongNightVoter implements AccessDecisionVoter {
+    @Override
+    public int vote(Authentication authentication, Object object, Collection collection) {
+
+      Calendar calendar = Calendar.getInstance();
+
+      int currentHour = calendar.get(Calendar.HOUR_OF_DAY);
+
+      if(currentHour >= 8 && currentHour <= 19) {
+        return ACCESS_GRANTED;
+      }
+
+      // users are not allowed to connect during the night
+      return ACCESS_DENIED; 
+    }
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

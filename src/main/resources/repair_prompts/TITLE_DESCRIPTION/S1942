@@ -1,5 +1,5 @@
 Simple class names should be used
-Java’s import mechanism allows the use of simple class names. Therefore, using a class' fully qualified name in a file that imports the class is redundant and confusing. 
+Why is this an issue? Java’s import mechanism allows the use of simple class names. Therefore, using a class' fully qualified name in a file that imports the class is redundant and confusing. 
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

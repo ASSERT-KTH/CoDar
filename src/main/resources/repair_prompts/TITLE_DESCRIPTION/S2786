@@ -1,5 +1,5 @@
 Nested "enum"s should not be declared static
-According to the Java Language Specification-8.9: Nested enum types are implicitly static. So there’s no need to declare them static explicitly. 
+Why is this an issue? In Java, an enum is a special data type that allows you to define a set of constants. Nested enum types, also known as inner enum types, are enum types that are defined within another class or interface. Nested enum types are implicitly static, so there is no need to declare them static explicitly. 
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

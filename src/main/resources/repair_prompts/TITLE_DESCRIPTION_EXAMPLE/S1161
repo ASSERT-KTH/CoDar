@@ -1,19 +1,19 @@
 "@Override" should be used on overriding and implementing methods
-Using the @Override annotation is useful for two reasons : It elicits a warning from the compiler if the annotated method doesn’t actually override anything, as in the case of a misspelling. It improves the readability of the source code by making it obvious that methods are overridden. 
+Why is this an issue? While not mandatory, using the @Override annotation on compliant methods improves readability by making it explicit that methods are overriden. A compliant method either overrides a parent method or implements an interface or abstract method. 
 ### Noncompliant
 class ParentClass {
-  public boolean doSomething(){...}
+  public boolean doSomething(){/*...*/}
 }
 class FirstChildClass extends ParentClass {
-  public boolean doSomething(){...}  // Noncompliant
+  public boolean doSomething(){/*...*/}  // Noncompliant
 }
 ### Compliant
 class ParentClass {
-  public boolean doSomething(){...}
+  public boolean doSomething(){/*...*/}
 }
 class FirstChildClass extends ParentClass {
   @Override
-  public boolean doSomething(){...}  
+  public boolean doSomething(){/*...*/}  
 }
 ### Noncompliant
 {{BUGGY}}

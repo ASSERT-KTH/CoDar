@@ -1,5 +1,5 @@
 Unused assignments should be removed
-A dead store happens when a local variable is assigned a value that is not read by any subsequent instruction. Calculating or retrieving a value only to then overwrite it or throw it away, could indicate a serious error in the code. Even if it’s not an error, it is at best a waste of resources. Therefore all calculated values should be used. 
+Why is this an issue? A dead store happens when a local variable is assigned a value that is not read by any subsequent instruction. Calculating or retrieving a value only to then overwrite it or throw it away, could indicate a serious error in the code. Even if it’s not an error, it is at best a waste of resources. Therefore all calculated values should be used. 
 ### Noncompliant
 i = a + b; // Noncompliant; calculation result not used before value is overwritten
 i = compute();

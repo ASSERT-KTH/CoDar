@@ -1,0 +1,4 @@
+Arrays should not be copied using loops
+### Noncompliant
+{{BUGGY}}
+### Compliant

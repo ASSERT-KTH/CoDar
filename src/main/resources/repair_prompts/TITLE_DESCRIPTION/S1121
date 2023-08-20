@@ -1,0 +1,5 @@
+Assignments should not be made from within sub-expressions
+Why is this an issue? Assignments within sub-expressions are hard to spot and therefore make the code less readable. Ideally, sub-expressions should not have side-effects. 
+### Noncompliant
+{{BUGGY}}
+### Compliant

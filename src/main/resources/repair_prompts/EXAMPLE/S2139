@@ -1,0 +1,14 @@
+### Noncompliant
+catch (SQLException e) {
+  ...
+  LOGGER.log(Level.ERROR,  contextInfo, e);
+  throw new MySQLException(contextInfo, e);
+}
+### Compliant
+catch (SQLException e) {
+  ...
+  throw new MySQLException(contextInfo, e);
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

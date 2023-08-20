@@ -1,0 +1,4 @@
+Deprecated elements should have both the annotation and the Javadoc tag
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,4 +1,4 @@
-Files opened in append mode should not be used with ObjectOutputStream
+Files opened in append mode should not be used with "ObjectOutputStream"
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

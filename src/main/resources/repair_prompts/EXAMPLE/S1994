@@ -1,0 +1,12 @@
+### Noncompliant
+for (i = 0; i < 10; j++) { // Noncompliant
+  // ...
+  i++;
+}
+### Compliant
+for (i = 0; i < 10; i++, j++) {
+  // ...
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

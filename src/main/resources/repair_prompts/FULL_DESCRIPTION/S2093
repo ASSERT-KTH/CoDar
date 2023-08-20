@@ -1,0 +1,46 @@
+Try-with-resources should be used
+Why is this an issue? Many resources in Java need be closed after they have been used. If they are not, the garbage collector cannot reclaim the resources' memory, and they are still considered to be in use by the operating system. Such resources are considered to be leaked, which can lead to performance issues. Java 7 introduced the try-with-resources statement, which guarantees that the resource in question will be closed. try (InputStream input = Files.newInputStream(path)) {
+  // "input" will be closed after the execution of this block
+}
+ This syntax is safer than the traditional method using try, catch, and finally and hence should be preferred. This rule raises an issue if a closeable resources is not opened using a try-with-resources statement. This rule is automatically disabled when the project’s sonar.java.source is lower than 7 as the close-with-resources statement was unavailable prior to Java 7. How to fix it Use the try-with-resources syntax by moving the Closable variable declarations after the try keyword surrounded by parentheses and separated by ;: try (/* resources declarations */) {
+  // resources usage ...
+}
+ Code examples 
+### Noncompliant
+FileReader fr = null;
+BufferedReader br = null;
+
+try { // Noncompliant, the FileReader and BufferedReader are instantiated without try-with-resources
+  fr = new FileReader(fileName);
+  br = new BufferedReader(fr);
+  return br.readLine();
+} catch (...) {
+  ...
+} finally {
+
+  if (br != null) { // br has to be closed manually
+    try {
+      br.close();
+    } catch(IOException e){...}
+  }
+
+  if (fr != null ) { // fr has to be closed manually
+    try {
+      br.close();
+    } catch(IOException e){...}
+  }
+
+}
+ 
+### Compliant
+try ( // Compliant, all resources are instantiated within a try-with-resources statement and hence automatically closed after use
+    FileReader fr = new FileReader(fileName);
+    BufferedReader br = new BufferedReader(fr)
+  ) {
+  return br.readLine();
+}
+catch (...) {}
+ Resources CERT, ERR54-J. - Use a try-with-resources statement to safely handle closeable resources The Java™ Tutorials - The try-with-resources Statement
+### Noncompliant
+{{BUGGY}}
+### Compliant

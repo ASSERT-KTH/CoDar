@@ -1,4 +1,0 @@
-"default" clauses should be last
-### Noncompliant
-{{BUGGY}}
-### Compliant

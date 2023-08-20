@@ -1,4 +1,0 @@
-Ternary operators should not be nested
-### Noncompliant
-{{BUGGY}}
-### Compliant

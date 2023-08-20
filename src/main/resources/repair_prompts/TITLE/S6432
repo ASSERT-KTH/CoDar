@@ -1,4 +1,0 @@
-Counter Mode initialization vectors should not be reused
-### Noncompliant
-{{BUGGY}}
-### Compliant

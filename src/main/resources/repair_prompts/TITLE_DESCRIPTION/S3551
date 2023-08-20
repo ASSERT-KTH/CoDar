@@ -1,5 +1,5 @@
 Overrides should match their parent class methods in synchronization
-When @Overrides of synchronized methods are not themselves synchronized, the result can be improper synchronization as callers rely on the thread-safety promised by the parent class. 
+Why is this an issue? When @Overrides of synchronized methods are not themselves synchronized, the result can be improper synchronization as callers rely on the thread-safety promised by the parent class. 
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

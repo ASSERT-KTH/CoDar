@@ -1,11 +1,9 @@
 Lambdas containing only one statement should not nest this statement in a block
-There are two ways to write lambdas that contain single statement, but one is definitely more compact and readable than the other. Note that this rule is automatically disabled when the project’s sonar.java.source is lower than 8. 
+This rule raises an issue when a lambda expression uses block notation while expression notation could be used. Why is this an issue? The right-hand side of a lambda expression can be written in two ways: Expression notation: the right-hand side is as an expression, such as in (a, b) → a + b Block notation: the right-hand side is a conventional function body with a code block and an optional return statement, such as in (a, b) → {return a + b;} By convention, expression notation is preferred over block notation. Block notation must be used when the function implementation requires more than one statement. However, when the code block consists of only one statement (which may or may not be a return statement), it can be rewritten using expression notation. This convention exists because expression notation has a cleaner, more concise, functional programming style and is regarded as more readable. How to fix it If the code block consists only of a return statement, replace the code block with the argument expression from the return statement. If the code block consists of a single statement that is not a return statement, replace the code block with that statement. Code examples 
 ### Noncompliant
-x -> {System.out.println(x+1);}
-(a, b) -> { return a+b; }
+(a, b) -> { return a + b; } // Noncompliant, replace code block with expression
 ### Compliant
-x -> System.out.println(x+1)
-(a, b) -> a+b    //For return statement, the return keyword should also be dropped
+(a, b) -> a + b             
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

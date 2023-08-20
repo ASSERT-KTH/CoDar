@@ -1,4 +1,4 @@
-Non-serializable classes should not be written
+"writeObject" argument must implement "Serializable"
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

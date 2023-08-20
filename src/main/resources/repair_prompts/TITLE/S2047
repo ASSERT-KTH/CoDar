@@ -1,0 +1,4 @@
+The names of methods with boolean return values should start with "is" or "has"
+### Noncompliant
+{{BUGGY}}
+### Compliant

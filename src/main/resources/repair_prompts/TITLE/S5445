@@ -1,4 +1,0 @@
-Insecure temporary file creation methods should not be used
-### Noncompliant
-{{BUGGY}}
-### Compliant

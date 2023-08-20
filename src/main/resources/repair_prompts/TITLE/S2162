@@ -1,0 +1,4 @@
+"equals" methods should be symmetric and work for subclasses
+### Noncompliant
+{{BUGGY}}
+### Compliant

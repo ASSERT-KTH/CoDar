@@ -1,0 +1,4 @@
+Min and max used in combination should not always return the same value
+### Noncompliant
+{{BUGGY}}
+### Compliant

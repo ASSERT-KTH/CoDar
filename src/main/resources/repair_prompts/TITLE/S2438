@@ -1,4 +1,4 @@
-"Threads" should not be used where "Runnables" are expected
+"Thread" should not be used where a "Runnable" argument is expected
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

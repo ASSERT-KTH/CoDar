@@ -1,0 +1,32 @@
+### Noncompliant
+public Boolean isUsable() {
+  // ...
+  return null;  // Noncompliant
+}
+
+public void caller() {
+  if (isUsable()) { // A NullPointerException might occur here
+    // ...
+  }
+}
+### Compliant
+@javax.annotation.Nullable
+public Boolean isUsable() {
+  // ...
+  return null;
+}
+
+@javax.annotation.CheckForNull
+public Boolean isUsable() {
+  // ...
+  return null;
+}
+
+public void caller() {
+  if (Boolean.True.equals(isUsable())) { // This caller knows to check and avoid ambiguity
+    // ...
+  }
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

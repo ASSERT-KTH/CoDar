@@ -1,10 +1,48 @@
 ### Noncompliant
-if (myClass.compareTo(arg) == -1) {  // Noncompliant
-  // ...
+public class Main {
+
+  boolean isAGreaterThanB(Comparable<Integer> a, Integer b) {
+    return a.compareTo(b) == 1; // Noncompliant, check for constant return value
+  }
+
+  public static void main(String[] args) {
+    ByteComparator comparator = new ByteComparator();
+    if (comparator.compare((byte) 23, (byte) 42) == -1) { // Noncompliant, check for constant return value
+      System.out.println("23 < 42");
+    } else {
+      System.out.println("23 >= 42");
+    }
+  }
+
+  static class ByteComparator implements Comparator<Byte> {
+    @Override
+    public int compare(Byte a, Byte b) {
+      return a - b;
+    }
+  }
 }
 ### Compliant
-if (myClass.compareTo(arg) < 0) {
-  // ...
+public class Main {
+
+  boolean isAGreaterThanB(Comparable<Integer> a, Integer b) {
+    return a.compareTo(b) > 0; 
+  }
+
+  public static void main(String[] args) {
+    ByteComparator comparator = new ByteComparator();
+    if (comparator.compare((byte) 23, (byte) 42) < 0) { 
+      System.out.println("23 < 42");
+    } else {
+      System.out.println("23 >= 42");
+    }
+  }
+
+  static class ByteComparator implements Comparator<Byte> {
+    @Override
+    public int compare(Byte a, Byte b) {
+      return a - b;
+    }
+  }
 }
 ### Noncompliant
 {{BUGGY}}

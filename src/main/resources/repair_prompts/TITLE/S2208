@@ -1,0 +1,4 @@
+Wildcard imports should not be used
+### Noncompliant
+{{BUGGY}}
+### Compliant

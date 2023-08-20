@@ -1,5 +1,5 @@
 Constant names should comply with a naming convention
-Shared coding conventions allow teams to collaborate efficiently. This rule checks that all constant names match a provided regular expression. 
+Why is this an issue? Shared coding conventions allow teams to collaborate efficiently. This rule checks that all constant names match a provided regular expression. 
 ### Noncompliant
 With the default regular expression ^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$: public class MyClass {
   public static final int first = 1;

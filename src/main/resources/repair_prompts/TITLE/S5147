@@ -1,4 +1,0 @@
-NoSQL operations should not be vulnerable to injection attacks
-### Noncompliant
-{{BUGGY}}
-### Compliant

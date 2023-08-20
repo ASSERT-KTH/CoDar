@@ -1,7 +1,7 @@
 ### Noncompliant
-public class MyClass { /* ... */ }
+public class MyClass { /* ... */ } // Noncompliant, no package spacified
 ### Compliant
-package org.example;
+package org.example; 
 
 public class MyClass{ /* ... */ }
 ### Noncompliant

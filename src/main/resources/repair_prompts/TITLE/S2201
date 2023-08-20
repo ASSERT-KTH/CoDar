@@ -1,0 +1,4 @@
+Return values from functions without side effects should not be ignored
+### Noncompliant
+{{BUGGY}}
+### Compliant

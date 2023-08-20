@@ -1,0 +1,4 @@
+Types should be used in lambdas
+### Noncompliant
+{{BUGGY}}
+### Compliant

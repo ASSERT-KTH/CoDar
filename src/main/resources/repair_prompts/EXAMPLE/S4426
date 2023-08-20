@@ -1,23 +1,29 @@
 ### Noncompliant
-KeyPairGenerator keyPairGen1 = KeyPairGenerator.getInstance("RSA");
-keyPairGen1.initialize(1024); // Noncompliant
+import java.security.KeyPairGenerator;
+import java.security.NoSuchAlgorithmException;
 
-KeyPairGenerator keyPairGen5 = KeyPairGenerator.getInstance("EC");
-ECGenParameterSpec ecSpec1 = new ECGenParameterSpec("secp112r1"); // Noncompliant
-keyPairGen5.initialize(ecSpec1);
+public static void main(String[] args) {
+    try {
+        KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
+        keyPairGenerator.initialize(1024); // Noncompliant
 
-KeyGenerator keyGen1 = KeyGenerator.getInstance("AES");
-keyGen1.init(64); // Noncompliant
+    } catch (NoSuchAlgorithmException e) {
+        // ...
+    }
+}
 ### Compliant
-KeyPairGenerator keyPairGen6 = KeyPairGenerator.getInstance("RSA");
-keyPairGen6.initialize(2048); 
+import java.security.KeyPairGenerator;
+import java.security.NoSuchAlgorithmException;
 
-KeyPairGenerator keyPairGen5 = KeyPairGenerator.getInstance("EC");
-ECGenParameterSpec ecSpec10 = new ECGenParameterSpec("secp256r1"); // compliant
-keyPairGen5.initialize(ecSpec10);
+public static void main(String[] args) {
+    try {
+        KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
+        keyPairGenerator.initialize(2048);
 
-KeyGenerator keyGen2 = KeyGenerator.getInstance("AES");
-keyGen2.init(128); 
+    } catch (NoSuchAlgorithmException e) {
+        // ...
+    }
+}
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

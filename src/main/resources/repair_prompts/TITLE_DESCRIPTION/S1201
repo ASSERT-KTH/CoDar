@@ -1,5 +1,5 @@
 "equals" method overrides should accept "Object" parameters
-"equals" as a method name should be used exclusively to override Object.equals(Object) to prevent any confusion. It is tempting to overload the method to take a specific class instead of Object as parameter, to save the class comparison check. However, this will not work as expected when that is the only override. 
+Why is this an issue? In Java, the Object.equals() method is used for object comparison, and it is typically overridden in classes to provide a custom equality check based on your criteria for equality. The default implementation of equals() provided by the Object class compares the memory references of the two objects, that means it checks if the objects are actually the same instance in memory. The "equals" as a method name should be used exclusively to override Object.equals(Object) to prevent confusion. It is important to note that when you override equals(), you should also override the hashCode() method to maintain the contract between equals() and hashCode(). How to fix it Either override Object.equals(Object) or rename the method. Code examples 
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

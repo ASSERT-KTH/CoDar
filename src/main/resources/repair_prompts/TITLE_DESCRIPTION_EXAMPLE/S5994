@@ -1,0 +1,12 @@
+Regex patterns following a possessive quantifier should not always fail
+Why is this an issue? Possessive quantifiers in Regex patterns like below improve performance by eliminating needless backtracking: ?+ , *+ , ++ , {n}+ , {n,}+ , {n,m}+
+ But because possessive quantifiers do not keep backtracking positions and never give back, the following sub-patterns should not match only similar characters. Otherwise, possessive quantifiers consume all characters that could have matched the following sub-patterns and nothing remains for the following sub-patterns. 
+### Noncompliant
+Pattern pattern1 = Pattern.compile("a++abc");       // Noncompliant, the second 'a' never matches
+Pattern pattern2 = Pattern.compile("\\d*+[02468]"); // Noncompliant, the sub-pattern "[02468]" never matches
+### Compliant
+Pattern pattern1 = Pattern.compile("aa++bc");            
+Pattern pattern2 = Pattern.compile("\\d*+(?<=[02468])"); 
+### Noncompliant
+{{BUGGY}}
+### Compliant

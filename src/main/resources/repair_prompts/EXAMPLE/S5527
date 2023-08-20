@@ -2,12 +2,6 @@
 import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.Email;
 import org.apache.commons.mail.SimpleEmail;
-import java.io.InputStream;
-import java.net.URL;
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLSession;
-import javax.net.ssl.HostnameVerifier;
-import java.util.Properties;
 
 public void sendMail(String message) {
     Email email = new SimpleEmail();
@@ -19,41 +13,10 @@ public void sendMail(String message) {
 
     email.send();
 }
-
-public InputStream doRequest() {
-    URL url                          = new URL("https://example.org/");
-    HttpsURLConnection urlConnection = (HttpsURLConnection)url.openConnection();
-
-    urlConnection.setHostnameVerifier(new HostnameVerifier() {
-      @Override
-      public boolean verify(String requestedHost, SSLSession remoteServerSession) {
-        return true;  // Noncompliant
-      }
-    });
-
-    return urlConnection.getInputStream();
-}
-
-public Properties prepareEmailConnection() {
-    Properties props = new Properties();
-
-    props.put("mail.smtp.host", "smtp.gmail.com");
-    props.put("mail.smtp.socketFactory.port", "465");
-    props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory"); // Noncompliant
-    props.put("mail.smtp.auth", "true");
-    props.put("mail.smtp.port", "465");
-
-    return props;
-}
 ### Compliant
 import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.Email;
 import org.apache.commons.mail.SimpleEmail;
-import java.io.InputStream;
-import java.net.URL;
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLSession;
-import java.util.Properties;
 
 public void sendMail(String message) {
     Email email = new SimpleEmail();
@@ -65,26 +28,6 @@ public void sendMail(String message) {
     email.setSSLOnConnect(true);
 
     email.send();
-}
-
-public InputStream doRequest() {
-    URL url                          = new URL("https://example.org/");
-    HttpsURLConnection urlConnection = (HttpsURLConnection)url.openConnection();
-
-    return urlConnection.getInputStream();
-}
-
-public Properties prepareEmailConnection() {
-    Properties props = new Properties();
-
-    props.put("mail.smtp.host", "smtp.gmail.com");
-    props.put("mail.smtp.socketFactory.port", "465");
-    props.put("mail.smtp.ssl.checkserveridentity", true);
-    props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-    props.put("mail.smtp.auth", "true");
-    props.put("mail.smtp.port", "465");
-
-    return props;
 }
 ### Noncompliant
 {{BUGGY}}

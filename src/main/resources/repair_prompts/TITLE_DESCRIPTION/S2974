@@ -1,5 +1,5 @@
 Classes without "public" constructors should be "final"
-Classes with only private constructors should be marked final to prevent any mistaken extension attempts. 
+Why is this an issue? Classes with only private constructors should be marked final to prevent any mistaken extension attempts. 
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

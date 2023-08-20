@@ -1,5 +1,5 @@
 ### Noncompliant
-public class MyClass implements Enumeration {  // Non-Compliant
+public class MyClass implements Enumeration {  // Noncompliant
   /* ... */
 }
 ### Compliant

@@ -1,5 +1,5 @@
 Expressions should not be too complex
-The complexity of an expression is defined by the number of &&, || and condition ? ifTrue : ifFalse operators it contains. A single expression’s complexity should not become too high to keep the code readable. 
+Why is this an issue? The complexity of an expression is defined by the number of &&, || and condition ? ifTrue : ifFalse operators it contains. A single expression’s complexity should not become too high to keep the code readable. 
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

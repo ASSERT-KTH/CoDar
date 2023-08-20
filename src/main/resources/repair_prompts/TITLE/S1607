@@ -1,0 +1,4 @@
+JUnit4 @Ignored and JUnit5 @Disabled annotations should be used to disable tests and should provide a rationale
+### Noncompliant
+{{BUGGY}}
+### Compliant

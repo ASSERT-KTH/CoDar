@@ -1,5 +1,5 @@
 "volatile" variables should not be used with compound operators
-Using compound operators as well as increments and decrements (and toggling, in the case of booleans) on primitive fields are not atomic operations. That is, they don’t happen in a single step. For instance, when a volatile primitive field is incremented or decremented you run the risk of data loss if threads interleave in the steps of the update. Instead, use a guaranteed-atomic class such as AtomicInteger, or synchronize the access. 
+Why is this an issue? Using compound operators as well as increments and decrements (and toggling, in the case of booleans) on primitive fields are not atomic operations. That is, they don’t happen in a single step. For instance, when a volatile primitive field is incremented or decremented you run the risk of data loss if threads interleave in the steps of the update. Instead, use a guaranteed-atomic class such as AtomicInteger, or synchronize the access. 
 ### Noncompliant
 private volatile int count = 0;
 private volatile boolean boo = false;
@@ -23,7 +23,7 @@ public void incrementCount() {
 public synchronized void toggleBoo() {
   boo = !boo;
 }
- See CERT, VNA02-J. - Ensure that compound operations on shared variables are atomic
+ Resources CERT, VNA02-J. - Ensure that compound operations on shared variables are atomic
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

@@ -1,0 +1,4 @@
+"==" and "!=" should not be used when "equals" is overridden
+### Noncompliant
+{{BUGGY}}
+### Compliant

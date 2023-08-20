@@ -1,0 +1,4 @@
+OpenSAML2 should be configured to prevent authentication bypass
+### Noncompliant
+{{BUGGY}}
+### Compliant

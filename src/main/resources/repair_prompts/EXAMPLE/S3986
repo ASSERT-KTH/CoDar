@@ -1,0 +1,11 @@
+### Noncompliant
+Date date = new SimpleDateFormat("yyyy/MM/dd").parse("2015/12/31");
+String result = new SimpleDateFormat("YYYY/MM/dd").format(date);   //Noncompliant; yields '2016/12/31'
+result = DateTimeFormatter.ofPattern("YYYY/MM/dd").format(date); //Noncompliant; yields '2016/12/31'
+### Compliant
+Date date = new SimpleDateFormat("yyyy/MM/dd").parse("2015/12/31");
+String result = new SimpleDateFormat("yyyy/MM/dd").format(date);   //Yields '2015/12/31' as expected
+result = DateTimeFormatter.ofPattern("yyyy/MM/dd").format(date); //Yields '2015/12/31' as expected
+### Noncompliant
+{{BUGGY}}
+### Compliant

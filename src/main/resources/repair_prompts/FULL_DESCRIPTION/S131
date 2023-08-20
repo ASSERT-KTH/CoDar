@@ -1,0 +1,52 @@
+"switch" statements should have "default" clauses
+Why is this an issue? The requirement for a final default clause is defensive programming. The clause should either take appropriate action, or contain a suitable comment as to why no action is taken. 
+### Noncompliant
+switch (param) {  //missing default clause
+  case 0:
+    doSomething();
+    break;
+  case 1:
+    doSomethingElse();
+    break;
+}
+
+switch (param) {
+  default: // default clause should be the last one
+    error();
+    break;
+  case 0:
+    doSomething();
+    break;
+  case 1:
+    doSomethingElse();
+    break;
+}
+ 
+### Compliant
+switch (param) {
+  case 0:
+    doSomething();
+    break;
+  case 1:
+    doSomethingElse();
+    break;
+  default:
+    error();
+    break;
+}
+ Exceptions If the switch parameter is an Enum and if all the constants of this enum are used in the case statements, then no default clause is expected. Example: public enum Day {
+    SUNDAY, MONDAY
+}
+...
+switch(day) {
+  case SUNDAY:
+    doSomething();
+    break;
+  case MONDAY:
+    doSomethingElse();
+    break;
+}
+ Resources MITRE, CWE-478 - Missing Default Case in Switch Statement CERT, MSC01-C. - Strive for logical completeness
+### Noncompliant
+{{BUGGY}}
+### Compliant

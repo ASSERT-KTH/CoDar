@@ -1,0 +1,4 @@
+"null" should not be returned from a "Boolean" method
+### Noncompliant
+{{BUGGY}}
+### Compliant

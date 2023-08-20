@@ -1,9 +1,7 @@
 ### Noncompliant
-x -> {System.out.println(x+1);}
-(a, b) -> { return a+b; }
+(a, b) -> { return a + b; } // Noncompliant, replace code block with expression
 ### Compliant
-x -> System.out.println(x+1)
-(a, b) -> a+b    //For return statement, the return keyword should also be dropped
+(a, b) -> a + b             
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

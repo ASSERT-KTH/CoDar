@@ -1,12 +1,17 @@
 ### Noncompliant
 Lock lock = new MyLockImpl();
 synchronized(lock) {  // Noncompliant
-  //...
+  // ...
 }
 ### Compliant
 Lock lock = new MyLockImpl();
-lock.tryLock();
-//...
+if (lock.tryLock()) {
+  try {
+    // ...
+  } finally {
+    lock.unlock();
+  }
+}
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

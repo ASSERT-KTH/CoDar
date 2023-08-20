@@ -1,5 +1,5 @@
 Whitespace for text block indent should be consistent
-Either use only spaces or only tabs for the indentation of a text block. Mixing white space will lead to a result with irregular indentation. 
+Why is this an issue? Either use only spaces or only tabs for the indentation of a text block. Mixing white space will lead to a result with irregular indentation. 
 ### Noncompliant
 String textBlock = """
         this is

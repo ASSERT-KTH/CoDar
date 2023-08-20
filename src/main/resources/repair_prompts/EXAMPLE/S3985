@@ -1,0 +1,17 @@
+### Noncompliant
+public class TopLevel
+{
+  private class Nested {...} // Noncompliant: Nested is never used
+}
+### Compliant
+public class TopLevel
+{
+  void doSomething() {
+    Nested a = new Nested();
+    ...
+  }
+  private class Nested {...}
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

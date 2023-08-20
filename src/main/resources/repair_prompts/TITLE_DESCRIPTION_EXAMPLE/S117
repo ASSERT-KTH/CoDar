@@ -1,0 +1,15 @@
+Local variable and method parameter names should comply with a naming convention
+Why is this an issue? Shared naming conventions allow teams to collaborate effectively. This rule raises an issue when a local variable or function parameter name does not match the provided regular expression. 
+### Noncompliant
+public void doSomething(int my_param) {
+  int LOCAL;
+  ...
+}
+### Compliant
+public void doSomething(int myParam) {
+  int local;
+  ...
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

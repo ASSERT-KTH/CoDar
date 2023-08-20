@@ -1,5 +1,5 @@
 Empty statements should be removed
-Empty statements, i.e. ;, are usually introduced by mistake, for example because: It was meant to be replaced by an actual statement, but this was forgotten. There was a typo which lead the semicolon to be doubled, i.e. ;;. 
+Why is this an issue? Empty statements, i.e. ;, are usually introduced by mistake, for example because: It was meant to be replaced by an actual statement, but this was forgotten. There was a typo which lead the semicolon to be doubled, i.e. ;;. 
 ### Noncompliant
 void doSomething() {
   ;                                                       // Noncompliant - was used as a kind of TODO marker

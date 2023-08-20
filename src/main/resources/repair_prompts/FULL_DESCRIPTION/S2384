@@ -1,5 +1,5 @@
-Mutable members should not be stored or returned directly
-Mutable objects are those whose state can be changed. For instance, an array is mutable, but a String is not. Mutable class members should never be returned to a caller or accepted and stored directly. Doing so leaves you vulnerable to unexpected changes in your class state. Instead use an unmodifiable Collection (via Collections.unmodifiableCollection, Collections.unmodifiableList, …) or make a copy of the mutable object, and store or return the copy instead. This rule checks that arrays, collections and Dates are not stored or returned directly. 
+Private mutable members should not be stored or returned directly
+Why is this an issue? Mutable objects are those whose state can be changed. For instance, an array is mutable, but a String is not. Private mutable class members should never be returned to a caller or accepted and stored directly. Doing so leaves you vulnerable to unexpected changes in your class state. Instead use an unmodifiable Collection (via Collections.unmodifiableCollection, Collections.unmodifiableList, …) or make a copy of the mutable object, and store or return the copy instead. This rule checks that private arrays, collections and Dates are not stored or returned directly. 
 ### Noncompliant
 class A {
   private String [] strings;
@@ -51,7 +51,7 @@ public class B {
     a.getStrings()[0] = "yellow";  // a.strings = {"first", "second"};
   }
 }
- See MITRE, CWE-374 - Passing Mutable Objects to an Untrusted Method MITRE, CWE-375 - Returning a Mutable Object to an Untrusted Caller CERT, OBJ05-J. - Do not return references to private mutable class members CERT, OBJ06-J. - Defensively copy mutable inputs and mutable internal components CERT, OBJ13-J. - Ensure that references to mutable objects are not exposed
+ Resources MITRE, CWE-374 - Passing Mutable Objects to an Untrusted Method MITRE, CWE-375 - Returning a Mutable Object to an Untrusted Caller CERT, OBJ05-J. - Do not return references to private mutable class members CERT, OBJ06-J. - Defensively copy mutable inputs and mutable internal components CERT, OBJ13-J. - Ensure that references to mutable objects are not exposed
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

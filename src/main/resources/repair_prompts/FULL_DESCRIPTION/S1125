@@ -1,5 +1,5 @@
 Boolean literals should not be redundant
-Redundant Boolean literals should be removed from expressions to improve readability. 
+Why is this an issue? Redundant Boolean literals should be removed from expressions to improve readability. 
 ### Noncompliant
 if (booleanMethod() == true) { /* ... */ }
 if (booleanMethod() == false) { /* ... */ }

@@ -1,5 +1,5 @@
 Exception types should not be tested using "instanceof" in catch blocks
-Multiple catch blocks of the appropriate type should be used instead of catching a general exception, and then testing on the type. 
+Why is this an issue? A try-catch block is used to handle exceptions or errors that may occur during the execution of a block of code. It allows you to catch and handle exceptions gracefully, preventing your program from terminating abruptly. The code that may throw an exception is enclosed within the try block, while each catch block specifies the type of exception it can handle. The corresponding catch block is executed if the exception matches the type specified in any catch block. It is unnecessary to manually check the types using instanceof because Java automatically matches the exception type to the appropriate catch block based on the declared exception type in the catch clauses. How to fix it Replace if statements that check the exception type using instaceof with corresponding catch blocks. Code examples 
 ### Noncompliant
 try {
   /* ... */

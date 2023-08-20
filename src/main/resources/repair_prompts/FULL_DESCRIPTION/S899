@@ -1,5 +1,5 @@
 Return values should not be ignored when they contain the operation status code
-When the return value of a function call contains the operation status code, this value should be tested to make sure the operation completed successfully. This rule raises an issue when the return values of the following are ignored: java.io.File operations that return a status code (except mkdirs) Iterator.hasNext() Enumeration.hasMoreElements() Lock.tryLock() non-void Condition.await* methods CountDownLatch.await(long, TimeUnit) Semaphore.tryAcquire BlockingQueue: offer, remove 
+Why is this an issue? When the return value of a function call contains the operation status code, this value should be tested to make sure the operation completed successfully. This rule raises an issue when the return values of the following are ignored: java.io.File operations that return a status code (except mkdirs) Iterator.hasNext() Enumeration.hasMoreElements() Lock.tryLock() non-void Condition.await* methods CountDownLatch.await(long, TimeUnit) Semaphore.tryAcquire BlockingQueue: offer, remove 
 ### Noncompliant
 public void doSomething(File file, Lock lock) {
   file.delete();  // Noncompliant
@@ -16,7 +16,7 @@ public void doSomething(File file, Lock lock) {
     // file delete failed; take appropriate action
   }
 }
- See CERT, EXP00-J. - Do not ignore values returned by methods CERT, FIO02-J. - Detect and handle file-related errors MITRE, CWE-754 - Improper Check for Unusual Exceptional Conditions
+ Resources CERT, EXP00-J. - Do not ignore values returned by methods CERT, FIO02-J. - Detect and handle file-related errors MITRE, CWE-754 - Improper Check for Unusual Exceptional Conditions
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

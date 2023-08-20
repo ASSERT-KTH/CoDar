@@ -1,0 +1,22 @@
+### Noncompliant
+@Transactional  // Noncompliant
+void doTheThing(ArgClass arg) {
+  // ...
+}
+
+@Transactional  // Noncompliant
+private void doTheOtherThing(ArgClass arg) {
+  // ...
+}
+### Compliant
+@Transactional
+public void doTheThing(ArgClass arg) {
+  // ...
+}
+
+private void doTheOtherThing(ArgClass arg) {
+  // ...
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

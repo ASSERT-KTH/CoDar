@@ -1,0 +1,4 @@
+"Double.longBitsToDouble" should take "long" as argument
+### Noncompliant
+{{BUGGY}}
+### Compliant

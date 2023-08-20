@@ -1,5 +1,5 @@
 "toString()" and "clone()" methods should not return null
-Calling toString() or clone() on an object should always return a string or an object. Returning null instead contravenes the method’s implicit contract. 
+Why is this an issue? Calling toString() or clone() on an object should always return a string or an object. Returning null instead contravenes the method’s implicit contract. 
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

@@ -1,5 +1,0 @@
-Statements should be on separate lines
-For better readability, do not put more than one statement on a single line. 
-### Noncompliant
-{{BUGGY}}
-### Compliant

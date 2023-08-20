@@ -1,5 +1,5 @@
 ### Noncompliant
-@SomeAnnotations({  // Noncompliant
+@SomeAnnotations({  // Noncompliant, wrapper annotations are not necessary in Java 8+
   @SomeAnnotation(..a..),
   @SomeAnnotation(..b..),
   @SomeAnnotation(..c..),

@@ -1,5 +1,5 @@
 Default annotation parameter values should not be passed as arguments
-Specifying the default value for an annotation parameter is redundant. Such values should be omitted in the interests of readability. 
+Why is this an issue? Specifying the default value for an annotation parameter is redundant. Such values should be omitted in the interests of readability. 
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

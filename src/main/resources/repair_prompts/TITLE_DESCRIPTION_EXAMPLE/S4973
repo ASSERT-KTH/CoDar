@@ -1,5 +1,5 @@
 Strings and Boxed types should be compared using "equals()"
-It’s almost always a mistake to compare two instances of java.lang.String or boxed types like java.lang.Integer using reference equality == or !=, because it is not comparing actual value but locations in memory. 
+Why is this an issue? It’s almost always a mistake to compare two instances of java.lang.String or boxed types like java.lang.Integer using reference equality == or !=, because it is not comparing actual value but locations in memory. 
 ### Noncompliant
 String firstName = getFirstName(); // String overrides equals
 String lastName = getLastName();

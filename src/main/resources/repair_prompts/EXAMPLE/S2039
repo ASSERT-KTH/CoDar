@@ -1,0 +1,19 @@
+### Noncompliant
+class Ball {
+  String color = "red";  // Noncompliant
+}
+enum A {
+  B;
+  int a;  // Noncompliant
+}
+### Compliant
+class Ball {
+  private String color = "red";  
+}
+enum A {
+  B;
+  private int a;  
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

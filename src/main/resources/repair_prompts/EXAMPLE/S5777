@@ -1,0 +1,22 @@
+### Noncompliant
+@Test(expected = IndexOutOfBoundsException.class)
+public void testShouldFail() {
+  get();
+  // This test pass since execution will never get past this line.
+  Assert.assertEquals(0, 1);
+}
+
+private Object get() {
+  throw new IndexOutOfBoundsException();
+}
+### Compliant
+// This test correctly fails.
+@Test
+public void testToString() {
+    Object obj = get();
+    Assert.assertThrows(IndexOutOfBoundsException.class, () -> obj.toString());
+    Assert.assertEquals(0, 1);
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

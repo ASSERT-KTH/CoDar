@@ -1,0 +1,4 @@
+Unused "private" fields should be removed
+### Noncompliant
+{{BUGGY}}
+### Compliant

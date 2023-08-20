@@ -1,0 +1,13 @@
+### Noncompliant
+Optional<String> value = this.getOptionalValue();
+
+// ...
+
+String stringValue = value.get(); // Noncompliant
+### Compliant
+this.getOptionalValue().ifPresent(stringValue ->
+  // Do something with stringValue
+);
+### Noncompliant
+{{BUGGY}}
+### Compliant

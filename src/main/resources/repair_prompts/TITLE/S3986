@@ -1,0 +1,4 @@
+Week Year ("YYYY") should not be used for date formatting
+### Noncompliant
+{{BUGGY}}
+### Compliant

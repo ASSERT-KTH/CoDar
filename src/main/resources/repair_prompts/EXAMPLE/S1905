@@ -1,0 +1,23 @@
+### Noncompliant
+public void example() {
+  for (Foo obj : (List<Foo>) getFoos()) {  // Noncompliant; cast unnecessary because List<Foo> is what's returned
+    //...
+  }
+}
+
+public List<Foo> getFoos() {
+  return this.foos;
+}
+### Compliant
+public void example() {
+  for (Foo obj : getFoos()) {
+    //...
+  }
+}
+
+public List<Foo> getFoos() {
+  return this.foos;
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,4 @@
+Classes should not be empty
+### Noncompliant
+{{BUGGY}}
+### Compliant

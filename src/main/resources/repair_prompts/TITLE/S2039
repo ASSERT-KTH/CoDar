@@ -1,0 +1,4 @@
+Member variable visibility should be specified
+### Noncompliant
+{{BUGGY}}
+### Compliant

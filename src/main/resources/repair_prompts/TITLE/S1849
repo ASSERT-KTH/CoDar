@@ -1,0 +1,4 @@
+"Iterator.hasNext()" should not call "Iterator.next()"
+### Noncompliant
+{{BUGGY}}
+### Compliant

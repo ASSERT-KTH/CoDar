@@ -1,0 +1,24 @@
+Equality operators should not be used in "for" loop termination conditions
+Why is this an issue? Testing for loop termination using an equality operator (== and !=) is dangerous, because it could set up an infinite loop. Using a broader relational operator instead casts a wider net, and makes it harder (but not impossible) to accidentally write an infinite loop. 
+### Noncompliant
+for (int i = 1; i != 10; i += 2)  // Noncompliant. Infinite; i goes from 9 straight to 11.
+{
+  //...
+}
+ 
+### Compliant
+for (int i = 1; i <= 10; i += 2)  // Compliant
+{
+  //...
+}
+ Exceptions Equality operators are ignored if the loop counter is not modified within the body of the loop and either: starts below the ending value and is incremented by 1 on each iteration. starts above the ending value and is decremented by 1 on each iteration. Equality operators are also ignored when the test is against null. for (int i = 0; arr[i] != null; i++) {
+  // ...
+}
+
+for (int i = 0; (item = arr[i]) != null; i++) {
+  // ...
+}
+ Resources MITRE, CWE-835 - Loop with Unreachable Exit Condition ('Infinite Loop') CERT, MSC21-C. - Use robust loop termination conditions
+### Noncompliant
+{{BUGGY}}
+### Compliant

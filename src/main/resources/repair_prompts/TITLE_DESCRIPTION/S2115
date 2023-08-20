@@ -1,5 +1,5 @@
 A secure password should be used when connecting to a database
-When relying on the password authentication mode for the database connection, a secure password should be chosen. This rule raises an issue when an empty password is used. 
+Why is this an issue? When relying on the password authentication mode for the database connection, a secure password should be chosen. This rule raises an issue when an empty password is used. 
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

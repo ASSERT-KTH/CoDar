@@ -1,0 +1,23 @@
+### Noncompliant
+public class Foo {
+  private String foo;
+
+  public String getFoo() { }
+}
+
+Foo foo = new Foo();
+foo.getFoo() // what does this return?
+### Compliant
+public class Foo {
+  private String name;
+
+  public String getName() { }
+}
+
+//...
+
+Foo foo = new Foo();
+foo.getName()
+### Noncompliant
+{{BUGGY}}
+### Compliant

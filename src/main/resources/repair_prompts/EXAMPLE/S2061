@@ -1,41 +1,29 @@
 ### Noncompliant
 public class Watermelon implements Serializable {
-  // ...
-  void writeObject(java.io.ObjectOutputStream out)// Noncompliant; not private
+
+  void writeObject(java.io.ObjectOutputStream out)         // Noncompliant, "writeObject" needs to be private, which it is not here
         throws IOException
   {...}
 
-  private void readObject(java.io.ObjectInputStream in)
+  static Object readResolve() throws ObjectStreamException // Noncompliant, "readResolve" should not be static
   {...}
 
-  public void readObjectNoData()  // Noncompliant; not private
-  {...}
-
-  static Object readResolve() throws ObjectStreamException  // Noncompliant; this method may have any access modifier, may not be static
-
-  Watermelon writeReplace() throws ObjectStreamException // Noncompliant; this method may have any access modifier, but must return Object
+  Watermelon writeReplace() throws ObjectStreamException   // Noncompliant, "writeReplace" must return "java.lang.Object"
   {...}
 }
 ### Compliant
 public class Watermelon implements Serializable {
-  // ...
-  private void writeObject(java.io.ObjectOutputStream out)
+
+  private void writeObject(java.io.ObjectOutputStream out)    
         throws IOException
   {...}
 
-  private void readObject(java.io.ObjectInputStream in)
-        throws IOException, ClassNotFoundException
+  protected Object readResolve() throws ObjectStreamException 
   {...}
 
-  private void readObjectNoData()
-        throws ObjectStreamException
+  private Object writeReplace() throws ObjectStreamException  
   {...}
-
-  protected Object readResolve() throws ObjectStreamException
-  {...}
-
-  private Object writeReplace() throws ObjectStreamException
-  {...}
+}
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

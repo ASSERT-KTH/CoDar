@@ -1,0 +1,15 @@
+### Noncompliant
+// file: src/main/foo/Fubar.java
+package com.foo.bar;
+
+class Fubar {
+}
+### Compliant
+// file: src/main/com/foo/bar/Fubar.java
+package com.foo.bar;
+
+class Fubar {
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

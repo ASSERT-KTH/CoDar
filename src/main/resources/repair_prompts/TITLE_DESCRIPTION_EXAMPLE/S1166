@@ -1,0 +1,44 @@
+Exception handlers should preserve the original exceptions
+Why is this an issue? When handling a caught exception, the original exception’s message and stack trace should be logged or passed forward. 
+### Noncompliant
+try {
+  /* ... */
+} catch (Exception e) {   // Noncompliant - exception is lost
+  LOGGER.info("context");
+}
+
+try {
+  /* ... */
+} catch (Exception e) {  // Noncompliant - exception is lost (only message is preserved)
+  LOGGER.info(e.getMessage());
+}
+
+try {
+  /* ... */
+} catch (Exception e) {  // Noncompliant - original exception is lost
+  throw new RuntimeException("context");
+}
+### Compliant
+try {
+  /* ... */
+} catch (Exception e) {
+  LOGGER.info(e);  // exception is logged
+}
+
+try {
+  /* ... */
+} catch (Exception e) {
+  throw new RuntimeException(e);   // exception stack trace is propagated
+}
+
+try {
+  /* ... */
+} catch (RuntimeException e) {
+  doSomething();
+  throw e;  // original exception passed forward
+} catch (Exception e) {
+  throw new RuntimeException(e);  // Conversion into unchecked exception is also allowed
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

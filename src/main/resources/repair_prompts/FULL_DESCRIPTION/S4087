@@ -1,5 +1,5 @@
 "close()" calls should not be redundant
-Java 7’s try-with-resources structure automatically handles closing the resources that the try itself opens. Thus, adding an explicit close() call is redundant and potentially confusing. 
+Why is this an issue? Java 7’s try-with-resources structure automatically handles closing the resources that the try itself opens. Thus, adding an explicit close() call is redundant and potentially confusing. 
 ### Noncompliant
 try (PrintWriter writer = new PrintWriter(process.getOutputStream())) {
   String contents = file.contents();

@@ -1,0 +1,4 @@
+Assignments should not be made from within sub-expressions
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -2,26 +2,26 @@
 public class Fruit implements Serializable {
   private static final long serialVersionUID = 1;
 
-  private Object readResolve() throws ObjectStreamException  // Noncompliant
+  private Object readResolve() throws ObjectStreamException // Noncompliant, `readResolve` should not be private
   {...}
 
   //...
 }
 
-public class Raspberry extends Fruit implements Serializable {  // No access to parent's readResolve() method
+public class Raspberry extends Fruit implements Serializable { // This class has no access to the parent's "readResolve" method
   //...
 }
 ### Compliant
 public class Fruit implements Serializable {
   private static final long serialVersionUID = 1;
 
-  protected Object readResolve() throws ObjectStreamException
+  protected Object readResolve() throws ObjectStreamException 
   {...}
 
   //...
 }
 
-public class Raspberry extends Fruit implements Serializable {
+public class Raspberry extends Fruit implements Serializable { // This class has access to the parent's "readResolve"
   //...
 }
 ### Noncompliant

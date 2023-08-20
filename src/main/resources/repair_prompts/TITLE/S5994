@@ -1,0 +1,4 @@
+Regex patterns following a possessive quantifier should not always fail
+### Noncompliant
+{{BUGGY}}
+### Compliant

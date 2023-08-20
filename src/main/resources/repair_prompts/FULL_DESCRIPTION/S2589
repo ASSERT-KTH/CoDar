@@ -1,5 +1,5 @@
 Boolean expressions should not be gratuitous
-If a boolean expression doesn’t change the evaluation of the condition, then it is entirely unnecessary, and can be removed. If it is gratuitous because it does not match the programmer’s intent, then it’s a bug and the expression should be fixed. 
+Why is this an issue? If a boolean expression doesn’t change the evaluation of the condition, then it is entirely unnecessary, and can be removed. If it is gratuitous because it does not match the programmer’s intent, then it’s a bug and the expression should be fixed. 
 ### Noncompliant
 a = true;
 if (a) { // Noncompliant
@@ -27,7 +27,7 @@ if (b) {
 if (c) {
   doSomething();
 }
- See MITRE, CWE-571 - Expression is Always True MITRE, CWE-570 - Expression is Always False
+ Resources MITRE, CWE-571 - Expression is Always True MITRE, CWE-570 - Expression is Always False
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

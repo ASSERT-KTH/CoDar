@@ -1,5 +1,5 @@
 "readObject" should not be "synchronized"
-A readObject method is written when a Serializable object needs special handling to be rehydrated from file. It should be the case that the object being created by readObject is only visible to the thread that invoked the method, and the synchronized keyword is not needed, and using synchronized anyway is just confusing. If this is not the case, the method should be refactored to make it the case. 
+Why is this an issue? The readObject method is implemented when a Serializable object requires special handling to be reconstructed from a file. The object created by readObject is accessed only by the thread that called the method, thus using the synchronized keyword in this context is unnecessary and causes confusion. 
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

@@ -1,5 +1,5 @@
 "Map.get" and value test should be replaced with single method call
-It’s a common pattern to test the result of a java.util.Map.get() against null or calling java.util.Map.containsKey() before proceeding with adding or changing the value in the map. However the java.util.Map API offers a significantly better alternative in the form of the computeIfPresent() and computeIfAbsent() methods. Using these instead leads to cleaner and more readable code. Note that this rule is automatically disabled when the project’s sonar.java.source is not 8. 
+Why is this an issue? It’s a common pattern to test the result of a java.util.Map.get() against null or calling java.util.Map.containsKey() before proceeding with adding or changing the value in the map. However the java.util.Map API offers a significantly better alternative in the form of the computeIfPresent() and computeIfAbsent() methods. Using these instead leads to cleaner and more readable code. Note that this rule is automatically disabled when the project’s sonar.java.source is not 8. 
 ### Noncompliant
 V value = map.get(key);
 if (value == null) {  // Noncompliant
@@ -18,7 +18,7 @@ return value;
  
 ### Compliant
 return map.computeIfAbsent(key, k -> V.createFor(k));
- Exceptions This rule will not raise an issue when trying to add null to a map, because computeIfAbsent will not add the entry if the value returned by the function is null. See Also {rule:java:S6104} - Map "computeIfAbsent()" and "computeIfPresent()" should not be used to add "null" values.
+ Exceptions This rule will not raise an issue when trying to add null to a map, because computeIfAbsent will not add the entry if the value returned by the function is null. Resources Related rules S6104 - Map "computeIfAbsent()" and "computeIfPresent()" should not be used to add "null" values.
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

@@ -1,11 +1,12 @@
 ### Noncompliant
 Integer i = 123456789;
 Float f = 1.0f;
-Number n = condition ? i : f;  // Noncompliant; i is coerced to float. n = 1.23456792E8
+Number n1 = condition ? i : f;  // Noncompliant, unexpected precision loss, n1 = 1.23456792E8
 ### Compliant
 Integer i = 123456789;
 Float f = 1.0f;
-Number n = condition ? (Number) i : f;  // n = 123456789
+Number n1 = condition ? (Number) i : f; 
+Number n2 = condition ? i : (Number) f; 
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

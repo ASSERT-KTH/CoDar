@@ -1,0 +1,26 @@
+Member variable visibility should be specified
+Why is this an issue? Failing to explicitly declare the visibility of a member variable could result it in having a visibility you don’t expect, and potentially leave it open to unexpected modification by other classes. The default access level modifier may be intentional; in that case, this rule can report false positives. 
+### Noncompliant
+class Ball {
+  String color = "red";  // Noncompliant
+}
+enum A {
+  B;
+  int a;  // Noncompliant
+}
+ 
+### Compliant
+class Ball {
+  private String color = "red";  // Compliant
+}
+enum A {
+  B;
+  private int a;  // Compliant
+}
+ Exceptions Members with comments containing the word modifier are ignored, as it indicates the modifier is intentionally omitted. Members annotated with the @VisibleForTesting annotation are ignored, as it indicates that visibility has been purposely relaxed to make the code testable. class Cone {
+  @VisibleForTesting
+  Logger logger; // Compliant
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

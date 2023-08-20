@@ -1,0 +1,4 @@
+Unused "private" classes should be removed
+### Noncompliant
+{{BUGGY}}
+### Compliant

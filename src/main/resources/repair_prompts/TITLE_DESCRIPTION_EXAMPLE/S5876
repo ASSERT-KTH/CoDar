@@ -1,5 +1,5 @@
 A new session should be created during user authentication
-Session fixation attacks occur when an attacker can force a legitimate user to use a session ID that he knows. To avoid fixation attacks, it’s a good practice to generate a new session each time a user authenticates and delete/invalidate the existing session (the one possibly known by the attacker). 
+Why is this an issue? Session fixation attacks occur when an attacker can force a legitimate user to use a session ID that he knows. To avoid fixation attacks, it’s a good practice to generate a new session each time a user authenticates and delete/invalidate the existing session (the one possibly known by the attacker). 
 ### Noncompliant
 @Override
 protected void configure(HttpSecurity http) throws Exception {

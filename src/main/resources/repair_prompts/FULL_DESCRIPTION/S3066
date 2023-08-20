@@ -1,5 +1,5 @@
 "enum" fields should not be publicly mutable
-enums are generally thought of as constant, but an enum with a public field or public setter is non-constant. Ideally fields in an enum are private and set in the constructor, but if that’s not possible, their visibility should be reduced as much as possible. 
+Why is this an issue? enums are generally thought of as constant, but an enum with a public field or public setter is non-constant. Ideally fields in an enum are private and set in the constructor, but if that’s not possible, their visibility should be reduced as much as possible. 
 ### Noncompliant
 public enum Continent {
 

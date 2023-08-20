@@ -1,0 +1,21 @@
+Assignments should not be made from within sub-expressions
+Why is this an issue? Assignments within sub-expressions are hard to spot and therefore make the code less readable. Ideally, sub-expressions should not have side-effects. 
+### Noncompliant
+if ((str = cont.substring(pos1, pos2)).isEmpty()) {  // Noncompliant
+  //...
+ 
+### Compliant
+str = cont.substring(pos1, pos2);
+if (str.isEmpty()) {
+  //...
+ Exceptions Assignments in while statement conditions, and assignments enclosed in relational expressions are ignored. BufferedReader br = new BufferedReader(/* ... */);
+String line;
+while ((line = br.readLine()) != null) {...}
+if ((i = j) >= 1) {...}
+ Chained assignments, including compound assignments, are ignored. int i = j = 0;
+int k = (j += 1);
+result = (bresult = new byte[len]);
+ Resources MITRE, CWE-481 - Assigning instead of Comparing CERT, EXP45-C. - Do not perform assignments in selection statements CERT, EXP51-J. - Do not perform assignments in conditional expressions
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,4 +1,4 @@
-"InterruptedException" should not be ignored
+"InterruptedException" and "ThreadDeath" should not be ignored
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

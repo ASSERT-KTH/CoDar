@@ -1,4 +1,4 @@
-"equals(Object obj)" should test argument type
+"equals(Object obj)" should test the argument's type
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

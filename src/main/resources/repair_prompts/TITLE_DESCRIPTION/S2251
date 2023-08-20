@@ -1,5 +1,5 @@
 A "for" loop update clause should move the counter in the right direction
-A for loop with a counter that moves in the wrong direction is not an infinite loop. Because of wraparound, the loop will eventually reach its stop condition, but in doing so, it will run many, many more times than anticipated, potentially causing unexpected behavior. 
+Why is this an issue? A for loop with a counter that moves in the wrong direction, away from the stop condition, is not an infinite loop. Because of wraparound, the loop will eventually reach its stop condition, but in doing so, it will probably run more times than anticipated, potentially causing unexpected behavior. How to fix it Code examples 
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

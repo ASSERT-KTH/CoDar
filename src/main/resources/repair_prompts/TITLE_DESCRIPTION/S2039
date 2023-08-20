@@ -1,0 +1,5 @@
+Member variable visibility should be specified
+Why is this an issue? Failing to explicitly declare the visibility of a member variable could result it in having a visibility you don’t expect, and potentially leave it open to unexpected modification by other classes. The default access level modifier may be intentional; in that case, this rule can report false positives. 
+### Noncompliant
+{{BUGGY}}
+### Compliant

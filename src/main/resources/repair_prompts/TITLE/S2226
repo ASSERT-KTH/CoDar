@@ -1,0 +1,4 @@
+Servlets should not have mutable instance fields
+### Noncompliant
+{{BUGGY}}
+### Compliant

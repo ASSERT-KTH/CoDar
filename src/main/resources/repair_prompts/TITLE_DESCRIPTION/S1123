@@ -1,0 +1,5 @@
+Deprecated elements should have both the annotation and the Javadoc tag
+Why is this an issue? Deprecation should be marked with both the @Deprecated annotation and @deprecated Javadoc tag. The annotation enables tools such as IDEs to warn about referencing deprecated elements, and the tag can be used to explain when it was deprecated, why, and how references should be refactored. 
+### Noncompliant
+{{BUGGY}}
+### Compliant

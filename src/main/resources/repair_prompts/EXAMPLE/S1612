@@ -2,10 +2,10 @@
 class A {
   void process(List<A> list) {
     list.stream()
-      .filter(a -> a instanceof B)
-      .map(a -> (B) a)
-      .map(b -> b.<String>getObject())
-      .forEach(b -> { System.out.println(b); });
+      .filter(myListValue -> myListValue instanceof B)     // Noncompliant
+      .map(listValueToMap -> (B) listValueToMap)           // Noncompliant
+      .map(bValueToMap -> bValueToMap.<String>getObject()) // Noncompliant
+      .forEach(o -> System.out.println(o));                // Noncompliant
   }
 }
 
@@ -18,10 +18,10 @@ class B extends A {
 class A {
   void process(List<A> list) {
     list.stream()
-      .filter(B.class::isInstance)
-      .map(B.class::cast)            // Note: keeping the lambda would also be compliant here, since it is shorter
-      .map(B::<String>getObject)
-      .forEach(System.out::println);
+      .filter(B.class::isInstance)   
+      .map(B.class::cast)            
+      .map(B::<String>getObject)     
+      .forEach(System.out::println); 
   }
 }
 

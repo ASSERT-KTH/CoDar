@@ -1,0 +1,19 @@
+### Noncompliant
+import org.springframework.boot.SpringApplication;
+
+@SpringBootApplication // Noncompliant; RootBootApp is declared in the default package
+public class RootBootApp {
+...
+}
+### Compliant
+package hello;
+
+import org.springframework.boot.SpringApplication;
+
+@SpringBootApplication 
+public class RootBootApp {
+...
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,5 +1,5 @@
 Methods should not have too many parameters
-A long parameter list can indicate that a new structure should be created to wrap the numerous parameters or that the function is doing too many things. 
+Why is this an issue? A long parameter list can indicate that a new structure should be created to wrap the numerous parameters or that the function is doing too many things. 
 ### Noncompliant
 With a maximum number of 4 parameters: public void doSomething(int param1, int param2, int param3, String param4, long param5) {
 ...

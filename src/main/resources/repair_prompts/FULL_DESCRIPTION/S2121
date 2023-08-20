@@ -1,22 +1,25 @@
-Silly String operations should not be made
-Creating a substring from 0 to the end is silly. You’ll end up with the same string you started with. Using the value of String.length as either the start or end of a substring has similarly predictable results. Calling String.contains with the argument being identical to the String on which contains is invoked doesn’t make sense. 
+String operations with predictable outcomes should be avoided
+Why is this an issue? Operations performed on a string with predictable outcomes should be avoided. For example: checking if a string contains itself comparing a string with itself matching a string against itself creating a substring from 0 to the end of the string creating a substring from the end of the string replacing a string with itself replacing a substring with the exact substring How to fix it Avoid performing the operation that has a predictable outcome. Code examples 
 ### Noncompliant
-String speech = "Now is the time for all good people to come to the aid of their country.";
+String speech = "SonarQube is the best static code analysis tool."
 
-String s1 = speech.substring(0); // Noncompliant. Yields the whole string
-String s2 = speech.substring(speech.length()); // Noncompliant. Yields "";
-String s3 = speech.substring(5,speech.length()); // Noncompliant. Use the 1-arg version instead
+String s1 = speech.substring(0); // Noncompliant - yields the whole string
+String s2 = speech.substring(speech.length()); // Noncompliant - yields "";
+String s3 = speech.substring(5, speech.length()); // Noncompliant - use the 1-arg version instead
 
-if (speech.contains(speech)) { // Noncompliant
- // always true
+if (speech.contains(speech)) { // Noncompliant - always true
+    // ...
 }
  
 ### Compliant
-String speech = "Now is the time for all good people to come to the aid of their country.";
+String speech = "SonarQube is the best static code analysis tool."
 
 String s1 = speech;
 String s2 = "";
 String s3 = speech.substring(5);
+
+// ...
+ Resources Oracle Java SE - String
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

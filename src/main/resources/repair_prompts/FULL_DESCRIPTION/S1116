@@ -1,5 +1,5 @@
 Empty statements should be removed
-Empty statements, i.e. ;, are usually introduced by mistake, for example because: It was meant to be replaced by an actual statement, but this was forgotten. There was a typo which lead the semicolon to be doubled, i.e. ;;. 
+Why is this an issue? Empty statements, i.e. ;, are usually introduced by mistake, for example because: It was meant to be replaced by an actual statement, but this was forgotten. There was a typo which lead the semicolon to be doubled, i.e. ;;. 
 ### Noncompliant
 void doSomething() {
   ;                                                       // Noncompliant - was used as a kind of TODO marker
@@ -19,7 +19,7 @@ void doSomethingElse() {
   for (int i = 0; i < 3; i++) ; // compliant if unique statement of a loop
   ...
 }
- See CERT, MSC12-C. - Detect and remove code that has no effect or is never executed CERT, MSC51-J. - Do not place a semicolon immediately following an if, for, or while condition CERT, EXP15-C. - Do not place a semicolon on the same line as an if, for, or while statement
+ Resources CERT, MSC12-C. - Detect and remove code that has no effect or is never executed CERT, MSC51-J. - Do not place a semicolon immediately following an if, for, or while condition CERT, EXP15-C. - Do not place a semicolon on the same line as an if, for, or while statement
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

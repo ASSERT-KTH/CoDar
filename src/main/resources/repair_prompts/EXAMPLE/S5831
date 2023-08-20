@@ -1,6 +1,6 @@
 ### Noncompliant
 Configuration configuration = new Configuration(); // Noncompliant, this configuration will not be applied.
-configuration.setComparingPrivateFields(true);{code}
+configuration.setComparingPrivateFields(true);
 ### Compliant
 Configuration configuration = new Configuration();
 configuration.setComparingPrivateFields(true);

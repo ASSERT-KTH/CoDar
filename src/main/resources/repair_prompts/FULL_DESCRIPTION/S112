@@ -1,0 +1,20 @@
+Generic exceptions should never be thrown
+Why is this an issue? Using such generic exceptions as Error, RuntimeException, Throwable, and Exception prevents calling methods from handling true, system-generated exceptions differently than application-generated errors. 
+### Noncompliant
+public void foo(String bar) throws Throwable {  // Noncompliant
+  throw new RuntimeException("My Message");     // Noncompliant
+}
+ 
+### Compliant
+public void foo(String bar) {
+  throw new MyOwnRuntimeException("My Message");
+}
+ Exceptions Generic exceptions in the signatures of overriding methods are ignored, because overriding method has to follow signature of the throw declaration in the superclass. The issue will be raised on superclass declaration of the method (or won’t be raised at all if superclass is not part of the analysis). @Override
+public void myMethod() throws Exception {...}
+ Generic exceptions are also ignored in the signatures of methods that make calls to methods that throw generic exceptions. public void myOtherMethod throws Exception {
+  doTheThing();  // this method throws Exception
+}
+ Resources MITRE, CWE-397 - Declaration of Throws for Generic Exception CERT, ERR07-J. - Do not throw RuntimeException, Exception, or Throwable
+### Noncompliant
+{{BUGGY}}
+### Compliant

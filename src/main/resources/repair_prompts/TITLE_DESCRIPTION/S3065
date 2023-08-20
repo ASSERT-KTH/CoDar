@@ -1,0 +1,5 @@
+Min and max used in combination should not always return the same value
+Why is this an issue? When using Math.min() and Math.max() together for bounds checking, it’s important to feed the right operands to each method. Math.min() should be used with the upper end of the range being checked, and Math.max() should be used with the lower end of the range. Get it backwards, and the result will always be the same end of the range. 
+### Noncompliant
+{{BUGGY}}
+### Compliant

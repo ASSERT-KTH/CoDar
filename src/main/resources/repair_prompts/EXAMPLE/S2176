@@ -1,11 +1,17 @@
 ### Noncompliant
-package my.mypackage;
+package org.foo.presentation;
 
-public class Foo implements a.b.Foo { // Noncompliant
+public class User implements org.foo.domain.User { // Noncompliant
+  // ...
+}
 ### Compliant
-package my.mypackage;
+package org.foo.presentation;
 
-public class FooJr implements a.b.Foo {
+import org.foo.domain.User;
+
+public class UserView implements User { 
+  // ...
+}
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

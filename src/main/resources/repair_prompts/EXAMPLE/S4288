@@ -1,0 +1,21 @@
+### Noncompliant
+@Controller
+public class HelloWorld {
+
+  @Autowired
+  private String name = null; // Noncompliant
+
+}
+### Compliant
+@Controller
+public class HelloWorld {
+
+  private String name = null;
+
+  HelloWorld(String name) {
+    this.name = name;
+  }
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

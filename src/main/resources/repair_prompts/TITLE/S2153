@@ -1,4 +1,4 @@
-Boxing and unboxing should not be immediately reversed
+Unnecessary boxing and unboxing should be avoided
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

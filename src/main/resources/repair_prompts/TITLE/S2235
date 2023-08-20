@@ -1,4 +1,4 @@
-IllegalMonitorStateException should not be caught
+"IllegalMonitorStateException" should not be caught
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

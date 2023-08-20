@@ -1,4 +1,0 @@
-"StringBuilder" and "StringBuffer" should not be instantiated with a character
-### Noncompliant
-{{BUGGY}}
-### Compliant

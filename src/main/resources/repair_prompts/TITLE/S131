@@ -1,0 +1,4 @@
+"switch" statements should have "default" clauses
+### Noncompliant
+{{BUGGY}}
+### Compliant

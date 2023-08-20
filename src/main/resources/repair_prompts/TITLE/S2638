@@ -1,0 +1,4 @@
+Method overrides should not change contracts
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,5 +1,5 @@
 Null checks should not be used with "instanceof"
-There’s no need to null test in conjunction with an instanceof test. null is not an instanceof anything, so a null check is redundant. 
+Why is this an issue? There’s no need to null test in conjunction with an instanceof test. null is not an instanceof anything, so a null check is redundant. 
 ### Noncompliant
 if (x != null && x instanceof MyClass) { ... }  // Noncompliant
 

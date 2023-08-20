@@ -1,18 +1,18 @@
 ### Noncompliant
-public int hashcode() { /* ... */ }  // Noncompliant
+public int hashcode() { /* ... */ }             // Noncompliant
 
-public String tostring() { /* ... */ } // Noncompliant
+public String tostring() { /* ... */ }          // Noncompliant
 
 public boolean equal(Object obj) { /* ... */ }  // Noncompliant
 ### Compliant
 @Override
-public int hashCode() { /* ... */ }
+public int hashCode() { /* ... */ }             
 
 @Override
-public String toString() { /* ... */ }
+public String toString() { /* ... */ }          
 
 @Override
-public boolean equals(Object obj) { /* ... */ }
+public boolean equals(Object obj) { /* ... */ } 
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

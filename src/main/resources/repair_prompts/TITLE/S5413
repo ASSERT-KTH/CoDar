@@ -1,0 +1,4 @@
+'List.remove()' should not be used in ascending 'for' loops
+### Noncompliant
+{{BUGGY}}
+### Compliant

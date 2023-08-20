@@ -1,9 +1,9 @@
 ### Noncompliant
-public final class MyClass {
-   private static String foo_bar;
+public class MyClass {
+   private static String foo_bar; // Noncompliant
 }
 ### Compliant
-class MyClass {
+public class MyClass {
    private static String fooBar;
 }
 ### Noncompliant

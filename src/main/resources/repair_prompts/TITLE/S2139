@@ -1,0 +1,4 @@
+Exceptions should be either logged or rethrown but not both
+### Noncompliant
+{{BUGGY}}
+### Compliant

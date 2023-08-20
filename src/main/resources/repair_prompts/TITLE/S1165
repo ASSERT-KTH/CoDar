@@ -1,4 +1,4 @@
-Exception classes should be immutable
+Exception classes should have final fields
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

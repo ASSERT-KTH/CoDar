@@ -1,0 +1,5 @@
+Case insensitive string comparisons should be made without intermediate upper or lower casing
+Why is this an issue? Using toLowerCase() or toUpperCase() to make case insensitive comparisons is inefficient because it requires the creation of temporary, intermediate String objects. 
+### Noncompliant
+{{BUGGY}}
+### Compliant

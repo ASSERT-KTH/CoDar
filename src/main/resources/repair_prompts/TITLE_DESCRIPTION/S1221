@@ -1,5 +1,5 @@
 Methods should not be named "tostring", "hashcode" or "equal"
-Naming a method tostring, hashcode or equal is either: A bug in the form of a typo. Overriding toString, Object.hashCode() (note the camelCasing) or Object.equals (note the 's' on the end) was meant, and the application does not behave as expected. Done on purpose. The name however will confuse every other developer, who may not notice the naming difference, or who will think it is a bug. In both cases, the method should be renamed. 
+Why is this an issue? Due to the similar name with the methods Object.toString, Object.hashCode and Object.equals, there is a significant likelihood that a developer intended to override one of these methods but made a spelling error. Even if no such error exists and the naming was done on purpose, these method names can be misleading. Readers might not notice the difference, or if they do, they may falsely assume that the developer made a mistake. How to fix it If you intended to override one of the methods Object.toString, Object.hashCode, or Object.equals, correct the spelling. Also, you should add the @Override modifier, which causes a compiler error message in case the annotated method does not override anything. If the naming was done on purpose, you should rename the methods to be more distinctive. Code examples 
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

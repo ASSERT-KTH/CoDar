@@ -1,5 +1,5 @@
 Printf-style format strings should not lead to unexpected behavior at runtime
-Because printf-style format strings are interpreted at runtime, rather than validated by the Java compiler, they can contain errors that lead to unexpected behavior or runtime errors. This rule statically validates the good behavior of printf-style formats when calling the format(...) methods of java.util.Formatter, java.lang.String, java.io.PrintStream, MessageFormat, and java.io.PrintWriter classes and the printf(...) methods of java.io.PrintStream or java.io.PrintWriter classes. 
+Why is this an issue? Because printf-style format strings are interpreted at runtime, rather than validated by the Java compiler, they can contain errors that lead to unexpected behavior or runtime errors. This rule statically validates the good behavior of printf-style formats when calling the format(...) methods of java.util.Formatter, java.lang.String, java.io.PrintStream, MessageFormat, and java.io.PrintWriter classes and the printf(...) methods of java.io.PrintStream or java.io.PrintWriter classes. 
 ### Noncompliant
 String.format("The value of my integer is %d", "Hello World");  // Noncompliant; an 'int' is expected rather than a String
 String.format("Duke's Birthday year is %tX", c);  //Noncompliant; X is not a supported time conversion character
@@ -43,7 +43,7 @@ slf4jLog.debug(marker, "message {}", 1);
 
 org.apache.logging.log4j.Logger log4jLog;
 log4jLog.debug("message {}", 1);
- See CERT, FIO47-C. - Use valid format strings
+ Resources CERT, FIO47-C. - Use valid format strings
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

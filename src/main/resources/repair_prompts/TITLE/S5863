@@ -1,0 +1,4 @@
+Assertions should not compare an object to itself
+### Noncompliant
+{{BUGGY}}
+### Compliant

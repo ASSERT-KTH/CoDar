@@ -1,28 +1,19 @@
-Maps with keys that are enum values should be replaced with EnumMap
-When all the keys of a Map are values from the same enum, the Map can be replaced with an EnumMap, which can be much more efficient than other sets because the underlying data structure is a simple array. 
+Maps with keys that are enum values should use the EnumMap implementation
+Why is this an issue? If all the keys in a Map are values from a single enum, it is recommended to use an EnumMap as the specific implementation. An EnumMap, which has the advantage of knowing all possible keys in advance, is more efficient compared to other implementations, as it can use a simple array as its underlying data structure. 
 ### Noncompliant
-public class MyClass {
-
-  public enum COLOR {
-    RED, GREEN, BLUE, ORANGE;
-  }
-
-  public void mapMood() {
-    Map<COLOR, String> moodMap = new HashMap<COLOR, String> ();
-  }
+public enum Color {
+  RED, GREEN, BLUE, ORANGE;
 }
+
+Map<Color, String> colorMap = new HashMap<>(); // Noncompliant
  
 ### Compliant
-public class MyClass {
-
-  public enum COLOR {
-    RED, GREEN, BLUE, ORANGE;
-  }
-
-  public void mapMood() {
-    EnumMap<COLOR, String> moodMap = new EnumMap<> (COLOR.class);
-  }
+public enum Color {
+  RED, GREEN, BLUE, ORANGE;
 }
+
+Map<Color, String> colorMap = new EnumMap<>(Color.class); // Compliant
+ Resources A Guide to EnumMap - Baeldung
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

@@ -1,0 +1,17 @@
+### Noncompliant
+public class Address {
+  //...
+}
+
+HttpSession session = request.getSession();
+session.setAttribute("address", new Address());  // Noncompliant; Address isn't serializable
+### Compliant
+public class Address implements Serializable {
+  //...
+}
+
+HttpSession session = request.getSession();
+session.setAttribute("address", new Address());
+### Noncompliant
+{{BUGGY}}
+### Compliant

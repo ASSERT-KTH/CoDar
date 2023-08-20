@@ -1,0 +1,13 @@
+Generic exceptions should never be thrown
+Why is this an issue? Using such generic exceptions as Error, RuntimeException, Throwable, and Exception prevents calling methods from handling true, system-generated exceptions differently than application-generated errors. 
+### Noncompliant
+public void foo(String bar) throws Throwable {  // Noncompliant
+  throw new RuntimeException("My Message");     // Noncompliant
+}
+### Compliant
+public void foo(String bar) {
+  throw new MyOwnRuntimeException("My Message");
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

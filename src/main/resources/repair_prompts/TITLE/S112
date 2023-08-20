@@ -1,0 +1,4 @@
+Generic exceptions should never be thrown
+### Noncompliant
+{{BUGGY}}
+### Compliant

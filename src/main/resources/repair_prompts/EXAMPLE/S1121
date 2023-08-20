@@ -1,0 +1,10 @@
+### Noncompliant
+if ((str = cont.substring(pos1, pos2)).isEmpty()) {  // Noncompliant
+  //...
+### Compliant
+str = cont.substring(pos1, pos2);
+if (str.isEmpty()) {
+  //...
+### Noncompliant
+{{BUGGY}}
+### Compliant

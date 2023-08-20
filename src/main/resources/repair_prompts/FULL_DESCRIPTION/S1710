@@ -1,7 +1,7 @@
 Annotation repetitions should not be wrapped
-Before Java 8 if you needed to use multiple instances of the same annotation, they had to be wrapped in a container annotation. With Java 8, that’s no longer necessary, allowing for cleaner, more readable code. Note that this rule is automatically disabled when the project’s sonar.java.source is lower than 8. 
+Why is this an issue? Before Java 8, a container annotation was required as wrapper to use multiple instances of the same annotation. As of Java 8, this is no longer necessary. Instead, these annotations should be used directly without a wrapper, resulting in cleaner and more readable code. This rule is automatically disabled when the project’s sonar.java.source is lower than 8 as repeating annotations were introduced in Java 8. Code examples 
 ### Noncompliant
-@SomeAnnotations({  // Noncompliant
+@SomeAnnotations({  // Noncompliant, wrapper annotations are not necessary in Java 8+
   @SomeAnnotation(..a..),
   @SomeAnnotation(..b..),
   @SomeAnnotation(..c..),
@@ -17,6 +17,7 @@ public class SomeClass {
 public class SomeClass {
   ...
 }
+ References Repeating Annotations - The Java™ Tutorials
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

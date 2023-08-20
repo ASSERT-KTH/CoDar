@@ -1,4 +1,4 @@
-"String" calls should not go beyond their bounds
+Indexes to passed to "String" operations should be within the string's bounds
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

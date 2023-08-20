@@ -1,15 +1,15 @@
 AssertJ configuration should be applied
-A org.assertj.core.configuration.Configuration will be effective only once you call Configuration.apply() or Configuration.applyAndDisplay(). This rule raises an issue when configurations are set without the appropriate call to apply them. 
+Why is this an issue? A org.assertj.core.configuration.Configuration will be effective only once you call Configuration.apply() or Configuration.applyAndDisplay(). This rule raises an issue when configurations are set without the appropriate call to apply them. 
 ### Noncompliant
 Configuration configuration = new Configuration(); // Noncompliant, this configuration will not be applied.
-configuration.setComparingPrivateFields(true);{code}
+configuration.setComparingPrivateFields(true);
  
 ### Compliant
 Configuration configuration = new Configuration();
 configuration.setComparingPrivateFields(true);
 configuration.applyAndDisplay();
 // Alternatively: configuration.apply();
- See AssertJ configuration documentation
+ Resources AssertJ configuration documentation
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

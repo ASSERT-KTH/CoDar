@@ -1,5 +1,5 @@
 "entrySet()" should be iterated when both the key and value are needed
-When only the keys from a map are needed in a loop, iterating the keySet makes sense. But when both the key and the value are needed, it’s more efficient to iterate the entrySet, which will give access to both the key and value, instead. 
+Why is this an issue? Map is an object that maps keys to values. A map cannot contain duplicate keys, which means each key can map to at most one value. When both the key and the value are needed, it is more efficient to iterate the entrySet(), which will give access to both instead of iterating over the keySet() and then getting the value. If the entrySet() method is not iterated when both the key and value are needed, it can lead to unnecessary lookups. This is because each lookup requires two operations: one to retrieve the key and another to retrieve the value. By iterating the entrySet() method, the key-value pair can be retrieved in a single operation, which can improve performance. 
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

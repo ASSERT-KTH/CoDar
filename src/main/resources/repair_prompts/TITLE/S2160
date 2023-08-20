@@ -1,4 +1,0 @@
-Subclasses that add fields should override "equals"
-### Noncompliant
-{{BUGGY}}
-### Compliant

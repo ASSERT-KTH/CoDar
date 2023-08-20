@@ -1,5 +1,5 @@
 "equals" method overrides should accept "Object" parameters
-"equals" as a method name should be used exclusively to override Object.equals(Object) to prevent any confusion. It is tempting to overload the method to take a specific class instead of Object as parameter, to save the class comparison check. However, this will not work as expected when that is the only override. 
+Why is this an issue? In Java, the Object.equals() method is used for object comparison, and it is typically overridden in classes to provide a custom equality check based on your criteria for equality. The default implementation of equals() provided by the Object class compares the memory references of the two objects, that means it checks if the objects are actually the same instance in memory. The "equals" as a method name should be used exclusively to override Object.equals(Object) to prevent confusion. It is important to note that when you override equals(), you should also override the hashCode() method to maintain the contract between equals() and hashCode(). How to fix it Either override Object.equals(Object) or rename the method. Code examples 
 ### Noncompliant
 class MyClass {
   private int foo = 1;
@@ -14,26 +14,17 @@ class MyClass {
     System.out.println(o1.equals(o2));  // Prints "false" because o2 an Object not a MyClass
   }
 }
-
-class MyClass2 {
-  public boolean equals(MyClass2 o) {  // Ignored; `boolean equals(Object)` also present
-    //..
-  }
-
-  public boolean equals(Object o) {
-    //...
-  }
-}
  
 ### Compliant
 class MyClass {
   private int foo = 1;
 
   @Override
-  public boolean equals(Object o) {
+  public boolean equals(Object o) {  // Compliant
     if (this == o) {
         return true;
     }
+
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
@@ -41,19 +32,8 @@ class MyClass {
     MyClass other = (MyClass)o;
     return this.foo == other.foo;
   }
-
-  /* ... */
 }
-
-class MyClass2 {
-  public boolean equals(MyClass2 o) {
-    //..
-  }
-
-  public boolean equals(Object o) {
-    //...
-  }
-}
+ Resources Documentation Oracle SDK - Object.equals(Object)
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

@@ -1,0 +1,5 @@
+Exception handlers should preserve the original exceptions
+Why is this an issue? When handling a caught exception, the original exception’s message and stack trace should be logged or passed forward. 
+### Noncompliant
+{{BUGGY}}
+### Compliant

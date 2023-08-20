@@ -1,0 +1,4 @@
+Try-with-resources should be used
+### Noncompliant
+{{BUGGY}}
+### Compliant

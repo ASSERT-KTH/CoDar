@@ -1,0 +1,74 @@
+XML parsers should not be vulnerable to XXE attacks
+This vulnerability allows the usage of external entities in XML. Why is this an issue? External Entity Processing allows for XML parsing with the involvement of external entities. However, when this functionality is enabled without proper precautions, it can lead to a vulnerability known as XML External Entity (XXE) attack. What is the potential impact? Exposing sensitive data One significant danger of XXE vulnerabilities is the potential for sensitive data exposure. By crafting malicious XML payloads, attackers can reference external entities that contain sensitive information, such as system files, database credentials, or configuration files. When these entities are processed during XML parsing, the attacker can extract the contents and gain unauthorized access to sensitive data. This poses a severe threat to the confidentiality of critical information. Exhausting system resources Another consequence of XXE vulnerabilities is the potential for denial-of-service attacks. By exploiting the ability to include external entities, attackers can construct XML payloads that cause resource exhaustion. This can overwhelm the system’s memory, CPU, or other critical resources, leading to system unresponsiveness or crashes. A successful DoS attack can disrupt the availability of services and negatively impact the user experience. Forging requests XXE vulnerabilities can also enable Server-Side Request Forgery (SSRF) attacks. By leveraging the ability to include external entities, an attacker can make the vulnerable application send arbitrary requests to other internal or external systems. This can result in unintended actions, such as retrieving data from internal resources, scanning internal networks, or attacking other systems. SSRF attacks can lead to severe consequences, including unauthorized data access, system compromise, or even further exploitation within the network infrastructure. How to fix it in Java SE Code examples The following code contains examples of XML parsers that have external entity processing enabled. As a result, the parsers are vulnerable to XXE attacks if an attacker can control the XML file that is processed. 
+### Noncompliant
+DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance(); // Noncompliant
+ 
+### Compliant
+Protection from XXE can be done in several different ways. Choose one depending on how the affected parser object is used in your code. 1. The first way is to completely disable DOCTYPE declarations: // Applicable to:
+// - DocumentBuilderFactory
+// - SAXParserFactory
+// - SchemaFactory
+factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+
+// For XMLInputFactory:
+factory.setProperty(XMLInputFactory.SUPPORT_DTD, false);
+ 2. Disable external entity declarations completely: // Applicable to:
+// - DocumentBuilderFactory
+// - SAXParserFactory
+factory.setFeature("http://xml.org/sax/features/external-general-entities", false);
+factory.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
+
+// For XMLInputFactory:
+factory.setProperty(XMLInputFactory.IS_SUPPORTING_EXTERNAL_ENTITIES, Boolean.FALSE);
+ 3. Prohibit the use of all protocols by external entities: // `setAttribute` variant, applicable to:
+// - DocumentBuilderFactory
+// - TransformerFactory
+factory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
+factory.setAttribute(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
+
+// `setProperty` variant, applicable to:
+// - XMLInputFactory
+// - SchemaFactory
+factory.setProperty(XMLConstants.ACCESS_EXTERNAL_DTD, "");
+factory.setProperty(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
+
+// For SAXParserFactory, the prohibition is done on child objects:
+SAXParser parser = factory.newSAXParser();
+parser.setProperty(XMLConstants.ACCESS_EXTERNAL_DTD, "");
+parser.setProperty(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
+ How does this work? Disable external entities The most effective approach to prevent XXE vulnerabilities is to disable external entity processing entirely, unless it is explicitly required for specific use cases. By default, XML parsers should be configured to reject the processing of external entities. This can be achieved by setting the appropriate properties or options in your XML parser library or framework. If external entity processing is necessary for certain scenarios, adopt a whitelisting approach to restrict the entities that can be resolved during XML parsing. Create a list of trusted external entities and disallow all others. This approach ensures that only known and safe entities are processed. You should rely on features provided by your XML parser to restrict the external entities. Going the extra mile Disable entity expansion Specifically for DocumentBuilderFactory, it is possible to disable the entity expansion. Note, however, that this does not prevent the retrieval of external entities. factory.setExpandEntityReferences(false);
+ How to fix it in Dom4j Code examples The following code contains examples of XML parsers that have external entity processing enabled. As a result, the parsers are vulnerable to XXE attacks if an attacker can control the XML file that is processed. 
+### Noncompliant
+import org.dom4j.io.SAXReader;
+
+public void decode() {
+    SAXReader xmlReader = new SAXReader(); // Noncompliant
+}
+ 
+### Compliant
+import org.dom4j.io.SAXReader;
+
+public void decode() {
+    SAXReader xmlReader = new SAXReader();
+    xmlReader.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+}
+ How does this work? Disable external entities The most effective approach to prevent XXE vulnerabilities is to disable external entity processing entirely, unless it is explicitly required for specific use cases. By default, XML parsers should be configured to reject the processing of external entities. This can be achieved by setting the appropriate properties or options in your XML parser library or framework. If external entity processing is necessary for certain scenarios, adopt a whitelisting approach to restrict the entities that can be resolved during XML parsing. Create a list of trusted external entities and disallow all others. This approach ensures that only known and safe entities are processed. You should rely on features provided by your XML parser to restrict the external entities. How to fix it in Jdom2 Code examples The following code contains examples of XML parsers that have external entity processing enabled. As a result, the parsers are vulnerable to XXE attacks if an attacker can control the XML file that is processed. 
+### Noncompliant
+import org.jdom2.input.SAXBuilder;
+
+public void decode() {
+    SAXBuilder builder = new SAXBuilder(); // Noncompliant
+}
+ 
+### Compliant
+import org.jdom2.input.SAXBuilder;
+
+public void decode() {
+    SAXBuilder builder = new SAXBuilder();
+    builder.setProperty(XMLConstants.ACCESS_EXTERNAL_DTD, "");
+    builder.setProperty(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
+}
+ How does this work? Disable external entities The most effective approach to prevent XXE vulnerabilities is to disable external entity processing entirely, unless it is explicitly required for specific use cases. By default, XML parsers should be configured to reject the processing of external entities. This can be achieved by setting the appropriate properties or options in your XML parser library or framework. If external entity processing is necessary for certain scenarios, adopt a whitelisting approach to restrict the entities that can be resolved during XML parsing. Create a list of trusted external entities and disallow all others. This approach ensures that only known and safe entities are processed. You should rely on features provided by your XML parser to restrict the external entities. Resources Standards OWASP Top 10 2021 Category A5 - Security Misconfiguration OWASP Top 10 2017 Category A4 - XML External Entities (XXE) MITRE, CWE-611 - Information Exposure Through XML External Entity Reference MITRE, CWE-827 - Improper Control of Document Type Definition
+### Noncompliant
+{{BUGGY}}
+### Compliant

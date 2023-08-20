@@ -1,0 +1,4 @@
+Non-public methods should not be "@Transactional"
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,4 +1,0 @@
-Spring "@Controller" classes should not use "@Scope"
-### Noncompliant
-{{BUGGY}}
-### Compliant

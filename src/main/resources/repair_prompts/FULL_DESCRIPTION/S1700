@@ -1,0 +1,37 @@
+A field should not duplicate the name of its containing class
+Why is this an issue? It’s confusing to have a class member with the same name (case differences aside) as its enclosing class. This is particularly so when you consider the common practice of naming a class instance for the class itself. Best practice dictates that any field or member with the same name as the enclosing class be renamed to be more descriptive of the particular aspect of the class it represents or holds. 
+### Noncompliant
+public class Foo {
+  private String foo;
+
+  public String getFoo() { }
+}
+
+Foo foo = new Foo();
+foo.getFoo() // what does this return?
+ 
+### Compliant
+public class Foo {
+  private String name;
+
+  public String getName() { }
+}
+
+//...
+
+Foo foo = new Foo();
+foo.getName()
+ Exceptions When the type of the field is the containing class and that field is static, no issue is raised to allow singletons named like the type. public class Foo {
+  ...
+  private static Foo foo;
+  public Foo getInstance() {
+    if(foo==null) {
+      foo = new Foo();
+    }
+    return foo;
+  }
+  ...
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

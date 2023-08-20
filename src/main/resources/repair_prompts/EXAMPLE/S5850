@@ -1,0 +1,7 @@
+### Noncompliant
+^a|b|c$
+### Compliant
+^(?:a|b|c)$
+### Noncompliant
+{{BUGGY}}
+### Compliant

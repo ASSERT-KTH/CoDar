@@ -1,0 +1,4 @@
+Optional value should only be accessed after calling isPresent()
+### Noncompliant
+{{BUGGY}}
+### Compliant

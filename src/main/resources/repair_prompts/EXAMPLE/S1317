@@ -1,7 +1,0 @@
-### Noncompliant
-StringBuffer foo = new StringBuffer('x');   //equivalent to StringBuffer foo = new StringBuffer(120);
-### Compliant
-StringBuffer foo = new StringBuffer("x");
-### Noncompliant
-{{BUGGY}}
-### Compliant

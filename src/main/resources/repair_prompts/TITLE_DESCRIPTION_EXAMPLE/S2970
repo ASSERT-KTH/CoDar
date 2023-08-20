@@ -1,0 +1,30 @@
+Assertions should be complete
+Why is this an issue? It is very easy to write incomplete assertions when using some test frameworks. This rule enforces complete assertions in the following cases: Fest: assertThat is not followed by an assertion invocation AssertJ: assertThat is not followed by an assertion invocation Mockito: verify is not followed by a method invocation Truth: assertXXX is not followed by an assertion invocation In such cases, what is intended to be a test doesn’t actually verify anything 
+### Noncompliant
+// Fest
+boolean result = performAction();
+// let's now check that result value is true
+assertThat(result); // Noncompliant; nothing is actually checked, the test passes whether "result" is true or false
+
+// Mockito
+List mockedList = Mockito.mock(List.class);
+mockedList.add("one");
+mockedList.clear();
+// let's check that "add" and "clear" methods are actually called
+Mockito.verify(mockedList); // Noncompliant; nothing is checked here, oups no call is chained to verify()
+### Compliant
+// Fest
+boolean result = performAction();
+// let's now check that result value is true
+assertThat(result).isTrue();
+
+// Mockito
+List mockedList = Mockito.mock(List.class);
+mockedList.add("one");
+mockedList.clear();
+// let's check that "add" and "clear" methods are actually called
+Mockito.verify(mockedList).add("one");
+Mockito.verify(mockedList).clear();
+### Noncompliant
+{{BUGGY}}
+### Compliant

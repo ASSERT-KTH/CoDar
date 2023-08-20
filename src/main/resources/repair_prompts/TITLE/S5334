@@ -1,4 +1,0 @@
-Dynamic code execution should not be vulnerable to injection attacks
-### Noncompliant
-{{BUGGY}}
-### Compliant

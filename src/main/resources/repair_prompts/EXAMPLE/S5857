@@ -1,0 +1,9 @@
+### Noncompliant
+<.+?>
+".*?"
+### Compliant
+<[^>]++>
+"[^"]*+"
+### Noncompliant
+{{BUGGY}}
+### Compliant

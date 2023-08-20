@@ -1,0 +1,23 @@
+Local variable and method parameter names should comply with a naming convention
+Why is this an issue? Shared naming conventions allow teams to collaborate effectively. This rule raises an issue when a local variable or function parameter name does not match the provided regular expression. 
+### Noncompliant
+With the default regular expression ^[a-z][a-zA-Z0-9]*$: public void doSomething(int my_param) {
+  int LOCAL;
+  ...
+}
+ 
+### Compliant
+public void doSomething(int myParam) {
+  int local;
+  ...
+}
+ Exceptions Loop counters are ignored by this rule. for (int i_1 = 0; i_1 < limit; i_1++) {  // Compliant
+  // ...
+}
+ as well as one-character catch variables: try {
+//...
+} catch (Exception e) { // Compliant
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

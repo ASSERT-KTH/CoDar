@@ -1,0 +1,52 @@
+Methods should not call same-class methods with incompatible "@Transactional" values
+Why is this an issue? Transactional methods have a propagation type parameter in the @Transaction annotation that specifies the requirements about the transactional context in which the method can be called and how it creates, appends, or suspends an ongoing transaction. When an instance that contains transactional methods is injected, Spring uses proxy objects to wrap these methods with the actual transaction code. However, if a transactional method is called from another method in the same class, the this argument is used as the receiver instance instead of the injected proxy object, which bypasses the wrapper code. This results in specific transitions from one transactional method to another, which are not allowed: From To non-@Transactional MANDATORY, NESTED, REQUIRED, REQUIRES_NEW MANDATORY NESTED, NEVER, NOT_SUPPORTED, REQUIRES_NEW NESTED NESTED, NEVER, NOT_SUPPORTED, REQUIRES_NEW NEVER MANDATORY, NESTED, REQUIRED, REQUIRES_NEW NOT_SUPPORTED MANDATORY, NESTED, REQUIRED, REQUIRES_NEW REQUIRED or @Transactional NESTED, NEVER, NOT_SUPPORTED, REQUIRES_NEW REQUIRES_NEW NESTED, NEVER, NOT_SUPPORTED, REQUIRES_NEW SUPPORTS MANDATORY, NESTED, NEVER, NOT_SUPPORTED, REQUIRED, REQUIRES_NEW How to fix it Change the corresponding functions into a compatible propagation type. Code examples 
+### Noncompliant
+public void doTheThing() {
+  // ...
+  actuallyDoTheThing(); // Noncompliant, call from non-transactional to transactional
+}
+
+@Transactional
+public void actuallyDoTheThing() {
+  // ...
+}
+ 
+### Compliant
+@Transactional
+public void doTheThing() {
+  // ...
+  actuallyDoTheThing(); // Compliant
+}
+
+@Transactional
+public void actuallyDoTheThing() {
+  // ...
+}
+ 
+### Noncompliant
+@Transactional
+public void doTheThing() {
+  // ...
+  actuallyDoTheThing(); // Noncompliant, call from REQUIRED to REQUIRES_NEW
+}
+
+@Transactional(propagation = Propagation.REQUIRES_NEW)
+public void actuallyDoTheThing() {
+  // ...
+}
+ 
+### Compliant
+@Transactional
+public void doTheThing() {
+  // ...
+  actuallyDoTheThing(); // Compliant, call from REQUIRED to MANDATORY
+}
+
+@Transactional(propagation = Propagation.MANDATORY)
+public void actuallyDoTheThing() {
+  // ...
+}
+ Resources Spring Framework 6 API: Enum Class propagation Spring Framework 6 API: Annotation Interface Transactional Spring 6 Documentation: Transaction Propagation Articles & blog posts Baeldung: Transaction Propagation and Isolation in Spring @Transactional DZone: Spring Transaction Propagation in a Nutshell
+### Noncompliant
+{{BUGGY}}
+### Compliant

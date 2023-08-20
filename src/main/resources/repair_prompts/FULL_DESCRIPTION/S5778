@@ -1,5 +1,5 @@
 Only one method invocation is expected when testing runtime exceptions
-When verifying that code raises a runtime exception, a good practice is to avoid having multiple method calls inside the tested code, to be explicit about which method call is expected to raise the exception. It increases the clarity of the test, and avoid incorrect testing when another method is actually raising the exception. 
+Why is this an issue? When verifying that code raises a runtime exception, a good practice is to avoid having multiple method calls inside the tested code, to be explicit about which method call is expected to raise the exception. It increases the clarity of the test, and avoid incorrect testing when another method is actually raising the exception. 
 ### Noncompliant
 @Test
 public void testToString() {
@@ -35,7 +35,7 @@ public void testToStringTryCatchIdiom() {
     // Test exception message...
   }
 }
- See JUnit exception testing documentation
+ Resources JUnit exception testing documentation
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

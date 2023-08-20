@@ -1,0 +1,13 @@
+### Noncompliant
+int thousand = 100_0;
+int tenThousand = 100_00;
+int million = 1_000_00_000;
+### Compliant
+int thousand = 1000;
+int tenThousand = 10_000;
+int tenThousandWithout = 10000;
+int duos = 1_00_00;
+int million = 100_000_000;
+### Noncompliant
+{{BUGGY}}
+### Compliant

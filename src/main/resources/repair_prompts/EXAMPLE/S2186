@@ -1,0 +1,37 @@
+### Noncompliant
+class RunnableWithAnAssertion extends Thread {
+  @Override
+  public void run() {
+    Assert.assertEquals(expected, actual);  // Noncompliant
+  }
+
+  @Test
+  void test() {
+    RunnableWithAnAssertion otherThread = new RunnableWithAnAssertion();
+    otherThread.start(); // The assertion in the run method above will be executed by other thread than the current one
+    // ...
+    // Perform some actions that do not make the test fail
+    // ...
+    Assert.assertTrue(true);
+  }
+}
+### Compliant
+class RunnableWithAnAssertion extends Thread {
+  @Override
+  public void run() {
+    Assert.assertEquals(expected, actual);  // Noncompliant
+  }
+
+  @Test
+  void test() {
+    RunnableWithAnAssertion otherThread = new RunnableWithAnAssertion();
+    otherThread.run();
+    // ...
+    // The failed assertions in the run method will prevent us from reaching the assertion below
+    // ...
+    Assert.assertTrue(true);
+  }
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

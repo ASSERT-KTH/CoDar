@@ -1,5 +1,5 @@
 Jump statements should not be redundant
-Jump statements such as return and continue let you change the default flow of program execution, but jump statements that direct the control flow to the original direction are just a waste of keystrokes. 
+Why is this an issue? Jump statements such as return and continue let you change the default flow of program execution, but jump statements that direct the control flow to the original direction are just a waste of keystrokes. 
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

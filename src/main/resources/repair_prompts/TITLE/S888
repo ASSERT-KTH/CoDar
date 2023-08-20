@@ -1,0 +1,4 @@
+Equality operators should not be used in "for" loop termination conditions
+### Noncompliant
+{{BUGGY}}
+### Compliant

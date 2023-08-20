@@ -1,12 +1,12 @@
 Simple string literal should be used for single line strings
-If a string fits on a single line, without concatenation and escaped newlines, you should probably continue to use a string literal. 
+Why is this an issue? If a string fits on a single line, without concatenation and escaped newlines, you should probably continue to use a string literal. 
 ### Noncompliant
 String question = """
               What's the point, really?""";
  
 ### Compliant
 String question = "What's the point, really?";
- See JEP 378: Text Blocks Programmer’s Guide To Text Blocks, by Jim Laskey and Stuart Marks
+ Resources JEP 378: Text Blocks Programmer’s Guide To Text Blocks, by Jim Laskey and Stuart Marks
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

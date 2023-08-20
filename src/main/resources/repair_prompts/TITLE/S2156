@@ -1,0 +1,4 @@
+"final" classes should not have "protected" members
+### Noncompliant
+{{BUGGY}}
+### Compliant

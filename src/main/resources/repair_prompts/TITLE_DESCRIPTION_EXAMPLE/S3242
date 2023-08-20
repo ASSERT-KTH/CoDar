@@ -1,5 +1,5 @@
 Method parameters should be declared with base types
-For maximum reusability, methods should accept parameters with as little specialization as possible. So unless specific features from a child class are required by a method, a type higher up the class hierarchy should be used instead. 
+Why is this an issue? For maximum reusability, methods should accept parameters with as little specialization as possible. So unless specific features from a child class are required by a method, a type higher up the class hierarchy should be used instead. 
 ### Noncompliant
 public void printSize(ArrayList<Object> list) {  // Collection can be used instead
     System.out.println(list.size());

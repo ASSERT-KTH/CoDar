@@ -1,19 +1,15 @@
 ### Noncompliant
-myCollection.stream().map(new Mapper<String,String>() {
-  public String map(String input) {
+myCollection.stream().map(new Function<String,String>() { // Noncompliant, use a lambda expression instead
+  @Override
+  public String apply(String input) {
     return new StringBuilder(input).reverse().toString();
   }
-});
-
-Predicate<String> isEmpty = new Predicate<String> {
-    boolean test(String myString) {
-        return myString.isEmpty();
-    }
-}
+})
+  ...
 ### Compliant
-myCollection.stream().map(input -> new StringBuilder(input).reverse().toString());
-
-Predicate<String> isEmpty = myString -> myString.isEmpty();
+myCollection.stream()
+  .map(input -> new StringBuilder(input).reverse().toString()) 
+    ...
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

@@ -1,0 +1,4 @@
+Math operands should be cast before assignment
+### Noncompliant
+{{BUGGY}}
+### Compliant

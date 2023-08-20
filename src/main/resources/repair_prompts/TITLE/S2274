@@ -1,0 +1,4 @@
+"Object.wait(...)" and "Condition.await(...)" should be called inside a "while" loop
+### Noncompliant
+{{BUGGY}}
+### Compliant

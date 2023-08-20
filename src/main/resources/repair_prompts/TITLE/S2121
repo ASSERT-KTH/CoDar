@@ -1,4 +1,4 @@
-Silly String operations should not be made
+String operations with predictable outcomes should be avoided
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

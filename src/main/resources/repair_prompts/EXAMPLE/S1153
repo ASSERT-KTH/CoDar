@@ -1,11 +1,7 @@
 ### Noncompliant
-public void display(int i){
-  System.out.println("Output is " + String.valueOf(i));    // Noncompliant
-}
+String message = "Output is " + String.valueOf(12);
 ### Compliant
-public void display(int i){
-  System.out.println("Output is " + i);                    
-}
+String message = "Output is " + 12;
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

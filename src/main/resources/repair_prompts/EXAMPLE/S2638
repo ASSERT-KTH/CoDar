@@ -1,0 +1,53 @@
+### Noncompliant
+public class Fruit {
+
+  private Season ripe;
+  private String color;
+
+  public void setRipe(@Nullable Season ripe) {
+    this.ripe = ripe;
+  }
+
+  public @NotNull Integer getProtein() {
+    return 12;
+  }
+}
+
+public class Raspberry extends Fruit {
+
+  public void setRipe(@NotNull Season ripe) {  // Noncompliant: the ripe argument annotated as @Nullable in parent class
+    this.ripe = ripe;
+  }
+
+  public @Nullable Integer getProtein() {  // Noncompliant: the return type annotated as @NotNull in parent class
+    return null;
+  }
+}
+### Compliant
+public class Fruit {
+
+  private Season ripe;
+  private String color;
+
+  public void setRipe(@Nullable Season ripe) {
+    this.ripe = ripe;
+  }
+
+  public @NotNull Integer getProtein() {
+    return 12;
+  }
+}
+
+public class Raspberry extends Fruit {
+
+  public void setRipe(@Nullable Season ripe) {
+    this.ripe = ripe;
+  }
+
+  public @NotNull Integer getProtein() {
+    return 12;
+  }
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,5 +1,5 @@
 Unused assignments should be removed
-A dead store happens when a local variable is assigned a value that is not read by any subsequent instruction. Calculating or retrieving a value only to then overwrite it or throw it away, could indicate a serious error in the code. Even if it’s not an error, it is at best a waste of resources. Therefore all calculated values should be used. 
+Why is this an issue? A dead store happens when a local variable is assigned a value that is not read by any subsequent instruction. Calculating or retrieving a value only to then overwrite it or throw it away, could indicate a serious error in the code. Even if it’s not an error, it is at best a waste of resources. Therefore all calculated values should be used. 
 ### Noncompliant
 i = a + b; // Noncompliant; calculation result not used before value is overwritten
 i = compute();
@@ -7,7 +7,7 @@ i = compute();
 ### Compliant
 i = a + b;
 i += compute();
- Exceptions This rule ignores initializations to -1, 0, 1, null, true, false and "". See MITRE, CWE-563 - Assignment to Variable without Use ('Unused Variable') CERT, MSC13-C. - Detect and remove unused values CERT, MSC56-J. - Detect and remove superfluous code and values
+ Exceptions This rule ignores initializations to -1, 0, 1, null, true, false and "". Resources MITRE, CWE-563 - Assignment to Variable without Use ('Unused Variable') CERT, MSC13-C. - Detect and remove unused values CERT, MSC56-J. - Detect and remove superfluous code and values
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

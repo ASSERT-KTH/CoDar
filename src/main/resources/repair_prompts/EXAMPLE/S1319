@@ -1,16 +1,18 @@
 ### Noncompliant
 public class Employees {
-  private HashSet<Employee> employees = new HashSet<Employee>();  // Noncompliant - "employees" should have type "Set" rather than "HashSet"
+  public final HashSet<Employee> employees   // Noncompliant, field type should be "Set"
+    = new HashSet<Employee>();
 
-  public HashSet<Employee> getEmployees() {                       // Noncompliant
+  public HashSet<Employee> getEmployees() {  // Noncompliant, return type should be "Set"
     return employees;
   }
 }
 ### Compliant
 public class Employees {
-  private Set<Employee> employees = new HashSet<Employee>();      
+  public final Set<Employee> employees       
+    = new HashSet<Employee>();
 
-  public Set<Employee> getEmployees() {                           
+  public Set<Employee> getEmployees() {      
     return employees;
   }
 }

@@ -1,0 +1,11 @@
+### Noncompliant
+void doSomething(int a, int b) {     // "b" is unused
+  compute(a);
+}
+### Compliant
+void doSomething(int a) {
+  compute(a);
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

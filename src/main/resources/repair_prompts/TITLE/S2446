@@ -1,4 +1,4 @@
-"notifyAll" should be used
+"notifyAll()" should be preferred over "notify()"
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

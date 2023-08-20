@@ -1,6 +1,6 @@
 ### Noncompliant
-"[ab]|a"   // The "|a" is redundant because "[ab]" already matches "a"
-".*|a"     // .* matches everything, so any other alternative is redundant
+"[ab]|a"   // Noncompliant: the "|a" is redundant because "[ab]" already matches "a"
+".*|a"     // Noncompliant: .* matches everything, so any other alternative is redundant
 ### Compliant
 "[ab]"
 ".*"

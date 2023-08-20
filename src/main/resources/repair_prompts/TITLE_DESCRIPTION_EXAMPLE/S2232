@@ -1,16 +1,20 @@
 "ResultSet.isLast()" should not be used
-There are several reasons to avoid ResultSet.isLast(). First, support for this method is optional for TYPE_FORWARD_ONLY result sets. Second, it can be expensive (the driver may need to fetch the next row to answer the question). Finally, the specification is not clear on what should be returned when the ResultSet is empty, so some drivers may return the opposite of what is expected. 
+Why is this an issue? There are several reasons to avoid using this method: It is optionally available only for result sets of type ResultSet.TYPE_FORWARD_ONLY. Database drivers will throw an exception if not supported. The method can be expensive to execute as the database driver may need to fetch ahead one row to determine whether the current row is the last in the result set. The documentation of the method explicitly mentions this fact. What "the cursor is on the last row" means for an empty ResultSet is unclear. Database drivers may return true or false in this case . ResultSet.next() is a good alternative to ResultSet.isLast() as it does not have the mentioned issues. It is always supported and, as per specification, returns false for empty result sets. How to fix it Refactor your code to use ResultSet.next() instead of ResultSet.isLast(). Be cautious of its different semantics and side effects on cursor positioning in the result set. Verify that your program logic is still valid under these side effects and otherwise adjust it. Code examples 
 ### Noncompliant
-stmt.executeQuery("SELECT name, address FROM PERSON");
-ResultSet rs = stmt.getResultSet();
-while (! rs.isLast()) { // Noncompliant
-  // process row
+ResultSet results = stmt.executeQuery("SELECT name, address FROM PERSON");
+StringBuilder sb = new StringBuilder();
+while (results.next() && !results.isLast()) { // Noncompliant
+  sb.append(results.getString("name") + ", ");
 }
+sb.append(results.getString("name"));
+String formattedNames = sb.toString();
 ### Compliant
-ResultSet rs = stmt.executeQuery("SELECT name, address FROM PERSON");
-while (rs.next()) {
-  // process row
+ResultSet results = stmt.executeQuery("SELECT name, address FROM PERSON");
+List<String> names = new ArrayList<>();
+while (results.next()) { 
+  names.add(results.getString("name"));
 }
+String formattedNames =  names.stream().collect(Collectors.joining(", "));
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

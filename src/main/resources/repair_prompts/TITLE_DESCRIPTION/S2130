@@ -1,5 +1,5 @@
 Parsing should be used to convert "Strings" to primitives
-Rather than creating a boxed primitive from a String to extract the primitive value, use the relevant parse method instead. It will be clearer and more efficient. 
+Why is this an issue? Rather than creating a boxed primitive from a String to extract the primitive value, use the relevant parse method instead. Using parse makes the code more efficient and the intent of the developer clearer. 
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

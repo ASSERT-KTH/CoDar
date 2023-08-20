@@ -1,0 +1,4 @@
+Methods should not call same-class methods with incompatible "@Transactional" values
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,22 +1,24 @@
 ### Noncompliant
-class MyThread extends Thread{
+class MyThread implements Runnable {
+  Object lock = new Object();
 
   @Override
-  public void run(){
-    synchronized(this){
+  public void run() {
+    synchronized(lock) {
       // ...
-      notify();  // Noncompliant
+      lock.notify();  // Noncompliant
     }
   }
 }
 ### Compliant
-class MyThread extends Thread{
+class MyThread implements Runnable {
+  Object lock = new Object();
 
   @Override
-  public void run(){
-    synchronized(this){
+  public void run() {
+    synchronized(lock) {
       // ...
-      notifyAll();
+      lock.notifyAll();
     }
   }
 }

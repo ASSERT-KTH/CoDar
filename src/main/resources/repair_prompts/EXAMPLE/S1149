@@ -1,0 +1,7 @@
+### Noncompliant
+Vector<Cat> cats = new Vector<>();
+### Compliant
+ArrayList<Cat> cats = new ArrayList<>();
+### Noncompliant
+{{BUGGY}}
+### Compliant

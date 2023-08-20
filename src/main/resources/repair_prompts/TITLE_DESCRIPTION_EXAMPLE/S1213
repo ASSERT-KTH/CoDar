@@ -1,5 +1,5 @@
 The members of an interface or class declaration should appear in a pre-defined order
-According to the Java Code Conventions as defined by Oracle, the members of a class or interface declaration should appear in the following order in the source files: Class variables Instance variables Constructors Methods 
+Why is this an issue? According to the Java Code Conventions as defined by Oracle, the members of a class or interface declaration should appear in the following order in the source files: Class variables Instance variables Constructors Methods 
 ### Noncompliant
 public class Foo{
    private int field = 0;

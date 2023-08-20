@@ -1,0 +1,7 @@
+### Noncompliant
+assertThat(actual).isEqualTo(actual); // Noncompliant
+### Compliant
+assertThat(actual).isEqualTo(expected);
+### Noncompliant
+{{BUGGY}}
+### Compliant

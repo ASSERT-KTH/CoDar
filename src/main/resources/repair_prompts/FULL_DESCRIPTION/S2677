@@ -1,10 +1,8 @@
 "read" and "readLine" return values should be used
-When a method is called that returns data read from some data source, that data should be stored rather than thrown away. Any other course of action is surely a bug. This rule raises an issue when the return value of any of the following is ignored or merely null-checked: BufferedReader.readLine(), Reader.read(), and these methods in any child classes. 
+Why is this an issue? The Reader.read() and the BufferedReader.readLine() are used for reading data from a data source. The return value of these methods is the data read from the data source, or null when the end of the data source is reached. If the return value is ignored, the data read from the source is thrown away and may indicate a bug. This rule raises an issue when the return values of Reader.read() and BufferedReader.readLine() and their subclasses are ignored or merely null-checked. 
 ### Noncompliant
 public void doSomethingWithFile(String fileName) {
-  BufferedReader buffReader = null;
-  try {
-    buffReader = new BufferedReader(new FileReader(fileName));
+  try(BufferedReader buffReader = new BufferedReader(new FileReader(fileName))) {
     while (buffReader.readLine() != null) { // Noncompliant
       // ...
     }
@@ -15,9 +13,7 @@ public void doSomethingWithFile(String fileName) {
  
 ### Compliant
 public void doSomethingWithFile(String fileName) {
-  BufferedReader buffReader = null;
-  try {
-    buffReader = new BufferedReader(new FileReader(fileName));
+  try(BufferedReader buffReader = new BufferedReader(new FileReader(fileName))) {
     String line = null;
     while ((line = buffReader.readLine()) != null) {
       // ...
@@ -26,6 +22,7 @@ public void doSomethingWithFile(String fileName) {
     // ...
   }
 }
+ Resources Oracle SDK 20 - Reader.read() Oracle SDK 20 - BufferedReader.readLine()
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

@@ -1,0 +1,4 @@
+Assertion methods should not be used within the try block of a try-catch catching an Error
+### Noncompliant
+{{BUGGY}}
+### Compliant

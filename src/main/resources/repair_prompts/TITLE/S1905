@@ -1,0 +1,4 @@
+Redundant casts should not be used
+### Noncompliant
+{{BUGGY}}
+### Compliant

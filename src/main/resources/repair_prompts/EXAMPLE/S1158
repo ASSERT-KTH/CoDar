@@ -1,9 +1,17 @@
 ### Noncompliant
-new Integer(myInteger).toString();   // Noncompliant
-Integer.valueOf(myInt).compareTo(0); // Noncompliant
+private int isZero(int value){
+    return Integer.valueOf(value).compareTo(0); // Noncompliant
+}
+private String convert(int value){
+    return Integer.valueOf(value).toString(); // Noncompliant
+}
 ### Compliant
-Integer.toString(myInteger);        
-Integer.compare(myInteger, 0);      
+private int isZero(int value){
+    return Integer.compare(value, 0); 
+}
+private String convert(int value){
+    return Integer.toString(value); 
+}
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

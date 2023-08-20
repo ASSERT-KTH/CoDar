@@ -1,0 +1,4 @@
+Exceptions in "throws" clauses should not be superfluous
+### Noncompliant
+{{BUGGY}}
+### Compliant

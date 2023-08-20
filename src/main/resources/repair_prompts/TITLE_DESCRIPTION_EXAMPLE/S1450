@@ -1,5 +1,5 @@
 Private fields only used as local variables in methods should become local variables
-When the value of a private field is always assigned to in a class' methods before being read, then it is not being used to store class information. Therefore, it should become a local variable in the relevant methods to prevent any misunderstanding. 
+Why is this an issue? When the value of a private field is always assigned to in a class' methods before being read, then it is not being used to store class information. Therefore, it should become a local variable in the relevant methods to prevent any misunderstanding. 
 ### Noncompliant
 public class Foo {
   private int a;

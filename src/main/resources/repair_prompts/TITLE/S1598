@@ -1,0 +1,4 @@
+Package declaration should match source file directory
+### Noncompliant
+{{BUGGY}}
+### Compliant

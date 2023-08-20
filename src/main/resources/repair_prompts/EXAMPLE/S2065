@@ -1,11 +1,11 @@
 ### Noncompliant
-class Vegetable {  // does not implement Serializable
-  private transient Season ripe;  // Noncompliant
+class Vegetable {
+  private transient Season ripe; // Noncompliant, the "Vegetable" class does not implement "Serializable" but the field is marked as "transient"
   // ...
 }
 ### Compliant
 class Vegetable {
-  private Season ripe;
+  private Season ripe; 
   // ...
 }
 ### Noncompliant

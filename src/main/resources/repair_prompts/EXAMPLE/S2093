@@ -1,0 +1,36 @@
+### Noncompliant
+FileReader fr = null;
+BufferedReader br = null;
+
+try { // Noncompliant, the FileReader and BufferedReader are instantiated without try-with-resources
+  fr = new FileReader(fileName);
+  br = new BufferedReader(fr);
+  return br.readLine();
+} catch (...) {
+  ...
+} finally {
+
+  if (br != null) { // br has to be closed manually
+    try {
+      br.close();
+    } catch(IOException e){...}
+  }
+
+  if (fr != null ) { // fr has to be closed manually
+    try {
+      br.close();
+    } catch(IOException e){...}
+  }
+
+}
+### Compliant
+try ( 
+    FileReader fr = new FileReader(fileName);
+    BufferedReader br = new BufferedReader(fr)
+  ) {
+  return br.readLine();
+}
+catch (...) {}
+### Noncompliant
+{{BUGGY}}
+### Compliant

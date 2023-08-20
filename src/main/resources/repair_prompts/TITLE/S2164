@@ -1,0 +1,4 @@
+Math should not be performed on floats
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -2,7 +2,7 @@
 public class Pomegranate {
   // ...
 
-  public class Seed implements Serializable {  // Noncompliant; serialization will fail
+  public class Seed implements Serializable {  // Noncompliant, serialization will fail due to the outer class not being serializable
     // ...
   }
 }
@@ -10,7 +10,7 @@ public class Pomegranate {
 public class Pomegranate {
   // ...
 
-  public static class Seed implements Serializable {
+  public static class Seed implements Serializable { 
     // ...
   }
 }

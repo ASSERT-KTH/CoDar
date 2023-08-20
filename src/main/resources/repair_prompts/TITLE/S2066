@@ -1,4 +1,4 @@
-"Serializable" inner classes of non-serializable classes should be "static"
+"Serializable" inner classes of non-serializable outer classes should be "static"
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

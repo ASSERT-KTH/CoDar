@@ -1,5 +1,5 @@
 Printf-style format strings should be used correctly
-Because printf-style format strings are interpreted at runtime, rather than validated by the compiler, they can contain errors that result in the wrong strings being created. This rule statically validates the correlation of printf-style format strings to their arguments when calling the format(...) methods of java.util.Formatter, java.lang.String, java.io.PrintStream, MessageFormat, and java.io.PrintWriter classes and the printf(...) methods of java.io.PrintStream or java.io.PrintWriter classes. 
+Why is this an issue? Because printf-style format strings are interpreted at runtime, rather than validated by the compiler, they can contain errors that result in the wrong strings being created. This rule statically validates the correlation of printf-style format strings to their arguments when calling the format(...) methods of java.util.Formatter, java.lang.String, java.io.PrintStream, MessageFormat, and java.io.PrintWriter classes and the printf(...) methods of java.io.PrintStream or java.io.PrintWriter classes. 
 ### Noncompliant
 String.format("First {0} and then {1}", "foo", "bar");  //Noncompliant. Looks like there is a confusion with the use of {{java.text.MessageFormat}}, parameters "foo" and "bar" will be simply ignored here
 String.format("Display %3$d and then %d", 1, 2, 3);   //Noncompliant; the second argument '2' is unused
@@ -54,7 +54,7 @@ slf4jLog.debug(marker, "message {}", 1);
 
 org.apache.logging.log4j.Logger log4jLog;
 log4jLog.debug("message {}", 1);
- See CERT, FIO47-C. - Use valid format strings
+ Resources CERT, FIO47-C. - Use valid format strings
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

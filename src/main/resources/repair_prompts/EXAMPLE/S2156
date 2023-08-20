@@ -1,0 +1,17 @@
+### Noncompliant
+public final class MyFinalClass {
+
+  protected String name = "Fred";  // Noncompliant
+  protected void setName(String name) {  // Noncompliant
+    // ...
+  }
+### Compliant
+public final class MyFinalClass {
+
+  private String name = "Fred";
+  public void setName(String name) {
+    // ...
+  }
+### Noncompliant
+{{BUGGY}}
+### Compliant

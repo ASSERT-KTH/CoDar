@@ -1,0 +1,38 @@
+Optional value should only be accessed after calling isPresent()
+Why is this an issue? Optional value can hold either a value or not. The value held in the Optional can be accessed using the get() method, but it will throw a NoSuchElementException if there is no value present. To avoid the exception, calling the isPresent() or ! isEmpty() method should always be done before any call to get(). Alternatively, note that other methods such as orElse(...), orElseGet(...) or orElseThrow(...) can be used to specify what to do with an empty Optional. 
+### Noncompliant
+Optional<String> value = this.getOptionalValue();
+
+// ...
+
+String stringValue = value.get(); // Noncompliant
+ if (methodThatReturnsOptional().isEmpty()) {
+  throw new NotFoundException();
+}
+String value = methodThatReturnsOptional().get(); // Noncompliant: indirect access, we consider that two consecutive calls can return different values.
+ 
+### Compliant
+this.getOptionalValue().ifPresent(stringValue ->
+  // Do something with stringValue
+);
+ or Optional<String> value = this.getOptionalValue();
+
+// ...
+
+if (value.isPresent()) {
+  String stringValue = value.get();
+}
+ or Optional<String> value = this.getOptionalValue();
+
+// ...
+
+String stringValue = value.orElse("default");
+ Optional<String> optional = methodThatReturnsOptional();
+if (optional.isEmpty()) {
+  throw new NotFoundException();
+}
+String value = optional.get();
+ Resources MITRE, CWE-476 - NULL Pointer Dereference
+### Noncompliant
+{{BUGGY}}
+### Compliant

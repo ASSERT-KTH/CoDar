@@ -1,5 +1,5 @@
 Classes named like "Exception" should extend "Exception" or a subclass
-Clear, communicative naming is important in code. It helps maintainers and API users understand the intentions for and uses of a unit of code. Using "exception" in the name of a class that does not extend Exception or one of its subclasses is a clear violation of the expectation that a class' name will indicate what it is and/or does. 
+Why is this an issue? Clear, communicative naming is important in code. It helps maintainers and API users understand the intentions for and uses of a unit of code. Using "exception" in the name of a class that does not extend Exception or one of its subclasses is a clear violation of the expectation that a class' name will indicate what it is and/or does. 
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

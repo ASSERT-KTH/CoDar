@@ -1,5 +1,5 @@
 "equals(Object obj)" and "hashCode()" should be overridden in pairs
-According to the Java Language Specification, there is a contract between equals(Object) and hashCode(): If two objects are equal according to the equals(Object) method, then calling the hashCode method on each of the two objects must produce the same integer result. It is not required that if two objects are unequal according to the equals(java.lang.Object) method, then calling the hashCode method on each of the two objects must produce distinct integer results. However, the programmer should be aware that producing distinct integer results for unequal objects may improve the performance of hashtables. In order to comply with this contract, those methods should be either both inherited, or both overridden. 
+Why is this an issue? According to the Java Language Specification, there is a contract between equals(Object) and hashCode(): If two objects are equal according to the equals(Object) method, then calling the hashCode method on each of the two objects must produce the same integer result. It is not required that if two objects are unequal according to the equals(java.lang.Object) method, then calling the hashCode method on each of the two objects must produce distinct integer results. However, the programmer should be aware that producing distinct integer results for unequal objects may improve the performance of hashtables. In order to comply with this contract, those methods should be either both inherited, or both overridden. How to fix it Code examples 
 ### Noncompliant
 class MyClass {    // Noncompliant - should also override "hashCode()"
 
@@ -24,7 +24,7 @@ class MyClass {    // Compliant
   }
 
 }
- See MITRE, CWE-581 - Object Model Violation: Just One of Equals and Hashcode Defined CERT, MET09-J. - Classes that define an equals() method must also define a hashCode() method
+ Resources MITRE, CWE-581 - Object Model Violation: Just One of Equals and Hashcode Defined CERT, MET09-J. - Classes that define an equals() method must also define a hashCode() method
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

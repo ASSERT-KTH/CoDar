@@ -1,5 +1,5 @@
 Field names should comply with a naming convention
-Sharing some naming conventions is a key point to make it possible for a team to efficiently collaborate. This rule allows to check that field names match a provided regular expression. 
+Why is this an issue? Sharing some naming conventions is a key point to make it possible for a team to efficiently collaborate. This rule allows to check that field names match a provided regular expression. 
 ### Noncompliant
 class MyClass {
    private int my_field;

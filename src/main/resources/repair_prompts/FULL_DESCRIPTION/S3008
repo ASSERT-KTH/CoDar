@@ -1,14 +1,15 @@
 Static non-final field names should comply with a naming convention
-Shared naming conventions allow teams to collaborate efficiently. This rule checks that static non-final field names match a provided regular expression. 
+Why is this an issue? The Java Language Specification defines a set of rules called naming conventions that apply to Java programs. These conventions provide recommendations for naming packages, classes, methods, and variables. By following shared naming conventions, teams can collaborate more efficiently. This rule checks that static non-final field names match a provided regular expression. 
 ### Noncompliant
-With the default regular expression ^[a-z][a-zA-Z0-9]*$: public final class MyClass {
-   private static String foo_bar;
+The default regular expression applied by the rule is ^[a-z][a-zA-Z0-9]*$: public class MyClass {
+   private static String foo_bar; // Noncompliant
 }
  
 ### Compliant
-class MyClass {
+public class MyClass {
    private static String fooBar;
 }
+ Resources O’Reilly - Java 8 in pocket - Naming Conventions Educative - Naming conventions in Java
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

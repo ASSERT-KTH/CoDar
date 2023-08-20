@@ -1,0 +1,13 @@
+### Noncompliant
+class MyClass implements Serializable {
+  private HijrahDate date;  // Noncompliant; mark this transient
+  // ...
+}
+### Compliant
+class MyClass implements Serializable {
+  private transient HijrahDate date;
+  // ...
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

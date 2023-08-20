@@ -1,5 +1,5 @@
 "Thread.sleep" should not be used in tests
-Using Thread.sleep in a test is just generally a bad idea. It creates brittle tests that can fail unpredictably depending on environment ("Passes on my machine!") or load. Don’t rely on timing (use mocks) or use libraries such as Awaitility for asynchroneous testing. 
+Why is this an issue? In asynchronous testing, the test code is written in a way that allows it to wait for the asynchronous operation to complete before continuing with the test. Using Thread.sleep in this case can cause flaky tests, slow test execution, and inaccurate test results. It creates brittle tests that can fail unpredictably depending on the environment or load. Use mocks or libraries such as Awaitility instead. These tools provide features such as timeouts, assertions, and error handling to make it easier to write and manage asynchronous tests. 
 ### Noncompliant
 @Test
 public void testDoTheThing(){

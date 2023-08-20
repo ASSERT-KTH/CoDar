@@ -1,0 +1,4 @@
+A field should not duplicate the name of its containing class
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -3,7 +3,6 @@ public class Flower {
   static enum Color { // Noncompliant; static is redundant here
     RED, YELLOW, BLUE, ORANGE
   }
-
   // ...
 }
 ### Compliant
@@ -11,7 +10,6 @@ public class Flower {
   enum Color { 
     RED, YELLOW, BLUE, ORANGE
   }
-
   // ...
 }
 ### Noncompliant

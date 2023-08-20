@@ -1,8 +1,6 @@
 ### Noncompliant
 public void doSomethingWithFile(String fileName) {
-  BufferedReader buffReader = null;
-  try {
-    buffReader = new BufferedReader(new FileReader(fileName));
+  try(BufferedReader buffReader = new BufferedReader(new FileReader(fileName))) {
     while (buffReader.readLine() != null) { // Noncompliant
       // ...
     }
@@ -12,9 +10,7 @@ public void doSomethingWithFile(String fileName) {
 }
 ### Compliant
 public void doSomethingWithFile(String fileName) {
-  BufferedReader buffReader = null;
-  try {
-    buffReader = new BufferedReader(new FileReader(fileName));
+  try(BufferedReader buffReader = new BufferedReader(new FileReader(fileName))) {
     String line = null;
     while ((line = buffReader.readLine()) != null) {
       // ...

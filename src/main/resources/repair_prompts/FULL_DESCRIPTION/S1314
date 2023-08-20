@@ -1,11 +1,11 @@
 Octal values should not be used
-Integer literals starting with a zero are octal rather than decimal values. While using octal values is fully supported, most developers do not have experience with them. They may not recognize octal values as such, mistaking them instead for decimal values. 
+Why is this an issue? Integer literals starting with a zero are octal rather than decimal values. While using octal values is fully supported, most developers do not have experience with them. They may not recognize octal values as such, mistaking them instead for decimal values. 
 ### Noncompliant
 int myNumber = 010; // Noncompliant. myNumber will hold 8, not 10 - was this really expected?
  
 ### Compliant
 int myNumber = 8;
- See CERT, DCL18-C. - Do not begin integer constants with 0 when specifying a decimal value CERT, DCL50-J. - Use visually distinct identifiers
+ Resources CERT, DCL18-C. - Do not begin integer constants with 0 when specifying a decimal value CERT, DCL50-J. - Use visually distinct identifiers
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

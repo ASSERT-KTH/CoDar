@@ -1,0 +1,4 @@
+Alternatives in regular expressions should be grouped when used with anchors
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,5 +1,5 @@
 Regexes containing characters subject to normalization should use the CANON_EQ flag
-Characters like 'é' can be expressed either as a single code point or as a cluster of the letter 'e' and a combining accent mark. Without the CANON_EQ flag, a regex will only match a string in which the characters are expressed in the same way. 
+Why is this an issue? Characters like 'é' can be expressed either as a single code point or as a cluster of the letter 'e' and a combining accent mark. Without the CANON_EQ flag, a regex will only match a string in which the characters are expressed in the same way. 
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

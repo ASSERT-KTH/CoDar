@@ -1,5 +1,5 @@
 Variables should not be self-assigned
-There is no reason to re-assign a variable to itself. Either this statement is redundant and should be removed, or the re-assignment is a mistake and some other value or variable was intended for the assignment instead. 
+Why is this an issue? There is no reason to re-assign a variable to itself. Either this statement is redundant and should be removed, or the re-assignment is a mistake and some other value or variable was intended for the assignment instead. 
 ### Noncompliant
 public void setName(String name) {
   name = name;
@@ -9,7 +9,7 @@ public void setName(String name) {
 public void setName(String name) {
   this.name = name;
 }
- See CERT, MSC12-C. - Detect and remove code that has no effect or is never executed
+ Resources CERT, MSC12-C. - Detect and remove code that has no effect or is never executed
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

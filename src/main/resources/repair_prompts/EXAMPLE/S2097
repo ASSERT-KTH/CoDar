@@ -1,17 +1,31 @@
 ### Noncompliant
-public boolean equals(Object obj) { // Noncompliant
-  MyClass mc = (MyClass)obj;
+public class MyClass {
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    MyClass that = (MyClass) obj; // Noncompliant, may throw a ClassCastException
+    // ...
+  }
   // ...
 }
 ### Compliant
-public boolean equals(Object obj) {
-  if (obj == null)
-    return false;
-
-  if (this.getClass() != obj.getClass())
-    return false;
-
-  MyClass mc = (MyClass)obj;
+public class MyClass {
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null || this.getClass() != obj.getClass()) {
+      return false;
+    }
+    MyClass that = (MyClass) obj; 
+    // ...
+  }
   // ...
 }
 ### Noncompliant

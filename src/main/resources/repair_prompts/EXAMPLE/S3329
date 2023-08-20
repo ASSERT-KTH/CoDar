@@ -1,25 +1,58 @@
 ### Noncompliant
-public void encrypt(String key, String plainText) throws GeneralSecurityException {
-    byte[] bytesIV = "7cVgr5cbdCZVw5WY".getBytes(StandardCharsets.UTF_8); // secondary
+import java.nio.charset.StandardCharsets;
+import java.security.NoSuchAlgorithmException;
+import java.security.InvalidKeyException;
+import java.security.InvalidAlgorithmParameterException;
+import javax.crypto.Cipher;
+import javax.crypto.spec.GCMParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
+import javax.crypto.NoSuchPaddingException;
 
-    GCMParameterSpec iv = new GCMParameterSpec(128,bytesIV);  // secondary
-    SecretKeySpec skeySpec = new SecretKeySpec(key.getBytes(StandardCharsets.UTF_8), "AES");
+public void encrypt(String key, String plainText) {
 
-    Cipher cipher = Cipher.getInstance("AES/CBC/NoPadding");
-    cipher.init(Cipher.ENCRYPT_MODE, skeySpec, iv); // Noncompliant
-  }
+    byte[] RandomBytes = "7cVgr5cbdCZVw5WY".getBytes(StandardCharsets.UTF_8);
+
+    GCMParameterSpec iv   = new GCMParameterSpec(128, RandomBytes);
+    SecretKeySpec keySpec = new SecretKeySpec(key.getBytes(StandardCharsets.UTF_8), "AES");
+
+    try {
+        Cipher cipher = Cipher.getInstance("AES/CBC/NoPadding");
+        cipher.init(Cipher.ENCRYPT_MODE, keySpec, iv); // Noncompliant
+
+    } catch(NoSuchAlgorithmException|InvalidKeyException|
+            NoSuchPaddingException|InvalidAlgorithmParameterException e) {
+        // ...
+    }
+}
 ### Compliant
-public void encrypt(String key, String plainText) throws GeneralSecurityException {
+import java.nio.charset.StandardCharsets;
+import java.security.SecureRandom;
+import java.security.NoSuchAlgorithmException;
+import java.security.InvalidKeyException;
+import java.security.InvalidAlgorithmParameterException;
+import javax.crypto.Cipher;
+import javax.crypto.spec.GCMParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
+import javax.crypto.NoSuchPaddingException;
+
+public void encrypt(String key, String plainText) {
+
     SecureRandom random = new SecureRandom();
-    byte[] bytesIV = new byte[16];
-    random.nextBytes(bytesIV); // Random initialization vector
+    byte[] randomBytes  = new byte[16];
+    random.nextBytes(randomBytes);
 
-    GCMParameterSpec iv = new GCMParameterSpec(128, bytesIV);
-    SecretKeySpec skeySpec = new SecretKeySpec(key.getBytes(StandardCharsets.UTF_8), "AES");
+    GCMParameterSpec iv   = new GCMParameterSpec(128, randomBytes);
+    SecretKeySpec keySpec = new SecretKeySpec(key.getBytes(StandardCharsets.UTF_8), "AES");
 
-    Cipher cipher = Cipher.getInstance("AES/CBC/NoPadding");
-    cipher.init(Cipher.ENCRYPT_MODE, skeySpec, iv);
-  }
+    try {
+        Cipher cipher = Cipher.getInstance("AES/CBC/NoPadding");
+        cipher.init(Cipher.ENCRYPT_MODE, keySpec, iv); // Noncompliant
+
+    } catch(NoSuchAlgorithmException|InvalidKeyException|
+            NoSuchPaddingException|InvalidAlgorithmParameterException e) {
+        // ...
+    }
+}
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

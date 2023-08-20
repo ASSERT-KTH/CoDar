@@ -1,15 +1,15 @@
 ### Noncompliant
-String speech = "Now is the time for all good people to come to the aid of their country.";
+String speech = "Lorem ipsum dolor sit amet";
 
-String substr1 = speech.substring(-1, speech.length());  // Noncompliant; start and end values both bad
-String substr2 = speech.substring(speech.length(), 0); // Noncompliant, start value must be < end value
-char ch = speech.charAt(speech.length());  // Noncompliant
+String substr1 = speech.substring(-1, speech.length()); // Noncompliant, -1 is out of bounds
+String substr2 = speech.substring(speech.length(), 0);  // Noncompliant, the beginIndex must be smaller than or equal to the endIndex
+char ch = speech.charAt(speech.length());               // Noncompliant, speech.length() is out of bounds
 ### Compliant
-String speech = "Now is the time for all good people to come to the aid of their country.";
+String speech = "Lorem ipsum dolor sit amet";
 
-String substr1 = speech; // Closest correct values to original code yield whole string
-String substr2 = new StringBuilder(speech).reverse().toString()
-char ch = speech.charAt(speech.length()-1);
+String substr1 = speech;                                         
+String substr2 = new StringBuilder(speech).reverse().toString(); 
+char ch = speech.charAt(speech.length() - 1);                    
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

@@ -1,0 +1,4 @@
+Case insensitive string comparisons should be made without intermediate upper or lower casing
+### Noncompliant
+{{BUGGY}}
+### Compliant

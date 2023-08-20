@@ -1,0 +1,5 @@
+Method overrides should not change contracts
+This rule raises an issue when an overriding method changes a contract defined in a superclass. Why is this an issue? Because a subclass instance may be cast to and treated as an instance of the superclass, overriding methods should uphold the aspects of the superclass contract that relate to the Liskov Substitution Principle. Specifically, if the parameters or return type of the superclass method are marked with any of the following: @Nullable, @CheckForNull, @NotNull, @NonNull, and @Nonnull, then subclass parameters are not allowed to tighten the contract, and return values are not allowed to loosen it. Code examples 
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,16 +1,27 @@
 ### Noncompliant
-Cipher.getInstance("AES"); // Noncompliant: by default ECB mode is chosen
-Cipher.getInstance("AES/ECB/NoPadding"); // Noncompliant: ECB doesn't provide serious message confidentiality
+import javax.crypto.Cipher;
+import java.security.NoSuchAlgorithmException;
+import javax.crypto.NoSuchPaddingException;
 
-Cipher.getInstance("AES/CBC/PKCS5Padding"); // Noncompliant: Vulnerable to Padding Oracle attacks
-
-Cipher.getInstance("RSA/None/NoPadding"); // Noncompliant: RSA without OAEP padding scheme is not recommended
+public static void main(String[] args) {
+    try {
+        Cipher.getInstance("AES/CBC/PKCS5Padding"); // Noncompliant
+    } catch(NoSuchAlgorithmException|NoSuchPaddingException e) {
+        // ...
+    }
+}
 ### Compliant
-Cipher.getInstance("AES/GCM/NoPadding");
+import javax.crypto.Cipher;
+import java.security.NoSuchAlgorithmException;
+import javax.crypto.NoSuchPaddingException;
 
-Cipher.getInstance("RSA/None/OAEPWITHSHA-256ANDMGF1PADDING");
-// or the ECB mode can be used for RSA when "None" is not available with the security provider used - in that case, ECB will be treated as "None" for RSA.
-Cipher.getInstance("RSA/ECB/OAEPWITHSHA-256ANDMGF1PADDING");
+public static void main(String[] args) {
+    try {
+        Cipher.getInstance("AES/GCM/NoPadding");
+    } catch(NoSuchAlgorithmException|NoSuchPaddingException e) {
+        // ...
+    }
+}
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

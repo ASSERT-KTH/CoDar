@@ -1,11 +1,13 @@
 ### Noncompliant
 public class MyClass {
-  private static SimpleDateFormat format = new SimpleDateFormat("HH-mm-ss");  // Noncompliant
   private static Calendar calendar = Calendar.getInstance();  // Noncompliant
+  private static SimpleDateFormat format = new SimpleDateFormat("HH-mm-ss");  // Noncompliant
+}
 ### Compliant
 public class MyClass {
-  private SimpleDateFormat format = new SimpleDateFormat("HH-mm-ss");
   private Calendar calendar = Calendar.getInstance();
+  private SimpleDateFormat format = new SimpleDateFormat("HH-mm-ss");
+}
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

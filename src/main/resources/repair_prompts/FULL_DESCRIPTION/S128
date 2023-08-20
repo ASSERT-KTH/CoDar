@@ -1,0 +1,46 @@
+Switch cases should end with an unconditional "break" statement
+Why is this an issue? When the execution is not explicitly terminated at the end of a switch case, it continues to execute the statements of the following case. While this is sometimes intentional, it often is a mistake which leads to unexpected behavior. 
+### Noncompliant
+switch (myVariable) {
+  case 1:
+    foo();
+    break;
+  case 2:  // Both 'doSomething()' and 'doSomethingElse()' will be executed. Is it on purpose ?
+    doSomething();
+  default:
+    doSomethingElse();
+    break;
+}
+ 
+### Compliant
+switch (myVariable) {
+  case 1:
+    foo();
+    break;
+  case 2:
+    doSomething();
+    break;
+  default:
+    doSomethingElse();
+    break;
+}
+ Exceptions This rule is relaxed in the following cases: switch (myVariable) {
+  case 0:                                // Empty case used to specify the same behavior for a group of cases.
+  case 1:
+    doSomething();
+    break;
+  case 2:                                // Use of a fallthrough comment
+    // fallthrough
+  case 3:                                // Use of return statement
+    return;
+  case 4:                                // Use of throw statement
+    throw new IllegalStateException();
+  case 5:                                // Use of continue statement
+    continue;
+  default:                               // For the last case, use of break statement is optional
+    doSomethingElse();
+}
+ Resources MITRE, CWE-484 - Omitted Break Statement in Switch CERT, MSC17-C. - Finish every set of statements associated with a case label with a break statement CERT, MSC52-J. - Finish every set of statements associated with a case label with a break statement
+### Noncompliant
+{{BUGGY}}
+### Compliant

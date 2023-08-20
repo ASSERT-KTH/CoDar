@@ -1,4 +1,4 @@
-String.valueOf() should not be appended to a String
+"String.valueOf()" should not be appended to a "String"
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

@@ -1,0 +1,15 @@
+### Noncompliant
+Arrays.sort(rosterAsArray,
+    (a, b) -> {  // Noncompliant
+        return a.getBirthday().compareTo(b.getBirthday());
+    }
+);
+### Compliant
+Arrays.sort(rosterAsArray,
+    (Person a, Person b) -> {
+        return a.getBirthday().compareTo(b.getBirthday());
+    }
+);
+### Noncompliant
+{{BUGGY}}
+### Compliant

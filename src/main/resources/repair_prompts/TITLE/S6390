@@ -1,4 +1,0 @@
-Thread suspensions should not be vulnerable to Denial of Service attacks
-### Noncompliant
-{{BUGGY}}
-### Compliant

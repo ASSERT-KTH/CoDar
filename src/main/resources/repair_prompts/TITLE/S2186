@@ -1,0 +1,4 @@
+JUnit assertions should not be used in "run" methods
+### Noncompliant
+{{BUGGY}}
+### Compliant

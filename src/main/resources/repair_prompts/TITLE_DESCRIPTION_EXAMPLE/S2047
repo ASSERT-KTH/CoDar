@@ -1,0 +1,29 @@
+The names of methods with boolean return values should start with "is" or "has"
+Why is this an issue? Well-named functions can allow the users of your code to understand at a glance what to expect from the function - even before reading the documentation. Toward that end, methods returning a boolean should have names that start with "is" or "has" rather than with "get". 
+### Noncompliant
+public boolean getFoo() { // Noncompliant
+  // ...
+}
+
+public boolean getBar(Bar c) { // Noncompliant
+  // ...
+}
+
+public boolean testForBar(Bar c) { // Compliant - The method does not start by 'get'.
+  // ...
+}
+### Compliant
+public boolean isFoo() {
+  // ...
+}
+
+public boolean hasBar(Bar c) {
+  // ...
+}
+
+public boolean testForBar(Bar c) {
+  // ...
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

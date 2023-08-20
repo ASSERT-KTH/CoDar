@@ -1,0 +1,17 @@
+Future keywords should not be used as names
+Why is this an issue? Programming languages evolve over time, and new versions of Java introduce additional keywords. If future keywords are used in the current code, it can create compatibility issues when transitioning to newer versions of Java. The code may fail to compile or behave unexpectedly due to conflicts with newly introduced keywords. The following keywords are marked as invalid identifiers: Keyword Added in version _ 9 enum 5.0 assert and strictfp are another example of valid identifiers which became keywords in later versions, but are not supported by this rule. How to fix it Rename the identifiers that use Java keywords. Code examples 
+### Noncompliant
+public class MyClass {
+    int enum = 42;            // Noncompliant
+    String _ = "";            // Noncompliant
+}
+ 
+### Compliant
+public class MyClass {
+    int magic = 42;           // Noncompliant
+    String s = "";            // Noncompliant
+}
+ Resources Documentation Oracle - Java Language Keywords
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,4 @@
+Unused method parameters should be removed
+### Noncompliant
+{{BUGGY}}
+### Compliant

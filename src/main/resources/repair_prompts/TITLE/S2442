@@ -1,4 +1,4 @@
-"Lock" objects should not be "synchronized"
+Synchronizing on a "Lock" object should be avoided
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

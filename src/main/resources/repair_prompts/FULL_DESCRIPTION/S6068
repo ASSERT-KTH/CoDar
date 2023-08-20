@@ -1,5 +1,5 @@
 Call to Mockito method "verify", "when" or "given" should be simplified
-Mockito provides argument matchers for flexibly stubbing or verifying method calls. Mockito.verify(), Mockito.when(), Stubber.when() and BDDMockito.given() each have overloads with and without argument matchers. However, the default matching behavior (i.e. without argument matchers) uses equals(). If only the matcher org.mockito.ArgumentMatchers.eq() is used, the call is equivalent to the call without matchers, i.e. the eq() is not necessary and can be omitted. The resulting code is shorter and easier to read. 
+Why is this an issue? Mockito provides argument matchers for flexibly stubbing or verifying method calls. Mockito.verify(), Mockito.when(), Stubber.when() and BDDMockito.given() each have overloads with and without argument matchers. However, the default matching behavior (i.e. without argument matchers) uses equals(). If only the matcher org.mockito.ArgumentMatchers.eq() is used, the call is equivalent to the call without matchers, i.e. the eq() is not necessary and can be omitted. The resulting code is shorter and easier to read. 
 ### Noncompliant
 @Test
 public void myTest() {
@@ -17,7 +17,7 @@ public void myTest() {
   doThrow(new RuntimeException()).when(foo).quux(42);
   verify(foo).bar(v1, v2, v3);
 }
- See Mockito documentation - argument matchers {rule:java:S6073} - Mockito argument matchers should be used on all parameters
+ Resources Mockito documentation - argument matchers S6073 - Mockito argument matchers should be used on all parameters
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

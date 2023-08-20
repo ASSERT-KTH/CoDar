@@ -1,4 +1,0 @@
-OS commands should not be vulnerable to command injection attacks
-### Noncompliant
-{{BUGGY}}
-### Compliant

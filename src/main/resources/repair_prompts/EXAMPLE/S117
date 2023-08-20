@@ -1,0 +1,13 @@
+### Noncompliant
+public void doSomething(int my_param) {
+  int LOCAL;
+  ...
+}
+### Compliant
+public void doSomething(int myParam) {
+  int local;
+  ...
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

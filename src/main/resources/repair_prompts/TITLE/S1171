@@ -1,0 +1,4 @@
+Only static class initializers should be used
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,13 @@
+### Noncompliant
+public class MyClass {
+    int enum = 42;            // Noncompliant
+    String _ = "";            // Noncompliant
+}
+### Compliant
+public class MyClass {
+    int magic = 42;           // Noncompliant
+    String s = "";            // Noncompliant
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

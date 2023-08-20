@@ -1,0 +1,19 @@
+### Noncompliant
+public String sayHello(Optional<String> name) {  // Noncompliant
+  if (name == null || !name.isPresent()) {
+    return "Hello World";
+  } else {
+    return "Hello " + name;
+  }
+}
+### Compliant
+public String sayHello(String name) {
+  if (name == null) {
+    return "Hello World";
+  } else {
+    return "Hello " + name;
+  }
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,5 +1,5 @@
 Classes and enums with private members should have a constructor
-Non-abstract classes and enums with non-static, private members should explicitly initialize those members, either in a constructor or with a default value. 
+Why is this an issue? Non-abstract classes and enums with non-static, private members should explicitly initialize those members, either in a constructor or with a default value. 
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

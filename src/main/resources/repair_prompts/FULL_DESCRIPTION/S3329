@@ -1,29 +1,62 @@
 Cipher Block Chaining IVs should be unpredictable
-When encrypting data with the Cipher Block Chaining (CBC) mode an Initialization Vector (IV) is used to randomize the encryption, ie under a given key the same plaintext doesn’t always produce the same ciphertext. The IV doesn’t need to be secret but should be unpredictable to avoid "Chosen-Plaintext Attack". To generate Initialization Vectors, NIST recommends to use a secure random number generator. 
+This vulnerability exposes encrypted data to a number of attacks whose goal is to recover the plaintext. Why is this an issue? Encryption algorithms are essential for protecting sensitive information and ensuring secure communications in a variety of domains. They are used for several important reasons: Confidentiality, privacy, and intellectual property protection Security during transmission or on storage devices Data integrity, general trust, and authentication When selecting encryption algorithms, tools, or combinations, you should also consider two things: No encryption is unbreakable. The strength of an encryption algorithm is usually measured by the effort required to crack it within a reasonable time frame. In the mode Cipher Block Chaining (CBC), each block is used as cryptographic input for the next block. For this reason, the first block requires an initialization vector (IV), also called a "starting variable" (SV). If the same IV is used for multiple encryption sessions or messages, each new encryption of the same plaintext input would always produce the same ciphertext output. This may allow an attacker to detect patterns in the ciphertext. What is the potential impact? After retrieving encrypted data and performing cryptographic attacks on it on a given timeframe, attackers can recover the plaintext that encryption was supposed to protect. Depending on the recovered data, the impact may vary. Below are some real-world scenarios that illustrate the potential impact of an attacker exploiting the vulnerability. Additional attack surface By modifying the plaintext of the encrypted message, an attacker may be able to trigger additional vulnerabilities in the code. An attacker can further exploit a system to obtain more information. Encrypted values are often considered trustworthy because it would not be possible for a third party to modify them under normal circumstances. Breach of confidentiality and privacy When encrypted data contains personal or sensitive information, its retrieval by an attacker can lead to privacy violations, identity theft, financial loss, reputational damage, or unauthorized access to confidential systems. In this scenario, a company, its employees, users, and partners could be seriously affected. The impact is twofold, as data breaches and exposure of encrypted data can undermine trust in the organization, as customers, clients and stakeholders may lose confidence in the organization’s ability to protect their sensitive data. Legal and compliance issues In many industries and locations, there are legal and compliance requirements to protect sensitive data. If encrypted data is compromised and the plaintext can be recovered, companies face legal consequences, penalties, or violations of privacy laws. How to fix it in Java Cryptographic Extension Code examples 
 ### Noncompliant
-public void encrypt(String key, String plainText) throws GeneralSecurityException {
-    byte[] bytesIV = "7cVgr5cbdCZVw5WY".getBytes(StandardCharsets.UTF_8); // secondary
+import java.nio.charset.StandardCharsets;
+import java.security.NoSuchAlgorithmException;
+import java.security.InvalidKeyException;
+import java.security.InvalidAlgorithmParameterException;
+import javax.crypto.Cipher;
+import javax.crypto.spec.GCMParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
+import javax.crypto.NoSuchPaddingException;
 
-    GCMParameterSpec iv = new GCMParameterSpec(128,bytesIV);  // secondary
-    SecretKeySpec skeySpec = new SecretKeySpec(key.getBytes(StandardCharsets.UTF_8), "AES");
+public void encrypt(String key, String plainText) {
 
-    Cipher cipher = Cipher.getInstance("AES/CBC/NoPadding");
-    cipher.init(Cipher.ENCRYPT_MODE, skeySpec, iv); // Noncompliant
-  }
+    byte[] RandomBytes = "7cVgr5cbdCZVw5WY".getBytes(StandardCharsets.UTF_8);
+
+    GCMParameterSpec iv   = new GCMParameterSpec(128, RandomBytes);
+    SecretKeySpec keySpec = new SecretKeySpec(key.getBytes(StandardCharsets.UTF_8), "AES");
+
+    try {
+        Cipher cipher = Cipher.getInstance("AES/CBC/NoPadding");
+        cipher.init(Cipher.ENCRYPT_MODE, keySpec, iv); // Noncompliant
+
+    } catch(NoSuchAlgorithmException|InvalidKeyException|
+            NoSuchPaddingException|InvalidAlgorithmParameterException e) {
+        // ...
+    }
+}
  
 ### Compliant
-public void encrypt(String key, String plainText) throws GeneralSecurityException {
+In this example, the code explicitly uses a number generator that is considered strong. import java.nio.charset.StandardCharsets;
+import java.security.SecureRandom;
+import java.security.NoSuchAlgorithmException;
+import java.security.InvalidKeyException;
+import java.security.InvalidAlgorithmParameterException;
+import javax.crypto.Cipher;
+import javax.crypto.spec.GCMParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
+import javax.crypto.NoSuchPaddingException;
+
+public void encrypt(String key, String plainText) {
+
     SecureRandom random = new SecureRandom();
-    byte[] bytesIV = new byte[16];
-    random.nextBytes(bytesIV); // Random initialization vector
+    byte[] randomBytes  = new byte[16];
+    random.nextBytes(randomBytes);
 
-    GCMParameterSpec iv = new GCMParameterSpec(128, bytesIV);
-    SecretKeySpec skeySpec = new SecretKeySpec(key.getBytes(StandardCharsets.UTF_8), "AES");
+    GCMParameterSpec iv   = new GCMParameterSpec(128, randomBytes);
+    SecretKeySpec keySpec = new SecretKeySpec(key.getBytes(StandardCharsets.UTF_8), "AES");
 
-    Cipher cipher = Cipher.getInstance("AES/CBC/NoPadding");
-    cipher.init(Cipher.ENCRYPT_MODE, skeySpec, iv);
-  }
- See OWASP Top 10 2021 Category A2 - Cryptographic Failures OWASP Top 10 2017 Category A3 - Sensitive Data Exposure Mobile AppSec Verification Standard - Cryptography Requirements OWASP Mobile Top 10 2016 Category M5 - Insufficient Cryptography MITRE, CWE-329 - Not Using an Unpredictable IV with CBC Mode NIST, SP-800-38A - Recommendation for Block Cipher Modes of Operation Derived from FindSecBugs rule STATIC_IV
+    try {
+        Cipher cipher = Cipher.getInstance("AES/CBC/NoPadding");
+        cipher.init(Cipher.ENCRYPT_MODE, keySpec, iv); // Noncompliant
+
+    } catch(NoSuchAlgorithmException|InvalidKeyException|
+            NoSuchPaddingException|InvalidAlgorithmParameterException e) {
+        // ...
+    }
+}
+ How does this work? Use unique IVs To ensure strong security, the initialization vectors for each encryption operation must be unique and random but they do not have to be secret. In the previous non-compliant example, the problem is not that the IV is hard-coded. It is that the same IV is used for multiple encryption attempts. Resources Standards OWASP Top 10 2021 Category A2 - Cryptographic Failures OWASP Top 10 2017 Category A3 - Sensitive Data Exposure Mobile AppSec Verification Standard - Cryptography Requirements OWASP Mobile Top 10 2016 Category M5 - Insufficient Cryptography MITRE, CWE-329 - Not Using an Unpredictable IV with CBC Mode NIST, SP-800-38A - Recommendation for Block Cipher Modes of Operation
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

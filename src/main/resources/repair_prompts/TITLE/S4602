@@ -1,0 +1,4 @@
+"@SpringBootApplication" and "@ComponentScan" should not be used in the default package
+### Noncompliant
+{{BUGGY}}
+### Compliant

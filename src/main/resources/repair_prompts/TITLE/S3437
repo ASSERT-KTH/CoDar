@@ -1,0 +1,4 @@
+Value-based objects should not be serialized
+### Noncompliant
+{{BUGGY}}
+### Compliant

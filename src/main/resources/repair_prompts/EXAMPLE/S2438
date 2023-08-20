@@ -1,25 +1,19 @@
 ### Noncompliant
 public static void main(String[] args) {
-		Thread r =new Thread() {
-			int p;
-			@Override
-			public void run() {
-				while(true)
-					System.out.println("a");
-			}
-		};
-		new Thread(r).start();  // Noncompliant
+	Thread runnable = new Thread() {
+		@Override
+		public void run() { /* ... */ }
+	};
+	new Thread(runnable).start();  // Noncompliant
+}
 ### Compliant
 public static void main(String[] args) {
-		Runnable r =new Runnable() {
-			int p;
-			@Override
-			public void run() {
-				while(true)
-					System.out.println("a");
-			}
-		};
-		new Thread(r).start();
+	Runnable runnable = new Runnable() {
+		@Override
+		public void run() { /* ... */ }
+	};
+	new Thread(runnable).start();
+}
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

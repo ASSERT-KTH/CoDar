@@ -1,0 +1,27 @@
+### Noncompliant
+public class FooTest { // Noncompliant: Mockito initialization missing
+  @Mock private Bar bar;
+
+  @Spy private Baz baz;
+
+  @InjectMocks private Foo fooUnderTest;
+
+  @Test
+  void someTest() {
+    // test something ...
+  }
+
+  @Nested
+  public class Nested {
+    @Mock
+    private Bar bar;
+  }
+### Compliant
+@RunWith(MockitoJUnitRunner.class)
+public class FooTest {
+  @Mock private Bar bar;
+  // ...
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,11 @@
+### Noncompliant
+public class MyServlet extends HttpServlet {
+  String apiVersion = "0.9.1"; // Noncompliant, field changes are not thread-safe
+}
+### Compliant
+public class MyServlet extends HttpServlet {
+  final String apiVersion = "0.9.1"; 
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,4 +1,0 @@
-XML parsers should not allow inclusion of arbitrary files
-### Noncompliant
-{{BUGGY}}
-### Compliant

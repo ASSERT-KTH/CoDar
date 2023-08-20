@@ -1,5 +1,5 @@
 Exceptions should not be created without being thrown
-Creating a new Throwable without actually throwing it is useless and is probably due to a mistake. 
+Why is this an issue? Creating a new Throwable without actually throwing it is useless and is probably due to a mistake. 
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

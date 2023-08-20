@@ -1,0 +1,16 @@
+### Noncompliant
+public class Foo {
+  private String name;
+
+  @Override
+  void finalize() {
+    name = null;  // Noncompliant, instance will be removed anyway
+  }
+}
+### Compliant
+public class Foo { 
+  private String name;
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

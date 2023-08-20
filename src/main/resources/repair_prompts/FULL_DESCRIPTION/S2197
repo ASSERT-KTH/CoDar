@@ -1,5 +1,5 @@
 Modulus results should not be checked for direct equality
-When the modulus of a negative number is calculated, the result will either be negative or zero. Thus, comparing the modulus of a variable for equality with a positive number (or a negative one) could result in unexpected results. 
+Why is this an issue? When the modulus of a negative number is calculated, the result will either be negative or zero. Thus, comparing the modulus of a variable for equality with a positive number (or a negative one) could result in unexpected results. 
 ### Noncompliant
 public boolean isOdd(int x) {
   return x % 2 == 1;  // Noncompliant; if x is an odd negative, x % 2 == -1
@@ -9,7 +9,7 @@ public boolean isOdd(int x) {
 public boolean isOdd(int x) {
   return x % 2 != 0;
 }
- See CERT, NUM51-J. - Do not assume that the remainder operator always returns a nonnegative result for integral operands CERT, INT10-C - Do not assume a positive remainder when using the % operator
+ Resources CERT, NUM51-J. - Do not assume that the remainder operator always returns a nonnegative result for integral operands CERT, INT10-C - Do not assume a positive remainder when using the % operator
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

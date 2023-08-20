@@ -1,21 +1,14 @@
 ### Noncompliant
-public void doSomething(){
-  ...
+public void doSomething() {
   try {
-    ...
     anObject.notify();
-    ...
-  } catch(IllegalMonitorStateException e) {
-    ...
+  } catch(IllegalMonitorStateException e) { // Noncompliant
   }
 }
 ### Compliant
-public void doSomething(){
-  ...
+public void doSomething() {
   synchronized(anObject) {
-    ...
     anObject.notify();
-    ...
   }
 }
 ### Noncompliant

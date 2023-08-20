@@ -1,0 +1,12 @@
+A close curly brace should be located at the beginning of a line
+Why is this an issue? Shared coding conventions make it possible for a team to efficiently collaborate. This rule makes it mandatory to place a close curly brace at the beginning of a line. 
+### Noncompliant
+if(condition) {
+  doSomething();}
+### Compliant
+if(condition) {
+  doSomething();
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,16 +1,17 @@
 "hashCode" and "toString" should not be called on array instances
-While hashCode and toString are available on arrays, they are largely useless. hashCode returns the array’s "identity hash code", and toString returns nearly the same value. Neither method’s output actually reflects the array’s contents. Instead, you should pass the array to the relevant static Arrays method. 
+Why is this an issue? The purpose of the hashCode method is to return a hash code based on the contents of the object. Similarly, the purpose of the toString method is to provide a textual representation of the object’s contents. Calling hashCode() and toString() directly on array instances should be avoided because the default implementations provided by the Object class do not provide meaningful results for arrays. hashCode() returns the array’s "identity hash code", and toString() returns nearly the same value. Neither method’s output reflects the array’s contents. How to fix it Use relevant static Arrays method. Arrays.hashCode or Arrays.deepHashCode Arrays.toString or Arrays.deepToString Code examples 
 ### Noncompliant
-public static void main( String[] args )
-{
-    String argStr = args.toString(); // Noncompliant
-    int argHash = args.hashCode(); // Noncompliant
+public static void main(String[] args) {
+    String argStr = args.toString();       // Noncompliant
+    int argHash = args.hashCode();         // Noncompliant
+}
  
 ### Compliant
-public static void main( String[] args )
-{
-    String argStr = Arrays.toString(args);
-    int argHash = Arrays.hashCode(args);
+public static void main(String[] args) {
+    String argStr = Arrays.toString(args); // Compliant
+    int argHash = Arrays.hashCode(args);   // Compliant
+}
+ Resources Documentation Oracle Java SE - Arrays API Articles & blog posts Error Prone - ArrayHashCode
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

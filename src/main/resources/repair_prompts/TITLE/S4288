@@ -1,0 +1,4 @@
+Spring components should use constructor injection
+### Noncompliant
+{{BUGGY}}
+### Compliant

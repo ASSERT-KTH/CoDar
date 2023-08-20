@@ -1,19 +1,15 @@
 ### Noncompliant
-public void doGet(HttpServletRequest request, HttpServletResponse response)
-  throws IOException, ServletException {
-  String ip = request.getRemoteAddr();
-  InetAddress addr = InetAddress.getByName(ip); // Noncompliant; getByName(String) throws UnknownHostException
+public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+  InetAddress addr = InetAddress.getByName(request.getRemoteAddr()); // Noncompliant
   //...
 }
 ### Compliant
-public void doGet(HttpServletRequest request, HttpServletResponse response)
-  throws IOException, ServletException {
+public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
   try {
-    String ip = request.getRemoteAddr();
-    InetAddress addr = InetAddress.getByName(ip);
+    InetAddress addr = InetAddress.getByName(request.getRemoteAddr());
     //...
   }
-  catch (UnknownHostException uhex) {
+  catch (UnknownHostException ex) {  
     //...
   }
 }

@@ -1,5 +1,5 @@
 Spring's ModelAndViewAssert assertions should be used instead of other assertions
-The Spring framework comes with dedicated classes to help writing better and simpler unit tests. In particular, when testing applications built on top of Spring MVC, it is recommended to use Spring’s ModelAndViewAssert assertions class, instead of manually testing MVC’s properties. This rule raises an issue when Spring’s ModelAndViewAssert assertions should be used instead of manual testing. 
+Why is this an issue? The Spring framework comes with dedicated classes to help writing better and simpler unit tests. In particular, when testing applications built on top of Spring MVC, it is recommended to use Spring’s ModelAndViewAssert assertions class, instead of manually testing MVC’s properties. This rule raises an issue when Spring’s ModelAndViewAssert assertions should be used instead of manual testing. 
 ### Noncompliant
 ModelAndView mav = getMyModelAndView();
 
@@ -15,7 +15,7 @@ ModelAndViewAssert.assertViewName(mav, "register");
 ModelAndViewAssert.assertModelAttributeValue(mav, "myAttribute", Boolean.TRUE);
 ModelAndViewAssert.assertModelAttributeValue(mav, "myAttribute", Boolean.FALSE);
 ModelAndViewAssert.assertModelAttributeValue(mav, "myAttribute", myObject);
- See Unit Testing Spring MVC ModelAndViewAssert Javadoc
+ Resources Unit Testing Spring MVC ModelAndViewAssert Javadoc
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

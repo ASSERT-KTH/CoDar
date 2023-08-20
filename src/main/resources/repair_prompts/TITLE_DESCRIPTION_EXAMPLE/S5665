@@ -1,5 +1,5 @@
 Escape sequences should not be used in text blocks
-The use of escape sequences is mostly unnecessary in text blocks. 
+Why is this an issue? The use of escape sequences is mostly unnecessary in text blocks. 
 ### Noncompliant
 String textBlock = """
         \"\"\" this \nis

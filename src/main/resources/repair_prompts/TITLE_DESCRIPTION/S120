@@ -1,5 +1,5 @@
 Package names should comply with a naming convention
-Shared coding conventions allow teams to collaborate efficiently. This rule checks that all package names match a provided regular expression. 
+Why is this an issue? Shared coding conventions allow teams to collaborate efficiently. This rule checks that all package names match a provided regular expression. 
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

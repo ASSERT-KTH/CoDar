@@ -1,5 +1,5 @@
 Multiple variables should not be declared on the same line
-Declaring multiple variables on one line is difficult to read. 
+Why is this an issue? Declaring multiple variables on one line is difficult to read. 
 ### Noncompliant
 class MyClass {
 

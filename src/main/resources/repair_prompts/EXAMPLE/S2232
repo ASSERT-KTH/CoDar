@@ -1,14 +1,18 @@
 ### Noncompliant
-stmt.executeQuery("SELECT name, address FROM PERSON");
-ResultSet rs = stmt.getResultSet();
-while (! rs.isLast()) { // Noncompliant
-  // process row
+ResultSet results = stmt.executeQuery("SELECT name, address FROM PERSON");
+StringBuilder sb = new StringBuilder();
+while (results.next() && !results.isLast()) { // Noncompliant
+  sb.append(results.getString("name") + ", ");
 }
+sb.append(results.getString("name"));
+String formattedNames = sb.toString();
 ### Compliant
-ResultSet rs = stmt.executeQuery("SELECT name, address FROM PERSON");
-while (rs.next()) {
-  // process row
+ResultSet results = stmt.executeQuery("SELECT name, address FROM PERSON");
+List<String> names = new ArrayList<>();
+while (results.next()) { 
+  names.add(results.getString("name"));
 }
+String formattedNames =  names.stream().collect(Collectors.joining(", "));
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

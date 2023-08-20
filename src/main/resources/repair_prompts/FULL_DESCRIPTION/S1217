@@ -1,13 +1,67 @@
 "Thread.run()" should not be called directly
-The purpose of the Thread.run() method is to execute code in a separate, dedicated thread. Calling this method directly doesn’t make sense because it causes its code to be executed in the current thread. To get the expected behavior, call the Thread.start() method instead. 
+This rule raises an issue when Thread.run() is called instead of Thread.start(). Why is this an issue? The likely intention of a user calling Thread.run() is to start the execution of code within a new thread. This, however, is not what happens when this method is called. The purpose of Thread.run() is to provide a method that users can overwrite to specify the code to be executed. The actual thread is then started by calling Thread.start(). When Thread.run() is called directly, it will be executed as a regular method within the current thread. How to fix it If you intend to execute the contents of the Thread.run() method within a new thread, call Thread.start() instead. If your intention is only to have a container for a method but execute this method within the current thread, do not use Thread but Runnable or another functional interface. Code examples 
 ### Noncompliant
 Thread myThread = new Thread(runnable);
-myThread.run(); // Noncompliant
+myThread.run(); // Noncompliant, does not start a thread
  
 ### Compliant
 Thread myThread = new Thread(runnable);
-myThread.start(); // Compliant
- See MITRE, CWE-572 - Call to Thread run() instead of start() CERT THI00-J. - Do not invoke Thread.run()
+myThread.start(); 
+ 
+### Noncompliant
+class ComputePrimesThread extends Thread {
+    @Override
+    public void run() {
+        // ...
+    }
+}
+new ComputePrimesThread().run(); // Noncompliant, does not start a thread
+ 
+### Compliant
+class ComputePrimesThread extends Thread {
+    @Override
+    public void run() {
+        // ...
+    }
+}
+new ComputePrimesThread().start(); 
+ 
+### Noncompliant
+class Button {
+
+    private Thread onClick;
+
+    Button(Thread onClick) {
+        this.onClick = onClick;
+    }
+
+    private void clicked() {
+        if (onClick != null) onClick.run(); // Noncompliant, use functional interface
+    }
+}
+
+new Button(new Thread() {
+    @Override public void run() {
+        System.out.println("clicked!");
+    }
+});
+ 
+### Compliant
+class Button {
+
+    private Runnable onClick;
+
+    Button(Runnable onClick) {
+        this.onClick = onClick;
+    }
+
+    private void clicked() {
+        if (onClick != null) onClick.run(); // compliant
+    }
+}
+
+new Button(() -> System.out.println("clicked!"));
+ Resources Documentation Java™ Platform, Standard Edition 8 API Specification - Thread.start() Articles & blog posts JavaTPoint - What if we call Java run() method directly instead start() method?
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

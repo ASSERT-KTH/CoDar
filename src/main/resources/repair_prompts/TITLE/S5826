@@ -1,0 +1,4 @@
+Methods setUp() and tearDown() should be correctly annotated starting with JUnit4
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,27 @@
+### Noncompliant
+public boolean getFoo() { // Noncompliant
+  // ...
+}
+
+public boolean getBar(Bar c) { // Noncompliant
+  // ...
+}
+
+public boolean testForBar(Bar c) { // Compliant - The method does not start by 'get'.
+  // ...
+}
+### Compliant
+public boolean isFoo() {
+  // ...
+}
+
+public boolean hasBar(Bar c) {
+  // ...
+}
+
+public boolean testForBar(Bar c) {
+  // ...
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

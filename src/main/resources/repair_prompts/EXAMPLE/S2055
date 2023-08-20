@@ -1,41 +1,20 @@
 ### Noncompliant
+// Noncompliant; this Raspberry's ancestor doesn't have a no-argument constructor
+// this rule raises an issue on the Raspberry class declaration
 public class Fruit {
-  private Season ripe;
-
-  public Fruit (Season ripe) {...}
-  public void setRipe(Season ripe) {...}
-  public Season getRipe() {...}
-}
-
-public class Raspberry extends Fruit
-        implements Serializable {  // Noncompliant; nonserializable ancestor doesn't have no-arg constructor
-  private static final long serialVersionUID = 1;
-
-  private String variety;
-
-  public Raspberry(Season ripe, String variety) { ...}
-  public void setVariety(String variety) {...}
-  public String getVarity() {...}
+  private Season pickingSeason;
+  public Fruit(Season pickingSeason) {
+    this.pickingSeason = pickingSeason;
+  }
 }
 ### Compliant
-public class Fruit {
-  private Season ripe;
 
-  public Fruit () {...};  
-  public Fruit (Season ripe) {...}
-  public void setRipe(Season ripe) {...}
-  public Season getRipe() {...}
-}
-
-public class Raspberry extends Fruit
-        implements Serializable {
+public class Fruit implements Serializable {
   private static final long serialVersionUID = 1;
-
-  private String variety;
-
-  public Raspberry(Season ripe, String variety) {...}
-  public void setVariety(String variety) {...}
-  public String getVarity() {...}
+  private Season pickingSeason;
+  public Fruit(Season pickingSeason) {
+    this.pickingSeason = pickingSeason;
+  }
 }
 ### Noncompliant
 {{BUGGY}}

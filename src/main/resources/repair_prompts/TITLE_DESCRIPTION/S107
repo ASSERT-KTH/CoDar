@@ -1,5 +1,5 @@
 Methods should not have too many parameters
-A long parameter list can indicate that a new structure should be created to wrap the numerous parameters or that the function is doing too many things. 
+Why is this an issue? A long parameter list can indicate that a new structure should be created to wrap the numerous parameters or that the function is doing too many things. 
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

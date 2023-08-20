@@ -1,7 +1,7 @@
 ### Noncompliant
 public class MyException extends Exception {
 
-  private int status;                               // Noncompliant
+  private int status;                        // Noncompliant
 
   public MyException(String message) {
     super(message);
@@ -19,7 +19,7 @@ public class MyException extends Exception {
 ### Compliant
 public class MyException extends Exception {
 
-  private final int status;
+  private final int status;                  
 
   public MyException(String message, int status) {
     super(message);

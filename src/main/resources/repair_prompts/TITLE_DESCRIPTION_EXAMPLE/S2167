@@ -1,15 +1,17 @@
 "compareTo" should not return "Integer.MIN_VALUE"
-It is the sign, rather than the magnitude of the value returned from compareTo that matters. Returning Integer.MIN_VALUE does not convey a higher degree of inequality, and doing so can cause errors because the return value of compareTo is sometimes inversed, with the expectation that negative values become positive. However, inversing Integer.MIN_VALUE yields Integer.MIN_VALUE rather than Integer.MAX_VALUE. 
+Why is this an issue? The Comparable.compareTo method returns a negative integer, zero, or a positive integer to indicate whether the object is less than, equal to, or greater than the parameter. The sign of the return value or whether it is zero is what matters, not its magnitude. Returning a positive or negative constant value other than the basic ones (-1, 0, or 1) provides no additional information to the caller. Moreover, it could potentially confuse code readers who are trying to understand its purpose. How to fix it Replace any positive constant return value with 1. Replace any negative constant return value with -1. Code examples 
 ### Noncompliant
-public int compareTo(MyClass) {
+public int compareTo(Name name) {
   if (condition) {
-    return Integer.MIN_VALUE;  // Noncompliant
+    return Integer.MIN_VALUE; // Noncompliant
   }
+}
 ### Compliant
-public int compareTo(MyClass) {
+public int compareTo(Name name) {
   if (condition) {
-    return -1;
+    return -1; 
   }
+}
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

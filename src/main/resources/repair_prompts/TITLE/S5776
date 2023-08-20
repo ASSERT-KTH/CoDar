@@ -1,0 +1,4 @@
+Exception testing via JUnit ExpectedException rule should not be mixed with other assertions
+### Noncompliant
+{{BUGGY}}
+### Compliant

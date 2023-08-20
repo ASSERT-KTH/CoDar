@@ -1,0 +1,5 @@
+JUnit assertions should not be used in "run" methods
+Why is this an issue? JUnit assertions should not be made from the run method of a Runnable, because their failure may not be detected in the test that initiated them. Failed assertions throw assertion errors. However, if the error is thrown from another thread than the one that initiated the test, the thread will exit but the test will not fail. How to fix it Assertions in Runnable tasks should be extracted or executed by the main thread to make the whole test fail. Code examples 
+### Noncompliant
+{{BUGGY}}
+### Compliant

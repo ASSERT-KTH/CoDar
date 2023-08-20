@@ -1,0 +1,4 @@
+"@EnableAutoConfiguration" should be fine-tuned
+### Noncompliant
+{{BUGGY}}
+### Compliant

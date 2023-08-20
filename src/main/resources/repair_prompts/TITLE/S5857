@@ -1,0 +1,4 @@
+Character classes should be preferred over reluctant quantifiers in regular expressions
+### Noncompliant
+{{BUGGY}}
+### Compliant

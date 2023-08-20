@@ -1,0 +1,4 @@
+Non-serializable objects should not be stored in "javax.servlet.http.HttpSession" instances
+### Noncompliant
+{{BUGGY}}
+### Compliant

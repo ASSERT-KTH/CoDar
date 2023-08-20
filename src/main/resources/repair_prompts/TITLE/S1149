@@ -1,0 +1,4 @@
+Synchronized classes "Vector", "Hashtable", "Stack" and "StringBuffer" should not be used
+### Noncompliant
+{{BUGGY}}
+### Compliant

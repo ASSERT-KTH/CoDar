@@ -1,4 +1,4 @@
-Mutable members should not be stored or returned directly
+Private mutable members should not be stored or returned directly
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

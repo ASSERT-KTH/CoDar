@@ -1,0 +1,19 @@
+### Noncompliant
+private void removeElement() {
+  while (!suitableCondition()){
+    obj.wait();
+  }
+  ... // Perform removal
+}
+### Compliant
+private void removeElement() {
+  synchronized(obj) {
+    while (!suitableCondition()){
+      obj.wait();
+    }
+    ... // Perform removal
+  }
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

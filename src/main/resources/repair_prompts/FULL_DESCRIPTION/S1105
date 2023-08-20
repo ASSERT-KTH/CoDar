@@ -1,0 +1,16 @@
+An open curly brace should be located at the end of a line
+Why is this an issue? Shared naming conventions allow teams to collaborate effectively. This rule raises an issue when an open curly brace is not placed at the end of a line of code. 
+### Noncompliant
+if(condition)
+{
+  doSomething();
+}
+ 
+### Compliant
+if(condition) {
+  doSomething();
+}
+ Exceptions When blocks are inlined (left and right curly braces on the same line), no issue is triggered. if(condition) {doSomething();}
+### Noncompliant
+{{BUGGY}}
+### Compliant
