@@ -45,7 +45,7 @@ In a Spring-security web application: the vote method of an AccessDecisionVoter 
       }
 
       // users are not allowed to connect during the night
-      return ACCESS_DENIED; // Compliant
+      return ACCESS_DENIED; 
     }
 }
  the hasPermission method of a PermissionEvaluator type should return false: public class MyPermissionEvaluator implements PermissionEvaluator {
@@ -58,7 +58,7 @@ In a Spring-security web application: the vote method of an AccessDecisionVoter 
               return true;
         }
 
-        return false; // Compliant
+        return false; 
     }
 }
  Exceptions No issue is reported when the method throws an exception as it might be used to indicate a strong decision. Resources OWASP Top 10 2021 Category A1 - Broken Access Control OWASP Top 10 2017 Category A5 - Broken Access Control MITRE, CWE-285 - Improper Authorization

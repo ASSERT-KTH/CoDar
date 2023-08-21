@@ -1,0 +1,20 @@
+Pattern Matching for "instanceof" operator should be used instead of simple "instanceof" + cast
+Why is this an issue? In Java 16, the feature "Pattern matching for instanceof" is finalized and can be used in production. Previously developers needed to do 3 operations in order to do this: check the variable type, cast it and assign the casted value to the new variable. This approach is quite verbose and can be replaced with pattern matching for instanceof, doing these 3 actions (check, cast and assign) in one expression. This rule raises an issue when an instanceof check followed by a cast and an assignment could be replaced by pattern matching. 
+### Noncompliant
+int f(Object o) {
+  if (o instanceof String) {  // Noncompliant
+    String string = (String) o;
+    return string.length();
+  }
+  return 0;
+}
+### Compliant
+int f(Object o) {
+  if (o instanceof String string) {  
+    return string.length();
+  }
+  return 0;
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

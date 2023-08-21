@@ -1,0 +1,5 @@
+Custom getter method should not be used to override record's getter behavior
+Why is this an issue? Before records appeared in Java 16, there was a common way to represent getters for private fields of a class: a method named "get" with a capitalized field name. For example, for a String field named "myField" the signature of the getter method will be: public String getMyField() In records, getters are named differently. Getters created by default do not contain the "get" prefix. So for a record’s String field "myField" the getter method will be: public String myField() This means that if you want to override the default getter behavior it is better to use the method provided by records instead of creating a new one. Otherwise, this will bring confusion to the users of the record as two getters will be available and even leads to bugs if the behavior is different from the default one. This rule raises an issue when a record contains a getter named "get" with a capitalized field name that is not behaving the same as the default one. 
+### Noncompliant
+{{BUGGY}}
+### Compliant

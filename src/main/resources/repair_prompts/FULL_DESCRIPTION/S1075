@@ -20,7 +20,7 @@ public class Foo {
     // Find here the way to get the correct folder, in this case using the Configuration object
     String listingFolder = config.getProperty("myApplication.listingFolder");
     // and use this parameter instead of the hard coded path
-    File userList = new File(listingFolder, "users.txt"); // Compliant
+    File userList = new File(listingFolder, "users.txt"); 
     Collection<User> users = parse(userList);
     return users;
   }

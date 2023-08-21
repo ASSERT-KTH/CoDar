@@ -32,7 +32,7 @@ class MyIterator implements Iterator<Integer> {
 
   @Override
   public boolean hasNext() {
-    return !elements.isEmpty(); // Compliant, no call to next()
+    return !elements.isEmpty(); 
   }
 
   @Override

@@ -4,7 +4,7 @@ Why is this an issue? Java packages serve two purposes: Structure — Packag
 public class MyClass { /* ... */ } // Noncompliant, no package spacified
  
 ### Compliant
-package org.example; // Compliant
+package org.example; 
 
 public class MyClass{ /* ... */ }
  Resources Articles & blog posts Baeldung - Guide to Java Packages tutorialspoint - What are the best practices to keep in mind while using packages in Java?

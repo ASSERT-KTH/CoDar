@@ -1,0 +1,4 @@
+Switch arrow labels should not use redundant keywords
+### Noncompliant
+{{BUGGY}}
+### Compliant

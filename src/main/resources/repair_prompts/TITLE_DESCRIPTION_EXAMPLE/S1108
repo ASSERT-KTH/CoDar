@@ -7,7 +7,7 @@ public void myMethod() {
   } else if (somethingElse) {          // Noncompliant
     doSomethingElse();
   }
-  else {                               // Compliant
+  else {                               
      generateError();
   }
 

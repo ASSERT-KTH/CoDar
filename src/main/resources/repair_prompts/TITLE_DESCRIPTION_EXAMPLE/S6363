@@ -1,0 +1,17 @@
+Enabling file access for WebViews is security-sensitive
+WebViews can be used to display web content as part of a mobile application. A browser engine is used to render and display the content. Like a web application, a mobile application that uses WebViews can be vulnerable to Cross-Site Scripting if untrusted code is rendered. If malicious JavaScript code in a WebView is executed this can leak the contents of sensitive files when access to local files is enabled. Ask Yourself Whether No local files have to be accessed by the Webview. The WebView contains untrusted data that could cause harm when rendered. There is a risk if you answered yes to any of those questions. Recommended Secure Coding Practices It is recommended to disable access to local files for WebViews unless it is necessary. In the case of a successful attack through a Cross-Site Scripting vulnerability the attackers attack surface decreases drastically if no files can be read out. 
+### Noncompliant
+import android.webkit.WebView;
+
+WebView webView = (WebView) findViewById(R.id.webview);
+webView.getSettings().setAllowFileAccess(true); // Sensitive
+webView.getSettings().setAllowContentAccess(true); // Sensitive
+### Compliant
+import android.webkit.WebView;
+
+WebView webView = (WebView) findViewById(R.id.webview);
+webView.getSettings().setAllowFileAccess(false);
+webView.getSettings().setAllowContentAccess(false);
+### Noncompliant
+{{BUGGY}}
+### Compliant

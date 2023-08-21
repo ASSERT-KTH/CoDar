@@ -1,0 +1,32 @@
+### Noncompliant
+class MyKeyType {
+    // ...
+}
+
+class Program {
+    Map<MyKeyType, MyValueType> data = new HashMap<>(); // Noncompliant
+
+    Map<MyKeyType, MyValueType> buildMap() { // Noncompliant
+        //...
+    }
+}
+### Compliant
+class MyKeyType implements Comparable<MyKeyType> {
+    // ...
+}
+
+class MyChildKeyType extends MyKeyType {
+    // ...
+}
+
+class Program {
+    Map<MyKeyType, MyValueType> data = new HashMap<>();
+    Map<MyChildKeyType, MyValueType> data = new HashMap<>();
+
+    Map<MyKeyType, MyValueType> buildMap() {
+        //...
+    }
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

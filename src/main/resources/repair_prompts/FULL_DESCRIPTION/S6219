@@ -1,0 +1,19 @@
+'serialVersionUID' field should not be set to '0L' in records
+Why is this an issue? In Records serialization is not done the same way as for ordinary serializable or externalizable classes. Records serialization does not rely on the serialVersionUID field, because the requirement to have this field equal is waived for record classes. By default, all records will have this field equal to 0L and there is no need to specify this field with 0L value and it is possible to specify it with some custom value to support serialization/deserialization involving ordinary classes. This rule raises an issue when there is a private static final long serialVersionUID field which is set to 0L in a Record class. 
+### Noncompliant
+record Person(String name, int age) implements Serializable {
+@Serial
+  private static final long serialVersionUID = 0L; // Noncompliant
+}
+ 
+### Compliant
+record Person(String name, int age) implements Serializable {} 
+
+record Person(String name, int age) implements Serializable {
+@Serial
+  private static final long serialVersionUID = 42L; 
+}
+ Resources Records specification Serialization of records
+### Noncompliant
+{{BUGGY}}
+### Compliant

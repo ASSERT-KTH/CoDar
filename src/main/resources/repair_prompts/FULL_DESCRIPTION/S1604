@@ -11,7 +11,7 @@ myCollection.stream().map(new Function<String,String>() { // Noncompliant, use a
  
 ### Compliant
 myCollection.stream()
-  .map(input -> new StringBuilder(input).reverse().toString()) // Compliant
+  .map(input -> new StringBuilder(input).reverse().toString()) 
     ...
  
 ### Noncompliant
@@ -23,7 +23,7 @@ Predicate<String> isEmpty = new Predicate<String>() { // Noncompliant, use a lam
 };
  
 ### Compliant
-Predicate<String> isEmpty = myString -> myString.isEmpty(); // Compliant
+Predicate<String> isEmpty = myString -> myString.isEmpty(); 
  Resources Lambda Expressions - The Java™ Tutorials
 ### Noncompliant
 {{BUGGY}}

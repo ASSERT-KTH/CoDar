@@ -5,14 +5,14 @@ public void run() {
   release("action1");
 }
 
-@SuppressWarning("all")                            // Compliant - annotations are excluded
+@SuppressWarning("all")                            
 private void method1() { /* ... */ }
 @SuppressWarning("all")
 private void method2() { /* ... */ }
 
 public String method3(String a) {
-  System.out.println("'" + a + "'");               // Compliant - literal "'" has less than 5 characters and is excluded
-  return "";                                       // Compliant - literal "" has less than 5 characters and is excluded
+  System.out.println("'" + a + "'");               
+  return "";                                       
 }
 ### Compliant
 private static final String ACTION_1 = "action1";  

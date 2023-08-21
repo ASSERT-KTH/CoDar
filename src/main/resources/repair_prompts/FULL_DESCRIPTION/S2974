@@ -12,7 +12,7 @@ public class PrivateConstructorClass {  // Noncompliant
 }
  
 ### Compliant
-public final class PrivateConstructorClass {  // Compliant
+public final class PrivateConstructorClass {  
   private PrivateConstructorClass() {
     // ...
   }

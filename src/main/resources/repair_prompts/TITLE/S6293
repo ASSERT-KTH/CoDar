@@ -1,0 +1,4 @@
+Using biometric authentication without a cryptographic solution is security-sensitive
+### Noncompliant
+{{BUGGY}}
+### Compliant

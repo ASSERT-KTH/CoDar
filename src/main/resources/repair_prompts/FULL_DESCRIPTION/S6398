@@ -1,0 +1,80 @@
+JSON operations should not be vulnerable to injection attacks
+Why is this an issue? JSON injections occur when an application builds a JSON-formatted string from user input without prior validation or sanitation. In such a case, a tainted user-controlled value can tamper with the JSON string content. Especially, unexpected arbitrary elements can be inserted in the corresponding JSON object. Those modifications can include: Adding additional keys to a JSON dictionary. Changing values types. Adding elements in an array. A malicious user-supplied value can perform other modifications depending on where and how the constructed data is later used. What is the potential impact? The consequences of a JSON injection attack into an application vary greatly depending on the application’s logic. It can affect the application itself or another element if the JSON string is used for cross-component data exchange. For this reason, the actual impact can range from benign information disclosure to critical remote code execution. Information disclosure An attacker can forge an attack payload that will modify the JSON string so that it will become syntactically incorrect. In that case, when the data is later used, the parsing component will raise a technical error. If displayed back to the attacker or made available through log files, this technical error may disclose sensitive business or technical information. This scenario, while in general the less severe one, is the most frequently encountered. It can combine with any other logic-dependant threat. Privilege escalation An application that would rely on JSON to store or propagate users' authentication levels and roles would be under threat of privilege escalations. Indeed, an attacker could tamper with the permissions storage object to insert arbitrary roles or privileges. While highly specific, similar issues can be faced in the following situations: An application builds JSON payloads for HTTP requests. An application builds JWT from user input. Code execution An application might build objects based on a JSON serialization string. In that case, an attacker that would exploit a JSON injection could be able to alter the serialization string to modify the corresponding object’s properties. Depending on the deserialization process, this might allow instantiating arbitrary objects or objects with sensitive properties altered. This can lead to arbitrary code being executed in the same way as a deserialization injection vulnerability. How to fix it in Java SE Code examples The following code is vulnerable to a JSON injection vulnerability because it builds a JSON string from user input without prior sanitation or validation. Therefore, an attacker can submit a tainted value that will tamper with the corresponding JSON object structure. 
+### Noncompliant
+import org.json.JSONObject;
+
+public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    try {
+        String tainted = request.getParameter("value");
+        String json = "{\"key\":\""+ tainted +"\"}";
+        JSONObject obj = new JSONObject(json); // Noncompliant
+    } catch (JsonException e) {
+        resp.sendError(400)
+    }
+}
+ 
+### Compliant
+import org.json.JSONObject;
+
+public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    JSONObject obj = new JSONObject(json);
+    obj.put("key", request.getParameter("value"));
+}
+ How does this work? In most cases, it is discouraged to build JSON strings with a direct concatenation of user input. While not always possible, a strong pattern-based validation can help sanitize tainted inputs. Likewise, converting to a harmless type can sometimes be a solution. However, avoiding handling objects' properties as strings by directly constructing Java objects should be the preferred way. Programmatic object building In most cases, an application can directly create objects from user input without having to build and parse a JSON string. Doing so prevents injection vulnerabilities as JSON object construction libraries and functions will properly escape and check the type of input values. Sometimes, the application might need to include the user input in an object built from a trusted JSON string. In that case, the recommended solution is to parse the trusted string first and then programmatically modify the resulting object. The example compliant code uses the org.json libraries capabilities to dynamically build a JSON object without string parsing. Converting to a harmless type When the application allows it, converting user-submitted data to a harmless type can help prevent JSON injection vulnerabilities. In particular, converting user inputs to numeric types is an efficient sanitation mechanism. This mechanism can be extended to other types, including more complex ones. However, care should be taken when dealing with them, as manually validating or sanitizing complex types can represent a challenge. Note that choosing this solution can be error-prone: every user input has to be validated or sanitized without oversight. How to fix it in Gson Code examples The following code is vulnerable to a JSON injection vulnerability because it builds a JSON string from user input without prior sanitation or validation. Therefore, an attacker can submit a tainted value that will tamper with the corresponding JSON object structure. 
+### Noncompliant
+import com.google.gson.Gson;
+
+//[...]
+public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    String tainted = request.getParameter("value");
+    String json = "{\"key\":\""+ tainted +"\"}";
+    Gson obj = new Gson();
+    obj.fromJson(json, Object.class); // Noncompliant
+}
+ 
+### Compliant
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonSyntaxException;
+
+//[...]
+public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    try {
+        JsonObject json = new JsonObject();
+        json.addProperty("key", request.getParameter("value"));
+        Gson obj = new Gson();
+        obj.fromJson(json, Object.class);
+    } catch (JsonSyntaxException e) {
+        response.sendError(400);
+    }
+}
+ How does this work? In most cases, it is discouraged to build JSON strings with a direct concatenation of user input. While not always possible, a strong pattern-based validation can help sanitize tainted inputs. Likewise, converting to a harmless type can sometimes be a solution. However, avoiding handling objects' properties as strings by directly constructing Java objects should be the preferred way. Programmatic object building In most cases, an application can directly create objects from user input without having to build and parse a JSON string. Doing so prevents injection vulnerabilities as JSON object construction libraries and functions will properly escape and check the type of input values. Sometimes, the application might need to include the user input in an object built from a trusted JSON string. In that case, the recommended solution is to parse the trusted string first and then programmatically modify the resulting object. The example compliant code uses the JsonObject class from the Gson library to directly build an object from the user input. Converting to a harmless type When the application allows it, converting user-submitted data to a harmless type can help prevent JSON injection vulnerabilities. In particular, converting user inputs to numeric types is an efficient sanitation mechanism. This mechanism can be extended to other types, including more complex ones. However, care should be taken when dealing with them, as manually validating or sanitizing complex types can represent a challenge. Note that choosing this solution can be error-prone: every user input has to be validated or sanitized without oversight. How to fix it in FasterXML Code examples The following code is vulnerable to a JSON injection vulnerability because it builds a JSON string from user input without prior sanitation or validation. Therefore, an attacker can submit a tainted value that will tamper with the corresponding JSON object structure. 
+### Noncompliant
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+//[...]
+public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    String tainted = request.getParameter("value");
+    String json = "{\"key\":\""+ tainted +"\"}";
+    ObjectMapper obj = new ObjectMapper();
+    try {
+        obj.readValue(json, Object.class); // Noncompliant
+    } catch (JsonProcessingException e) {
+        response.sendError(400);
+    }
+}
+ 
+### Compliant
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+
+//[...]
+public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    ObjectMapper obj = new ObjectMapper();
+    ObjectNode myObject = obj.createObjectNode();
+    myObject.put("key", request.getParameter("value"));
+}
+ How does this work? In most cases, it is discouraged to build JSON strings with a direct concatenation of user input. While not always possible, a strong pattern-based validation can help sanitize tainted inputs. Likewise, converting to a harmless type can sometimes be a solution. However, avoiding handling objects' properties as strings by directly constructing Java objects should be the preferred way. Programmatic object building In most cases, an application can directly create objects from user input without having to build and parse a JSON string. Doing so prevents injection vulnerabilities as JSON object construction libraries and functions will properly escape and check the type of input values. Sometimes, the application might need to include the user input in an object built from a trusted JSON string. In that case, the recommended solution is to parse the trusted string first and then programmatically modify the resulting object. The example compliant code uses the ObjectNode class from the Jackson library to directly build a JSON object from the user input. Converting to a harmless type When the application allows it, converting user-submitted data to a harmless type can help prevent JSON injection vulnerabilities. In particular, converting user inputs to numeric types is an efficient sanitation mechanism. This mechanism can be extended to other types, including more complex ones. However, care should be taken when dealing with them, as manually validating or sanitizing complex types can represent a challenge. Note that choosing this solution can be error-prone: every user input has to be validated or sanitized without oversight. Resources Documentation CVE-2018-3879 - An exploitable JSON injection vulnerability Standards OWASP Top 10 2021 Category A3 - Injection OWASP Top 10 2017 Category A1 - Injection MITRE, CWE-20 - Improper Input Validation MITRE, CWE-76 - Improper Neutralization of Equivalent Special Elements
+### Noncompliant
+{{BUGGY}}
+### Compliant

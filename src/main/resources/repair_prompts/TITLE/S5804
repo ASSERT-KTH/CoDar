@@ -1,0 +1,4 @@
+Allowing user enumeration is security-sensitive
+### Noncompliant
+{{BUGGY}}
+### Compliant

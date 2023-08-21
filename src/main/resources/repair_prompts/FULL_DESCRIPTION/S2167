@@ -10,7 +10,7 @@ public int compareTo(Name name) {
 ### Compliant
 public int compareTo(Name name) {
   if (condition) {
-    return -1; // Compliant
+    return -1; 
   }
 }
  
@@ -24,7 +24,7 @@ public int compareTo(Name name) {
 ### Compliant
 public int compareTo(Name name) {
   if (condition) {
-    return 1; // Compliant
+    return 1; 
   }
 }
  
@@ -38,7 +38,7 @@ It is compliant to return other values than -1, 0 or 1 if they are not constants
 ### Compliant
 public int compareTo(Name name) {
   if (condition) {
-    return hashCode() - name.hashCode(); // Compliant, not a constant
+    return hashCode() - name.hashCode(); 
   }
 }
  Resources Documentation Java SE 8 API Specification: Comparable.compareTo Java SE 8 API Specification: Integer.MIN_VALUE

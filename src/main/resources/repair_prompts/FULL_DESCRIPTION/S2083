@@ -1,0 +1,50 @@
+I/O function calls should not be vulnerable to path injection attacks
+Why is this an issue? Path injections occur when an application uses untrusted data to construct a file path and access this file without validating its path first. A user with malicious intent would inject specially crafted values, such as ../, to change the initial intended path. The resulting path would resolve somewhere in the filesystem where the user should not normally have access to. What is the potential impact? A web application is vulnerable to path injection and an attacker is able to exploit it. The files that can be affected are limited by the permission of the process that runs the application. Worst case scenario: the process runs with root privileges on Linux, and therefore any file can be affected. Below are some real-world scenarios that illustrate some impacts of an attacker exploiting the vulnerability. Override or delete arbitrary files The injected path component tampers with the location of a file the application is supposed to delete or write into. The vulnerability is exploited to remove or corrupt files that are critical for the application or for the system to work properly. It could result in data being lost or the application being unavailable. Read arbitrary files The injected path component tampers with the location of a file the application is supposed to read and output. The vulnerability is exploited to leak the content of arbitrary files from the file system, including sensitive files like SSH private keys. How to fix it in Java SE Code examples The following code is vulnerable to path injection as it creates a path using untrusted data without validation. An attacker can exploit the vulnerability in this code to delete arbitrary files. 
+### Noncompliant
+@Controller
+public class ExampleController
+{
+    static private String targetDirectory = "/path/to/target/directory/";
+
+    @GetMapping(value = "/delete")
+    public void delete(@RequestParam("filename") String filename) throws IOException {
+
+        File file = new File(targetDirectory + filename);
+        file.delete();
+    }
+}
+ 
+### Compliant
+@Controller
+public class ExampleController
+{
+    static private String targetDirectory = "/path/to/target/directory/";
+
+    @GetMapping(value = "/delete")
+    public void delete(@RequestParam("filename") String filename) throws IOException {
+
+        File file = new File(targetDirectory + filename);
+        String canonicalDestinationPath = file.getCanonicalPath();
+
+        if (!canonicalDestinationPath.startsWith(targetDirectory)) {
+            throw new IOException("Entry is outside of the target directory");
+        }
+
+        file.delete();
+    }
+}
+ How does this work? Canonical path validation If it is impossible to use secure-by-design APIs that do this automatically, the universal way to prevent path injection is to validate paths constructed from untrusted data: Ensure the target directory path ends with a forward slash to prevent partial path traversal, for example, /base/dirmalicious starts with /base/dir but does not start with /base/dir/. Resolve the canonical path of the file by using methods like java.io.File.getCanonicalPath. This will resolve relative path or path components like ../ and removes any ambiguity regarding the file’s location. Check that the canonical path is within the directory where the file should be located. Important Note: The order of this process pattern is important. The code must follow this order exactly to be secure by design: data = transform(user_input); data = normalize(data); data = sanitize(data); use(data); As pointed out in this SonarSource talk, failure to follow this exact order leads to security vulnerabilities. Pitfalls Partial Path Traversal When validating untrusted paths by checking if they start with a trusted folder name, ensure the validation string contains a path separator as the last character. A partial path traversal vulnerability can be unintentionally introduced into the application without a path separator as the last character of the validation strings. For example, the following code is vulnerable to partial path injection. Note that the string targetDirectory does not end with a path separator: static private String targetDirectory = "/Users/John";
+
+@GetMapping(value = "/endpoint")
+public void endpoint(@RequestParam("folder") fileName) throws IOException {
+
+    String canonicalizedFileName = fileName.getCanonicalPath();
+
+    if (!canonicalizedFileName .startsWith(targetDirectory)) {
+        throw new IOException("Entry is outside of the target directory");
+    }
+}
+ This check can be bypassed because "/Users/Johnny".startsWith("/Users/John") returns true. Thus, for validation, "/Users/John" should actually be "/Users/John/". Warning: Some functions, such as .getCanonicalPath, remove the terminating path separator in their return value. The validation code should be tested to ensure that it cannot be impacted by this issue. Here is a real-life example of this vulnerability. Do not use java.nio.file.Path.resolve as a validator As specified in the official documentation, if the given parameter is an absolute path, the base object from which the method is called is discarded and is not included in the resulting string. This means that including untrusted data in the parameter and using the resulting string for file operations may lead to a path traversal vulnerability. Resources Standards OWASP Top 10 2021 Category A1 - Broken Access Control OWASP Top 10 2021 Category A3 - Injection OWASP Top 10 2017 Category A1 - Injection OWASP Top 10 2017 Category A5 - Broken Access Control MITRE, CWE-20 - Improper Input Validation MITRE, CWE-22 - Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')
+### Noncompliant
+{{BUGGY}}
+### Compliant

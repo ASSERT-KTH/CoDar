@@ -1,0 +1,4 @@
+Server-side requests should not be vulnerable to forging attacks
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,4 @@
+Comma-separated labels should be used in Switch with colon case
+### Noncompliant
+{{BUGGY}}
+### Compliant

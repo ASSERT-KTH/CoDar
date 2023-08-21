@@ -1,0 +1,5 @@
+Broadcasting intents is security-sensitive
+In Android applications, broadcasting intents is security-sensitive. For example, it has led in the past to the following vulnerability: CVE-2018-9489 By default, broadcasted intents are visible to every application, exposing all sensitive information they contain. This rule raises an issue when an intent is broadcasted without specifying any "receiver permission". Ask Yourself Whether The intent contains sensitive information. Intent reception is not restricted. There is a risk if you answered yes to any of those questions. Recommended Secure Coding Practices Restrict the access to broadcasted intents. See Android documentation for more information. 
+### Noncompliant
+{{BUGGY}}
+### Compliant

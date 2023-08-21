@@ -11,11 +11,11 @@ Boolean isSameReference(AtomicLong a, AtomicLong b) {
  
 ### Compliant
 Boolean isSameNumberValue(AtomicLong a, AtomicLong b) {
-  return a.get() == b.get(); // Compliant
+  return a.get() == b.get(); 
 }
 
 Boolean isSameReference(AtomicLong a, AtomicLong b) {
-  return a == b; // Compliant
+  return a == b; 
 }
  Resources Documentation Java SE 8 API Specification: Package "java.util.concurrent.atomic" Articles & blog posts Programming.Guide: AtomicInteger and equals / Comparable
 ### Noncompliant

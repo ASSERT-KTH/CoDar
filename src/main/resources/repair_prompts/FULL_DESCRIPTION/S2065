@@ -8,7 +8,7 @@ class Vegetable {
  
 ### Compliant
 class Vegetable {
-  private Season ripe; // Compliant, the field is not marked as "transient"
+  private Season ripe; 
   // ...
 }
  Resources Baeldung - The transient Keyword in Java

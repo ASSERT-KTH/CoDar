@@ -1,0 +1,31 @@
+### Noncompliant
+TelnetClient telnet = new TelnetClient(); // Sensitive
+
+FTPClient ftpClient = new FTPClient(); // Sensitive
+
+SMTPClient smtpClient = new SMTPClient(); // Sensitive
+### Compliant
+JSch jsch = new JSch();
+
+if(implicit) {
+  // implicit mode is considered deprecated but offer the same security than explicit mode
+  FTPSClient ftpsClient = new FTPSClient(true);
+}
+else {
+  FTPSClient ftpsClient = new FTPSClient();
+}
+
+if(implicit) {
+  // implicit mode is considered deprecated but offer the same security than explicit mode
+  SMTPSClient smtpsClient = new SMTPSClient(true);
+}
+else {
+  SMTPSClient smtpsClient = new SMTPSClient();
+  smtpsClient.connect("127.0.0.1", 25);
+  if (smtpsClient.execTLS()) {
+    // commands
+  }
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

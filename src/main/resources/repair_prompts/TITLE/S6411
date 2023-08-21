@@ -1,0 +1,4 @@
+Types used as keys in Maps should implement Comparable
+### Noncompliant
+{{BUGGY}}
+### Compliant

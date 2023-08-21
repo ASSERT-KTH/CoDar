@@ -1,0 +1,45 @@
+NoSQL operations should not be vulnerable to injection attacks
+Why is this an issue? NoSQL injections occur when an application retrieves untrusted data and inserts it into a database query without sanitizing it first. What is the potential impact? In the context of a web application that is vulnerable to NoSQL injection: After discovering the injection point, attackers insert data into the vulnerable field to execute malicious commands in the affected databases. Below are some real-world scenarios that illustrate some impacts of an attacker exploiting the vulnerability. Identity spoofing and data leakage In the context of simple query logic breakouts, a malicious database query enables privilege escalation or direct data leakage from one or more databases. This threat is the most widespread impact. Data deletion and denial of service The malicious query makes it possible for the attacker to delete data in the affected databases. This threat is particularly insidious if the attacked organization does not maintain a disaster recovery plan (DRP) as missing data can disrupt the regular operations of an organization. Chaining NoSQL injections with other vulnerabilities Attackers who exploit NoSQL injections rely on other vulnerabilities to maximize their profits. Most of the time, organizations overlook some defense in depth measures because they assume attackers cannot reach certain points in the infrastructure. This misbehavior can lead to multiple attacks with great impact: When secrets are stored unencrypted in databases: Secrets can be exfiltrated and lead to compromise of other components. If server-side OS and/or database permissions are misconfigured, injection can lead to remote code execution (RCE). How to fix it in Legacy Mongo Java API Code examples The following code is vulnerable to NoSQL injections because untrusted data is concatenated to the $where operator. This operator indicates to the backend that the expression needs to be interpreted, resulting in code injection. 
+### Noncompliant
+import com.mongodb.MongoClient;
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.BasicDBObject;
+
+protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws UnknownHostException
+{
+    String input = req.getParameter("input");
+
+    MongoClient mongoClient = new MongoClient();
+    DB database             = mongoClient.getDB("ExampleDatabase");
+    DBCollection collection = database.getCollection("exampleCollection");
+    BasicDBObject query     = new BasicDBObject();
+
+    query.append("$where", "this.field == \"" + input + "\"");
+
+    collection.find(query);
+}
+ 
+### Compliant
+import com.mongodb.MongoClient;
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.BasicDBObject;
+
+protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws UnknownHostException
+{
+    String input = req.getParameter("input");
+
+    MongoClient mongoClient = new MongoClient();
+    DB database             = mongoClient.getDB("ExampleDatabase");
+    DBCollection collection = database.getCollection("exampleCollection");
+    BasicDBObject query     = new BasicDBObject();
+
+    query.append("field", input);
+
+    collection.find(query);
+}
+ How does this work? Pre-approved list As a rule of thumb, the best approach to protect against injections is to systematically ensure that untrusted data cannot break out of the initially intended logic. For NoSQL injections, the cleanest way to do so is to validate the input before using it in a query. Create a list of authorized and secure strings that you want the application to be able to use in a query. If a user input does not match an entry in this list, it should be rejected because it is considered unsafe. The list can be either a regex string, an array, or validators on specific ranges of characters. If you use regexes, choose simple regexes to avoid ReDOS attacks. Important note: The application must do validation on the server side. Not on client-side front-ends. Operators are to be classified as dangerous As a rule of thumb if no operators are needed, you should generally reject user input containing them. If some operators are necessary, you should restrict their use. Some operators execute JavaScript, and their use should be restricted for both untrusted input and internal code. These operators include: $where $function $accumulator mapReduce Depending on your use case, you should first try using regular API calls before using any of these operators. For example, using a $where operator is unnecessarily complex when only a simple search is required. It also leads to performance problems. Note: Server-side scripting can be disabled. Regular operators can also lead to data leaks. For example, attackers can use "comparison query operators" in their attack data to trick the backend database into giving hints about sensitive information or entirely giving it out. In the previous example, the untrusted data doesn’t need validation for its use case. Moving it out of a $where expression into a proper field query is enough. Resources Articles & blog posts SonarSource, NoSQL Injections in Rocket.Chat 3.12.1 Standards OWASP Top 10 2021 Category A3 - Injection OWASP Top 10 2017 Category A1 - Injection MITRE, CWE-20 - Improper Input Validation MITRE, CWE-943 - Improper Neutralization of Special Elements in Data Query Logic
+### Noncompliant
+{{BUGGY}}
+### Compliant

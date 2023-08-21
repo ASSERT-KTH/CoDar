@@ -1,0 +1,9 @@
+### Noncompliant
+String ip = "192.168.12.42"; // Sensitive
+Socket socket = new Socket(ip, 6667);
+### Compliant
+String ip = System.getenv("IP_ADDRESS"); 
+Socket socket = new Socket(ip, 6667);
+### Noncompliant
+{{BUGGY}}
+### Compliant

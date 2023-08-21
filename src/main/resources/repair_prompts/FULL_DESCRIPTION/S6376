@@ -1,0 +1,39 @@
+XML parsers should not be vulnerable to Denial of Service attacks
+Why is this an issue? An XML bomb / billion laughs attack is a malicious XML document containing the same large entity repeated over and over again. If no restrictions is in place, such a limit on the number of entity expansions, the XML processor can consume a lot memory and time during the parsing of such documents leading to Denial of Service. 
+### Noncompliant
+For DocumentBuilder, SAXParser and Schema and Transformer JAPX factories: DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+factory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, false); // Noncompliant
+
+SAXParserFactory factory = SAXParserFactory.newInstance();
+factory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, false); // Noncompliant
+
+SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+factory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, false); // Noncompliant
+
+TransformerFactory factory = javax.xml.transform.TransformerFactory.newInstance();
+factory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, false); // Noncompliant
+ For Dom4j library: SAXReader xmlReader = new SAXReader();
+xmlReader.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, false); // Noncompliant
+ For Jdom2 library: SAXBuilder builder = new SAXBuilder();
+builder.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, false);  // Noncompliant
+ 
+### Compliant
+For DocumentBuilder, SAXParser and Schema and Transformer JAPX factories: DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+factory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
+
+SAXParserFactory factory = SAXParserFactory.newInstance();
+factory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
+
+SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+factory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
+
+TransformerFactory factory = javax.xml.transform.TransformerFactory.newInstance();
+factory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
+ For Dom4j library: SAXReader xmlReader = new SAXReader();
+xmlReader.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
+ For Jdom2 library: SAXBuilder builder = new SAXBuilder();
+builder.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
+ Resources Oracle Java Documentation - XML External Entity Injection Attack OWASP Top 10 2017 Category A4 - XML External Entities (XXE) OWASP XXE Prevention Cheat Sheet MITRE, CWE-776 - Improper Restriction of Recursive Entity References in DTDs ('XML Entity Expansion')
+### Noncompliant
+{{BUGGY}}
+### Compliant

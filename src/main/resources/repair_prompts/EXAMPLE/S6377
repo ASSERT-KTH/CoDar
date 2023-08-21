@@ -1,0 +1,20 @@
+### Noncompliant
+NodeList signatureElement = doc.getElementsByTagNameNS(XMLSignature.XMLNS, "Signature");
+
+XMLSignatureFactory fac = XMLSignatureFactory.getInstance("DOM");
+DOMValidateContext valContext = new DOMValidateContext(new KeyValueKeySelector(), signatureElement.item(0)); // Noncompliant
+XMLSignature signature = fac.unmarshalXMLSignature(valContext);
+
+boolean signatureValidity = signature.validate(valContext);
+### Compliant
+NodeList signatureElement = doc.getElementsByTagNameNS(XMLSignature.XMLNS, "Signature");
+
+XMLSignatureFactory fac = XMLSignatureFactory.getInstance("DOM");
+DOMValidateContext valContext = new DOMValidateContext(new KeyValueKeySelector(), signatureElement.item(0));
+valContext.setProperty("org.jcp.xml.dsig.secureValidation", Boolean.TRUE);
+XMLSignature signature = fac.unmarshalXMLSignature(valContext);
+
+boolean signatureValidity = signature.validate(valContext);
+### Noncompliant
+{{BUGGY}}
+### Compliant

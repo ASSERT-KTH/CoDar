@@ -1,0 +1,15 @@
+### Noncompliant
+record Person(String name, int age) implements Serializable {
+@Serial
+  private static final long serialVersionUID = 0L; // Noncompliant
+}
+### Compliant
+record Person(String name, int age) implements Serializable {} 
+
+record Person(String name, int age) implements Serializable {
+@Serial
+  private static final long serialVersionUID = 42L; 
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

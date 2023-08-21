@@ -13,7 +13,7 @@ DirContext ctx = new InitialDirContext();
 // ...
 ctx.search(query, filter,
         new SearchControls(scope, countLimit, timeLimit, attributes,
-            false, // Compliant
+            false, 
             deref));
  See OWASP Top 10 2021 Category A8 - Software and Data Integrity Failures MITRE, CWE-502 - Deserialization of Untrusted Data OWASP Top 10 2017 Category A8 - Insecure Deserialization BlackHat presentation Derived from FindSecBugs rule LDAP_ENTRY_POISONING
 ### Noncompliant

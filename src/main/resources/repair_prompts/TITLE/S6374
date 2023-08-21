@@ -1,0 +1,4 @@
+XML parsers should not load external schemas
+### Noncompliant
+{{BUGGY}}
+### Compliant

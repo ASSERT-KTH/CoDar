@@ -1,0 +1,25 @@
+XML parsers should not load external schemas
+This rule is deprecated; use S2755 instead. Why is this an issue? By default XML processors attempt to load all XML schemas and DTD (their locations are defined with xsi:schemaLocation attributes and DOCTYPE declarations), potentially from an external storage such as file system or network, which may lead, if no restrictions are put in place, to server-side request forgery (SSRF) vulnerabilities. 
+### Noncompliant
+DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+factory.setValidating(true); // Noncompliant
+factory.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", true); // Noncompliant
+
+SAXParserFactory factory = SAXParserFactory.newInstance();
+factory.setValidating(true); // Noncompliant
+factory.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", true); // Noncompliant
+
+SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+schemaFactory.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", true); // Noncompliant
+### Compliant
+DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+factory.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
+
+SAXParserFactory factory = SAXParserFactory.newInstance();
+factory.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
+
+SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+schemaFactory.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
+### Noncompliant
+{{BUGGY}}
+### Compliant

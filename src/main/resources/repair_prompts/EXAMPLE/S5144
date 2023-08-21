@@ -1,0 +1,24 @@
+### Noncompliant
+protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    String location = req.getParameter("url");
+
+    URL url = new URL(location);
+
+    HttpURLConnection  conn = (HttpURLConnection) url.openConnection();
+}
+### Compliant
+protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    String location = req.getParameter("url");
+
+    List<String> allowedHosts = new ArrayList<String>();
+    allowedHosts.add("https://trusted1.example.com/");
+    allowedHosts.add("https://trusted2.example.com/");
+
+    URL url = new URL(location);
+
+    if (allowedHosts.contains(location))
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,13 @@
+### Noncompliant
+// ...
+BiometricPrompt biometricPrompt = new BiometricPrompt(activity, executor, callback);
+// ...
+biometricPrompt.authenticate(promptInfo); // Noncompliant
+### Compliant
+// ...
+BiometricPrompt biometricPrompt = new BiometricPrompt(activity, executor, callback);
+// ...
+biometricPrompt.authenticate(promptInfo, new BiometricPrompt.CryptoObject(cipher)); 
+### Noncompliant
+{{BUGGY}}
+### Compliant

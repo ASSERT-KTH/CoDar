@@ -9,8 +9,8 @@ BigDecimal bd2 = new BigDecimal(1.1); // Noncompliant
 ### Compliant
 double d = 1.1;
 
-BigDecimal bd1 = BigDecimal.valueOf(d); // Compliant
-BigDecimal bd2 = new BigDecimal("1.1"); // Compliant
+BigDecimal bd1 = BigDecimal.valueOf(d); 
+BigDecimal bd2 = new BigDecimal("1.1"); 
  Resources Documentation Oracle - BigDecimal CERT, NUM10-J - Do not construct BigDecimal objects from floating-point literals
 ### Noncompliant
 {{BUGGY}}

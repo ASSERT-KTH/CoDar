@@ -14,7 +14,7 @@ public void doGet(HttpServletRequest request, HttpServletResponse response) thro
     InetAddress addr = InetAddress.getByName(request.getRemoteAddr());
     //...
   }
-  catch (UnknownHostException ex) {  // Compliant
+  catch (UnknownHostException ex) {  
     //...
   }
 }

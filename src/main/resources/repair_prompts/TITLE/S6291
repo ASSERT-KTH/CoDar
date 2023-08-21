@@ -1,0 +1,4 @@
+Using unencrypted databases in mobile applications is security-sensitive
+### Noncompliant
+{{BUGGY}}
+### Compliant

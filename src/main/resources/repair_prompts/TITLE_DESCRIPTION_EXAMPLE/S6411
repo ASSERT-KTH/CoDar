@@ -1,0 +1,34 @@
+Types used as keys in Maps should implement Comparable
+Why is this an issue? Maps use hashes of the keys to select a bucket to store data in. Objects that hash to the same value will be added to the same bucket. When the hashing function has a poor distribution, buckets can grow to very large sizes. This may negatively affect lookup performance, as, by default, matching a key within a bucket has linear complexity. In addition, as the default hashCode function can be selected at runtime, performance expectations cannot be maintained. Implementing Comparable mitigates the performance issue for objects that hash to the same value. 
+### Noncompliant
+class MyKeyType {
+    // ...
+}
+
+class Program {
+    Map<MyKeyType, MyValueType> data = new HashMap<>(); // Noncompliant
+
+    Map<MyKeyType, MyValueType> buildMap() { // Noncompliant
+        //...
+    }
+}
+### Compliant
+class MyKeyType implements Comparable<MyKeyType> {
+    // ...
+}
+
+class MyChildKeyType extends MyKeyType {
+    // ...
+}
+
+class Program {
+    Map<MyKeyType, MyValueType> data = new HashMap<>();
+    Map<MyChildKeyType, MyValueType> data = new HashMap<>();
+
+    Map<MyKeyType, MyValueType> buildMap() {
+        //...
+    }
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -32,7 +32,7 @@ public class Raspberry extends Fruit {
 }
 
 public class Raspberry extends Fruit {
-  private Season ripe;  // Compliant as parent field 'ripe' is anyway not visible from Raspberry
+  private Season ripe;  
   // ...
 }
 ### Noncompliant

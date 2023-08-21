@@ -11,12 +11,12 @@ public void doSomething(int myParam) {
   int local;
   ...
 }
- Exceptions Loop counters are ignored by this rule. for (int i_1 = 0; i_1 < limit; i_1++) {  // Compliant
+ Exceptions Loop counters are ignored by this rule. for (int i_1 = 0; i_1 < limit; i_1++) {  
   // ...
 }
  as well as one-character catch variables: try {
 //...
-} catch (Exception e) { // Compliant
+} catch (Exception e) { 
 }
 ### Noncompliant
 {{BUGGY}}

@@ -1,0 +1,11 @@
+### Noncompliant
+factory.setXIncludeAware(true); // Noncompliant
+// or
+factory.setFeature("http://apache.org/xml/features/xinclude", true); // Noncompliant
+### Compliant
+factory.setXIncludeAware(false);
+// or
+factory.setFeature("http://apache.org/xml/features/xinclude", false);
+### Noncompliant
+{{BUGGY}}
+### Compliant

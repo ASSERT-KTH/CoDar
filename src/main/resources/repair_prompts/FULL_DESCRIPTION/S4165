@@ -1,0 +1,13 @@
+Assignments should not be redundant
+Why is this an issue? The transitive property says that if a == b and b == c, then a == c. In such cases, there’s no point in assigning a to c or vice versa because they’re already equivalent. This rule raises an issue when an assignment is useless because the assigned-to variable already holds the value on all execution paths. 
+### Noncompliant
+a = b;
+c = a;
+b = c; // Noncompliant: c and b are already the same
+ 
+### Compliant
+a = b;
+c = a;
+### Noncompliant
+{{BUGGY}}
+### Compliant

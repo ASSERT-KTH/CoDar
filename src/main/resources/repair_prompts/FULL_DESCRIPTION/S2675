@@ -8,7 +8,7 @@ private synchronized void readObject(java.io.ObjectInputStream in)
  
 ### Compliant
 private void readObject(java.io.ObjectInputStream in)
-     throws IOException, ClassNotFoundException { // Compliant
+     throws IOException, ClassNotFoundException { 
   //...
 }
  Resources Documentation Oracle SDK 20 - Serializable Oracle SDK 20 - ObjectInputStream Articles & blog posts Serialization in Java

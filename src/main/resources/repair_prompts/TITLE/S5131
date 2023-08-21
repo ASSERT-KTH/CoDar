@@ -1,0 +1,4 @@
+Endpoints should not be vulnerable to reflected cross-site scripting (XSS) attacks
+### Noncompliant
+{{BUGGY}}
+### Compliant

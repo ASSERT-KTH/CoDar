@@ -1,0 +1,43 @@
+Accessing files should not lead to filesystem oracle attacks
+Why is this an issue? Applications behave as filesystem oracles when they disclose to attackers if resources from the filesystem exist or not. A user with malicious intent would inject specially crafted values, such as ../, to change the initially intended path. The resulting path would resolve to a location somewhere in the filesystem which the user should not normally have access to. What is the potential impact? An attacker exploiting a filesystem oracle vulnerability can determine if a file exists or not. The files that can be affected are limited by the permission of the process that runs the application. Worst case scenario: the process runs with elevated privileges, and therefore any file can be affected. Below are some real-world scenarios that illustrate some impacts of an attacker exploiting the vulnerability. Information gathering The vulnerability is exploited to gather information about the host system. The filesystem oracle can help identify user accounts, running services, or the exact version of installed software. How to fix it in Java SE Code examples The following code is vulnerable to a file system oracle as it allows testing the existence of a file anywhere on the file system. 
+### Noncompliant
+import java.io.File;
+
+@Controller
+public class ExampleController
+{
+    static private String targetDirectory = "/path/to/target/directory/";
+
+    @GetMapping(value = "/exists")
+    public void delete(@RequestParam("filename") String filename) throws IOException {
+
+        File file = new File(targetDirectory + filename);
+        if (!file.exists()) { // Noncompliant
+            throw new IOException("File does not exists in the target directory");
+        }
+    }
+}
+### Compliant
+import java.io.File;
+
+@Controller
+public class ExampleController
+{
+    static private String targetDirectory = "/path/to/target/directory/";
+
+    @GetMapping(value = "/exists")
+    public void delete(@RequestParam("filename") String filename) throws IOException {
+
+        File file = new File(targetDirectory + filename);
+        String canonicalDestinationPath = file.getCanonicalPath();
+
+        if (!canonicalDestinationPath.startsWith(targetDirectory)) {
+            throw new IOException("Entry is outside of the target directory");
+        } else if (!file.exists()) {
+            throw new IOException("File does not exists in the target directory");
+        }
+    }
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

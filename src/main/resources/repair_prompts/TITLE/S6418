@@ -1,0 +1,4 @@
+Hard-coded secrets are security-sensitive
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -5,7 +5,7 @@ int matrix[][];   // Noncompliant
 int[] matrix[];   // Noncompliant
  
 ### Compliant
-int[][] matrix;   // Compliant
+int[][] matrix;   
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

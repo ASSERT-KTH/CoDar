@@ -1,0 +1,11 @@
+### Noncompliant
+public static <T extends String> T getMyString() { // Noncompliant; String is a "final" class and so can't be extended
+ [...]
+}
+### Compliant
+public static String getMyString() { 
+  [...]
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

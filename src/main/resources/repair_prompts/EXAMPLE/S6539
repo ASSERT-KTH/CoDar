@@ -1,0 +1,19 @@
+### Noncompliant
+class Foo { // class Foo depends on too many classes: T1, T2, T3, T4, T5, T6 and T7
+  T1 t1;
+  T2 t2;
+  T3 t3;
+
+  public T4 compute(T5 a, T6 b) {
+    T7 result = a.getResult(b);
+    return (T4) result;
+  }
+}
+### Compliant
+public class Bar {
+    T8 a8;
+    T9 a9;
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

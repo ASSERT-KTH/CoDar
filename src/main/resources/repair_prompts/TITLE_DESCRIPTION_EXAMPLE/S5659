@@ -1,0 +1,22 @@
+JWT should be signed and verified with strong cipher algorithms
+This vulnerability allows forging of JSON Web Tokens to impersonate other users. Why is this an issue? JSON Web Tokens (JWTs), a popular method of securely transmitting information between parties as a JSON object, can become a significant security risk when they are not properly signed with a robust cipher algorithm, left unsigned altogether, or if the signature is not verified. This vulnerability class allows malicious actors to craft fraudulent tokens, effectively impersonating user identities. In essence, the integrity of a JWT hinges on the strength and presence of its signature. What is the potential impact? When a JSON Web Token is not appropriately signed with a strong cipher algorithm or if the signature is not verified, it becomes a significant threat to data security and the privacy of user identities. Impersonation of users JWTs are commonly used to represent user authorization claims. They contain information about the user’s identity, user roles, and access rights. When these tokens are not securely signed, it allows an attacker to forge them. In essence, a weak or missing signature gives an attacker the power to craft a token that could impersonate any user. For instance, they could create a token for an administrator account, gaining access to high-level permissions and sensitive data. Unauthorized data access When a JWT is not securely signed, it can be tampered with by an attacker, and the integrity of the data it carries cannot be trusted. An attacker can manipulate the content of the token and grant themselves permissions they should not have, leading to unauthorized data access. How to fix it in Java JWT Code examples The following code contains examples of JWT encoding and decoding without a strong cipher algorithm. 
+### Noncompliant
+import io.jsonwebtoken.Jwts;
+
+public void encode() {
+    Jwts.builder()
+        .setSubject(USER_LOGIN)
+        .compact(); // Noncompliant
+}
+### Compliant
+import io.jsonwebtoken.Jwts;
+
+public void encode() {
+    Jwts.builder()
+        .setSubject(USER_LOGIN)
+        .signWith(SignatureAlgorithm.HS256, SECRET_KEY)
+        .compact();
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,4 @@
+Classes should not depend on an excessive number of classes (aka Monster Class)
+### Noncompliant
+{{BUGGY}}
+### Compliant

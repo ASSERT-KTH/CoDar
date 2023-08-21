@@ -1,0 +1,23 @@
+Accessing Android external storage is security-sensitive
+Storing data locally is a common task for mobile applications. Such data includes files among other things. One convenient way to store files is to use the external file storage which usually offers a larger amount of disc space compared to internal storage. Files created on the external storage are globally readable and writable. Therefore, a malicious application having the permissions WRITE_EXTERNAL_STORAGE or READ_EXTERNAL_STORAGE could try to read sensitive information from the files that other applications have stored on the external storage. External storage can also be removed by the user (e.g when based on SD card) making the files unavailable to the application. Ask Yourself Whether Your application uses external storage to: store files that contain sensitive data. store files that are not meant to be shared with other application. store files that are critical for the application to work. There is a risk if you answered yes to any of those questions. Recommended Secure Coding Practices Use internal storage whenever possible as the system prevents other apps from accessing this location. Only use external storage if you need to share non-sensitive files with other applications. If your application has to use the external storage to store sensitive data, make sure it encrypts the files using EncryptedFile. Data coming from external storage should always be considered untrusted and should be validated. As some external storage can be removed, make sure to never store files on it that are critical for the usability of your application. 
+### Noncompliant
+import android.content.Context;
+
+public class AccessExternalFiles {
+
+    public void accessFiles(Context context) {
+        context.getExternalFilesDir(null); // Sensitive
+    }
+}
+### Compliant
+import android.content.Context;
+
+public class AccessExternalFiles {
+
+    public void accessFiles(Context context) {
+        context.getFilesDir();
+    }
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

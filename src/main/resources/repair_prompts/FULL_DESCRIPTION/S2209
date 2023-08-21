@@ -25,8 +25,8 @@ public class B {
   private A second = new A();
 
   public void runUpTheCount() {
-    A.counter ++;  // Compliant
-    A.counter ++;  // Compliant
+    A.counter ++;  
+    A.counter ++;  
   }
 }
 ### Noncompliant

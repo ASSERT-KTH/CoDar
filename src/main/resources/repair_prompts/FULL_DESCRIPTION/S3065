@@ -15,14 +15,14 @@ Swapping method min() and max() invocations without changing parameters.   priva
 
   public int doRangeCheck(int num) {    // Let's say num = 12
     int result = Math.max(LOWER, num);  // result = 12
-    return Math.min(UPPER, result);     // Compliant; result is still 12
+    return Math.min(UPPER, result);     
   }
  or swapping bounds UPPER and LOWER used as parameters without changing the invoked methods.   private static final int UPPER = 20;
   private static final int LOWER = 0;
 
   public int doRangeCheck(int num) {    // Let's say num = 12
     int result = Math.min(UPPER, num);  // result = 12
-    return Math.max(LOWER, result);     // Compliant; result is still 12
+    return Math.max(LOWER, result);     
   }
 ### Noncompliant
 {{BUGGY}}

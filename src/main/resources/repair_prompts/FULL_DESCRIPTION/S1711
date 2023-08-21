@@ -23,7 +23,7 @@ public class MyClass {
  
 ### Compliant
 @FunctionalInterface
-public interface ExtendedBooleanSupplier extends BooleanSupplier { // Compliant, extends java.util.function.BooleanSupplier
+public interface ExtendedBooleanSupplier extends BooleanSupplier { 
   default boolean isFalse() {
     return !getAsBoolean();
   }

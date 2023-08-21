@@ -6,7 +6,7 @@ Double.longBitsToDouble(i);   // Noncompliant - NaN
  
 ### Compliant
 long i = 0x80003800L;
-Double.longBitsToDouble(i);   // Compliant - 1.0610049784E-314
+Double.longBitsToDouble(i);   
  Resources Documentation Oracle Java SE - Double.doubleToLongBits Articles & blog posts Wikipedia - Double Precision floating point format Wikipedia - Single Precision floating point format
 ### Noncompliant
 {{BUGGY}}

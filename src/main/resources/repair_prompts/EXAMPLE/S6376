@@ -1,0 +1,27 @@
+### Noncompliant
+DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+factory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, false); // Noncompliant
+
+SAXParserFactory factory = SAXParserFactory.newInstance();
+factory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, false); // Noncompliant
+
+SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+factory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, false); // Noncompliant
+
+TransformerFactory factory = javax.xml.transform.TransformerFactory.newInstance();
+factory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, false); // Noncompliant
+### Compliant
+DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+factory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
+
+SAXParserFactory factory = SAXParserFactory.newInstance();
+factory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
+
+SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+factory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
+
+TransformerFactory factory = javax.xml.transform.TransformerFactory.newInstance();
+factory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
+### Noncompliant
+{{BUGGY}}
+### Compliant

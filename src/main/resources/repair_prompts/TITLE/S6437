@@ -1,0 +1,4 @@
+Credentials should not be hard-coded
+### Noncompliant
+{{BUGGY}}
+### Compliant

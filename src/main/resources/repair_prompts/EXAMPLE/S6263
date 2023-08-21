@@ -1,0 +1,14 @@
+### Noncompliant
+import com.amazonaws.auth.AWSCredentials;
+import com.amazonaws.auth.BasicAWSCredentials;
+// ...
+
+AWSCredentials awsCredentials = new BasicAWSCredentials(accessKeyId, secretAccessKey);
+### Compliant
+BasicSessionCredentials sessionCredentials = new BasicSessionCredentials(
+   session_creds.getAccessKeyId(),
+   session_creds.getSecretAccessKey(),
+   session_creds.getSessionToken());
+### Noncompliant
+{{BUGGY}}
+### Compliant

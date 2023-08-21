@@ -1,0 +1,4 @@
+Redundant constructors/methods should be avoided in records
+### Noncompliant
+{{BUGGY}}
+### Compliant

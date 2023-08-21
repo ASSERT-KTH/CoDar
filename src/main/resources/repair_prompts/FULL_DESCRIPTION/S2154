@@ -8,8 +8,8 @@ Number n1 = condition ? i : f;  // Noncompliant, unexpected precision loss, n1 =
 ### Compliant
 Integer i = 123456789;
 Float f = 1.0f;
-Number n1 = condition ? (Number) i : f; // Compliant, cast to Number prevents unboxing
-Number n2 = condition ? i : (Number) f; // Compliant, cast to Number prevents unboxing
+Number n1 = condition ? (Number) i : f; 
+Number n2 = condition ? i : (Number) f; 
  
 ### Noncompliant
 If type coercion was your intention, clarify this by casting the operand that would be coerced to the corresponding type explicitly. Integer i = 123456789;
@@ -19,7 +19,7 @@ Number n1 = condition ? i : f;  // Noncompliant, unexpected precision loss, n1 =
 ### Compliant
 Integer i = 123456789;
 Float f = 1.0f;
-Number n = condition ? (float) i : f; // Compliant, intentional type coercion with precision loss
+Number n = condition ? (float) i : f; 
  Resources Documentation The Java Tutorials: Equality, Relational, and Conditional Operators The Java Tutorials: Autoboxing and Unboxing The Java® Language Specification Java SE 7 Edition: Chapter 5. Conversions and Promotions Articles & blog posts GeeksforGeeks: Coercion in Java
 ### Noncompliant
 {{BUGGY}}

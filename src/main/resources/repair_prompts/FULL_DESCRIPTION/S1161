@@ -14,7 +14,7 @@ class ParentClass {
 }
 class FirstChildClass extends ParentClass {
   @Override
-  public boolean doSomething(){/*...*/}  // Compliant
+  public boolean doSomething(){/*...*/}  
 }
  Exceptions This rule does not raise issues when overriding methods from Object (eg: equals(), hashCode(), toString(), …).
 ### Noncompliant

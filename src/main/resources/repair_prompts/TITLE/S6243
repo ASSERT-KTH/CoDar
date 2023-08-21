@@ -1,0 +1,4 @@
+Reusable resources should be initialized at construction time of Lambda functions
+### Noncompliant
+{{BUGGY}}
+### Compliant

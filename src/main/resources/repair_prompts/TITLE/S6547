@@ -1,0 +1,4 @@
+Environment variables should not be defined from untrusted input
+### Noncompliant
+{{BUGGY}}
+### Compliant

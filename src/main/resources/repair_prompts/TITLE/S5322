@@ -1,0 +1,4 @@
+Receiving intents is security-sensitive
+### Noncompliant
+{{BUGGY}}
+### Compliant

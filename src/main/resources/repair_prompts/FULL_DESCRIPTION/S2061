@@ -17,14 +17,14 @@ public class Watermelon implements Serializable {
 ### Compliant
 public class Watermelon implements Serializable {
 
-  private void writeObject(java.io.ObjectOutputStream out)    // Compliant, method declared as private
+  private void writeObject(java.io.ObjectOutputStream out)    
         throws IOException
   {...}
 
-  protected Object readResolve() throws ObjectStreamException // Compliant, method is not static
+  protected Object readResolve() throws ObjectStreamException 
   {...}
 
-  private Object writeReplace() throws ObjectStreamException  // Compliant, method returns "java.lang.Object"
+  private Object writeReplace() throws ObjectStreamException  
   {...}
 }
  Resources CERT, SER01-J. - Do not deviate from the proper signatures of serialization methods Oracle SDK - java.io.Serializable

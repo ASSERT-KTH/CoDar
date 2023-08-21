@@ -1,0 +1,4 @@
+XML signatures should be validated securely
+### Noncompliant
+{{BUGGY}}
+### Compliant

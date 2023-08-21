@@ -1,0 +1,40 @@
+Deserialization should not be vulnerable to injection attacks
+Why is this an issue? Deserialization injections occur when applications deserialize wholly or partially untrusted data without verification. What is the potential impact? In the context of a web application performing unsafe deserialization: After detecting the injection vector, attackers inject a carefully-crafted payload into the application. Below are some real-world scenarios that illustrate some impacts of an attacker exploiting the vulnerability. Application-specific attacks In this scenario, the attackers succeed in injecting an object of the expected class, but with malicious properties that affect the object’s behavior. If the application relies on the properties of the deserialized object, attackers can modify the data structure or content to escalate privileges or perform unwanted actions. In the context of an e-commerce application, this could be changing the number of products or prices. Full application compromise In the worst-case scenario, the attackers succeed in injecting an object of a completely different class than expected, triggering code execution. Depending on the attacker, code execution can be used with different intentions: Download the internal server’s data, most likely to sell it. Modify data, install malware, for instance, malware that mines cryptocurrencies. Stop services or exhaust resources, for instance, with fork bombs. This threat is particularly insidious if the attacked organization does not maintain a Disaster Recovery Plan (DRP). Root privilege escalation and pivot In this scenario, the attacker can do everything described in the previous section. The difference is that the attacker additionally manages to elevate his privileges as an administrator and attack other servers. Here, the impact depends on how much the target company focuses on its Defense In Depth. For example, the entire infrastructure can be compromised through a combination of unsafe deserialization and misconfiguration: Docker or Kubernetes clusters cloud services network firewalls and routing OS access control How to fix it in Java SE Code examples The following code is vulnerable to deserialization attacks because it deserializes HTTP data without validating it first. 
+### Noncompliant
+public class RequestProcessor {
+  protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+    ServletInputStream servletIS = request.getInputStream();
+    ObjectInputStream  objectIS  = new ObjectInputStream(servletIS);
+    Object input                 = objectIS.readObject();
+  }
+}
+ 
+### Compliant
+public class SecureObjectInputStream extends ObjectInputStream {
+
+  @Override
+  protected Class<?> resolveClass(ObjectStreamClass osc) throws IOException, ClassNotFoundException {
+
+    List<String> approvedClasses = new ArrayList<String>();
+    approvedClasses.add(AllowedClass1.class.getName());
+    approvedClasses.add(AllowedClass2.class.getName());
+
+    if (!approvedClasses.contains(osc.getName())) {
+      throw new InvalidClassException("Unauthorized deserialization", osc.getName());
+    }
+
+    return super.resolveClass(osc);
+  }
+}
+
+public class RequestProcessor {
+  protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+    ServletInputStream servletIS = request.getInputStream();
+    ObjectInputStream  objectIS  = new SecureObjectInputStream(servletIS);
+    Object input                 = objectIS.readObject();
+  }
+}
+ How does this work? Allowing users to provide data for deserialization generally creates more problems than it solves. Anything that can be done through deserialization can generally be done with more secure data structures. Therefore, our first suggestion is to avoid deserialization in the first place. However, if deserialization mechanisms are valid in your context, here are some security suggestions. More secure serialization methods Some more secure serialization methods reduce the risk of security breaches, although not definitively. A complete object serializer is probably unnecessary if you only need to receive primitive data (for example integers, strings, bools, etc.). In this case, formats such as JSON and XML protect the application from deserialization attacks by default. For more complex objects, the next step is to control which class fields are exposed by creating class-specific serialization methods. The most common method is to use Data Transfer Objects (DTO) patterns or Google Protocol Buffers (protobufs). After creating the Protobuf data structure, the Protobuf compiler creates class files that handle operations such as serializing and deserializing data. Integrity check Message authentication codes (MAC) can be used to prevent tampering with serialized data that is meant to be stored outside the application server: On the server-side, when serializing an object, compute a MAC of the result and append it to the serialized object string. When the serialized value is submitted back, verify the serialization string MAC on the server side before deserialization. Depending on the situation, two MAC computation modes can be used. If the same application will be responsible for the MAC computing and validation, a symmetric signature algorithm can be used. In that case, HMAC should be preferred, with a strong underlying hash algorithm such as SHA-256. If multiple parties have to validate the serialized data, an asymetric signature algorithm should be used. This will reduce the chances for a signing secret to be leaked. In that case, the RSASSA-PSS algorithm can be used. Note: Be sure to store the signing secret securely. Pre-Approved classes As a last resort, create a list of approved and safe classes that the application should be able to deserialize. If the untrusted class does not match an entry in this list, it should be rejected because it is considered unsafe. Note: Untrusted classes should be filtered out during deserialization, not after. Depending on the language or framework, this should be possible by overriding the serialization process or using native capabilities to restrict type deserialization. In the previous example, the pre-approved list uses class names to validate the deserialized class. Resources Standards OWASP Top 10 2021 Category A8 - Software and Data Integrity Failures OWASP Top 10 2017 Category A8 - Insecure Deserialization MITRE, CWE-20 - Improper Input Validation MITRE, CWE-502 - Deserialization of Untrusted Data
+### Noncompliant
+{{BUGGY}}
+### Compliant

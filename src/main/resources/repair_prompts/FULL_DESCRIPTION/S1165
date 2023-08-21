@@ -22,7 +22,7 @@ public class MyException extends Exception {
 ### Compliant
 public class MyException extends Exception {
 
-  private final int status;                  // Compliant
+  private final int status;                  
 
   public MyException(String message, int status) {
     super(message);

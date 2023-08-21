@@ -1,0 +1,17 @@
+### Noncompliant
+List<String> list = new LinkedList<>();
+if (someCondition) {
+  list = new ArrayList<>();
+}
+((LinkedList<String>) list).addLast("abc"); // Noncompliant, throws a ClassCastException when someCondition is true
+### Compliant
+List<String> list = new LinkedList<>();
+if (someCondition) {
+  list = new ArrayList<>();
+}
+if (list instanceof LinkedList) {
+  ((LinkedList<String>) list).addLast("abc");
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

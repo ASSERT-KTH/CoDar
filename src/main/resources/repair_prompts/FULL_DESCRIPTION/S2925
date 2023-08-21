@@ -18,7 +18,7 @@ public void testDoTheThing(){
   MyClass myClass = new MyClass();
   myClass.doTheThing();
 
-  await().atMost(2, Duration.SECONDS).until(didTheThing());  // Compliant
+  await().atMost(2, Duration.SECONDS).until(didTheThing());  
   // assertions...
 }
 

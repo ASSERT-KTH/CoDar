@@ -1,0 +1,5 @@
+XML parsers should not be vulnerable to Denial of Service attacks
+Why is this an issue? An XML bomb / billion laughs attack is a malicious XML document containing the same large entity repeated over and over again. If no restrictions is in place, such a limit on the number of entity expansions, the XML processor can consume a lot memory and time during the parsing of such documents leading to Denial of Service. 
+### Noncompliant
+{{BUGGY}}
+### Compliant

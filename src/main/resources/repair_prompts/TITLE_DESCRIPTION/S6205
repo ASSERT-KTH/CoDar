@@ -1,0 +1,5 @@
+Switch arrow labels should not use redundant keywords
+Why is this an issue? In Switch Expressions, an arrow label consisting of a block with a single yield can be simplified to directly return the value, resulting in cleaner code. Similarly, for Switch Statements and arrow labels, a break in a block is always redundant and should not be used. Furthermore, if the resulting block contains only one statement, the curly braces of that block can also be omitted. This rule reports an issue when a case of a Switch Expression contains a block with a single yield or when a Switch Statement contains a block with a break. 
+### Noncompliant
+{{BUGGY}}
+### Compliant

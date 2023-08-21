@@ -1,0 +1,4 @@
+Region should be set explicitly when creating a new "AwsClient"
+### Noncompliant
+{{BUGGY}}
+### Compliant

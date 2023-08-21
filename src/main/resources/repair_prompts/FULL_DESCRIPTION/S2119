@@ -11,7 +11,7 @@ class MyClass {
  
 ### Compliant
 class MyClass {
-    private Random random = new Random();  // Compliant
+    private Random random = new Random();  
 
     public void doSomethingCommon() {
       int rValue = this.random.nextInt();

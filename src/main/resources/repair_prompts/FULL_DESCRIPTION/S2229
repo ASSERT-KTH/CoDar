@@ -15,7 +15,7 @@ public void actuallyDoTheThing() {
 @Transactional
 public void doTheThing() {
   // ...
-  actuallyDoTheThing(); // Compliant
+  actuallyDoTheThing(); 
 }
 
 @Transactional
@@ -39,7 +39,7 @@ public void actuallyDoTheThing() {
 @Transactional
 public void doTheThing() {
   // ...
-  actuallyDoTheThing(); // Compliant, call from REQUIRED to MANDATORY
+  actuallyDoTheThing(); 
 }
 
 @Transactional(propagation = Propagation.MANDATORY)

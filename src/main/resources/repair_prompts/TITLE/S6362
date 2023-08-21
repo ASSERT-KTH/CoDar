@@ -1,0 +1,4 @@
+Enabling JavaScript support for WebViews is security-sensitive
+### Noncompliant
+{{BUGGY}}
+### Compliant

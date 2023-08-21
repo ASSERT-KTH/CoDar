@@ -1,0 +1,4 @@
+Accessing files should not lead to filesystem oracle attacks
+### Noncompliant
+{{BUGGY}}
+### Compliant

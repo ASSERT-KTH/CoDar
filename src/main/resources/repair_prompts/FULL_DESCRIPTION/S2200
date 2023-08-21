@@ -28,12 +28,12 @@ public class Main {
 public class Main {
 
   boolean isAGreaterThanB(Comparable<Integer> a, Integer b) {
-    return a.compareTo(b) > 0; // Compliant, check for positive return value
+    return a.compareTo(b) > 0; 
   }
 
   public static void main(String[] args) {
     ByteComparator comparator = new ByteComparator();
-    if (comparator.compare((byte) 23, (byte) 42) < 0) { // Compliant, check for negative return value
+    if (comparator.compare((byte) 23, (byte) 42) < 0) { 
       System.out.println("23 < 42");
     } else {
       System.out.println("23 >= 42");

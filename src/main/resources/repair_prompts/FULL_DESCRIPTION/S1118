@@ -10,7 +10,7 @@ class StringUtils { // Noncompliant
 }
  
 ### Compliant
-class StringUtils { // Compliant
+class StringUtils { 
 
   private StringUtils() {
     throw new IllegalStateException("Utility class");

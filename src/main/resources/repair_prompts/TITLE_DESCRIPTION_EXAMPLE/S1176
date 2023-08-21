@@ -6,8 +6,8 @@ Why is this an issue? Try to imagine using the standard Java API (Collections, J
   */
 public class MyClass<T> implements Runnable {    // Noncompliant - missing '@param <T>'
 
-  public static final DEFAULT_STATUS = 0;    // Compliant - static constant
-  private int status;                           // Compliant - not public
+  public static final DEFAULT_STATUS = 0;    
+  private int status;                           
 
   public String message;                  // Noncompliant
 
@@ -15,15 +15,15 @@ public class MyClass<T> implements Runnable {    // Noncompliant - missing '@par
     this.status = DEFAULT_STATUS;
   }
 
-  public void setStatus(int status) {  // Compliant - setter
+  public void setStatus(int status) {  
     this.status = status;
   }
 
   @Override
-  public void run() {                          // Compliant - has @Override annotation
+  public void run() {                          
   }
 
-  protected void doSomething() {    // Compliant - not public
+  protected void doSomething() {    
   }
 
   public void doSomething2(int value) {  // Noncompliant

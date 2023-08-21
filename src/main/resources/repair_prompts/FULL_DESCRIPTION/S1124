@@ -5,7 +5,7 @@ static public void main(String[] args) {   // Noncompliant
 }
  
 ### Compliant
-public static void main(String[] args) {   // Compliant
+public static void main(String[] args) {   
 }
 ### Noncompliant
 {{BUGGY}}

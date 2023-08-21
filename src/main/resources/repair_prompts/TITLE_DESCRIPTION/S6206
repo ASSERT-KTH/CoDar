@@ -1,0 +1,5 @@
+Records should be used instead of ordinary classes when representing immutable data structure
+Why is this an issue? In Java 16 records are finalized and can be safely used in production code. Records represent immutable read-only data structure and should be used instead of creating immutable classes. Immutability of records is guaranteed by the Java language itself, while implementing immutable classes on your own might lead to some bugs. One of the important aspects of records is that final fields can’t be overwritten using reflection. This rule reports an issue on classes for which all these statements are true: all instance fields are private and final has only one constructor with a parameter for all fields has getters for all fields 
+### Noncompliant
+{{BUGGY}}
+### Compliant

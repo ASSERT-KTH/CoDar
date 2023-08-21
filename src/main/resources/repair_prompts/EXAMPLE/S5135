@@ -1,0 +1,36 @@
+### Noncompliant
+public class RequestProcessor {
+  protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+    ServletInputStream servletIS = request.getInputStream();
+    ObjectInputStream  objectIS  = new ObjectInputStream(servletIS);
+    Object input                 = objectIS.readObject();
+  }
+}
+### Compliant
+public class SecureObjectInputStream extends ObjectInputStream {
+
+  @Override
+  protected Class<?> resolveClass(ObjectStreamClass osc) throws IOException, ClassNotFoundException {
+
+    List<String> approvedClasses = new ArrayList<String>();
+    approvedClasses.add(AllowedClass1.class.getName());
+    approvedClasses.add(AllowedClass2.class.getName());
+
+    if (!approvedClasses.contains(osc.getName())) {
+      throw new InvalidClassException("Unauthorized deserialization", osc.getName());
+    }
+
+    return super.resolveClass(osc);
+  }
+}
+
+public class RequestProcessor {
+  protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+    ServletInputStream servletIS = request.getInputStream();
+    ObjectInputStream  objectIS  = new SecureObjectInputStream(servletIS);
+    Object input                 = objectIS.readObject();
+  }
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

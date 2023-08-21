@@ -9,10 +9,10 @@ private void compareStrings(String foo, String bar){
  
 ### Compliant
 private void compareStrings(String foo, String bar){
-    boolean result1 = foo.equalsIgnoreCase(bar);                    // Compliant
+    boolean result1 = foo.equalsIgnoreCase(bar);                    
 }
  Exceptions No issue will be raised when a locale is specified because the result could be different from equalsIgnoreCase(). (e.g.: using the Turkish locale) private void compareStrings(String foo, String bar, java.util.Locale locale){
-    boolean result1 = foo.toUpperCase(locale).equals(bar);         // Compliant
+    boolean result1 = foo.toUpperCase(locale).equals(bar);         
 }
 ### Noncompliant
 {{BUGGY}}

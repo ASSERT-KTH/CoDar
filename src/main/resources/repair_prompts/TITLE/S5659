@@ -1,0 +1,4 @@
+JWT should be signed and verified with strong cipher algorithms
+### Noncompliant
+{{BUGGY}}
+### Compliant

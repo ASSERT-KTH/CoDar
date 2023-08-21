@@ -1,0 +1,7 @@
+### Noncompliant
+"foo()"  // Noncompliant, will match only 'foo'
+### Compliant
+"foo\\(\\)"  // Matches 'foo()'
+### Noncompliant
+{{BUGGY}}
+### Compliant

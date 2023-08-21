@@ -3,7 +3,7 @@ Why is this an issue? URL patterns configured on a HttpSecurity.authorizeRequest
 ### Noncompliant
 protected void configure(HttpSecurity http) throws Exception {
     http.authorizeRequests()
-      .antMatchers("/resources/**", "/signup", "/about").permitAll() // Compliant
+      .antMatchers("/resources/**", "/signup", "/about").permitAll() 
       .antMatchers("/admin/**").hasRole("ADMIN")
       .antMatchers("/admin/login").permitAll() // Noncompliant; the pattern "/admin/login" should appear before "/admin/**"
       .antMatchers("/**", "/home").permitAll()

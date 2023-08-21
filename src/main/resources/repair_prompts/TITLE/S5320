@@ -1,0 +1,4 @@
+Broadcasting intents is security-sensitive
+### Noncompliant
+{{BUGGY}}
+### Compliant

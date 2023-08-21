@@ -1,0 +1,8 @@
+### Noncompliant
+"(?:number)\\d{2}"
+### Compliant
+"number\\d{2}"      	// it is anyway required
+"(?:number)?\\d{2}"  	// it is in fact optional
+### Noncompliant
+{{BUGGY}}
+### Compliant

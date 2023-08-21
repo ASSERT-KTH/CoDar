@@ -1,0 +1,4 @@
+Accessing Android external storage is security-sensitive
+### Noncompliant
+{{BUGGY}}
+### Compliant

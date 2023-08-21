@@ -6,7 +6,7 @@ Vector<Cat> cats = new Vector<>();
 ### Compliant
 ArrayList<Cat> cats = new ArrayList<>();
  Exceptions Usage of these synchronized classes is ignored in the signatures of overriding methods. @Override
-public Vector getCats() {...} // Compliant
+public Vector getCats() {...} 
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

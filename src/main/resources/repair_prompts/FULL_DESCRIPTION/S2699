@@ -20,8 +20,8 @@ public void testDoSomething() {
 @Test
 public void testDoSomethingElse() {
   MyClass myClass = new MyClass();
-  new CompareToTester().compareWith(myClass);  // Compliant - custom assertion method defined as rule parameter
-  CompareToTester.compareStatic(myClass);  // Compliant
+  new CompareToTester().compareWith(myClass);  
+  CompareToTester.compareStatic(myClass);  
 }
 ### Noncompliant
 {{BUGGY}}

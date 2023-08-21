@@ -1,0 +1,7 @@
+### Noncompliant
+Pattern.compile("hello   world");
+### Compliant
+Pattern.compile("hello {3}world");
+### Noncompliant
+{{BUGGY}}
+### Compliant

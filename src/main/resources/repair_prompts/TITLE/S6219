@@ -1,0 +1,4 @@
+'serialVersionUID' field should not be set to '0L' in records
+### Noncompliant
+{{BUGGY}}
+### Compliant

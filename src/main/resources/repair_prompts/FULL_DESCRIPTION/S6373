@@ -1,0 +1,37 @@
+XML parsers should not allow inclusion of arbitrary files
+Why is this an issue? XML standard allows the inclusion of xml files with the xinclude element. XML processors will replace an xinclude element with the content of the file located at the URI defined in the href attribute, potentially from an external storage such as file system or network, which may lead, if no restrictions are put in place, to arbitrary file disclosures or server-side request forgery (SSRF) vulnerabilities. 
+### Noncompliant
+For DocumentBuilder, SAXParser, XMLInput, Transformer and Schema JAPX factories: factory.setXIncludeAware(true); // Noncompliant
+// or
+factory.setFeature("http://apache.org/xml/features/xinclude", true); // Noncompliant
+ For Dom4j library: SAXReader xmlReader = new SAXReader();
+xmlReader.setFeature("http://apache.org/xml/features/xinclude", true); // Noncompliant
+ For Jdom2 library: SAXBuilder builder = new SAXBuilder();
+builder.setFeature("http://apache.org/xml/features/xinclude", true); // Noncompliant
+ 
+### Compliant
+Xinclude is disabled by default and can be explicitely disabled like below. For DocumentBuilder, SAXParser, XMLInput, Transformer and Schema JAPX factories: factory.setXIncludeAware(false);
+// or
+factory.setFeature("http://apache.org/xml/features/xinclude", false);
+ For Dom4j library: SAXReader xmlReader = new SAXReader();
+xmlReader.setFeature("http://apache.org/xml/features/xinclude", false);
+ For Jdom2 library: SAXBuilder builder = new SAXBuilder();
+builder.setFeature("http://apache.org/xml/features/xinclude", false);
+ Exceptions This rule does not raise issues when Xinclude is enabled with a custom EntityResolver: For DocumentBuilderFactory: DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+factory.setXIncludeAware(true);
+// ...
+DocumentBuilder builder = factory.newDocumentBuilder();
+builder.setEntityResolver((publicId, systemId) -> new MySafeEntityResolver(publicId, systemId));
+ For SAXBuilder: SAXBuilder builder = new SAXBuilder();
+builder.setFeature("http://apache.org/xml/features/xinclude", true);
+builder.setEntityResolver((publicId, systemId) -> new MySafeEntityResolver(publicId, systemId));
+ For SAXReader: SAXReader xmlReader = new SAXReader();
+xmlReader.setFeature("http://apache.org/xml/features/xinclude", true);
+xmlReader.setEntityResolver((publicId, systemId) -> new MySafeEntityResolver(publicId, systemId));
+ For XMLInputFactory: XMLInputFactory factory = XMLInputFactory.newInstance();
+factory.setProperty("http://apache.org/xml/features/xinclude", true);
+factory.setXMLResolver(new MySafeEntityResolver());
+ Resources Oracle Java Documentation - XML External Entity Injection Attack OWASP Top 10 2017 Category A4 - XML External Entities (XXE) OWASP XXE Prevention Cheat Sheet MITRE, CWE-611 - Information Exposure Through XML External Entity Reference MITRE, CWE-827 - Improper Control of Document Type Definition
+### Noncompliant
+{{BUGGY}}
+### Compliant

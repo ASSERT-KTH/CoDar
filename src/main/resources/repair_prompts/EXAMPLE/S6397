@@ -1,0 +1,10 @@
+### Noncompliant
+"a[b]c"
+"[\\^]"
+### Compliant
+"abc"
+"\\^"
+"a[*]c" 
+### Noncompliant
+{{BUGGY}}
+### Compliant

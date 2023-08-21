@@ -6,9 +6,9 @@ Set<Float> collection2 = Collections.EMPTY_SET;        // Noncompliant, raw Set
 Map<Int, String> collection3 = Collections.EMPTY_MAP;  // Noncompliant, raw Map
  
 ### Compliant
-List<String> collection1 = Collections.emptyList();    // Compliant, List<String>
-Set<Float> collection2 = Collections.emptySet();       // Compliant, Set<Float>
-Map<Int, String> collection3 = Collections.emptyMap(); // Compliant, Map<Int, String>
+List<String> collection1 = Collections.emptyList();    
+Set<Float> collection2 = Collections.emptySet();       
+Map<Int, String> collection3 = Collections.emptyMap(); 
  Resources Documentation Oracle - Java™ Platform, Standard Edition 8 API Specification, Class Collections Oracle - The Java™ Tutorials - Raw Types Articles & blog posts Baeldung - The Basics of Java Generics
 ### Noncompliant
 {{BUGGY}}

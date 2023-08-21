@@ -1,0 +1,4 @@
+Regular expressions should not contain multiple spaces
+### Noncompliant
+{{BUGGY}}
+### Compliant

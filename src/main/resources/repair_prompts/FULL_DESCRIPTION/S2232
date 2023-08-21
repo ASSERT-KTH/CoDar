@@ -12,7 +12,7 @@ String formattedNames = sb.toString();
 ### Compliant
 ResultSet results = stmt.executeQuery("SELECT name, address FROM PERSON");
 List<String> names = new ArrayList<>();
-while (results.next()) { // Compliant, and program logic refactored
+while (results.next()) { 
   names.add(results.getString("name"));
 }
 String formattedNames =  names.stream().collect(Collectors.joining(", "));

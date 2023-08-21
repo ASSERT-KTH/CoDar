@@ -1,0 +1,23 @@
+HTTP request redirections should not be open to forging attacks
+Why is this an issue? Open redirection occurs when an application uses user-controllable data to redirect users to a URL. An attacker with malicious intent could manipulate a user to browse into a specially crafted URL, such as https://trusted.example.com?url=evil.example.com, to redirect the victim to his evil domain. Tricking users into sending the malicious HTTP request is usually the main task of exploiting an open redirection. Often, it requires an attacker to build a credible pretext to prevent suspicions from the victim. Attackers commonly use open redirect exploits in mass phishing campaigns. What is the potential impact? If an attacker tricks a user into opening a link of his choice, the user is redirected to a domain controlled by the attacker. From then on, the attacker can perform various malicious actions, some more impactful than others. Below are some real-world scenarios that illustrate some impacts of an attacker exploiting the vulnerability. Domain Mirroring A malicious link redirects to an attacker’s controlled website mirroring the interface of a web application trusted by the user. Due to the similarity in the application appearance and the apparently trustable clicked hyperlink, the user struggles to identify that they are browsing on a malicious domain. Depending on the attacker’s purpose, the malicious website can leak credentials, bypass Multi-Factor Authentication (MFA), and reach any authenticated data or action. Malware Distribution A malicious link redirects to an attacker’s controlled website that serves malware. On the same basis as the domain mirroring exploitation, the attacker develops a spearphishing or phishing campaign with a carefully crafted pretext that would result in the download and potential execution of a hosted malicious file. The worst-case scenario could result in complete system compromise. How to fix it in Java SE Code examples The following noncompliant code example is vulnerable to open redirection as it constructs a URL with user-controllable data. This URL is then used to redirect the user without being first validated. An attacker can leverage this to manipulate users into performing unwanted redirects. 
+### Noncompliant
+protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+  String location = req.getParameter("url");
+  resp.sendRedirect(location);
+}
+ 
+### Compliant
+protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+  String location = req.getParameter("url");
+
+  List<String> allowedHosts = new ArrayList<String>();
+  allowedHosts.add("https://trusted1.example.com/");
+  allowedHosts.add("https://trusted2.example.com/");
+
+  if (allowedHosts.contains(location))
+    resp.sendRedirect(location);
+}
+ How does this work? Built-in framework methods should be preferred as, more often than not, these provide additional security mechanisms. Usually, these built-in methods are engineered for internal page redirections. Thus, they might not be the solution for the reader’s use case. In case the application strictly requires external redirections based on user-controllable data, this could be done using the following alternatives: Validating the authority part of the URL against a statically defined value (see Pitfalls). Using an allow-list approach in case the destination URLs are multiple but limited. Adding a customized page to which users are redirected, warning about the imminent action and requiring manual authorization to proceed. Pitfalls The trap of 'StartsWith' and equivalents When validating untrusted URLs by checking if they start with a trusted scheme and authority pair scheme://authority, ensure that the validation string contains a path separator / as the last character. If the validation string does not contain a terminating path separator, the Open Redirect vulnerability remains; only the exploitation technique changes. Thus, a validation like startsWith("https://example.com") or an equivalent with the regex ^https://example\.com.* can be exploited with the following URL https://example.com.malicious.io. The practice of taking over domains that maliciously look like existing domains is widespread and is called Cybersquatting. Resources Standards OWASP Top 10 2021 Category A1 - Broken Access Control OWASP Top 10 2017 Category A5 - Broken Access Control MITRE, CWE-20 - Improper Input Validation MITRE, CWE-601 - URL Redirection to Untrusted Site ('Open Redirect')
+### Noncompliant
+{{BUGGY}}
+### Compliant

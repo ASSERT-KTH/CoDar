@@ -25,10 +25,10 @@ public ParserPool parserPool() {
  
 ### Compliant
 public ParserPool parserPool() {
-  return new StaticBasicParserPool(); // Compliant: "ignoreComments" is set to "true" in StaticBasicParserPool constructor
+  return new StaticBasicParserPool(); 
 }
  public ParserPool parserPool() {
-  return new BasicParserPool();  // Compliant: "ignoreComments" is set to "true" in BasicParserPool constructor
+  return new BasicParserPool();  
 }
  Resources OWASP Top 10 2021 Category A6 - Vulnerable and Outdated Components OWASP Top 10 2021 Category A7 - Identification and Authentication Failures OWASP Top 10 2017 Category A2 - Broken Authentication OWASP Top 10 2017 Category A9 - Using Components with Known Vulnerabilities Duo Finds SAML Vulnerabilities Affecting Multiple Implementations Spring Security SAML and this week’s SAML Vulnerability Spring Security SAML: Issue #228
 ### Noncompliant

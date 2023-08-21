@@ -9,7 +9,7 @@ void doSomething(Condition condition) {
  
 ### Compliant
 void doSomething(Condition condition) {
-    condition.await(); // Compliant, Condition.await is called
+    condition.await(); 
 
         ...
 }

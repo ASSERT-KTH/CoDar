@@ -1,0 +1,242 @@
+Endpoints should not be vulnerable to reflected cross-site scripting (XSS) attacks
+This vulnerability makes it possible to temporarily execute JavaScript code in the context of the application, granting access to the session of the victim. This is possible because user-provided data, such as URL parameters, are copied into the HTML body of the HTTP response that is sent back to the user. Why is this an issue? Reflected cross-site scripting (XSS) occurs in a web application when the application retrieves data like parameters or headers from an incoming HTTP request and inserts it into its HTTP response without first sanitizing it. The most common cause is the insertion of GET parameters. When well-intentioned users open a link to a page that is vulnerable to reflected XSS, they are exposed to attacks that target their own browser. A user with malicious intent carefully crafts the link beforehand. After creating this link, the attacker must use phishing techniques to ensure that his target users click on the link. What is the potential impact? A well-intentioned user opens a malicious link that injects data into the web application. This data can be text, but it can also be arbitrary code that can be interpreted by the target user’s browser, such as HTML, CSS, or JavaScript. Below are some real-world scenarios that illustrate some impacts of an attacker exploiting the vulnerability. Vandalism on the front-end website The malicious link defaces the target web application from the perspective of the user who is the victim. This may result in loss of integrity and theft of the benevolent user’s data. Identity spoofing The forged link injects malicious code into the web application. The code enables identity spoofing thanks to cookie theft. Record user activity The forged link injects malicious code into the web application. To leak confidential information, attackers can inject code that records keyboard activity (keylogger) and even requests access to other devices, such as the camera or microphone. Chaining XSS with other vulnerabilities In many cases, bug hunters and attackers chain cross-site scripting vulnerabilities with other vulnerabilities to maximize their impact. For example, an XSS can be used as the first step to exploit more dangerous vulnerabilities or features that require higher privileges, such as a code injection vulnerability in the admin control panel of a web application. How to fix it in JSP Code examples The following code is vulnerable to cross-site scripting because JSP does not auto-escape variables. User input embedded in HTML code should be HTML-encoded to prevent the injection of additional code. This can be done with the OWASP Java Encoder or similar libraries. 
+### Noncompliant
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="e" uri="https://www.owasp.org/index.php/OWASP_Java_Encoder_Project" %>
+<!doctype html>
+<html>
+ <body>
+  <h1>${param.title}</h1>    <!-- Noncompliant -->
+ </body>
+</html>
+ 
+### Compliant
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="e" uri="https://www.owasp.org/index.php/OWASP_Java_Encoder_Project" %>
+<!doctype html>
+<html>
+ <body>
+  <h1>${e:forHtml(param.title)}</h1>
+ </body>
+</html>
+ How does this work? Template engines are used by web applications to build HTML content. Template files contain static HTML as well as template language instruction. These instructions allow, for example, to insert dynamic values into the document as the template is rendered. Encode data according to the HTML context The best approach to protect against XSS is to systematically encode data that is written to HTML documents. The goal is to leave the data intact from the end user’s point of view but make it uninterpretable by web browsers. XSS exploitation techniques vary depending on the HTML context where malicious input is injected. For each HTML context, there is a specific encoding to prevent JavaScript code from being interpreted. The following table summarizes the encoding to apply for each HTML context. Context Code example Exploit example Encoding Inbetween tags <!doctype html>
+<div>
+  { data }
+</div>
+ <!doctype html>
+<div>
+  <script>
+    alert(1)
+  </script>
+</div>
+ HTML entity encoding: replace the following characters by HTML-safe sequences. & → &amp; < → &lt; > → &gt; " → &quot; ' → &#x27; In an attribute surrounded with single or double quotes <!doctype html>
+<div tag="{ data }">
+  ...
+</div>
+ <!doctype html>
+<div tag=""
+     onmouseover="alert(1)">
+  ...
+</div>
+ HTML entity encoding: replace the following characters with HTML-safe sequences. & → &amp; < → &lt; > → &gt; " → &quot; ' → &#x27; In an unquoted attribute <!doctype html>
+<div tag={ data }>
+  ...
+</div>
+ <!doctype html>
+<div tag=foo
+     onmouseover=alert(1)>
+  ...
+</div>
+ Dangerous context: HTML output encoding will not prevent XSS fully. In a URL attribute <!doctype html>
+<a href="{ data }">
+  ...
+</a>
+ <!doctype html>
+<a href="javascript:alert(1)">
+  ...
+</a>
+ Validate the URL by parsing the data. Make sure relative URLs start with a / and that absolute URLs use https as a scheme. In a script block <!doctype html>
+<script>
+  { data }
+</script>
+ <!doctype html>
+<script>
+  alert(1)
+</script>
+ Dangerous context: HTML output encoding will not prevent XSS fully. To pass values to a JavaScript context, the recommended way is to use a data attribute: <!doctype html>
+<script data="{ data }">
+  ...
+</script>
+ org.owasp.encoder.Encode.forHtml is the recommended method to encode HTML entities. Pitfalls Content-types Be aware that there are more content-types than text/html that allow to execute JavaScript code in a browser and thus are prone to cross-site scripting vulnerabilities. The following content-types are known to be affected: application/mathml+xml application/rdf+xml application/vnd.wap.xhtml+xml application/xhtml+xml application/xml image/svg+xml multipart/x-mixed-replace text/html text/rdf text/xml text/xsl The limits of validation Validation of user inputs is a good practice to protect against various injection attacks. But for XSS, validation on its own is not the recommended approach. As an example, filtering out user inputs based on a deny-list will never fully prevent XSS vulnerability from being exploited. This practice is sometimes used by web application firewalls. It is only a matter of time for malicious users to find the exploitation payload that will defeat the filters. Another example is applications that allow users or third-party services to send HTML content to be used by the application. A common approach is trying to parse HTML and strip sensitive HTML tags. Again, this deny-list approach is vulnerable by design: maintaining a list of sensitive HTML tags, in the long run, is very difficult. A preferred option is to use Markdown in conjunction with a parser that removes embedded HTML and restricts the use of "javascript:" URI. Going the extra mile Content Security Policy (CSP) Header With a defense-in-depth security approach, the CSP response header can be added to instruct client browsers to block loading data that does not meet the application’s security requirements. If configured correctly, this can prevent any attempt to exploit XSS in the application. Learn more here. How to fix it in a Servlet Code examples The following code is vulnerable to cross-site scripting because it returns an HTML response that contains user input. Third-party data, such as user input, is not to be trusted. If embedded in HTML code, it should be HTML-encoded to prevent the injection of additional code. This can be done with the OWASP Java Encoder or similar libraries. 
+### Noncompliant
+public void endpoint(HttpServletRequest request, HttpServletResponse response) throws IOException
+{
+    String data        = request.getParameter("input");
+    PrintWriter writer = response.getWriter();
+
+    writer.print(data);
+}
+ 
+### Compliant
+import org.owasp.encoder.Encode;
+
+public void endpoint(HttpServletRequest request, HttpServletResponse response) throws IOException
+{
+    String data        = request.getParameter("input");
+    PrintWriter writer = response.getWriter();
+
+    writer.print(Encode.forHtml(data));
+}
+ If you do not intend to send HTML code to clients, the vulnerability can be fixed by specifying the type of data returned in the response with the content-type header. For example, setting the content-type to text/plain with the setContentType function allows to safely reflect user input because browsers will not try to parse and execute the response. 
+### Noncompliant
+public void endpoint(HttpServletRequest request, HttpServletResponse response) throws IOException
+{
+    String data        = request.getParameter("input");
+    PrintWriter writer = response.getWriter();
+
+    writer.print(data);
+}
+ 
+### Compliant
+public void endpoint(HttpServletRequest request, HttpServletResponse response) throws IOException
+{
+    String data        = request.getParameter("input");
+    PrintWriter writer = response.getWriter();
+
+    response.setContentType("text/plain");
+    writer.print(data);
+}
+ How does this work? Encode data according to the HTML context The best approach to protect against XSS is to systematically encode data that is written to HTML documents. The goal is to leave the data intact from the end user’s point of view but make it uninterpretable by web browsers. XSS exploitation techniques vary depending on the HTML context where malicious input is injected. For each HTML context, there is a specific encoding to prevent JavaScript code from being interpreted. The following table summarizes the encoding to apply for each HTML context. Context Code example Exploit example Encoding Inbetween tags <!doctype html>
+<div>
+  { data }
+</div>
+ <!doctype html>
+<div>
+  <script>
+    alert(1)
+  </script>
+</div>
+ HTML entity encoding: replace the following characters by HTML-safe sequences. & → &amp; < → &lt; > → &gt; " → &quot; ' → &#x27; In an attribute surrounded with single or double quotes <!doctype html>
+<div tag="{ data }">
+  ...
+</div>
+ <!doctype html>
+<div tag=""
+     onmouseover="alert(1)">
+  ...
+</div>
+ HTML entity encoding: replace the following characters with HTML-safe sequences. & → &amp; < → &lt; > → &gt; " → &quot; ' → &#x27; In an unquoted attribute <!doctype html>
+<div tag={ data }>
+  ...
+</div>
+ <!doctype html>
+<div tag=foo
+     onmouseover=alert(1)>
+  ...
+</div>
+ Dangerous context: HTML output encoding will not prevent XSS fully. In a URL attribute <!doctype html>
+<a href="{ data }">
+  ...
+</a>
+ <!doctype html>
+<a href="javascript:alert(1)">
+  ...
+</a>
+ Validate the URL by parsing the data. Make sure relative URLs start with a / and that absolute URLs use https as a scheme. In a script block <!doctype html>
+<script>
+  { data }
+</script>
+ <!doctype html>
+<script>
+  alert(1)
+</script>
+ Dangerous context: HTML output encoding will not prevent XSS fully. To pass values to a JavaScript context, the recommended way is to use a data attribute: <!doctype html>
+<script data="{ data }">
+  ...
+</script>
+ org.owasp.encoder.Encode.forHtml is the recommended method to encode HTML entities. Pitfalls Content-types Be aware that there are more content-types than text/html that allow to execute JavaScript code in a browser and thus are prone to cross-site scripting vulnerabilities. The following content-types are known to be affected: application/mathml+xml application/rdf+xml application/vnd.wap.xhtml+xml application/xhtml+xml application/xml image/svg+xml multipart/x-mixed-replace text/html text/rdf text/xml text/xsl The limits of validation Validation of user inputs is a good practice to protect against various injection attacks. But for XSS, validation on its own is not the recommended approach. As an example, filtering out user inputs based on a deny-list will never fully prevent XSS vulnerability from being exploited. This practice is sometimes used by web application firewalls. It is only a matter of time for malicious users to find the exploitation payload that will defeat the filters. Another example is applications that allow users or third-party services to send HTML content to be used by the application. A common approach is trying to parse HTML and strip sensitive HTML tags. Again, this deny-list approach is vulnerable by design: maintaining a list of sensitive HTML tags, in the long run, is very difficult. A preferred option is to use Markdown in conjunction with a parser that removes embedded HTML and restricts the use of "javascript:" URI. Going the extra mile Content Security Policy (CSP) Header With a defense-in-depth security approach, the CSP response header can be added to instruct client browsers to block loading data that does not meet the application’s security requirements. If configured correctly, this can prevent any attempt to exploit XSS in the application. Learn more here. How to fix it in Spring Code examples The following code is vulnerable to cross-site scripting because it returns an HTML response that contains user input. If you do not intend to send HTML code to clients, the vulnerability can be fixed by specifying the type of data returned in the response. For example, you can use the produces property of the GetMapping annotation. 
+### Noncompliant
+@RestController
+public class ApiController
+{
+    @GetMapping(value = "/endpoint")
+    public String endpoint(@RequestParam("input") input)
+    {
+        return input;
+    }
+}
+ 
+### Compliant
+@RestController
+public class ApiController
+{
+    @GetMapping(value = "/endpoint", produces = "text/plain")
+    public String endpoint(@RequestParam("input") input)
+    {
+        return input;
+    }
+}
+ How does this work? If the HTTP response is HTML code, it is highly recommended to use a template engine like Thymeleaf to generate it. This template engine separates the view from the business logic and automatically encodes the output of variables, drastically reducing the risk of cross-site scripting vulnerabilities. If you do not intend to send HTML code to clients, the vulnerability can be fixed by specifying the type of data returned in the response with the content-type HTTP header. This header tells the browser that the response does not contain HTML code and should not be parsed and interpreted as HTML. Thus, the response is not vulnerable to reflected cross-site scripting. For example, setting the content-type to text/plain allows to safely reflect user input since browsers will not try to parse and execute the response. Pitfalls Content-types Be aware that there are more content-types than text/html that allow to execute JavaScript code in a browser and thus are prone to cross-site scripting vulnerabilities. The following content-types are known to be affected: application/mathml+xml application/rdf+xml application/vnd.wap.xhtml+xml application/xhtml+xml application/xml image/svg+xml multipart/x-mixed-replace text/html text/rdf text/xml text/xsl The limits of validation Validation of user inputs is a good practice to protect against various injection attacks. But for XSS, validation on its own is not the recommended approach. As an example, filtering out user inputs based on a deny-list will never fully prevent XSS vulnerability from being exploited. This practice is sometimes used by web application firewalls. It is only a matter of time for malicious users to find the exploitation payload that will defeat the filters. Another example is applications that allow users or third-party services to send HTML content to be used by the application. A common approach is trying to parse HTML and strip sensitive HTML tags. Again, this deny-list approach is vulnerable by design: maintaining a list of sensitive HTML tags, in the long run, is very difficult. A preferred option is to use Markdown in conjunction with a parser that removes embedded HTML and restricts the use of "javascript:" URI. Going the extra mile Content Security Policy (CSP) Header With a defense-in-depth security approach, the CSP response header can be added to instruct client browsers to block loading data that does not meet the application’s security requirements. If configured correctly, this can prevent any attempt to exploit XSS in the application. Learn more here. How to fix it in Thymeleaf Code examples The following code is vulnerable to cross-site scripting. User input embedded in HTML code should be HTML-encoded to prevent the injection of additional code. 
+### Noncompliant
+<body>
+    <p th:utext="Hello, ${input}!" /> <!-- Noncompliant -->
+    <p>Hello, [(${input})]!</p>       <!-- Noncompliant -->
+</body>
+ 
+### Compliant
+<body>
+    <p th:text="Hello, ${input}!" />
+    <p>Hello, [[${input}]]!</p>
+</body>
+ How does this work? Encode data according to the HTML context The best approach to protect against XSS is to systematically encode data that is written to HTML documents. The goal is to leave the data intact from the end user’s point of view but make it uninterpretable by web browsers. XSS exploitation techniques vary depending on the HTML context where malicious input is injected. For each HTML context, there is a specific encoding to prevent JavaScript code from being interpreted. The following table summarizes the encoding to apply for each HTML context. Context Code example Exploit example Encoding Inbetween tags <!doctype html>
+<div>
+  { data }
+</div>
+ <!doctype html>
+<div>
+  <script>
+    alert(1)
+  </script>
+</div>
+ HTML entity encoding: replace the following characters by HTML-safe sequences. & → &amp; < → &lt; > → &gt; " → &quot; ' → &#x27; In an attribute surrounded with single or double quotes <!doctype html>
+<div tag="{ data }">
+  ...
+</div>
+ <!doctype html>
+<div tag=""
+     onmouseover="alert(1)">
+  ...
+</div>
+ HTML entity encoding: replace the following characters with HTML-safe sequences. & → &amp; < → &lt; > → &gt; " → &quot; ' → &#x27; In an unquoted attribute <!doctype html>
+<div tag={ data }>
+  ...
+</div>
+ <!doctype html>
+<div tag=foo
+     onmouseover=alert(1)>
+  ...
+</div>
+ Dangerous context: HTML output encoding will not prevent XSS fully. In a URL attribute <!doctype html>
+<a href="{ data }">
+  ...
+</a>
+ <!doctype html>
+<a href="javascript:alert(1)">
+  ...
+</a>
+ Validate the URL by parsing the data. Make sure relative URLs start with a / and that absolute URLs use https as a scheme. In a script block <!doctype html>
+<script>
+  { data }
+</script>
+ <!doctype html>
+<script>
+  alert(1)
+</script>
+ Dangerous context: HTML output encoding will not prevent XSS fully. To pass values to a JavaScript context, the recommended way is to use a data attribute: <!doctype html>
+<script data="{ data }">
+  ...
+</script>
+ For HTML encoding, JavaScript encoding, and CSS encoding, the documentation allows the use of unescaped text, in only two different ways: with the attribute th:utext. with the inline expression [(…)]. If you insert third party data into the pages, the regular attributes are preferable: with the attribute th:text. The inline expression [[…]]. They ensure that the correct encoding is used, regardless of the context in which the user-controlled data is inserted. Thus, it is not necessary to specify a particular encoder. Pitfalls The limits of validation Validation of user inputs is a good practice to protect against various injection attacks. But for XSS, validation on its own is not the recommended approach. As an example, filtering out user inputs based on a deny-list will never fully prevent XSS vulnerability from being exploited. This practice is sometimes used by web application firewalls. It is only a matter of time for malicious users to find the exploitation payload that will defeat the filters. Another example is applications that allow users or third-party services to send HTML content to be used by the application. A common approach is trying to parse HTML and strip sensitive HTML tags. Again, this deny-list approach is vulnerable by design: maintaining a list of sensitive HTML tags, in the long run, is very difficult. A preferred option is to use Markdown in conjunction with a parser that removes embedded HTML and restricts the use of "javascript:" URI. Going the extra mile Content Security Policy (CSP) Header With a defense-in-depth security approach, the CSP response header can be added to instruct client browsers to block loading data that does not meet the application’s security requirements. If configured correctly, this can prevent any attempt to exploit XSS in the application. Learn more here. Resources Documentation OWASP Cheat Sheet - XSS Prevention Cheat Sheet OWASP Encoder Spring.io, Securing a Web Application Thymeleaf.org, Tutorial: Using Thymeleaf Articles & blog posts SonarSource, WordPress 5.8.2 Stored XSS Vulnerability SonarSource, Ghost CMS 4.3.2 - Cross-Origin Admin Takeover Samy Kamkar, The MySpace Worm Conference presentations DEF CON Safe Mode Red Team Village, Ray Doyle, Weaponized XSS Moving Beyond Alert Standards OWASP Top 10 2021 Category A3 - Injection OWASP Top 10 2017 Category A7 - Cross-Site Scripting (XSS) MITRE, CWE-79 - Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')
+### Noncompliant
+{{BUGGY}}
+### Compliant

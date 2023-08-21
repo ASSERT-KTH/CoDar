@@ -1,0 +1,4 @@
+Using pseudorandom number generators (PRNGs) is security-sensitive
+### Noncompliant
+{{BUGGY}}
+### Compliant

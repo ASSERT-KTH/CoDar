@@ -124,18 +124,32 @@ public class PromptTemplateGenerator {
     public static void main(String[] args) throws IOException, URISyntaxException {
         PromptTemplateGenerator ptg = new PromptTemplateGenerator();
 
-        ptg.generatePromptTemplates("S4682");
+        List<String> rules = ptg.fetchListOfRules();
 
+//        ptg.generatePromptTemplates("S4682");
+//
 //        List<String> rules =
 //                FileUtils.readLines(new File("/home/khaes/tmp/rules.txt"), "UTF-8");
 //
-//        rules.forEach(r -> {
-//            try {
-//                System.out.println("Check for: " + r);
-//                ptg.generatePromptTemplates(r);
-//            } catch (Exception e) {
-//                System.out.println("Didn't work for " + r);
-//            }
-//        });
+        rules.forEach(r -> {
+            try {
+                System.out.println("Check for: " + r);
+                ptg.generatePromptTemplates(r);
+            } catch (Exception e) {
+                System.out.println("Didn't work for " + r);
+            }
+        });
+    }
+
+    private List<String> fetchListOfRules() throws IOException {
+        String url = "https://rules.sonarsource.com/java/";
+        Document doc = Jsoup.connect(url).get();
+
+        Elements rules = doc.getElementsByClass("RulesListstyles__StyledLi-sc-6thbbv-1");
+        return rules.stream().collect(ArrayList::new,
+                (list, rule) -> list.add("S" +
+                        rule.getElementsByTag("a").get(0)
+                                .attr("href").split("-")[1].split("/")[0]),
+                ArrayList::addAll);
     }
 }

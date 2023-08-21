@@ -1,0 +1,4 @@
+Methods should not perform too many tasks (aka Brain method)
+### Noncompliant
+{{BUGGY}}
+### Compliant

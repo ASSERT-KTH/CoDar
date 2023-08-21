@@ -1,0 +1,4 @@
+Regular expression quantifiers and character classes should be used concisely
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,22 @@
+### Noncompliant
+import java.io.File;
+import java.io.IOException;
+
+protected void Example() throws IOException {
+    File tempDir;
+    tempDir = File.createTempFile("", ".");
+    tempDir.delete();
+    tempDir.mkdir();  // Noncompliant
+}
+### Compliant
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
+protected void Example() throws IOException {
+    Path tempPath = Files.createTempDirectory("");
+    File tempDir = tempPath.toFile();
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

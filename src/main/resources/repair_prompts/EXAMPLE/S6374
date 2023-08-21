@@ -1,0 +1,23 @@
+### Noncompliant
+DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+factory.setValidating(true); // Noncompliant
+factory.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", true); // Noncompliant
+
+SAXParserFactory factory = SAXParserFactory.newInstance();
+factory.setValidating(true); // Noncompliant
+factory.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", true); // Noncompliant
+
+SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+schemaFactory.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", true); // Noncompliant
+### Compliant
+DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+factory.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
+
+SAXParserFactory factory = SAXParserFactory.newInstance();
+factory.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
+
+SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+schemaFactory.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
+### Noncompliant
+{{BUGGY}}
+### Compliant

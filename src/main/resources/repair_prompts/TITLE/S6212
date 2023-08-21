@@ -1,0 +1,4 @@
+Local-Variable Type Inference should be used
+### Noncompliant
+{{BUGGY}}
+### Compliant

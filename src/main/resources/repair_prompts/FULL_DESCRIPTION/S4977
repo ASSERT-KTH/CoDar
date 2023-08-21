@@ -16,11 +16,11 @@ Why is this an issue? Shadowing makes it impossible to use the type parameter fr
 ### Compliant
 public class NoTypeParameterHiding<T> {
 
-    public class Inner<S> { // Compliant
+    public class Inner<S> { 
       List<S> listOfS;
     }
 
-    private <V> V method() { // Compliant
+    private <V> V method() { 
       return null;
     }
 

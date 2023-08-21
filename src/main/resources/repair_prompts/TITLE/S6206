@@ -1,0 +1,4 @@
+Records should be used instead of ordinary classes when representing immutable data structure
+### Noncompliant
+{{BUGGY}}
+### Compliant

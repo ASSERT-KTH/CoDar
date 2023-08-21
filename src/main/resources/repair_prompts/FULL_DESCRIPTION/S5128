@@ -31,15 +31,15 @@ public class User {
 public class Group {
   @Valid
   @NotNull
-  private List<User> users; // Compliant; User instances are validated
+  private List<User> users; 
 
   @NotNull
   // preferred style as of Bean Validation 2.0
-  private List<@Valid User> users2; // Compliant; User instances are validated
+  private List<@Valid User> users2; 
 }
 
 public class MyService {
-  public void login(@Valid User user) { // Compliant
+  public void login(@Valid User user) { 
   }
 }
  Resources Bean Validation 2.0 (JSR 380)

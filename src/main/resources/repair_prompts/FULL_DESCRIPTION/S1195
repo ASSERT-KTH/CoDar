@@ -9,9 +9,9 @@ public class Cube {
  
 ### Compliant
 public class Cube {
-    private int[] magicNumbers = { 42 };      // Compliant
-    public int[] getVector() { /* ... */ }    // Compliant
-    public int[][] getMatrix() { /* ... */ }  // Compliant
+    private int[] magicNumbers = { 42 };      
+    public int[] getVector() { /* ... */ }    
+    public int[][] getMatrix() { /* ... */ }  
 }
  Documentation Oracle Java Language Specification - Arrays
 ### Noncompliant

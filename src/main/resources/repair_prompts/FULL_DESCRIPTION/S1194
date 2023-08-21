@@ -4,7 +4,7 @@ Why is this an issue? java.lang.Error and its subclasses represent abnormal cond
 public class MyException extends Error { /* ... */ }       // Noncompliant
  
 ### Compliant
-public class MyException extends Exception { /* ... */ }   // Compliant
+public class MyException extends Exception { /* ... */ }   
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

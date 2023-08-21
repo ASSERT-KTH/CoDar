@@ -1,0 +1,9 @@
+### Noncompliant
+public class MyCryptographicAlgorithm extends MessageDigest {
+  ...
+}
+### Compliant
+MessageDigest digest = MessageDigest.getInstance("SHA-256");
+### Noncompliant
+{{BUGGY}}
+### Compliant

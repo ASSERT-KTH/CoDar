@@ -10,10 +10,10 @@ private String convert(int value){
  
 ### Compliant
 private int isZero(int value){
-    return Integer.compare(value, 0); // Compliant
+    return Integer.compare(value, 0); 
 }
 private String convert(int value){
-    return Integer.toString(value); // Compliant
+    return Integer.toString(value); 
 }
 ### Noncompliant
 {{BUGGY}}

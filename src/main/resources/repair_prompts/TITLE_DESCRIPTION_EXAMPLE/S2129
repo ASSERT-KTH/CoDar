@@ -8,8 +8,8 @@ Integer integer = new Integer(1); // Noncompliant
 Boolean bool = new Boolean(true); // Noncompliant
 BigInteger bigInteger1 = new BigInteger("3"); // Noncompliant
 BigInteger bigInteger2 = new BigInteger("9223372036854775807"); // Noncompliant
-BigInteger bigInteger3 = new BigInteger("111222333444555666777888999"); // Compliant, greater than Long.MAX_VALUE
-BigDecimal bigDecimal = new BigDecimal("42.0"); // Compliant (see Exceptions section)
+BigInteger bigInteger3 = new BigInteger("111222333444555666777888999"); 
+BigDecimal bigDecimal = new BigDecimal("42.0"); 
 ### Compliant
 String empty = "";
 String nonempty = "Hello world";

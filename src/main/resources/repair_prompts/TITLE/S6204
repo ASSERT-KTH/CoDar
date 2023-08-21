@@ -1,0 +1,4 @@
+"Stream.toList()" method should be used instead of "collectors" when unmodifiable list needed
+### Noncompliant
+{{BUGGY}}
+### Compliant

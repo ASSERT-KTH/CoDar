@@ -9,7 +9,7 @@ for (Object item : getPersons()) { // Noncompliant
 }
  
 ### Compliant
-for (Person person : getPersons()) { // Compliant
+for (Person person : getPersons()) { 
   person.getAddress() ;
 }
 ### Noncompliant

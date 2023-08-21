@@ -1,0 +1,24 @@
+Insecure temporary file creation methods should not be used
+Temporary files are considered insecurely created when the file existence check is performed separately from the actual file creation. Such a situation can occur when creating temporary files using normal file handling functions or when using dedicated temporary file handling functions that are not atomic. Why is this an issue? Creating temporary files in a non-atomic way introduces race condition issues in the application’s behavior. Indeed, a third party can create a given file between when the application chooses its name and when it creates it. In such a situation, the application might use a temporary file that it does not entirely control. In particular, this file’s permissions might be different than expected. This can lead to trust boundary issues. What is the potential impact? Attackers with control over a temporary file used by a vulnerable application will be able to modify it in a way that will affect the application’s logic. By changing this file’s Access Control List or other operating system-level properties, they could prevent the file from being deleted or emptied. They may also alter the file’s content before or while the application uses it. Depending on why and how the affected temporary files are used, the exploitation of a race condition in an application can have various consequences. They can range from sensitive information disclosure to more serious application or hosting infrastructure compromise. Information disclosure Because attackers can control the permissions set on temporary files and prevent their removal, they can read what the application stores in them. This might be especially critical if this information is sensitive. For example, an application might use temporary files to store users' session-related information. In such a case, attackers controlling those files can access session-stored information. This might allow them to take over authenticated users' identities and entitlements. Attack surface extension An application might use temporary files to store technical data for further reuse or as a communication channel between multiple components. In that case, it might consider those files part of the trust boundaries and use their content without additional security validation or sanitation. In such a case, an attacker controlling the file content might use it as an attack vector for further compromise. For example, an application might store serialized data in temporary files for later use. In such a case, attackers controlling those files' content can change it in a way that will lead to an insecure deserialization exploitation. It might allow them to execute arbitrary code on the application hosting server and take it over. How to fix it Code examples The following code example is vulnerable to a race condition attack because it creates a temporary file using an unsafe API function. 
+### Noncompliant
+import java.io.File;
+import java.io.IOException;
+
+protected void Example() throws IOException {
+    File tempDir;
+    tempDir = File.createTempFile("", ".");
+    tempDir.delete();
+    tempDir.mkdir();  // Noncompliant
+}
+### Compliant
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
+protected void Example() throws IOException {
+    Path tempPath = Files.createTempDirectory("");
+    File tempDir = tempPath.toFile();
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

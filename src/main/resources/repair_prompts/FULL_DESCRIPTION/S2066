@@ -13,7 +13,7 @@ public class Pomegranate {
 public class Pomegranate {
   // ...
 
-  public static class Seed implements Serializable { // Compliant, the outer class will not be serialized and hence cannot be the cause for a failure at runtime
+  public static class Seed implements Serializable { 
     // ...
   }
 }

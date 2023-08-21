@@ -1,0 +1,16 @@
+### Noncompliant
+List<String> list1 = Stream.of("A", "B", "C")
+                           .collect(Collectors.toList()); // Noncompliant
+
+List<String> list2 = Stream.of("A", "B", "C")
+                           .collect(Collectors.toUnmodifiableList()); // Noncompliant
+### Compliant
+List<String> list1 = Stream.of("A", "B", "C").toList(); 
+
+List<String> list2 = Stream.of("A", "B", "C")
+                           .collect(Collectors.toList()); 
+
+list2.add("X");
+### Noncompliant
+{{BUGGY}}
+### Compliant

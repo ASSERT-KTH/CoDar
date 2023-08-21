@@ -1,0 +1,4 @@
+HTTP response headers should not be vulnerable to injection attacks
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,27 @@
+LDAP queries should not be vulnerable to injection attacks
+Why is this an issue? LDAP injections occur in an application when the application retrieves untrusted data and inserts it into an LDAP query without sanitizing it first. An LDAP injection can either be basic or blind, depending on whether the server’s fetched data is directly returned in the web application’s response. The absence of the corresponding response for the malicious request on the application is not a barrier to exploitation. Thus, it must be treated the same way as basic LDAP injections. What is the potential impact? In the context of a web application vulnerable to LDAP injection: after discovering the injection point, attackers insert data into the vulnerable field to execute malicious LDAP commands. The impact of this vulnerability depends on how vital LDAP servers are to the organization. Below are some real-world scenarios that illustrate some impacts of an attacker exploiting the vulnerability. Data leakage or corruption In typical scenarios where systems perform innocuous LDAP operations to find users or create inventories, an LDAP injection could result in data leakage or corruption. Privilege escalation A malicious LDAP query could allow an attacker to impersonate a low-privileged user or an administrator in scenarios where systems perform authorization checks or authentication. Attackers use this vulnerability to find multiple footholds on target organizations by gathering authentication bypasses. How to fix it in Java SE Code examples The following noncompliant code is vulnerable to LDAP injections because untrusted data is concatenated to an LDAP query without prior sanitization or validation. 
+### Noncompliant
+public boolean authenticate(HttpServletRequest req, DirContext ctx) throws NamingException {
+  String user = req.getParameter("user");
+  String pass = req.getParameter("pass");
+
+  String filter = "(&(uid=" + user + ")(userPassword=" + pass + "))";
+
+  NamingEnumeration<SearchResult> results = ctx.search("ou=system", filter, new SearchControls());
+  return results.hasMore();
+}
+ 
+### Compliant
+public boolean authenticate(HttpServletRequest req, DirContext ctx) throws NamingException {
+  String user = req.getParameter("user");
+  String pass = req.getParameter("pass");
+
+  String filter = "(&(uid={0})(userPassword={1}))";
+
+  NamingEnumeration<SearchResult> results = ctx.search("ou=system", filter, new String[]{user, pass}, new SearchControls());
+  return results.hasMore();
+}
+ How does this work? As a rule of thumb, the best approach to protect against injections is to systematically ensure that untrusted data cannot break out of the initially intended logic. For LDAP injection, the cleanest way to do so is to use parameterized queries if it is available for your use case. Another approach is to sanitize the input before using it in an LDAP query. Input sanitization should be primarily done using native libraries. Alternatively, validation can be implemented using an allowlist approach by creating a list of authorized and secure strings you want the application to use in a query. If a user input does not match an entry in this list, it should be rejected because it is considered unsafe. Important note: The application must sanitize and validate on the server-side. Not on client-side front-ends. The most fundamental security mechanism is the restriction of LDAP metacharacters. For Distinguished Names (DN), special characters that need to be escaped include: \ # + < > , ; " = For Search Filters, special characters that need to be escaped include: ` ( ) \ null For Java, OWASP’s functions encodeForDN and encodeForLDAP allow sanitizing these characters automatically. In the compliant solution example, the search function allows to safely parameterize the query. Resources Standards OWASP Top 10 2021 Category A3 - Injection OWASP Top 10 2017 Category A1 - Injection RFC 4514 - LDAP: String Representation of Distinguished Names RFC 4515 - LDAP: String Representation of Search Filters MITRE, CWE-20 - Improper Input Validation MITRE, CWE-90 - Improper Neutralization of Special Elements used in an LDAP Query ('LDAP Injection')
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -11,12 +11,12 @@ protected void configure(HttpSecurity http) throws Exception {
 In a Spring Security’s context, session fixation protection can be enabled as follows: @Override
 protected void configure(HttpSecurity http) throws Exception {
   http.sessionManagement()
-     .sessionFixation().newSession(); // Compliant: a new session is created without any of the attributes from the old session being copied over
+     .sessionFixation().newSession(); 
 
   // or
 
   http.sessionManagement()
-     .sessionFixation().migrateSession(); // Compliant: a new session is created, the old one is invalidated and the attributes from the old session are copied over.
+     .sessionFixation().migrateSession(); 
 }
  Resources OWASP Top 10 2021 Category A7 - Identification and Authentication Failures OWASP Top 10 2017 Category A2 - Broken Authentication OWASP Sesssion Fixation MITRE, CWE-384 - Session Fixation
 ### Noncompliant

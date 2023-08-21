@@ -1,0 +1,9 @@
+### Noncompliant
+Mustache.compiler().escapeHTML(false).compile(template).execute(context); // Sensitive
+Mustache.compiler().withEscaper(Escapers.NONE).compile(template).execute(context); // Sensitive
+### Compliant
+Mustache.compiler().compile(template).execute(context); 
+Mustache.compiler().escapeHTML(true).compile(template).execute(context); 
+### Noncompliant
+{{BUGGY}}
+### Compliant

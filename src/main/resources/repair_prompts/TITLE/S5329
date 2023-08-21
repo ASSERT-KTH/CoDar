@@ -1,0 +1,4 @@
+Collection constructors should not be used as java.util.function.Function
+### Noncompliant
+{{BUGGY}}
+### Compliant

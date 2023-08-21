@@ -1,0 +1,30 @@
+Allowing requests with excessive content length is security-sensitive
+Rejecting requests with significant content length is a good practice to control the network traffic intensity and thus resource consumption in order to prevents DoS attacks. Ask Yourself Whether size limits are not defined for the different resources of the web application. the web application is not protected by rate limiting features. the web application infrastructure has limited resources. There is a risk if you answered yes to any of those questions. Recommended Secure Coding Practices For most of the features of an application, it is recommended to limit the size of requests to: lower or equal to 8mb for file uploads. lower or equal to 2mb for other requests. It is recommended to customize the rule with the limit values that correspond to the web application. 
+### Noncompliant
+@Bean(name = "multipartResolver")
+public CommonsMultipartResolver multipartResolver() {
+  CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
+  multipartResolver.setMaxUploadSize(104857600); // Sensitive (100MB)
+  return multipartResolver;
+}
+
+@Bean(name = "multipartResolver")
+public CommonsMultipartResolver multipartResolver() {
+  CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(); // Sensitive, by default if maxUploadSize property is not defined, there is no limit and thus it's insecure
+  return multipartResolver;
+}
+
+@Bean
+public MultipartConfigElement multipartConfigElement() {
+  MultipartConfigFactory factory = new MultipartConfigFactory(); // Sensitive, no limit by default
+  return factory.createMultipartConfig();
+}
+### Compliant
+@Bean(name = "multipartResolver")
+public CommonsMultipartResolver multipartResolver() {
+  multipartResolver.setMaxUploadSize(8388608); 
+  return multipartResolver;
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

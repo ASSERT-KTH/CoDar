@@ -21,10 +21,10 @@ class B extends A {
 class A {
   void process(List<A> list) {
     list.stream()
-      .filter(B.class::isInstance)   // Compliant
-      .map(B.class::cast)            // Compliant
-      .map(B::<String>getObject)     // Compliant
-      .forEach(System.out::println); // Compliant
+      .filter(B.class::isInstance)   
+      .map(B.class::cast)            
+      .map(B::<String>getObject)     
+      .forEach(System.out::println); 
   }
 }
 

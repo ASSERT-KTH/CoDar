@@ -1,0 +1,27 @@
+### Noncompliant
+protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+  Runtime r = Runtime.getRuntime();
+  String userInput = request.getParameter("example");
+
+  if (userInput != null) {
+    String[] envs = {userInput};
+    r.exec("/path/to/example", userInput);
+  } else{
+    r.exec("/path/to/example");
+  }
+}
+### Compliant
+protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+  Runtime r = Runtime.getRuntime();
+  String userInput = request.getParameter("example");
+
+  if (userInput != null && userInput.matches("^[a-zA-Z0-9]*$")) {
+    String[] envs = {"ENV_VAR=%s".format(userInput)};
+    r.exec("/path/to/example", envs);
+  } else {
+    r.exec("/path/to/example");
+  }
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

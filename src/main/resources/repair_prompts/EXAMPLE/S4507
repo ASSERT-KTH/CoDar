@@ -1,0 +1,15 @@
+### Noncompliant
+try {
+  /* ... */
+} catch(Exception e) {
+  e.printStackTrace(); // Sensitive
+}
+### Compliant
+try {
+  /* ... */
+} catch(Exception e) {
+  LOGGER.log("context", e);
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

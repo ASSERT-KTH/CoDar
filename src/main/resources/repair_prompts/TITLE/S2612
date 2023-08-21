@@ -1,0 +1,4 @@
+Setting loose POSIX file permissions is security-sensitive
+### Noncompliant
+{{BUGGY}}
+### Compliant

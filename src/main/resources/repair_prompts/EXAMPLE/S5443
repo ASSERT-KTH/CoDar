@@ -1,0 +1,24 @@
+### Noncompliant
+new File("/tmp/myfile.txt"); // Sensitive
+Paths.get("/tmp/myfile.txt"); // Sensitive
+
+java.io.File.createTempFile("prefix", "suffix"); // Sensitive, will be in the default temporary-file directory.
+java.nio.file.Files.createTempDirectory("prefix"); // Sensitive, will be in the default temporary-file directory.
+### Compliant
+new File("/myDirectory/myfile.txt");  
+
+File.createTempFile("prefix", "suffix", new File("/mySecureDirectory"));  
+
+if(SystemUtils.IS_OS_UNIX) {
+  FileAttribute<Set<PosixFilePermission>> attr = PosixFilePermissions.asFileAttribute(PosixFilePermissions.fromString("rwx------"));
+  Files.createTempFile("prefix", "suffix", attr); 
+}
+else {
+  File f = Files.createTempFile("prefix", "suffix").toFile();  
+  f.setReadable(true, true);
+  f.setWritable(true, true);
+  f.setExecutable(true, true);
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

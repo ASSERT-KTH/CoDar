@@ -1,0 +1,4 @@
+Using clear-text protocols is security-sensitive
+### Noncompliant
+{{BUGGY}}
+### Compliant

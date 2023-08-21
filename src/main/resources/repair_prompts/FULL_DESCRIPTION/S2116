@@ -8,8 +8,8 @@ public static void main(String[] args) {
  
 ### Compliant
 public static void main(String[] args) {
-    String argStr = Arrays.toString(args); // Compliant
-    int argHash = Arrays.hashCode(args);   // Compliant
+    String argStr = Arrays.toString(args); 
+    int argHash = Arrays.hashCode(args);   
 }
  Resources Documentation Oracle Java SE - Arrays API Articles & blog posts Error Prone - ArrayHashCode
 ### Noncompliant

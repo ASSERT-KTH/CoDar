@@ -1,0 +1,12 @@
+### Noncompliant
+S3Client.builder()
+    .region(Region.of(System.getenv(SdkSystemSetting.AWS_REGION.environmentVariable())))
+    .build();
+### Compliant
+S3Client.builder()
+    .region(Region.of(System.getenv(SdkSystemSetting.AWS_REGION.environmentVariable()))
+    .credentialsProvider(EnvironmentVariableCredentialsProvider.create())
+    .build();
+### Noncompliant
+{{BUGGY}}
+### Compliant

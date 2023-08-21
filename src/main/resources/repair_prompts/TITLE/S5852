@@ -1,0 +1,4 @@
+Using slow regular expressions is security-sensitive
+### Noncompliant
+{{BUGGY}}
+### Compliant

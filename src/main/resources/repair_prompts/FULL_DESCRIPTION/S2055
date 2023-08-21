@@ -71,7 +71,7 @@ public class Fruit {
 }
  
 ### Compliant
-Solution 1 // Compliant; this Raspberry's ancestor is serializable
+Solution 1 
 public class Fruit implements Serializable {
   private static final long serialVersionUID = 1;
   private Season pickingSeason;
@@ -99,7 +99,7 @@ public class Fruit {
  
 ### Compliant
 Solution 2 public class Fruit {
-  // Compliant; this Raspberry ancestor has a no-argument constructor
+  
   public Fruit() {
     this("From serialization");
   }

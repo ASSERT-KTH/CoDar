@@ -10,7 +10,7 @@ public class Flower {
  
 ### Compliant
 public class Flower {
-  enum Color { // Compliant
+  enum Color { 
     RED, YELLOW, BLUE, ORANGE
   }
   // ...

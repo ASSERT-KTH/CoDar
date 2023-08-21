@@ -1,0 +1,15 @@
+### Noncompliant
+List<String> list = Collections.emptyList();
+if (someCondition) {
+  list.add("hello"); // Noncompliant; throws an UnsupportedOperationException
+}
+return list;
+### Compliant
+List<String> list = new ArrayList<>();
+if (someCondition) {
+  list.add("hello");
+}
+return list;
+### Noncompliant
+{{BUGGY}}
+### Compliant

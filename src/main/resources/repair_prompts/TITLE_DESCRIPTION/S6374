@@ -1,0 +1,5 @@
+XML parsers should not load external schemas
+This rule is deprecated; use S2755 instead. Why is this an issue? By default XML processors attempt to load all XML schemas and DTD (their locations are defined with xsi:schemaLocation attributes and DOCTYPE declarations), potentially from an external storage such as file system or network, which may lead, if no restrictions are put in place, to server-side request forgery (SSRF) vulnerabilities. 
+### Noncompliant
+{{BUGGY}}
+### Compliant

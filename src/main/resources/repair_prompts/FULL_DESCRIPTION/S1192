@@ -7,21 +7,21 @@ With the default threshold of 3: public void run() {
   release("action1");
 }
 
-@SuppressWarning("all")                            // Compliant - annotations are excluded
+@SuppressWarning("all")                            
 private void method1() { /* ... */ }
 @SuppressWarning("all")
 private void method2() { /* ... */ }
 
 public String method3(String a) {
-  System.out.println("'" + a + "'");               // Compliant - literal "'" has less than 5 characters and is excluded
-  return "";                                       // Compliant - literal "" has less than 5 characters and is excluded
+  System.out.println("'" + a + "'");               
+  return "";                                       
 }
  
 ### Compliant
-private static final String ACTION_1 = "action1";  // Compliant
+private static final String ACTION_1 = "action1";  
 
 public void run() {
-  prepare(ACTION_1);                               // Compliant
+  prepare(ACTION_1);                               
   execute(ACTION_1);
   release(ACTION_1);
 }

@@ -6,7 +6,7 @@ public class MyClass implements Enumeration {  // Noncompliant
 }
  
 ### Compliant
-public class MyClass implements Iterator {     // Compliant
+public class MyClass implements Iterator {     
   /* ... */
 }
  Resources docs.oracle.com - Enumeration

@@ -10,9 +10,9 @@ char ch = speech.charAt(speech.length());               // Noncompliant, speech.
 ### Compliant
 String speech = "Lorem ipsum dolor sit amet";
 
-String substr1 = speech;                                         // Compliant, no string operation used
-String substr2 = new StringBuilder(speech).reverse().toString(); // Compliant, the string can be reversed using StringBuilder::reverse()
-char ch = speech.charAt(speech.length() - 1);                    // Compliant, speech.length() - 1 is in bounds.
+String substr1 = speech;                                         
+String substr2 = new StringBuilder(speech).reverse().toString(); 
+char ch = speech.charAt(speech.length() - 1);                    
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

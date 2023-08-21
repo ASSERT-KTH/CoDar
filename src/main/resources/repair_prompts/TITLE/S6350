@@ -1,0 +1,4 @@
+Constructing arguments of system commands from user input is security-sensitive
+### Noncompliant
+{{BUGGY}}
+### Compliant

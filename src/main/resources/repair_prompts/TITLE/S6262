@@ -1,0 +1,4 @@
+AWS region should not be set with a hardcoded String
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,22 @@
+HTTP response headers should not be vulnerable to injection attacks
+This rule is deprecated; use S5122, S5146, S6287 instead. Why is this an issue? User-provided data, such as URL parameters, POST data payloads, or cookies, should always be considered untrusted and tainted. Applications constructing HTTP response headers based on tainted data could allow attackers to change security sensitive headers like Cross-Origin Resource Sharing headers. Web application frameworks and servers might also allow attackers to inject new line characters in headers to craft malformed HTTP response. In this case the application would be vulnerable to a larger range of attacks like HTTP Response Splitting/Smuggling. Most of the time this type of attack is mitigated by default modern web application frameworks but there might be rare cases where older versions are still vulnerable. As a best practice, applications that use user-provided data to construct the response header should always validate the data first. Validation should be based on a whitelist. 
+### Noncompliant
+protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+  String value = req.getParameter("value");
+  resp.addHeader("X-Header", value); // Noncompliant
+}
+ 
+### Compliant
+protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    String value = req.getParameter("value");
+
+    String whitelist = "safevalue1 safevalue2";
+    if (!whitelist.contains(value))
+      throw new IOException();
+
+    resp.addHeader("X-Header", value); 
+}
+ Resources OWASP Top 10 2021 Category A3 - Injection OWASP Attack Category - HTTP Response Splitting MITRE, CWE-20 - Improper Input Validation MITRE, CWE-113 - Improper Neutralization of CRLF Sequences in HTTP Headers ('HTTP Response Splitting') SANS Top 25 - Insecure Interaction Between Components
+### Noncompliant
+{{BUGGY}}
+### Compliant

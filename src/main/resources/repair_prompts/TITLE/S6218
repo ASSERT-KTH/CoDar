@@ -1,0 +1,4 @@
+Equals method should be overridden in records containing array fields
+### Noncompliant
+{{BUGGY}}
+### Compliant

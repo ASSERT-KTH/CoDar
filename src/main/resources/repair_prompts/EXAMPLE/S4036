@@ -1,0 +1,20 @@
+### Noncompliant
+Runtime.getRuntime().exec("make");  // Sensitive
+Runtime.getRuntime().exec(new String[]{"make"});  // Sensitive
+
+ProcessBuilder builder = new ProcessBuilder("make");  // Sensitive
+builder.command("make");  // Sensitive
+### Compliant
+Runtime.getRuntime().exec("/usr/bin/make");  
+Runtime.getRuntime().exec(new String[]{"~/bin/make"});  
+
+ProcessBuilder builder = new ProcessBuilder("./bin/make");  
+builder.command("../bin/make");  
+builder.command(Arrays.asList("..\bin\make", "-j8")); 
+
+builder = new ProcessBuilder(Arrays.asList(".\make"));  
+builder.command(Arrays.asList("C:\bin\make", "-j8"));  
+builder.command(Arrays.asList("\\SERVER\bin\make"));  
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,4 @@
+Restricted Identifiers should not be used as Identifiers
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,4 @@
+Regular expressions should not contain empty groups
+### Noncompliant
+{{BUGGY}}
+### Compliant

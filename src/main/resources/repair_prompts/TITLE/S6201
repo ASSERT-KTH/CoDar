@@ -1,0 +1,4 @@
+Pattern Matching for "instanceof" operator should be used instead of simple "instanceof" + cast
+### Noncompliant
+{{BUGGY}}
+### Compliant

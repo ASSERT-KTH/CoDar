@@ -1,0 +1,4 @@
+Cast operations should not trigger a ClassCastException
+### Noncompliant
+{{BUGGY}}
+### Compliant

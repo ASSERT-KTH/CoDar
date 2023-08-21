@@ -1,0 +1,4 @@
+Enabling file access for WebViews is security-sensitive
+### Noncompliant
+{{BUGGY}}
+### Compliant

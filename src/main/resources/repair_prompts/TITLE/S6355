@@ -1,0 +1,4 @@
+Deprecated annotations should include explanations
+### Noncompliant
+{{BUGGY}}
+### Compliant

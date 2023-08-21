@@ -23,12 +23,12 @@ public boolean isFruitGrape(Fruit candidateFruit) {
  Comparing with final reference will not raise an issue: private static final Type DEFAULT = new Type();
 
 void foo(Type other) {
-  if (other == DEFAULT) { // Compliant
+  if (other == DEFAULT) { 
   //...
   }
 }
  Comparing with this will not raise an issue:   public boolean equals(Object other) {
-    if (this == other) {  // Compliant
+    if (this == other) {  
       return false;
     }
  }

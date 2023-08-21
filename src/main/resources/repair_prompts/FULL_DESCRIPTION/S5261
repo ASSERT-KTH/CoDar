@@ -12,7 +12,7 @@ Why is this an issue? The dangling else problem appears when nested if/else stat
    if (b) {
      d++;
    }
- } else { // Compliant, there is no doubt the "else" is associated with "if(a)"
+ } else { 
    e++;
  }
  Resources https://en.wikipedia.org/wiki/Dangling_else

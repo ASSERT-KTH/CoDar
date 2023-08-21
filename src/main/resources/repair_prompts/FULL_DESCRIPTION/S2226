@@ -7,7 +7,7 @@ If the field is never modified, declare it final. public class MyServlet extends
  
 ### Compliant
 public class MyServlet extends HttpServlet {
-  final String apiVersion = "0.9.1"; // Compliant, field cannot be changed
+  final String apiVersion = "0.9.1"; 
 }
  
 ### Noncompliant
@@ -31,11 +31,11 @@ public class MyServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-    String userName = req.getParameter("userName"); // Compliant, local variable instead instance field
+    String userName = req.getParameter("userName"); 
     resp.getOutputStream().print(getGreeting(userName));
   }
 
-  public String getGreeting(String userName) { // Compliant, method argument instead instance field
+  public String getGreeting(String userName) { 
     return "Hello "+userName+"!";
   }
 }
@@ -59,16 +59,16 @@ If you still prefer instance state over local variables, consider using ThreadLo
 ### Compliant
 public class MyServlet extends HttpServlet {
 
-  final ThreadLocal<String> userName = new ThreadLocal<>(); // Compliant, field itself does not change
+  final ThreadLocal<String> userName = new ThreadLocal<>(); 
 
   @Override
   public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-    userName.set(req.getParameter("userName")); // Compliant, own value provided for every thread
+    userName.set(req.getParameter("userName")); 
     resp.getOutputStream().print(getGreeting());
   }
 
   public String getGreeting() {
-    return "Hello "+userName.get()+"!"; // Compliant, own value provided for every thread
+    return "Hello "+userName.get()+"!"; 
   }
 }
  
@@ -87,7 +87,7 @@ If you have a use case that requires a shared instance state between threads, de
 ### Compliant
 public class MyServlet extends HttpServlet {
 
-  public static long timestampLastRequest; // Compliant, sharing state is our intention
+  public static long timestampLastRequest; 
 
   @Override
   public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {

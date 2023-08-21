@@ -12,10 +12,10 @@ public class Employees {
  
 ### Compliant
 public class Employees {
-  public final Set<Employee> employees       // Compliant
+  public final Set<Employee> employees       
     = new HashSet<Employee>();
 
-  public Set<Employee> getEmployees() {      // Compliant
+  public Set<Employee> getEmployees() {      
     return employees;
   }
 }

@@ -11,8 +11,8 @@ try {
 ### Compliant
 try {
   /* ... */
-} catch (IOException e) { /* ... */ }                // Compliant
-} catch (NullPointerException e) { /* ... */ }       // Compliant
+} catch (IOException e) { /* ... */ }                
+} catch (NullPointerException e) { /* ... */ }       
  Resources CERT, ERR51-J. - Prefer user-defined exceptions over more general exception types Oracle - Exceptions
 ### Noncompliant
 {{BUGGY}}

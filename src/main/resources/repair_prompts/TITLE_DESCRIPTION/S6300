@@ -1,0 +1,5 @@
+Using unencrypted files in mobile applications is security-sensitive
+Storing files locally is a common task for mobile applications. Files that are stored unencrypted can be read out and modified by an attacker with physical access to the device. Access to sensitive data can be harmful for the user of the application, for example when the device gets stolen. Ask Yourself Whether The file contains sensitive data that could cause harm when leaked. There is a risk if you answered yes to any of those questions. Recommended Secure Coding Practices It’s recommended to password-encrypt local files that contain sensitive information. The class EncryptedFile can be used to easily encrypt files. 
+### Noncompliant
+{{BUGGY}}
+### Compliant

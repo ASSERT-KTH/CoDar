@@ -33,7 +33,7 @@ try { // Noncompliant, the FileReader and BufferedReader are instantiated withou
 }
  
 ### Compliant
-try ( // Compliant, all resources are instantiated within a try-with-resources statement and hence automatically closed after use
+try ( 
     FileReader fr = new FileReader(fileName);
     BufferedReader br = new BufferedReader(fr)
   ) {

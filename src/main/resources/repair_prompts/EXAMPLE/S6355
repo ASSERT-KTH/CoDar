@@ -1,0 +1,7 @@
+### Noncompliant
+@Deprecated(since="4.2", forRemoval=true)
+### Compliant
+@Deprecated(since="4.2", forRemoval=true)
+### Noncompliant
+{{BUGGY}}
+### Compliant

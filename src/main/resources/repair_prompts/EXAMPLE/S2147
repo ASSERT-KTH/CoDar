@@ -7,7 +7,7 @@ catch (SQLException e) {  // Noncompliant
   doCleanup();
   logger.log(e);
 }
-catch (TimeoutException e) {  // Compliant; block contents are different
+catch (TimeoutException e) {  
   doCleanup();
   throw e;
 }

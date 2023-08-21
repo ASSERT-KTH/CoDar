@@ -11,7 +11,7 @@ class MyClass {    // Noncompliant - should also override "hashCode()"
 }
  
 ### Compliant
-class MyClass {    // Compliant
+class MyClass {    
 
   @Override
   public boolean equals(Object obj) {

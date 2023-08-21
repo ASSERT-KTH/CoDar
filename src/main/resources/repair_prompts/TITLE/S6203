@@ -1,0 +1,4 @@
+Text blocks should not be used in complex expressions
+### Noncompliant
+{{BUGGY}}
+### Compliant

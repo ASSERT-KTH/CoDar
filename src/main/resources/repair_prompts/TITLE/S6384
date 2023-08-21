@@ -1,0 +1,4 @@
+Components should not be vulnerable to intent redirection
+### Noncompliant
+{{BUGGY}}
+### Compliant

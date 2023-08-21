@@ -1,0 +1,36 @@
+### Noncompliant
+record Person(String name, int age) {
+    public String getName() { // Noncompliant
+        return name.toUpperCase(Locale.ROOT);
+    }
+}
+### Compliant
+record Person(String name, int age) {
+    @Override
+    public String name() { 
+        return name.toUpperCase(Locale.ROOT);
+    }
+}
+
+record Person(String name, int age) {
+    public String getNameUpperCase() { 
+        return name.toUpperCase(Locale.ROOT);
+    }
+}
+record Person(String name, int age) {
+    public String getName() { 
+        return name;
+    }
+}
+record Person(String name, int age) {
+    @Override
+    public String name() { 
+        return name.toUpperCase(Locale.ROOT);
+    }
+    public String getName() { 
+        return name.toUpperCase(Locale.ROOT);
+    }
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

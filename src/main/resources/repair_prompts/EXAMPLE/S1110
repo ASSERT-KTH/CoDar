@@ -1,5 +1,5 @@
 ### Noncompliant
-int x = (y / 2 + 1);   //Compliant even if the parenthesis are ignored by the compiler
+int x = (y / 2 + 1);   
 
 if (a && ((x+y > 0))) {  // Noncompliant
   //...

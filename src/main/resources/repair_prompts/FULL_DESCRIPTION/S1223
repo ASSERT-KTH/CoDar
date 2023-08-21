@@ -9,7 +9,7 @@ public class Foo {
 ### Compliant
 public class Foo {
    public Foo() {...}
-   public void foo(String label) {...}  // Compliant
+   public void foo(String label) {...}  
 }
 ### Noncompliant
 {{BUGGY}}

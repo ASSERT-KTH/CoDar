@@ -1,0 +1,4 @@
+Disabling CSRF protections is security-sensitive
+### Noncompliant
+{{BUGGY}}
+### Compliant

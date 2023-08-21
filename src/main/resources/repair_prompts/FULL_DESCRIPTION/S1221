@@ -9,13 +9,13 @@ public boolean equal(Object obj) { /* ... */ }  // Noncompliant
  
 ### Compliant
 @Override
-public int hashCode() { /* ... */ }             // Compliant
+public int hashCode() { /* ... */ }             
 
 @Override
-public String toString() { /* ... */ }          // Compliant
+public String toString() { /* ... */ }          
 
 @Override
-public boolean equals(Object obj) { /* ... */ } // Compliant
+public boolean equals(Object obj) { /* ... */ } 
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

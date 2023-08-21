@@ -1,0 +1,5 @@
+Formatting SQL queries is security-sensitive
+Formatted SQL queries can be difficult to maintain, debug and can increase the risk of SQL injection when concatenating untrusted values into the query. However, this rule doesn’t detect SQL injections (unlike rule S3649), the goal is only to highlight complex/formatted queries. Ask Yourself Whether Some parts of the query come from untrusted values (like user inputs). The query is repeated/duplicated in other parts of the code. The application must support different types of relational databases. There is a risk if you answered yes to any of those questions. Recommended Secure Coding Practices Use parameterized queries, prepared statements, or stored procedures and bind variables to SQL query parameters. Consider using ORM frameworks if there is a need to have an abstract layer to access data. 
+### Noncompliant
+{{BUGGY}}
+### Compliant

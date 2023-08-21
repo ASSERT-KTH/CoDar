@@ -4,13 +4,13 @@ This rule raises an issue when a lambda expression uses block notation while exp
 (a, b) -> { return a + b; } // Noncompliant, replace code block with expression
  
 ### Compliant
-(a, b) -> a + b             // Compliant
+(a, b) -> a + b             
  
 ### Noncompliant
 x -> {System.out.println(x+1);} // Noncompliant, replace code block with statement
  
 ### Compliant
-x -> System.out.println(x+1)    // Compliant
+x -> System.out.println(x+1)    
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

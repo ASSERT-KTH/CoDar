@@ -1,0 +1,4 @@
+Using hardcoded IP addresses is security-sensitive
+### Noncompliant
+{{BUGGY}}
+### Compliant

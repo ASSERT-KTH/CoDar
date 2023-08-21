@@ -42,7 +42,7 @@ public class ThreadLocalUserSession implements UserSession {
   }
 
   public void unload() {
-    DELEGATE.remove(); // Compliant
+    DELEGATE.remove(); 
   }
 
   // ...

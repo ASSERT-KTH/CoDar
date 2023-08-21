@@ -1,0 +1,4 @@
+Unsupported methods should not be called on some collection implementations
+### Noncompliant
+{{BUGGY}}
+### Compliant

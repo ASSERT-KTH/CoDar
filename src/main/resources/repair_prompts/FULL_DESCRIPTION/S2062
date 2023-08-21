@@ -18,7 +18,7 @@ public class Raspberry extends Fruit implements Serializable { // This class has
 public class Fruit implements Serializable {
   private static final long serialVersionUID = 1;
 
-  protected Object readResolve() throws ObjectStreamException // Compliant, `readResolve` is protected
+  protected Object readResolve() throws ObjectStreamException 
   {...}
 
   //...

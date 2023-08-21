@@ -1,0 +1,26 @@
+Logging should not be vulnerable to injection attacks
+Why is this an issue? Log injection occurs when an application fails to sanitize untrusted data used for logging. An attacker can forge log content to prevent an organization from being able to trace back malicious activities. What is the potential impact? If an attacker can insert arbitrary data into a log file, the integrity of the chain of events being recorded can be compromised. This frequently occurs because attackers can inject the log entry separator of the logger framework, commonly newlines, and thus insert artificial log entries. Other attacks could also occur requiring only field pollution, such as cross-site scripting (XSS) or code injection (for example, Log4Shell) if the logged data is fed to other application components, which may interpret the injected data differently. The focus of this rule is newline character replacement. Log Forge An attacker, able to create independent log entries by injecting log entry separators, inserts bogus data into a log file to conceal his malicious activities. This obscures the content for an incident response team to trace the origin of the breach as the indicators of compromise (IoCs) lead to fake application events. How to fix it in Java SE Code examples The following code is vulnerable to log injection as it constructs log entries using untrusted data. An attacker can leverage this to manipulate the chain of events being recorded. 
+### Noncompliant
+private static final Logger logger = Logger.getLogger("Logger");
+
+protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+  String data = request.getParameter("data");
+  if(data != null){
+    logger.log(Level.INFO, "Data: {0} ", data);
+  }
+}
+### Compliant
+private static final Logger logger = Logger.getLogger("Logger");
+
+protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+  String data = request.getParameter("data");
+  if(data != null){
+    data = data.replaceAll("[\n\r]", "_");
+    logger.log(Level.INFO, "Data: {0} ", data);
+  }
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

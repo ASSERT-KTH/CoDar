@@ -11,7 +11,7 @@ public class Foo {
 }
  
 ### Compliant
-public class Foo { // Compliant
+public class Foo { 
   private String name;
 }
  Resources Documentation Java SE 8 API Specification - Object.finalize Articles & blog posts Java finalize() – Why We Should Not Use It? - Lokesh Gupta A Guide to the finalize Method in Java - Baeldung

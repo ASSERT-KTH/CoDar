@@ -1,0 +1,43 @@
+XML parsers should not load external schemas
+This rule is deprecated; use S2755 instead. Why is this an issue? By default XML processors attempt to load all XML schemas and DTD (their locations are defined with xsi:schemaLocation attributes and DOCTYPE declarations), potentially from an external storage such as file system or network, which may lead, if no restrictions are put in place, to server-side request forgery (SSRF) vulnerabilities. 
+### Noncompliant
+For DocumentBuilder, SAXParser and Schema JAPX factories: DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+factory.setValidating(true); // Noncompliant
+factory.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", true); // Noncompliant
+
+SAXParserFactory factory = SAXParserFactory.newInstance();
+factory.setValidating(true); // Noncompliant
+factory.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", true); // Noncompliant
+
+SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+schemaFactory.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", true); // Noncompliant
+ For Dom4j library: SAXReader xmlReader = new SAXReader(); // Noncompliant
+xmlReader.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", true);  // Noncompliant
+ For Jdom2 library: SAXBuilder builder = new SAXBuilder();
+builder.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", true); // Noncompliant
+ 
+### Compliant
+For DocumentBuilder, SAXParser and Schema JAPX factories: DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+factory.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
+
+SAXParserFactory factory = SAXParserFactory.newInstance();
+factory.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
+
+SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+schemaFactory.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
+ For Dom4j library: SAXReader xmlReader = new SAXReader(); // Noncompliant
+xmlReader.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
+ For Jdom2 library: SAXBuilder builder = new SAXBuilder();
+builder.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
+ Exceptions This rules does not raise an issue when an EntityResolver is set. DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+factory.setValidating(true);
+DocumentBuilder builder = factory.newDocumentBuilder();
+builder.setEntityResolver(new MyEntityResolver());
+
+SAXBuilder builder = new SAXBuilder();
+builder.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", true);
+builder.setEntityResolver(new EntityResolver());
+ Resources Oracle Java Documentation - XML External Entity Injection Attack OWASP Top 10 2017 Category A4 - XML External Entities (XXE) OWASP XXE Prevention Cheat Sheet MITRE, CWE-611 - Information Exposure Through XML External Entity Reference MITRE, CWE-827 - Improper Control of Document Type Definition
+### Noncompliant
+{{BUGGY}}
+### Compliant

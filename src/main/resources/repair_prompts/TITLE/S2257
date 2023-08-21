@@ -1,0 +1,4 @@
+Using non-standard cryptographic algorithms is security-sensitive
+### Noncompliant
+{{BUGGY}}
+### Compliant

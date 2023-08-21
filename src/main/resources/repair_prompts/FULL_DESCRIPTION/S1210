@@ -9,7 +9,7 @@ public class Foo implements Comparable<Foo> {
 ### Compliant
 public class Foo implements Comparable<Foo> {
   @Override
-  public int compareTo(Foo foo) { /* ... */ }      // Compliant
+  public int compareTo(Foo foo) { /* ... */ }      
 
   @Override
   public boolean equals(Object obj) { /* ... */ }

@@ -1,0 +1,4 @@
+Permitted types of a sealed class should be omitted if they are declared in the same file
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -12,7 +12,7 @@ public enum Color {
   RED, GREEN, BLUE, ORANGE;
 }
 
-Map<Color, String> colorMap = new EnumMap<>(Color.class); // Compliant
+Map<Color, String> colorMap = new EnumMap<>(Color.class); 
  Resources A Guide to EnumMap - Baeldung
 ### Noncompliant
 {{BUGGY}}

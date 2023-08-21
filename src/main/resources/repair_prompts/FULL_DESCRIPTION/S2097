@@ -42,7 +42,7 @@ public class MyClass {
     if (obj == null || this.getClass() != obj.getClass()) {
       return false;
     }
-    MyClass that = (MyClass) obj; // Compliant, obj's type is MyClass
+    MyClass that = (MyClass) obj; 
     // ...
   }
   // ...

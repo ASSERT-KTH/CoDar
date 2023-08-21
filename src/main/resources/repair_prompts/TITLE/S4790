@@ -1,0 +1,4 @@
+Using weak hashing algorithms is security-sensitive
+### Noncompliant
+{{BUGGY}}
+### Compliant

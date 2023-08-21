@@ -27,7 +27,7 @@ public class Tomato implements Externalizable {
 
   public Color color;
 
-  // Compliant; deserialization will invoke this public no-argument constructor
+  
   public Tomato() {
     this.color = Color.UNKNOWN;
   }

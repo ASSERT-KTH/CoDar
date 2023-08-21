@@ -1,0 +1,14 @@
+### Noncompliant
+SendEmailRequest.builder()
+  .destination(Destination.builder()
+    .toAddresses("to-email@domain.com")
+    .bccAddresses("bcc-email@domain.com")
+    .build())
+.build();
+### Compliant
+SendEmailRequest.builder()
+  .destination(d -> d.toAddresses("to-email@domain.com").bccAddresses("bcc-email@domain.com"))
+  .build();
+### Noncompliant
+{{BUGGY}}
+### Compliant

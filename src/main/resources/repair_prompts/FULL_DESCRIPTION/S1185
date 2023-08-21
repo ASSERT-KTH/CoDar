@@ -12,13 +12,13 @@ public boolean isLegal(Action action) {
  
 ### Compliant
 @Override
-public boolean isLegal(Action action) {         // Compliant - not simply forwarding the call
+public boolean isLegal(Action action) {         
   return super.isLegal(new Action(/* ... */));
 }
 
 @Id
 @Override
-public int getId() {                            // Compliant - there is annotation different from @Override
+public int getId() {                            
   return super.getId();
 }
 ### Noncompliant

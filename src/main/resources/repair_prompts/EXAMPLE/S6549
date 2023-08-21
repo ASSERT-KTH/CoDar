@@ -1,0 +1,41 @@
+### Noncompliant
+import java.io.File;
+
+@Controller
+public class ExampleController
+{
+    static private String targetDirectory = "/path/to/target/directory/";
+
+    @GetMapping(value = "/exists")
+    public void delete(@RequestParam("filename") String filename) throws IOException {
+
+        File file = new File(targetDirectory + filename);
+        if (!file.exists()) { // Noncompliant
+            throw new IOException("File does not exists in the target directory");
+        }
+    }
+}
+### Compliant
+import java.io.File;
+
+@Controller
+public class ExampleController
+{
+    static private String targetDirectory = "/path/to/target/directory/";
+
+    @GetMapping(value = "/exists")
+    public void delete(@RequestParam("filename") String filename) throws IOException {
+
+        File file = new File(targetDirectory + filename);
+        String canonicalDestinationPath = file.getCanonicalPath();
+
+        if (!canonicalDestinationPath.startsWith(targetDirectory)) {
+            throw new IOException("Entry is outside of the target directory");
+        } else if (!file.exists()) {
+            throw new IOException("File does not exists in the target directory");
+        }
+    }
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

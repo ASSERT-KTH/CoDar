@@ -1,0 +1,4 @@
+Superfluous curly brace quantifiers should be avoided
+### Noncompliant
+{{BUGGY}}
+### Compliant

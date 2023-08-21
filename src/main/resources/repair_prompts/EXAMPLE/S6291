@@ -1,0 +1,7 @@
+### Noncompliant
+SQLiteDatabase db = activity.openOrCreateDatabase("test.db", Context.MODE_PRIVATE, null); // Sensitive
+### Compliant
+SQLiteDatabase db = SQLiteDatabase.openOrCreateDatabase("test.db", getKey(), null);
+### Noncompliant
+{{BUGGY}}
+### Compliant

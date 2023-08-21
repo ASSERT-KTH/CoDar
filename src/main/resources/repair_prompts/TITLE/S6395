@@ -1,0 +1,4 @@
+Non-capturing groups without quantifier should not be used
+### Noncompliant
+{{BUGGY}}
+### Compliant

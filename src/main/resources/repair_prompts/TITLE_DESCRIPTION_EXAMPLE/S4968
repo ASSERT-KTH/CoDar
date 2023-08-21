@@ -1,0 +1,13 @@
+The upper bound of type variables and wildcards should not be "final"
+Why is this an issue? When a type variable or a wildcard declares an upper bound that is final, the parametrization is not generic at all because it accepts one and only one type at runtime: the one that is final. Instead of using Generics, it’s simpler to directly use the concrete final class. 
+### Noncompliant
+public static <T extends String> T getMyString() { // Noncompliant; String is a "final" class and so can't be extended
+ [...]
+}
+### Compliant
+public static String getMyString() { 
+  [...]
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant

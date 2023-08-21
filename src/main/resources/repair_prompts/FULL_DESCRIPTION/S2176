@@ -22,7 +22,7 @@ package org.foo.presentation;
 
 import org.foo.domain.User;
 
-public class UserView implements User { // Compliant
+public class UserView implements User { 
   // ...
 }
  Resources Documentation Java SE Specifications > Java Language Specification > 6.4.1. Shadowing

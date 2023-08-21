@@ -1,0 +1,4 @@
+Using publicly writable directories is security-sensitive
+### Noncompliant
+{{BUGGY}}
+### Compliant

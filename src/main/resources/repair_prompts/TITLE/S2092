@@ -1,0 +1,4 @@
+Creating cookies without the "secure" flag is security-sensitive
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,13 @@
+XML parsers should not allow inclusion of arbitrary files
+Why is this an issue? XML standard allows the inclusion of xml files with the xinclude element. XML processors will replace an xinclude element with the content of the file located at the URI defined in the href attribute, potentially from an external storage such as file system or network, which may lead, if no restrictions are put in place, to arbitrary file disclosures or server-side request forgery (SSRF) vulnerabilities. 
+### Noncompliant
+factory.setXIncludeAware(true); // Noncompliant
+// or
+factory.setFeature("http://apache.org/xml/features/xinclude", true); // Noncompliant
+### Compliant
+factory.setXIncludeAware(false);
+// or
+factory.setFeature("http://apache.org/xml/features/xinclude", false);
+### Noncompliant
+{{BUGGY}}
+### Compliant

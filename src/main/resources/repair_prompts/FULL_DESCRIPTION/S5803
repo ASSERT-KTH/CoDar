@@ -16,7 +16,7 @@ new MyObject().foo; // Noncompliant, foo is accessed from production code
 
 /** src/test/java/MyObjectTest.java */
 
-new MyObject().foo; // Compliant, foo is accessed from test code
+new MyObject().foo; 
 ### Noncompliant
 {{BUGGY}}
 ### Compliant

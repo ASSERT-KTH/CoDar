@@ -14,21 +14,21 @@ Using static initialization block: class MyClass {
   private static final Map<String, String> MY_MAP = new HashMap<>();
 
   static {
-    MY_MAP.put("a", "b");  // Compliant
+    MY_MAP.put("a", "b");  
   }
 }
  or using constructor: class MyClass {
   private static final Map<String, String> MY_MAP = new HashMap<>();
 
   public MyClass() {
-    MY_MAP.put("a", "b");  // Compliant
+    MY_MAP.put("a", "b");  
   }
 }
  or using Java 9 Map.of: class MyClass {
-  private static final Map<String, String> MY_MAP = java.util.Map.of("a", "b");   // Compliant
+  private static final Map<String, String> MY_MAP = java.util.Map.of("a", "b");   
 }
  or using Guava ImmutableMap.of: class MyClass {
-  private static final Map<String, String> MY_MAP = com.google.common.collect.ImmutableMap.of("a", "b");   // Compliant
+  private static final Map<String, String> MY_MAP = com.google.common.collect.ImmutableMap.of("a", "b");   
 }
  Resources Articles & blog posts Static vs. Instance Initializer Block in Java
 ### Noncompliant

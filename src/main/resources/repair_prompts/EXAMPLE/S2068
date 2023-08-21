@@ -1,0 +1,13 @@
+### Noncompliant
+String username = "steve";
+String password = "blue";
+Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/test?" +
+                  "user=" + username + "&password=" + password); // Sensitive
+### Compliant
+String username = getEncryptedUser();
+String password = getEncryptedPassword();
+Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/test?" +
+                  "user=" + username + "&password=" + password);
+### Noncompliant
+{{BUGGY}}
+### Compliant

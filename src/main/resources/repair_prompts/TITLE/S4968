@@ -1,0 +1,4 @@
+The upper bound of type variables and wildcards should not be "final"
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,4 @@
+Searching OS commands in PATH is security-sensitive
+### Noncompliant
+{{BUGGY}}
+### Compliant

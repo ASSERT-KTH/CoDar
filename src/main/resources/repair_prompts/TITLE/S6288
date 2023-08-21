@@ -1,0 +1,4 @@
+Authorizing non-authenticated users to use keys in the Android KeyStore is security-sensitive
+### Noncompliant
+{{BUGGY}}
+### Compliant

@@ -1,0 +1,11 @@
+Regular expressions should not contain multiple spaces
+Why is this an issue? Multiple spaces in a regular expression can make it hard to tell how many spaces should be matched. It’s more readable to use only one space and then indicate with a quantifier how many spaces are expected. 
+### Noncompliant
+Pattern.compile("hello   world");
+ 
+### Compliant
+Pattern.compile("hello {3}world");
+ Exceptions In free-spacing mode (Pattern.COMMENTS flag, or with embedded flag expression (?x)), whitespaces are ignored. In this case no issue should be triggered, because the whitespaces may be intended to improve readability.
+### Noncompliant
+{{BUGGY}}
+### Compliant

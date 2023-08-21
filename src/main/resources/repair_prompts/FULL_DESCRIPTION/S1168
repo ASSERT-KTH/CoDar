@@ -36,15 +36,15 @@ public static void main(String[] args) {
  
 ### Compliant
 public static List<Result> getAllResults() {
-  return Collections.emptyList();          // Compliant
+  return Collections.emptyList();          
 }
 
 public static Result[] getResults() {
-  return new Result[0];                    // Compliant
+  return new Result[0];                    
 }
 
 public static Map<String, Object> getValues() {
-  return Collections.emptyMap();           // Compliant
+  return Collections.emptyMap();           
 }
 
 public static void main(String[] args) {

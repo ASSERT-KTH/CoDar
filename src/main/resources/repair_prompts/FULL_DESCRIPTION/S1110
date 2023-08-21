@@ -1,7 +1,7 @@
 Redundant pairs of parentheses should be removed
 Why is this an issue? The use of parentheses, even those not required to enforce a desired order of operations, can clarify the intent behind a piece of code. But redundant pairs of parentheses could be misleading, and should be removed. 
 ### Noncompliant
-int x = (y / 2 + 1);   //Compliant even if the parenthesis are ignored by the compiler
+int x = (y / 2 + 1);   
 
 if (a && ((x+y > 0))) {  // Noncompliant
   //...

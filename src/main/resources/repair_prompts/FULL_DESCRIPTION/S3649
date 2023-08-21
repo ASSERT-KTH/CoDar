@@ -1,0 +1,181 @@
+Database queries should not be vulnerable to injection attacks
+Why is this an issue? Database injections (such as SQL injections) occur in an application when the application retrieves data from a user or a third-party service and inserts it into a database query without sanitizing it first. If an application contains a database query that is vulnerable to injections, it is exposed to attacks that target any database where that query is used. A user with malicious intent carefully performs actions whose goal is to modify the existing query to change its logic to a malicious one. After creating the malicious request, the attacker can attack the databases affected by this vulnerability without relying on any pre-requisites. What is the potential impact? In the context of a web application that is vulnerable to SQL injection: After discovering the injection, attackers inject data into the vulnerable field to execute malicious commands in the affected databases. Below are some real-world scenarios that illustrate some impacts of an attacker exploiting the vulnerability. Identity spoofing and data manipulation A malicious database query enables privilege escalation or direct data leakage from one or more databases. This threat is the most widespread impact. Data deletion and denial of service The malicious query makes it possible for the attacker to delete data in the affected databases. This threat is particularly insidious if the attacked organization does not maintain a disaster recovery plan (DRP). Chaining DB injections with other vulnerabilities Attackers who exploit SQL injections rely on other vulnerabilities to maximize their profits. Most of the time, organizations overlook some defense in depth measures because they assume attackers cannot reach certain points in the infrastructure. This misbehavior can lead to multiple attacks with great impact: When secrets are stored unencrypted in databases: Secrets can be exfiltrated and lead to compromise of other components. If server-side OS and/or database permissions are misconfigured, injection can lead to remote code execution (RCE). See our article on this topic How to fix it in Java SE Code examples The following code is an example of an overly simple authentication function. It is vulnerable to SQL injection because user-controlled data is inserted directly into a query string: The application assumes that incoming data always has a specific range of characters, and ignores that some characters may change the query logic to a malicious one. In this particular case, the query can be exploited with the following string: foo' OR 1=1 --
+ By adapting and inserting this template string into one of the fields (user or pass), an attacker would be able to log in as any user within the scoped user table. 
+### Noncompliant
+@RestController
+public class ApiController
+{
+    @Autowired
+    Connection connection;
+
+    @GetMapping(value = "/authenticate")
+    @ResponseBody
+    public ResponseEntity<String> authenticate(
+        @RequestParam("user") String user,
+        @RequestParam("pass") String pass) throws SQLException
+    {
+        String query = "SELECT * FROM users WHERE user = '" + user + "' AND pass = '" + pass + "'";
+
+        try (Statement statement = connection.createStatement()) {
+
+            ResultSet resultSet = statement.executeQuery(query);
+
+            if (!resultSet.next()) {
+                return new ResponseEntity<>("Unauthorized", HttpStatus.UNAUTHORIZED);
+            }
+        }
+
+        return new ResponseEntity<>("Authentication Success", HttpStatus.OK);
+    }
+}
+ 
+### Compliant
+@RestController
+public class ApiController
+{
+    @Autowired
+    Connection connection;
+
+    @GetMapping(value = "/authenticate")
+    @ResponseBody
+    public ResponseEntity<String> authenticate(
+        @RequestParam("user") String user,
+        @RequestParam("pass") String pass) throws SQLException
+    {
+        String query = "SELECT * FROM users WHERE user = ? AND pass = ?";
+
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, user);
+            statement.setString(2, pass);
+
+            ResultSet resultSet = statement.executeQuery(query);
+
+            if (!resultSet.next()) {
+                return new ResponseEntity<>("Unauthorized", HttpStatus.UNAUTHORIZED);
+            }
+        }
+
+        return new ResponseEntity<>("Authentication Success", HttpStatus.OK);
+    }
+}
+ How does this work? Use prepared statements As a rule of thumb, the best approach to protect against injections is to systematically ensure that untrusted data cannot break out of an interpreted context. For database queries, prepared statements are a natural mechanism to achieve this due to their internal workings. Here is an example with the following query string (Java SE syntax): SELECT * FROM users WHERE user = ? AND pass = ?
+ Note: Placeholders may take different forms, depending on the library used. For the above example, the question mark symbol '?' was used as a placeholder. When a prepared statement is used by an application, the database server compiles the query logic even before the application passes the literals corresponding to the placeholders to the database. Some libraries expose a prepareStatement function that explicitly does so, and some do not - because they do it transparently. The compiled code that contains the query logic also includes the placeholders: they serve as parameters. After compilation, the query logic is frozen and cannot be changed. So when the application passes the literals that replace the placeholders, they are not considered application logic by the database. Consequently, the database server prevents the dynamic literals of a prepared statement from affecting the underlying query, and thus sanitizes them. On the other hand, the application does not automatically sanitize third-party data (for example, user-controlled data) inserted directly into a query. An attacker who controls this third-party data can cause the database to execute malicious code. How to fix it in Spring Code examples The following code is an example of an overly simple authentication function. It is vulnerable to SQL injection because user-controlled data is inserted directly into a query string: The application assumes that incoming data always has a specific range of characters, and ignores that some characters may change the query logic to a malicious one. In this particular case, the query can be exploited with the following string: foo' OR 1=1 --
+ By adapting and inserting this template string into one of the fields (user or pass), an attacker would be able to log in as any user within the scoped user table. 
+### Noncompliant
+@RestController
+public class ApiController
+{
+    @Autowired
+    JdbcTemplate jdbcTemplate;
+
+    @GetMapping(value = "/authenticate")
+    @ResponseBody
+    public ResponseEntity<String> authenticate(
+        @RequestParam("user") String user,
+        @RequestParam("pass") String pass)
+    {
+        String query = "SELECT * FROM users WHERE user = '" + user + "' AND pass = '" + pass + "'";
+
+        try {
+            BeanPropertyRowMapper<User> userType = new BeanPropertyRowMapper(User.class);
+            User queryResult = jdbcTemplate.queryForObject(query, userType);
+
+        } catch (Exception e) {
+            return new ResponseEntity<>("Unauthorized", HttpStatus.UNAUTHORIZED);
+        }
+
+        return new ResponseEntity<>("Authentication Success", HttpStatus.OK);
+    }
+}
+ 
+### Compliant
+@RestController
+public class ApiController
+{
+    @Autowired
+    JdbcTemplate jdbcTemplate;
+
+    @GetMapping(value = "/authenticate")
+    @ResponseBody
+    public ResponseEntity<String> authenticate(
+        @RequestParam("user") String user,
+        @RequestParam("pass") String pass)
+    {
+        String query = "SELECT * FROM users WHERE user = ? AND pass = ?";
+
+        try {
+            BeanPropertyRowMapper<User> userType = new BeanPropertyRowMapper(User.class);
+            User queryResult = jdbcTemplate.queryForObject(query, userType, user, pass);
+
+        } catch (Exception e) {
+            return new ResponseEntity<>("Unauthorized", HttpStatus.UNAUTHORIZED);
+        }
+
+        return new ResponseEntity<>("Authentication Success", HttpStatus.OK);
+    }
+}
+ How does this work? Use prepared statements As a rule of thumb, the best approach to protect against injections is to systematically ensure that untrusted data cannot break out of an interpreted context. For database queries, prepared statements are a natural mechanism to achieve this due to their internal workings. Here is an example with the following query string (Java SE syntax): SELECT * FROM users WHERE user = ? AND pass = ?
+ Note: Placeholders may take different forms, depending on the library used. For the above example, the question mark symbol '?' was used as a placeholder. When a prepared statement is used by an application, the database server compiles the query logic even before the application passes the literals corresponding to the placeholders to the database. Some libraries expose a prepareStatement function that explicitly does so, and some do not - because they do it transparently. The compiled code that contains the query logic also includes the placeholders: they serve as parameters. After compilation, the query logic is frozen and cannot be changed. So when the application passes the literals that replace the placeholders, they are not considered application logic by the database. Consequently, the database server prevents the dynamic literals of a prepared statement from affecting the underlying query, and thus sanitizes them. On the other hand, the application does not automatically sanitize third-party data (for example, user-controlled data) inserted directly into a query. An attacker who controls this third-party data can cause the database to execute malicious code. How to fix it in Hibernate Code examples The following code is an example of an overly simple authentication function. It is vulnerable to SQL injection because user-controlled data is inserted directly into a query string: The application assumes that incoming data always has a specific range of characters, and ignores that some characters may change the query logic to a malicious one. In this particular case, the query can be exploited with the following string: foo' OR 1=1 --
+ By adapting and inserting this template string into one of the fields (user or pass), an attacker would be able to log in as any user within the scoped user table. 
+### Noncompliant
+@RestController
+public class ApiController
+{
+    @Autowired
+    QueryProducer queryProducer;
+
+    @GetMapping(value = "/authenticate")
+    @ResponseBody
+    public ResponseEntity<String> authenticate(
+        @RequestParam("user") String user,
+        @RequestParam("pass") String pass)
+    {
+        String query = "SELECT * FROM users WHERE user = '" + user + "' AND pass = '" + pass + "'";
+
+        try {
+          queryProducer
+            .createNativeQuery(query)
+            .getSingleResult();
+
+        } catch (Exception e) {
+            return new ResponseEntity<>("Unauthorized", HttpStatus.UNAUTHORIZED);
+        }
+
+        return new ResponseEntity<>("Authentication Success", HttpStatus.OK);
+    }
+}
+ 
+### Compliant
+@RestController
+public class ApiController
+{
+    @Autowired
+    QueryProducer queryProducer;
+
+    @GetMapping(value = "/authenticate")
+    @ResponseBody
+    public ResponseEntity<String> authenticate(
+        @RequestParam("user") String user,
+        @RequestParam("pass") String pass)
+    {
+        String query = "SELECT * FROM users WHERE user = :user AND pass = :pass";
+
+        try {
+          queryProducer
+            .createNativeQuery(query)
+            .setParameter("user", user)
+            .setParameter("pass", pass)
+            .getSingleResult();
+
+        } catch (Exception e) {
+            return new ResponseEntity<>("Unauthorized", HttpStatus.UNAUTHORIZED);
+        }
+
+        return new ResponseEntity<>("Authentication Success", HttpStatus.OK);
+    }
+}
+ How does this work? Use prepared statements As a rule of thumb, the best approach to protect against injections is to systematically ensure that untrusted data cannot break out of an interpreted context. For database queries, prepared statements are a natural mechanism to achieve this due to their internal workings. Here is an example with the following query string (Java SE syntax): SELECT * FROM users WHERE user = ? AND pass = ?
+ Note: Placeholders may take different forms, depending on the library used. For the above example, the question mark symbol '?' was used as a placeholder. When a prepared statement is used by an application, the database server compiles the query logic even before the application passes the literals corresponding to the placeholders to the database. Some libraries expose a prepareStatement function that explicitly does so, and some do not - because they do it transparently. The compiled code that contains the query logic also includes the placeholders: they serve as parameters. After compilation, the query logic is frozen and cannot be changed. So when the application passes the literals that replace the placeholders, they are not considered application logic by the database. Consequently, the database server prevents the dynamic literals of a prepared statement from affecting the underlying query, and thus sanitizes them. On the other hand, the application does not automatically sanitize third-party data (for example, user-controlled data) inserted directly into a query. An attacker who controls this third-party data can cause the database to execute malicious code. Resources Articles & blog posts SonarSource, Exploiting Hibernate Injections OWASP, SQL Injection Prevention Cheat Sheet SANS, Top 25 Software Errors - Insecure Interaction Between Components Standards OWASP Top 10 2021 Category A3 - Injection OWASP Top 10 2017 Category A1 - Injection MITRE, CWE-20 - Improper Input Validation MITRE, CWE-89 - Improper Neutralization of Special Elements used in an SQL Command CERT, IDS00-J. - Prevent SQL injection
+### Noncompliant
+{{BUGGY}}
+### Compliant

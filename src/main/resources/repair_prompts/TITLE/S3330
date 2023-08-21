@@ -1,0 +1,4 @@
+Creating cookies without the "HttpOnly" flag is security-sensitive
+### Noncompliant
+{{BUGGY}}
+### Compliant

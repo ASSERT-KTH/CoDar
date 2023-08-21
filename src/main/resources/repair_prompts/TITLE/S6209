@@ -1,0 +1,4 @@
+Members ignored during record serialization should not be used
+### Noncompliant
+{{BUGGY}}
+### Compliant

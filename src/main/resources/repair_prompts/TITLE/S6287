@@ -1,0 +1,4 @@
+Applications should not create session cookies from untrusted input
+### Noncompliant
+{{BUGGY}}
+### Compliant

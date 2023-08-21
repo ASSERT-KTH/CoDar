@@ -1,0 +1,4 @@
+Allowing both safe and unsafe HTTP methods is security-sensitive
+### Noncompliant
+{{BUGGY}}
+### Compliant

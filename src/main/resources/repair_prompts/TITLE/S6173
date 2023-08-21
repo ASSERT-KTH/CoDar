@@ -1,0 +1,4 @@
+Reflection should not be vulnerable to injection attacks
+### Noncompliant
+{{BUGGY}}
+### Compliant

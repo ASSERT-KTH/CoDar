@@ -1,0 +1,24 @@
+### Noncompliant
+@Controller
+public class ExampleController
+{
+    @GetMapping(value = "/find")
+    public void find(@RequestParam("filename") String filename) throws IOException {
+
+        Runtime.getRuntime().exec("/usr/bin/find . -iname " + filename);
+    }
+}
+### Compliant
+@Controller
+public class ExampleController
+{
+    @GetMapping(value = "/find")
+    public void find(@RequestParam("filename") String filename) throws IOException {
+
+        String cmd1[] = new String[] {"/usr/bin/find", ".", "-iname", filename};
+        Process proc = Runtime.getRuntime().exec(cmd1); 
+    }
+}
+### Noncompliant
+{{BUGGY}}
+### Compliant
