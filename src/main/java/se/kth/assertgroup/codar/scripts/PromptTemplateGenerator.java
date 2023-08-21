@@ -121,26 +121,10 @@ public class PromptTemplateGenerator {
         return header.text();
     }
 
-    private List<Integer> findWord(String textString, String word) {
-        List<Integer> indexes = new ArrayList<Integer>();
-        String lowerCaseTextString = textString.toLowerCase();
-        String lowerCaseWord = word.toLowerCase();
-
-        int index = 0;
-        while (index != -1) {
-            index = lowerCaseTextString.indexOf(lowerCaseWord, index);
-            if (index != -1) {
-                indexes.add(index);
-                index++;
-            }
-        }
-        return indexes;
-    }
-
     public static void main(String[] args) throws IOException, URISyntaxException {
         PromptTemplateGenerator ptg = new PromptTemplateGenerator();
 
-        ptg.generatePromptTemplates("S1217");
+        ptg.generatePromptTemplates("S4682");
 
 //        List<String> rules =
 //                FileUtils.readLines(new File("/home/khaes/tmp/rules.txt"), "UTF-8");

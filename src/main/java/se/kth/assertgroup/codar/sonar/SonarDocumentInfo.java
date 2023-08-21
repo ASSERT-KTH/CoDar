@@ -16,7 +16,7 @@ public class SonarDocumentInfo {
     private List<ViolationExample> examples;
     private List<Integer> nonCompliantIndices, compliantIndices;
 
-    public SonarDocumentInfo(){
+    public SonarDocumentInfo() {
         this.examples = new ArrayList<>();
     }
 
@@ -24,7 +24,7 @@ public class SonarDocumentInfo {
 
         // Replacing example labels
         fullDescription = fullDescription.replaceAll("Noncompliant Code Example ",
-                System.lineSeparator() + "Noncompliant Code Example" + System.lineSeparator())
+                        System.lineSeparator() + "Noncompliant Code Example" + System.lineSeparator())
                 .replaceAll("Compliant Solution ",
                         System.lineSeparator() + "Compliant Solution" + System.lineSeparator())
                 .replaceAll("Noncompliant code example ",
@@ -37,25 +37,42 @@ public class SonarDocumentInfo {
                 .replaceAll("Compliant Solution", Constants.PROMPT_COMPLIANT_HEADER);
     }
 
-    public void removeCompliantCommentsFromDescription(){
+    public void removeCompliantCommentsFromDescription() {
         fullDescription = removeCompliantComment(fullDescription);
     }
 
     public void addExamplesToDocInfo(Document jsoupDoc) {
         Elements snippets = jsoupDoc.getElementsByTag("pre");
         Element firstSnippetAfterNonCompliant = null, firstSnippetAfterCompliant = null;
+        int firstSnippetAfterNonCompliantInd = fullDescription.length(),
+                firstSnippetAfterCompliantInd = fullDescription.length();
 
         for (int i = 0; i < snippets.size(); i++) {
             String txt = snippets.get(i).text();
-            if(fullDescription.indexOf(txt) >= nonCompliantIndices.get(0)
-                    && (firstSnippetAfterNonCompliant == null
-                    || fullDescription.indexOf(txt) <= fullDescription.indexOf(firstSnippetAfterNonCompliant.text())))
-                firstSnippetAfterNonCompliant = snippets.get(i);
 
-            if(fullDescription.indexOf(txt) >= compliantIndices.get(0)
+            int previousAppearanceCnt = 0;
+
+            for (int j = 0; j < i; j++) {
+                if (snippets.get(j).text().contains(txt))
+                    previousAppearanceCnt++;
+            }
+
+            int appearanceInd = findWord(fullDescription, txt).get(previousAppearanceCnt);
+
+
+            if (appearanceInd >= nonCompliantIndices.get(0)
+                    && (firstSnippetAfterNonCompliant == null
+                    || appearanceInd <= firstSnippetAfterNonCompliantInd)) {
+                firstSnippetAfterNonCompliant = snippets.get(i);
+                firstSnippetAfterNonCompliantInd = appearanceInd;
+            }
+
+            if (appearanceInd >= compliantIndices.get(0)
                     && (firstSnippetAfterCompliant == null
-                    || fullDescription.indexOf(txt) <= fullDescription.indexOf(firstSnippetAfterCompliant.text())))
+                    || appearanceInd <= firstSnippetAfterCompliantInd)) {
                 firstSnippetAfterCompliant = snippets.get(i);
+                firstSnippetAfterCompliantInd = appearanceInd;
+            }
         }
 
         SonarDocumentInfo.ViolationExample ex = new SonarDocumentInfo.ViolationExample();
@@ -72,16 +89,16 @@ public class SonarDocumentInfo {
         this.examples = examples;
     }
 
-    public void cleanData(){
+    public void cleanData() {
         cleanExamples();
     }
 
-    public String getDescriptionWithNoEx(){
+    public String getDescriptionWithNoEx() {
         return fullDescription.substring(0, fullDescription.indexOf(System.lineSeparator() + Constants.PROMPT_NONCOMPLIANT_HEADER));
     }
 
-    private void cleanExamples(){
-        for(ViolationExample ex : examples){
+    private void cleanExamples() {
+        for (ViolationExample ex : examples) {
             String rawCompliant = ex.getCompliant();
             ex.setCompliant(removeCompliantComment(rawCompliant));
         }
@@ -91,9 +108,9 @@ public class SonarDocumentInfo {
     private static String removeCompliantComment(String rawCompliant) {
         String[] lines = rawCompliant.split(System.lineSeparator());
         for (int i = 0; i < lines.length; i++) {
-            if(lines[i].contains("//") && lines[i].contains("Compliant")
+            if (lines[i].contains("//") && lines[i].contains("Compliant")
                     && lines[i].indexOf("//") < lines[i].indexOf("Compliant"))
-            lines[i] = lines[i].substring(0, lines[i].indexOf("//"));
+                lines[i] = lines[i].substring(0, lines[i].indexOf("//"));
         }
         rawCompliant = Arrays.asList(lines).stream().collect(Collectors.joining(System.lineSeparator()));
         return rawCompliant;
