@@ -1,4 +1,4 @@
-package se.kth.assertgroup.codar.codex;
+package se.kth.assertgroup.codar.gpt;
 
 public enum PromptType {
     EXAMPLE,

@@ -4,7 +4,7 @@ import java.io.File;
 
 public class ExtractHandledRules {
     public static void main(String[] args) {
-        File promptsDir = new File("files/repair_prompts");
+        File promptsDir = new File(PromptTemplateGenerator.RESOURCE_PATH + "/repair_prompts");
         File[] promptTypes = promptsDir.listFiles();
         for (File promptType : promptTypes) {
             if (promptType.isDirectory()) {

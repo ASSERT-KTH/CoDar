@@ -1,8 +1,8 @@
 package se.kth.assertgroup.codar;
 
 import picocli.CommandLine;
-import se.kth.assertgroup.codar.codex.PromptType;
-import se.kth.assertgroup.codar.repair.CodexRepair;
+import se.kth.assertgroup.codar.gpt.PromptType;
+import se.kth.assertgroup.codar.repair.GPTRepair;
 
 import java.io.File;
 import java.io.IOException;
@@ -37,7 +37,7 @@ public class CoDarMain implements Callable<Integer> {
 
     @Override
     public Integer call() throws Exception {
-        new CodexRepair().repair(rootDir, mineRes, rule, promptType);
+        new GPTRepair().repair(rootDir, mineRes, rule, promptType);
         return 0;
     }
 

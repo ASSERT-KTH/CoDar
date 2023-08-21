@@ -1,0 +1,273 @@
+{
+    "totalMiningTime": 7347,
+    "executionInfo": {
+        "soraldVersion": "0.8.0",
+        "javaVersion": "11.0.20",
+        "originalArgs": [
+            "mine",
+            "--source",
+            "missinglink/",
+            "--handled-rules",
+            "--stats-output-file",
+            "mine-missinglink.json"
+        ]
+    },
+    "miningStartTime": "Tue Aug 08 16:08:47 CEST 2023",
+    "minedRules": [
+        {
+            "warningLocations": [
+                {
+                    "endLine": 50,
+                    "endColumn": 79,
+                    "startColumn": 73,
+                    "startLine": 50,
+                    "filePath": "core/src/test/java/com/spotify/missinglink/FilePathHelper.java",
+                    "violationSpecifier": "S1132:core/src/test/java/com/spotify/missinglink/FilePathHelper.java:50:73:50:79"
+                },
+                {
+                    "endLine": 269,
+                    "endColumn": 75,
+                    "startColumn": 67,
+                    "startLine": 269,
+                    "filePath": "core/src/test/java/com/spotify/missinglink/ArtifactLoaderTest.java",
+                    "violationSpecifier": "S1132:core/src/test/java/com/spotify/missinglink/ArtifactLoaderTest.java:269:67:269:75"
+                },
+                {
+                    "endLine": 66,
+                    "endColumn": 26,
+                    "startColumn": 23,
+                    "startLine": 66,
+                    "filePath": "core/src/main/java/com/spotify/missinglink/datamodel/TypeDescriptors.java",
+                    "violationSpecifier": "S1132:core/src/main/java/com/spotify/missinglink/datamodel/TypeDescriptors.java:66:23:66:26"
+                },
+                {
+                    "endLine": 422,
+                    "endColumn": 88,
+                    "startColumn": 80,
+                    "startLine": 422,
+                    "filePath": "core/src/test/java/com/spotify/missinglink/FeatureTest.java",
+                    "violationSpecifier": "S1132:core/src/test/java/com/spotify/missinglink/FeatureTest.java:422:80:422:88"
+                },
+                {
+                    "endLine": 119,
+                    "endColumn": 41,
+                    "startColumn": 38,
+                    "startLine": 119,
+                    "filePath": "core/src/main/java/com/spotify/missinglink/ArtifactLoader.java",
+                    "violationSpecifier": "S1132:core/src/main/java/com/spotify/missinglink/ArtifactLoader.java:119:38:119:41"
+                },
+                {
+                    "endLine": 192,
+                    "endColumn": 84,
+                    "startColumn": 55,
+                    "startLine": 192,
+                    "filePath": "core/src/main/java/com/spotify/missinglink/ConflictChecker.java",
+                    "violationSpecifier": "S1132:core/src/main/java/com/spotify/missinglink/ConflictChecker.java:192:55:192:84"
+                },
+                {
+                    "endLine": 84,
+                    "endColumn": 67,
+                    "startColumn": 53,
+                    "startLine": 84,
+                    "filePath": "core/src/test/java/com/spotify/missinglink/ClassLoadingUtil.java",
+                    "violationSpecifier": "S1132:core/src/test/java/com/spotify/missinglink/ClassLoadingUtil.java:84:53:84:67"
+                },
+                {
+                    "endLine": 301,
+                    "endColumn": 64,
+                    "startColumn": 59,
+                    "startLine": 301,
+                    "filePath": "core/src/test/java/com/spotify/missinglink/ArtifactLoaderTest.java",
+                    "violationSpecifier": "S1132:core/src/test/java/com/spotify/missinglink/ArtifactLoaderTest.java:301:59:301:64"
+                },
+                {
+                    "endLine": 179,
+                    "endColumn": 87,
+                    "startColumn": 55,
+                    "startLine": 179,
+                    "filePath": "core/src/main/java/com/spotify/missinglink/ConflictChecker.java",
+                    "violationSpecifier": "S1132:core/src/main/java/com/spotify/missinglink/ConflictChecker.java:179:55:179:87"
+                },
+                {
+                    "endLine": 427,
+                    "endColumn": 88,
+                    "startColumn": 80,
+                    "startLine": 427,
+                    "filePath": "core/src/test/java/com/spotify/missinglink/FeatureTest.java",
+                    "violationSpecifier": "S1132:core/src/test/java/com/spotify/missinglink/FeatureTest.java:427:80:427:88"
+                }
+            ],
+            "ruleName": "Strings literals should be placed on the left side when checking for equality",
+            "ruleKey": "S1132"
+        },
+        {
+            "warningLocations": [
+                {
+                    "endLine": 38,
+                    "endColumn": 26,
+                    "startColumn": 13,
+                    "startLine": 38,
+                    "filePath": "core/src/main/java/com/spotify/missinglink/PrettyPrinter.java",
+                    "violationSpecifier": "S1118:core/src/main/java/com/spotify/missinglink/PrettyPrinter.java:38:13:38:26"
+                },
+                {
+                    "endLine": 7,
+                    "endColumn": 38,
+                    "startColumn": 13,
+                    "startLine": 7,
+                    "filePath": "examples/uses-problematic-dependency/src/main/java/com/spotify/javadeps/examples/UsesProblematicDependency.java",
+                    "violationSpecifier": "S1118:examples/uses-problematic-dependency/src/main/java/com/spotify/javadeps/examples/UsesProblematicDependency.java:7:13:7:38"
+                },
+                {
+                    "endLine": 56,
+                    "endColumn": 30,
+                    "startColumn": 13,
+                    "startLine": 56,
+                    "filePath": "core/src/main/java/com/spotify/missinglink/Java9ModuleLoader.java",
+                    "violationSpecifier": "S1118:core/src/main/java/com/spotify/missinglink/Java9ModuleLoader.java:56:13:56:30"
+                },
+                {
+                    "endLine": 45,
+                    "endColumn": 20,
+                    "startColumn": 6,
+                    "startLine": 45,
+                    "filePath": "core/src/test/java/com/spotify/missinglink/FilePathHelper.java",
+                    "violationSpecifier": "S1118:core/src/test/java/com/spotify/missinglink/FilePathHelper.java:45:6:45:20"
+                },
+                {
+                    "endLine": 111,
+                    "endColumn": 26,
+                    "startColumn": 15,
+                    "startLine": 111,
+                    "filePath": "core/src/test/java/com/spotify/missinglink/ClassLoaderTest.java",
+                    "violationSpecifier": "S1118:core/src/test/java/com/spotify/missinglink/ClassLoaderTest.java:111:15:111:26"
+                },
+                {
+                    "endLine": 50,
+                    "endColumn": 29,
+                    "startColumn": 13,
+                    "startLine": 50,
+                    "filePath": "core/src/test/java/com/spotify/missinglink/ClassLoadingUtil.java",
+                    "violationSpecifier": "S1118:core/src/test/java/com/spotify/missinglink/ClassLoadingUtil.java:50:13:50:29"
+                },
+                {
+                    "endLine": 63,
+                    "endColumn": 19,
+                    "startColumn": 13,
+                    "startLine": 63,
+                    "filePath": "core/src/test/java/com/spotify/missinglink/Simple.java",
+                    "violationSpecifier": "S1118:core/src/test/java/com/spotify/missinglink/Simple.java:63:13:63:19"
+                },
+                {
+                    "endLine": 117,
+                    "endColumn": 33,
+                    "startColumn": 15,
+                    "startLine": 117,
+                    "filePath": "core/src/test/java/com/spotify/missinglink/ClassLoaderTest.java",
+                    "violationSpecifier": "S1118:core/src/test/java/com/spotify/missinglink/ClassLoaderTest.java:117:15:117:33"
+                },
+                {
+                    "endLine": 123,
+                    "endColumn": 38,
+                    "startColumn": 15,
+                    "startLine": 123,
+                    "filePath": "core/src/test/java/com/spotify/missinglink/ClassLoaderTest.java",
+                    "violationSpecifier": "S1118:core/src/test/java/com/spotify/missinglink/ClassLoaderTest.java:123:15:123:38"
+                },
+                {
+                    "endLine": 8,
+                    "endColumn": 14,
+                    "startColumn": 13,
+                    "startLine": 8,
+                    "filePath": "maven-plugin/src/it/00-test-harness/b/src/main/java/com/spotify/missinglink/e/E.java",
+                    "violationSpecifier": "S1118:maven-plugin/src/it/00-test-harness/b/src/main/java/com/spotify/missinglink/e/E.java:8:13:8:14"
+                },
+                {
+                    "endLine": 4,
+                    "endColumn": 14,
+                    "startColumn": 13,
+                    "startLine": 4,
+                    "filePath": "maven-plugin/src/it/00-test-harness/b/src/main/java/B.java",
+                    "violationSpecifier": "S1118:maven-plugin/src/it/00-test-harness/b/src/main/java/B.java:4:13:4:14"
+                },
+                {
+                    "endLine": 536,
+                    "endColumn": 42,
+                    "startColumn": 15,
+                    "startLine": 536,
+                    "filePath": "core/src/test/java/com/spotify/missinglink/FeatureTest.java",
+                    "violationSpecifier": "S1118:core/src/test/java/com/spotify/missinglink/FeatureTest.java:536:15:536:42"
+                }
+            ],
+            "ruleName": "Utility classes should not have public constructors",
+            "ruleKey": "S1118"
+        },
+        {
+            "warningLocations": [{
+                "endLine": 8,
+                "endColumn": 32,
+                "startColumn": 17,
+                "startLine": 8,
+                "filePath": "maven-plugin/src/it/00-test-harness/a-v1/src/main/java/A.java",
+                "violationSpecifier": "S1068:maven-plugin/src/it/00-test-harness/a-v1/src/main/java/A.java:8:17:8:32"
+            }],
+            "ruleName": "Unused \"private\" fields should be removed",
+            "ruleKey": "S1068"
+        },
+        {
+            "warningLocations": [{
+                "endLine": 131,
+                "endColumn": 49,
+                "startColumn": 23,
+                "startLine": 131,
+                "filePath": "core/src/test/java/com/spotify/missinglink/ArtifactLoaderTest.java",
+                "violationSpecifier": "S2057:core/src/test/java/com/spotify/missinglink/ArtifactLoaderTest.java:131:23:131:49"
+            }],
+            "ruleName": "\"Serializable\" classes should have a \"serialVersionUID\"",
+            "ruleKey": "S2057"
+        },
+        {
+            "warningLocations": [
+                {
+                    "endLine": 59,
+                    "endColumn": 38,
+                    "startColumn": 8,
+                    "startLine": 59,
+                    "filePath": "core/src/test/java/com/spotify/missinglink/ClassLoaderTest.java",
+                    "violationSpecifier": "S2095:core/src/test/java/com/spotify/missinglink/ClassLoaderTest.java:59:8:59:38"
+                },
+                {
+                    "endLine": 59,
+                    "endColumn": 38,
+                    "startColumn": 8,
+                    "startLine": 59,
+                    "filePath": "core/src/test/java/com/spotify/missinglink/ClassLoadingUtil.java",
+                    "violationSpecifier": "S2095:core/src/test/java/com/spotify/missinglink/ClassLoadingUtil.java:59:8:59:38"
+                },
+                {
+                    "endLine": 165,
+                    "endColumn": 32,
+                    "startColumn": 8,
+                    "startLine": 165,
+                    "filePath": "core/src/main/java/com/spotify/missinglink/ArtifactLoader.java",
+                    "violationSpecifier": "S2095:core/src/main/java/com/spotify/missinglink/ArtifactLoader.java:165:8:165:32"
+                }
+            ],
+            "ruleName": "Resources should be closed",
+            "ruleKey": "S2095"
+        },
+        {
+            "warningLocations": [{
+                "endLine": 9,
+                "endColumn": 37,
+                "startColumn": 23,
+                "startLine": 9,
+                "filePath": "maven-plugin/src/it/00-test-harness/a-v1/src/main/java/A.java",
+                "violationSpecifier": "S1444:maven-plugin/src/it/00-test-harness/a-v1/src/main/java/A.java:9:23:9:37"
+            }],
+            "ruleName": "\"public static\" fields should be constant",
+            "ruleKey": "S1444"
+        }
+    ],
+    "miningEndTime": "Tue Aug 08 16:08:54 CEST 2023"
+}

@@ -1,12 +1,10 @@
-package se.kth.assertgroup.codar.codex;
+package se.kth.assertgroup.codar.gpt;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import se.kth.assertgroup.codar.Constants;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
 
 public class SonarFixPrompt {
     private String ruleKey;
@@ -39,11 +37,5 @@ public class SonarFixPrompt {
 
     public String getBuggyCode(){
         return buggyCode;
-    }
-
-    public static void main(String[] args) throws IOException {
-        String promptSetupStr = IOUtils.toString(SonarFixPrompt.class.getClassLoader()
-                        .getResourceAsStream(Constants.PROMPT_SETUP_PATH), "UTF-8")
-                .replace(Constants.PROMPT_SETUP_RULE_PLACEHOLDER, "S1132");
     }
 }

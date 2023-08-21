@@ -19,6 +19,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PromptTemplateGenerator {
+
+    public static final String RESOURCE_PATH = "/home/khaes/phd/projects/sonar-codex/src/main/resources/";
+
     public void generatePromptTemplates(String rule) throws IOException, URISyntaxException {
         String url = Constants.SONAR_DOC_URL_TEMPLATE.replace(Constants.SONAR_DOC_URL_RULE_PLACEHOLDER,
                 rule.substring(1)); // remove S at the beginning of the rule
@@ -93,7 +96,7 @@ public class PromptTemplateGenerator {
     }
 
     private void writeToResource(String rscPath, String text) throws IOException{
-        FileUtils.write(new File("/home/khaes/phd/projects/sonar-codex/src/main/resources/" + rscPath), text,
+        FileUtils.write(new File(RESOURCE_PATH + rscPath), text,
                 "UTF-8");
     }
 

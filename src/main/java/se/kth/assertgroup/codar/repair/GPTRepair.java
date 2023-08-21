@@ -7,12 +7,13 @@ import com.theokanning.openai.completion.chat.ChatCompletionRequest;
 import com.theokanning.openai.completion.chat.ChatMessage;
 import com.theokanning.openai.service.OpenAiService;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
 import org.json.simple.parser.ParseException;
 import se.kth.assertgroup.codar.Constants;
-import se.kth.assertgroup.codar.codex.PromptType;
-import se.kth.assertgroup.codar.codex.SonarFixPrompt;
+import se.kth.assertgroup.codar.gpt.PromptType;
+import se.kth.assertgroup.codar.gpt.SonarFixPrompt;
 import se.kth.assertgroup.codar.sorald.MineResParser;
 import se.kth.assertgroup.codar.sorald.SonarViolationMiner;
 import se.kth.assertgroup.codar.sorald.models.ViolationScope;
@@ -25,12 +26,12 @@ import java.nio.file.Files;
 import java.time.Duration;
 import java.util.*;
 
-public class CodexRepair {
+public class GPTRepair {
 
     private OpenAiService service;
     private SonarViolationMiner miner;
 
-    public CodexRepair() {
+    public GPTRepair() {
         String token = System.getenv(Constants.OPENAI_API_TOKEN_ENV_NAME);
         service = new OpenAiService(token, Duration.ofSeconds(Constants.OPENAI_REQUEST_TIMEOUT));
         miner = new SonarViolationMiner();
@@ -98,11 +99,11 @@ public class CodexRepair {
         Map<String, Map<ViolationScope, Set<Integer>>> ruleToViolations =
                 mineResParser.getRuleToScopeViolations(root, mineRes);
 
-        for(Map.Entry<String, Map<ViolationScope, Set<Integer>>> e : ruleToViolations.entrySet()){
+        for (Map.Entry<String, Map<ViolationScope, Set<Integer>>> e : ruleToViolations.entrySet()) {
             String curRule = e.getKey();
             Map<ViolationScope, Set<Integer>> scopeToViolations = e.getValue();
 
-            if((rule == null && isHandled(curRule)) || curRule.equals(rule)){
+            if ((rule == null && isHandled(curRule, promptType)) || curRule.equals(rule)) {
                 for (Map.Entry<ViolationScope, Set<Integer>> scopeViolations : scopeToViolations.entrySet()) {
                     int numberOfAddedLines = repairAndGetNumberOfAddedLines(root, scopeViolations.getKey(),
                             scopeViolations.getValue(), rule, promptType);
@@ -118,7 +119,15 @@ public class CodexRepair {
                 -> updateScopeToRuleViolations(scopeToViolations, e, numberOfAddedLines));
     }
 
-    private boolean isHandled(String rule) {
+    private boolean isHandled(String rule, PromptType promptType) {
+        try {
+            IOUtils.toString(SonarFixPrompt.class.getClassLoader()
+                            .getResourceAsStream(Constants.PROMPT_TEMPLATE_BASE + promptType.toString()
+                                    + File.separator + rule),
+                    "UTF-8");
+        } catch (IOException e) {
+            return false;
+        }
         return true;
     }
 
