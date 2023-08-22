@@ -186,7 +186,7 @@ public class MineResParser {
                 JSONObject warning = (JSONObject) warnings.get(j);
                 String filePath = warning.get("filePath").toString();
 
-                if (isTestDir(filePath)) {
+                if (isNotSourceDir(filePath)) {
                     continue;
                 }
 
@@ -204,8 +204,8 @@ public class MineResParser {
         return res;
     }
 
-    private boolean isTestDir(String filePath) {
-        return filePath.contains("src/test/java");
+    private boolean isNotSourceDir(String filePath) {
+        return filePath.contains("src/test/java") || filePath.contains("/target/") || filePath.startsWith("target/");
     }
 
     public static void main(String[] args) throws IOException, ParseException {
