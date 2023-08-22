@@ -17,7 +17,7 @@ public class SonarViolationMiner {
 
     private MineResParser mineResParser = new MineResParser();
 
-    public boolean containsViolation(File root, ViolationScope vs, String rule)
+    public long countViolations(File root, ViolationScope vs, String rule)
             throws IOException, InterruptedException, ParseException {
         File mineRes = Files.createTempFile("tmp-mine-res", "json").toFile();
         File srcParent = root.toPath().resolve(vs.getSrcPath()).getParent().toFile();
@@ -25,7 +25,7 @@ public class SonarViolationMiner {
                 "-jar", SORALD_PATH, "mine", "--source", srcParent.getPath(),
                 "--stats-output-file", mineRes.getPath());
 
-        return mineResParser.containsViolation(srcParent, new ViolationScope(vs.getSrcPath(), vs.getStartLine(), vs.getEndLine()),
+        return mineResParser.countViolations(srcParent, new ViolationScope(vs.getSrcPath(), vs.getStartLine(), vs.getEndLine()),
                 rule, mineRes);
     }
 }

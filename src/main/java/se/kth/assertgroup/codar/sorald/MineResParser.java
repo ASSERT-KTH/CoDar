@@ -1,7 +1,6 @@
 package se.kth.assertgroup.codar.sorald;
 
 import org.apache.commons.lang3.tuple.Pair;
-import org.jetbrains.annotations.NotNull;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -11,7 +10,6 @@ import se.kth.assertgroup.codar.sorald.models.ViolationScope;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.util.*;
 
 public class MineResParser {
@@ -66,13 +64,15 @@ public class MineResParser {
 
         scopeToViolations.forEach((scope, ruleToLines) -> {
             ruleToLines.forEach((rule, lines) -> {
+                ViolationScope newScope =
+                        new ViolationScope(scope.getSrcPath(), scope.getStartLine(), scope.getEndLine());
                 Map<ViolationScope, Set<Integer>> ruleToViolations = res.getOrDefault(rule, new HashMap<>());
 
-                Set<Integer> curScopeToViolations = ruleToViolations.getOrDefault(scope, new HashSet<>());
+                Set<Integer> curScopeToViolations = ruleToViolations.getOrDefault(newScope, new HashSet<>());
 
                 curScopeToViolations.addAll(lines);
 
-                ruleToViolations.put(scope, curScopeToViolations);
+                ruleToViolations.put(newScope, curScopeToViolations);
 
                 res.put(rule, ruleToViolations);
             });
@@ -148,10 +148,14 @@ public class MineResParser {
         return res;
     }
 
-    public boolean containsViolation(File srcRoot, ViolationScope targetScope, String rule, File mineResFile)
+    public long countViolations(File srcRoot, ViolationScope targetScope, String rule, File mineResFile)
             throws IOException, ParseException {
         Map<ViolationScope, Set<Integer>> scopesToViolations = getCodeScopeToViolations(srcRoot, mineResFile, rule);
-        return scopesToViolations.keySet().stream().anyMatch(sc -> targetScope.getStartLine().equals(sc.getStartLine()));
+        Optional<ViolationScope> intersectingBuggyScope =
+                scopesToViolations.keySet().stream().filter(sc -> targetScope.getStartLine().equals(sc.getStartLine()))
+                        .findFirst();
+
+        return intersectingBuggyScope.isEmpty() ? 0L : scopesToViolations.get(intersectingBuggyScope.get()).size();
     }
 
     private Pair<Integer, Integer> findCoveringScope(Integer targetLine, Set<Pair<Integer, Integer>> scopes) {
@@ -201,7 +205,7 @@ public class MineResParser {
     }
 
     private boolean isTestDir(String filePath) {
-        return filePath.contains("/src/test/java/");
+        return filePath.contains("src/test/java");
     }
 
     public static void main(String[] args) throws IOException, ParseException {

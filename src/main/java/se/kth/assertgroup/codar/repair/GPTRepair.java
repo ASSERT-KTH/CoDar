@@ -21,10 +21,10 @@ import se.kth.assertgroup.codar.utils.PH;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.time.Duration;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class GPTRepair {
 
@@ -94,7 +94,8 @@ public class GPTRepair {
      * @param mineRes The output file of Sorald mining command.
      * @param rule    The ID of the rule whose violations should be fixed
      */
-    public void repair(File root, File mineRes, String rule, PromptType promptType) throws IOException, ParseException, URISyntaxException {
+    public void repair(File root, File mineRes, String rule, PromptType promptType)
+            throws IOException, ParseException, InterruptedException {
         MineResParser mineResParser = new MineResParser();
         Map<String, Map<ViolationScope, Set<Integer>>> ruleToViolations =
                 mineResParser.getRuleToScopeViolations(root, mineRes);
@@ -114,12 +115,13 @@ public class GPTRepair {
     }
 
     private void updateRuleToScopeViolations(Map<String, Map<ViolationScope, Set<Integer>>> ruleViolations,
-                                             Map.Entry<ViolationScope, Set<Integer>> e, int numberOfAddedLines) {
+                                             Map.Entry<ViolationScope, Set<Integer>> replacedScope,
+                                             int numberOfAddedLines) {
         ruleViolations.forEach((rule, scopeToViolations)
-                -> updateScopeToRuleViolations(scopeToViolations, e, numberOfAddedLines));
+                -> updateScopeToRuleViolations(scopeToViolations, replacedScope, numberOfAddedLines));
     }
 
-    private boolean isHandled(String rule, PromptType promptType) {
+    public boolean isHandled(String rule, PromptType promptType) {
         try {
             IOUtils.toString(SonarFixPrompt.class.getClassLoader()
                             .getResourceAsStream(Constants.PROMPT_TEMPLATE_BASE + promptType.toString()
@@ -132,13 +134,16 @@ public class GPTRepair {
     }
 
     private void updateScopeToRuleViolations(Map<ViolationScope, Set<Integer>> scopeToRuleViolations,
-                                             Map.Entry<ViolationScope, Set<Integer>> e, int numberOfAddedLines) {
+                                             Map.Entry<ViolationScope, Set<Integer>> replacedScope, int numberOfAddedLines) {
         scopeToRuleViolations.entrySet().stream()
-                .filter(entry -> entry.getKey().getSrcPath().equals(e.getKey().getSrcPath()))
+                .filter(entry -> entry.getKey().getSrcPath().equals(replacedScope.getKey().getSrcPath()))
                 .forEach(entry -> {
-                    if (entry.getKey().getStartLine() >= e.getKey().getStartLine())
+                    if (entry.getKey().getStartLine() > replacedScope.getKey().getStartLine()) {
                         entry.getKey().setStartLine(entry.getKey().getStartLine() + numberOfAddedLines);
-                    if (entry.getKey().getEndLine() >= e.getKey().getEndLine())
+                        entry.setValue(entry.getValue().stream().map(line -> line + numberOfAddedLines)
+                                .collect(Collectors.toSet()));
+                    }
+                    if (entry.getKey().getEndLine() >= replacedScope.getKey().getEndLine())
                         entry.getKey().setEndLine(entry.getKey().getEndLine() + numberOfAddedLines);
                 });
     }
@@ -151,7 +156,7 @@ public class GPTRepair {
                     String rule,
                     PromptType promptType
             )
-            throws IOException {
+            throws IOException, ParseException, InterruptedException {
         File src = new File(root.getPath() + File.separator + vs.getSrcPath());
 
         SonarFixPrompt initialPrompt =
@@ -168,6 +173,12 @@ public class GPTRepair {
 
         int currentConversationLen = 0;
         boolean repeatedResponse = false;
+
+        long originalIssuesCnt = miner.countViolations(root, vs, rule);
+        long bestIssuesCnt = originalIssuesCnt;
+        int bestAnswerLineCntDiff = 0;
+
+        File bestAnswer = Files.createTempFile("best_answer", ".java").toFile();
 
         while (temperature <= Constants.OPENAI_MAX_TEMPERATURE) {
             if (repeatedResponse || currentConversationLen++ > Constants.MAX_CONVERSATION_LENGTH) {
@@ -223,9 +234,16 @@ public class GPTRepair {
 
                 String failureMessage = getMvnFailureMessage(root);
 
-                boolean issuesRemain = failureMessage != null ? false : miner.containsViolation(root, vs, rule);
+                long remainingIssuesCnt = failureMessage != null ? -1 : miner.countViolations(root, vs, rule);
 
-                if (failureMessage != null || issuesRemain) {
+                if(failureMessage == null && remainingIssuesCnt < bestIssuesCnt){
+                    bestIssuesCnt = remainingIssuesCnt;
+                    FileUtils.copyFile(src, bestAnswer);
+                    bestAnswerLineCntDiff =
+                            (fixedCode.split("\r\n|\r|\n").length) - (vs.getEndLine() - vs.getStartLine() + 1);
+                }
+
+                if (failureMessage != null || remainingIssuesCnt >= 0) {
                     FileUtils.copyFile(backupOriginalSrc, src);
 
                     String userMessage;
@@ -249,6 +267,11 @@ public class GPTRepair {
                 e.printStackTrace();
                 return 0;
             }
+        }
+
+        if(bestIssuesCnt < originalIssuesCnt){
+            FileUtils.copyFile(bestAnswer, src);
+            return bestAnswerLineCntDiff;
         }
 
         return 0;

@@ -27,6 +27,7 @@ public class CoDarMain implements Callable<Integer> {
 
     @CommandLine.Option(
             names = {Constants.ARG_RULE},
+            required = true,
             description = "The rule whose violations should be fixed.")
     String rule;
 
@@ -37,7 +38,12 @@ public class CoDarMain implements Callable<Integer> {
 
     @Override
     public Integer call() throws Exception {
-        new GPTRepair().repair(rootDir, mineRes, rule, promptType);
+        GPTRepair gptRepair = new GPTRepair();
+        if(rule != null && !gptRepair.isHandled(rule, promptType)){
+            System.out.println("Rule " + rule + " is not handled by CoDar.");
+            return 0;
+        }
+        gptRepair.repair(rootDir, mineRes, rule, promptType);
         return 0;
     }
 
