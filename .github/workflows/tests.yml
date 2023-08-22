@@ -27,22 +27,6 @@ jobs:
           java-package: jdk
           architecture: x64
           distribution: ${{ env.JAVA_DISTRIBUTION }}
-
-      - name: Get date for cache # see https://github.com/actions/cache README
-        id: get-date
-        run: echo "::set-output name=date::$(/bin/date -u "+%Y%m%d")"
-        shell: bash
-      - name: Use Maven dependency cache
-        uses: actions/cache@f4278025ab0f432ce369118909e46deec636f50c # tag=v3.0.6
-        with:
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-${{ steps.get-date.outputs.date }}-${{ hashFiles('**/pom.xml') }}
-          restore-keys: ${{ runner.os }}-maven-
-
-      - name: Build project
-        run: |
-          mvn -B package -DskipTests
-          mvn -B test-compile
       - name: Run tests
         run: mvn test
       - name: Upload coverage reports to Codecov
