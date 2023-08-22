@@ -6,7 +6,6 @@ import spoon.reflect.code.CtJavaDoc;
 import spoon.reflect.declaration.CtClass;
 import spoon.reflect.declaration.CtElement;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -22,7 +21,7 @@ public class ElementScopeProcessor extends AbstractProcessor<CtElement> {
 
     @Override
     public void process(CtElement element) {
-        if(!classes.stream().anyMatch(c -> c.isInstance(element))
+        if(classes.stream().noneMatch(c -> c.isInstance(element))
                 || element instanceof CtClass || element instanceof CtJavaDoc)
             return;
 
@@ -36,7 +35,7 @@ public class ElementScopeProcessor extends AbstractProcessor<CtElement> {
     }
 
     public void updateOuterScopes(Pair<Integer, Integer> newOuterScope) {
-        if (!outerScopes.stream().anyMatch(s -> s.getKey() <= newOuterScope.getKey()
+        if (outerScopes.stream().noneMatch(s -> s.getKey() <= newOuterScope.getKey()
                 && s.getValue() >= newOuterScope.getValue())) {
             outerScopes = outerScopes.stream()
                     .filter(s -> !(s.getKey() >= newOuterScope.getKey() && s.getValue() <= newOuterScope.getValue()))
