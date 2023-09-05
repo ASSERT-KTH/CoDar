@@ -2,7 +2,7 @@
 Fixes SonarQube warnings using ChatGPT!
 
 ## Handled Rules
-Checkout the prompt templates [here](https://github.com/khaes-kth/CoNar/tree/main/files/prompts). Add more in new PRs :)
+Checkout the prompt templates [here](https://github.com/khaes-kth/CoDar/tree/main/src/main/resources/repair_prompts). Add more in new PRs :)
 
 ## Example
 ```
