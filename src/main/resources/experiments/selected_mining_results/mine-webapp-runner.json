@@ -1,0 +1,2000 @@
+{
+    "totalMiningTime": 14746,
+    "executionInfo": {
+        "soraldVersion": "0.8.5",
+        "javaVersion": "17.0.6",
+        "originalArgs": [
+            "mine",
+            "--source",
+            "webapp-runner",
+            "--stats-output-file",
+            "mine-webapp-runner.json"
+        ]
+    },
+    "miningStartTime": "Tue Sep 05 19:38:29 UTC 2023",
+    "minedRules": [
+        {
+            "warningLocations": [
+                {
+                    "endLine": 15,
+                    "endColumn": 35,
+                    "startColumn": 14,
+                    "startLine": 15,
+                    "filePath": "webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java",
+                    "violationSpecifier": "S1142:webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java:15:14:15:35"
+                },
+                {
+                    "endLine": 15,
+                    "endColumn": 40,
+                    "startColumn": 29,
+                    "startLine": 15,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/SessionStore.java",
+                    "violationSpecifier": "S1142:webapp-runner-main/src/main/java/webapp/runner/launch/SessionStore.java:15:29:15:40"
+                }
+            ],
+            "ruleName": "Methods should not have too many return statements",
+            "ruleKey": "S1142"
+        },
+        {
+            "warningLocations": [
+                {
+                    "endLine": 15,
+                    "endColumn": 35,
+                    "startColumn": 14,
+                    "startLine": 15,
+                    "filePath": "webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java",
+                    "violationSpecifier": "S1541:webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java:15:14:15:35"
+                },
+                {
+                    "endLine": 64,
+                    "endColumn": 25,
+                    "startColumn": 21,
+                    "startLine": 64,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1541:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:64:21:64:25"
+                }
+            ],
+            "ruleName": "Methods should not be too complex",
+            "ruleKey": "S1541"
+        },
+        {
+            "warningLocations": [
+                {
+                    "endLine": 399,
+                    "endColumn": 46,
+                    "startColumn": 29,
+                    "startLine": 399,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1192:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:399:29:399:46"
+                },
+                {
+                    "endLine": 29,
+                    "endColumn": 40,
+                    "startColumn": 25,
+                    "startLine": 29,
+                    "filePath": "webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java",
+                    "violationSpecifier": "S1192:webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java:29:25:29:40"
+                },
+                {
+                    "endLine": 384,
+                    "endColumn": 72,
+                    "startColumn": 58,
+                    "startLine": 384,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1192:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:384:58:384:72"
+                },
+                {
+                    "endLine": 28,
+                    "endColumn": 33,
+                    "startColumn": 22,
+                    "startLine": 28,
+                    "filePath": "webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java",
+                    "violationSpecifier": "S1192:webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java:28:22:28:33"
+                }
+            ],
+            "ruleName": "String literals should not be duplicated",
+            "ruleKey": "S1192"
+        },
+        {
+            "warningLocations": [{
+                "endLine": 60,
+                "endColumn": 17,
+                "startColumn": 13,
+                "startLine": 60,
+                "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                "violationSpecifier": "S1200:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:60:13:60:17"
+            }],
+            "ruleName": "Classes should not be coupled to too many other classes (Single Responsibility Principle)",
+            "ruleKey": "S1200"
+        },
+        {
+            "warningLocations": [{
+                "endLine": 15,
+                "endColumn": 40,
+                "startColumn": 29,
+                "startLine": 15,
+                "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/SessionStore.java",
+                "violationSpecifier": "S1160:webapp-runner-main/src/main/java/webapp/runner/launch/SessionStore.java:15:29:15:40"
+            }],
+            "ruleName": "Public methods should throw at most one checked exception",
+            "ruleKey": "S1160"
+        },
+        {
+            "warningLocations": [{
+                "endLine": 46,
+                "endColumn": 29,
+                "startColumn": 4,
+                "startLine": 46,
+                "filePath": "webapp-runner-main/src/test/java/webapp/runner/launch/TomcatBaseDirResolutionTest.java",
+                "violationSpecifier": "S2095:webapp-runner-main/src/test/java/webapp/runner/launch/TomcatBaseDirResolutionTest.java:46:4:46:29"
+            }],
+            "ruleName": "Resources should be closed",
+            "ruleKey": "S2095"
+        },
+        {
+            "warningLocations": [
+                {
+                    "endLine": 46,
+                    "endColumn": 19,
+                    "startColumn": 8,
+                    "startLine": 46,
+                    "filePath": "webapp-runner-main/src/test/java/webapp/runner/launch/TomcatBaseDirResolutionTest.java",
+                    "violationSpecifier": "S1943:webapp-runner-main/src/test/java/webapp/runner/launch/TomcatBaseDirResolutionTest.java:46:8:46:19"
+                },
+                {
+                    "endLine": 81,
+                    "endColumn": 66,
+                    "startColumn": 56,
+                    "startLine": 81,
+                    "filePath": "webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java",
+                    "violationSpecifier": "S1943:webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java:81:56:81:66"
+                }
+            ],
+            "ruleName": "Classes and methods that rely on the default system encoding should not be used",
+            "ruleKey": "S1943"
+        },
+        {
+            "warningLocations": [{
+                "endLine": 76,
+                "endColumn": 79,
+                "startColumn": 76,
+                "startLine": 76,
+                "filePath": "webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java",
+                "violationSpecifier": "S3027:webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java:76:76:76:79"
+            }],
+            "ruleName": "String function use should be optimized for single characters",
+            "ruleKey": "S3027"
+        },
+        {
+            "warningLocations": [
+                {
+                    "endLine": 226,
+                    "endColumn": 16,
+                    "startColumn": 6,
+                    "startLine": 226,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:226:6:226:16"
+                },
+                {
+                    "endLine": 110,
+                    "endColumn": 18,
+                    "startColumn": 8,
+                    "startLine": 110,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:110:8:110:18"
+                },
+                {
+                    "endLine": 246,
+                    "endColumn": 28,
+                    "startColumn": 18,
+                    "startLine": 246,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:246:18:246:28"
+                },
+                {
+                    "endLine": 81,
+                    "endColumn": 14,
+                    "startColumn": 4,
+                    "startLine": 81,
+                    "filePath": "webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java",
+                    "violationSpecifier": "S106:webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java:81:4:81:14"
+                },
+                {
+                    "endLine": 25,
+                    "endColumn": 14,
+                    "startColumn": 4,
+                    "startLine": 25,
+                    "filePath": "webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java",
+                    "violationSpecifier": "S106:webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java:25:4:25:14"
+                },
+                {
+                    "endLine": 10,
+                    "endColumn": 16,
+                    "startColumn": 6,
+                    "startLine": 10,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/valves/StdoutAccessLogValve.java",
+                    "violationSpecifier": "S106:webapp-runner-main/src/main/java/webapp/runner/launch/valves/StdoutAccessLogValve.java:10:6:10:16"
+                },
+                {
+                    "endLine": 96,
+                    "endColumn": 18,
+                    "startColumn": 8,
+                    "startLine": 96,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:96:8:96:18"
+                },
+                {
+                    "endLine": 196,
+                    "endColumn": 16,
+                    "startColumn": 6,
+                    "startLine": 196,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:196:6:196:16"
+                },
+                {
+                    "endLine": 88,
+                    "endColumn": 18,
+                    "startColumn": 8,
+                    "startLine": 88,
+                    "filePath": "webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java",
+                    "violationSpecifier": "S106:webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java:88:8:88:18"
+                },
+                {
+                    "endLine": 78,
+                    "endColumn": 14,
+                    "startColumn": 4,
+                    "startLine": 78,
+                    "filePath": "webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java",
+                    "violationSpecifier": "S106:webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java:78:4:78:14"
+                },
+                {
+                    "endLine": 38,
+                    "endColumn": 14,
+                    "startColumn": 4,
+                    "startLine": 38,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/SessionStore.java",
+                    "violationSpecifier": "S106:webapp-runner-main/src/main/java/webapp/runner/launch/SessionStore.java:38:4:38:14"
+                },
+                {
+                    "endLine": 164,
+                    "endColumn": 18,
+                    "startColumn": 8,
+                    "startLine": 164,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:164:8:164:18"
+                },
+                {
+                    "endLine": 228,
+                    "endColumn": 16,
+                    "startColumn": 6,
+                    "startLine": 228,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:228:6:228:16"
+                },
+                {
+                    "endLine": 413,
+                    "endColumn": 14,
+                    "startColumn": 4,
+                    "startLine": 413,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:413:4:413:14"
+                },
+                {
+                    "endLine": 118,
+                    "endColumn": 18,
+                    "startColumn": 8,
+                    "startLine": 118,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:118:8:118:18"
+                },
+                {
+                    "endLine": 186,
+                    "endColumn": 16,
+                    "startColumn": 6,
+                    "startLine": 186,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:186:6:186:16"
+                },
+                {
+                    "endLine": 31,
+                    "endColumn": 16,
+                    "startColumn": 6,
+                    "startLine": 31,
+                    "filePath": "webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java",
+                    "violationSpecifier": "S106:webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java:31:6:31:16"
+                },
+                {
+                    "endLine": 231,
+                    "endColumn": 16,
+                    "startColumn": 6,
+                    "startLine": 231,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:231:6:231:16"
+                },
+                {
+                    "endLine": 58,
+                    "endColumn": 18,
+                    "startColumn": 8,
+                    "startLine": 58,
+                    "filePath": "webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java",
+                    "violationSpecifier": "S106:webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java:58:8:58:18"
+                },
+                {
+                    "endLine": 33,
+                    "endColumn": 16,
+                    "startColumn": 6,
+                    "startLine": 33,
+                    "filePath": "webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java",
+                    "violationSpecifier": "S106:webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java:33:6:33:16"
+                },
+                {
+                    "endLine": 92,
+                    "endColumn": 16,
+                    "startColumn": 6,
+                    "startLine": 92,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:92:6:92:16"
+                },
+                {
+                    "endLine": 267,
+                    "endColumn": 16,
+                    "startColumn": 6,
+                    "startLine": 267,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:267:6:267:16"
+                },
+                {
+                    "endLine": 84,
+                    "endColumn": 14,
+                    "startColumn": 4,
+                    "startLine": 84,
+                    "filePath": "webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java",
+                    "violationSpecifier": "S106:webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java:84:4:84:14"
+                },
+                {
+                    "endLine": 173,
+                    "endColumn": 16,
+                    "startColumn": 6,
+                    "startLine": 173,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:173:6:173:16"
+                }
+            ],
+            "ruleName": "Standard outputs should not be used directly to log anything",
+            "ruleKey": "S106"
+        },
+        {
+            "warningLocations": [
+                {
+                    "endLine": 52,
+                    "endColumn": 26,
+                    "startColumn": 13,
+                    "startLine": 52,
+                    "filePath": "webapp-runner-main/src/test/java/webapp/runner/launch/TomcatBaseDirResolutionTest.java",
+                    "violationSpecifier": "S1166:webapp-runner-main/src/test/java/webapp/runner/launch/TomcatBaseDirResolutionTest.java:52:13:52:26"
+                },
+                {
+                    "endLine": 347,
+                    "endColumn": 26,
+                    "startColumn": 13,
+                    "startLine": 347,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1166:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:347:13:347:26"
+                },
+                {
+                    "endLine": 57,
+                    "endColumn": 35,
+                    "startColumn": 15,
+                    "startLine": 57,
+                    "filePath": "webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java",
+                    "violationSpecifier": "S1166:webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java:57:15:57:35"
+                },
+                {
+                    "endLine": 87,
+                    "endColumn": 28,
+                    "startColumn": 15,
+                    "startLine": 87,
+                    "filePath": "webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java",
+                    "violationSpecifier": "S1166:webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java:87:15:87:28"
+                }
+            ],
+            "ruleName": "Exception handlers should preserve the original exceptions",
+            "ruleKey": "S1166"
+        },
+        {
+            "warningLocations": [
+                {
+                    "endLine": 24,
+                    "endColumn": 95,
+                    "startColumn": 84,
+                    "startLine": 24,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/SessionStore.java",
+                    "violationSpecifier": "S1874:webapp-runner-main/src/main/java/webapp/runner/launch/SessionStore.java:24:84:24:95"
+                },
+                {
+                    "endLine": 22,
+                    "endColumn": 80,
+                    "startColumn": 69,
+                    "startLine": 22,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/SessionStore.java",
+                    "violationSpecifier": "S1874:webapp-runner-main/src/main/java/webapp/runner/launch/SessionStore.java:22:69:22:80"
+                }
+            ],
+            "ruleName": "\"@Deprecated\" code should not be used",
+            "ruleKey": "S1874"
+        },
+        {
+            "warningLocations": [{
+                "endLine": 338,
+                "endColumn": 13,
+                "startColumn": 12,
+                "startLine": 338,
+                "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                "violationSpecifier": "S1774:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:338:12:338:13"
+            }],
+            "ruleName": "The ternary operator should not be used",
+            "ruleKey": "S1774"
+        },
+        {
+            "warningLocations": [
+                {
+                    "endLine": 69,
+                    "endColumn": 19,
+                    "startColumn": 6,
+                    "startLine": 69,
+                    "filePath": "webapp-runner-main/src/test/java/webapp/runner/launch/TomcatBaseDirResolutionTest.java",
+                    "violationSpecifier": "S899:webapp-runner-main/src/test/java/webapp/runner/launch/TomcatBaseDirResolutionTest.java:69:6:69:19"
+                },
+                {
+                    "endLine": 209,
+                    "endColumn": 25,
+                    "startColumn": 8,
+                    "startLine": 209,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S899:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:209:8:209:25"
+                }
+            ],
+            "ruleName": "Return values should not be ignored when they contain the operation status code",
+            "ruleKey": "S899"
+        },
+        {
+            "warningLocations": [
+                {
+                    "endLine": 203,
+                    "endColumn": 69,
+                    "startColumn": 53,
+                    "startLine": 203,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/CommandLineParams.java",
+                    "violationSpecifier": "S2293:webapp-runner-main/src/main/java/webapp/runner/launch/CommandLineParams.java:203:53:203:69"
+                },
+                {
+                    "endLine": 17,
+                    "endColumn": 62,
+                    "startColumn": 54,
+                    "startLine": 17,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/CommandLineParams.java",
+                    "violationSpecifier": "S2293:webapp-runner-main/src/main/java/webapp/runner/launch/CommandLineParams.java:17:54:17:62"
+                }
+            ],
+            "ruleName": "The diamond operator (\"<>\") should be used",
+            "ruleKey": "S2293"
+        },
+        {
+            "warningLocations": [{
+                "endLine": 323,
+                "endColumn": 28,
+                "startColumn": 22,
+                "startLine": 323,
+                "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                "violationSpecifier": "S1854:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:323:22:323:28"
+            }],
+            "ruleName": "Unused assignments should be removed",
+            "ruleKey": "S1854"
+        },
+        {
+            "warningLocations": [
+                {
+                    "endLine": 139,
+                    "endColumn": 15,
+                    "startColumn": 8,
+                    "startLine": 139,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S126:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:139:8:139:15"
+                },
+                {
+                    "endLine": 399,
+                    "endColumn": 13,
+                    "startColumn": 6,
+                    "startLine": 399,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S126:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:399:6:399:13"
+                }
+            ],
+            "ruleName": "\"if ... else if\" constructs should end with \"else\" clauses",
+            "ruleKey": "S126"
+        },
+        {
+            "warningLocations": [{
+                "endLine": 438,
+                "endColumn": 29,
+                "startColumn": 26,
+                "startLine": 438,
+                "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                "violationSpecifier": "S1161:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:438:26:438:29"
+            }],
+            "ruleName": "\"@Override\" should be used on overriding and implementing methods",
+            "ruleKey": "S1161"
+        },
+        {
+            "warningLocations": [{
+                "endLine": 64,
+                "endColumn": 25,
+                "startColumn": 21,
+                "startLine": 64,
+                "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                "violationSpecifier": "S138:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:64:21:64:25"
+            }],
+            "ruleName": "Methods should not have too many lines",
+            "ruleKey": "S138"
+        },
+        {
+            "warningLocations": [{
+                "endLine": 64,
+                "endColumn": 47,
+                "startColumn": 41,
+                "startLine": 64,
+                "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                "violationSpecifier": "S2096:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:64:41:64:47"
+            }],
+            "ruleName": "\"main\" should not \"throw\" anything",
+            "ruleKey": "S2096"
+        },
+        {
+            "warningLocations": [
+                {
+                    "endLine": 27,
+                    "endColumn": 28,
+                    "startColumn": 24,
+                    "startLine": 27,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/CommandLineParams.java",
+                    "violationSpecifier": "S109:webapp-runner-main/src/main/java/webapp/runner/launch/CommandLineParams.java:27:24:27:28"
+                },
+                {
+                    "endLine": 57,
+                    "endColumn": 51,
+                    "startColumn": 47,
+                    "startLine": 57,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/CommandLineParams.java",
+                    "violationSpecifier": "S109:webapp-runner-main/src/main/java/webapp/runner/launch/CommandLineParams.java:57:47:57:51"
+                },
+                {
+                    "endLine": 138,
+                    "endColumn": 36,
+                    "startColumn": 34,
+                    "startLine": 138,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S109:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:138:34:138:36"
+                },
+                {
+                    "endLine": 52,
+                    "endColumn": 42,
+                    "startColumn": 40,
+                    "startLine": 52,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/CommandLineParams.java",
+                    "violationSpecifier": "S109:webapp-runner-main/src/main/java/webapp/runner/launch/CommandLineParams.java:52:40:52:42"
+                },
+                {
+                    "endLine": 140,
+                    "endColumn": 37,
+                    "startColumn": 34,
+                    "startLine": 140,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S109:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:140:34:140:37"
+                }
+            ],
+            "ruleName": "Magic numbers should not be used",
+            "ruleKey": "S109"
+        },
+        {
+            "warningLocations": [
+                {
+                    "endLine": 373,
+                    "endColumn": 22,
+                    "startColumn": 13,
+                    "startLine": 373,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S112:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:373:13:373:22"
+                },
+                {
+                    "endLine": 44,
+                    "endColumn": 63,
+                    "startColumn": 54,
+                    "startLine": 44,
+                    "filePath": "webapp-runner-main/src/test/java/webapp/runner/launch/TomcatBaseDirResolutionTest.java",
+                    "violationSpecifier": "S112:webapp-runner-main/src/test/java/webapp/runner/launch/TomcatBaseDirResolutionTest.java:44:54:44:63"
+                },
+                {
+                    "endLine": 31,
+                    "endColumn": 53,
+                    "startColumn": 44,
+                    "startLine": 31,
+                    "filePath": "webapp-runner-main/src/test/java/webapp/runner/launch/TomcatBaseDirResolutionTest.java",
+                    "violationSpecifier": "S112:webapp-runner-main/src/test/java/webapp/runner/launch/TomcatBaseDirResolutionTest.java:31:44:31:53"
+                },
+                {
+                    "endLine": 444,
+                    "endColumn": 44,
+                    "startColumn": 28,
+                    "startLine": 444,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S112:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:444:28:444:44"
+                },
+                {
+                    "endLine": 37,
+                    "endColumn": 57,
+                    "startColumn": 48,
+                    "startLine": 37,
+                    "filePath": "webapp-runner-main/src/test/java/webapp/runner/launch/TomcatBaseDirResolutionTest.java",
+                    "violationSpecifier": "S112:webapp-runner-main/src/test/java/webapp/runner/launch/TomcatBaseDirResolutionTest.java:37:48:37:57"
+                }
+            ],
+            "ruleName": "Generic exceptions should never be thrown",
+            "ruleKey": "S112"
+        },
+        {
+            "warningLocations": [{
+                "endLine": 39,
+                "endColumn": 28,
+                "startColumn": 7,
+                "startLine": 39,
+                "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                "violationSpecifier": "S2208:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:39:7:39:28"
+            }],
+            "ruleName": "Wildcard imports should not be used",
+            "ruleKey": "S2208"
+        },
+        {
+            "warningLocations": [{
+                "endLine": 342,
+                "endColumn": 68,
+                "startColumn": 12,
+                "startLine": 342,
+                "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                "violationSpecifier": "S1162:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:342:12:342:68"
+            }],
+            "ruleName": "Checked exceptions should not be thrown",
+            "ruleKey": "S1162"
+        },
+        {
+            "warningLocations": [{
+                "endLine": 15,
+                "endColumn": 30,
+                "startColumn": 13,
+                "startLine": 15,
+                "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/CommandLineParams.java",
+                "violationSpecifier": "S1820:webapp-runner-main/src/main/java/webapp/runner/launch/CommandLineParams.java:15:13:15:30"
+            }],
+            "ruleName": "Classes should not have too many fields",
+            "ruleKey": "S1820"
+        },
+        {
+            "warningLocations": [
+                {
+                    "endLine": 27,
+                    "endColumn": 81,
+                    "startColumn": 0,
+                    "startLine": 27,
+                    "filePath": "webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java",
+                    "violationSpecifier": "S139:webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java:27:0:27:81"
+                },
+                {
+                    "endLine": 221,
+                    "endColumn": 93,
+                    "startColumn": 0,
+                    "startLine": 221,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S139:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:221:0:221:93"
+                },
+                {
+                    "endLine": 46,
+                    "endColumn": 90,
+                    "startColumn": 0,
+                    "startLine": 46,
+                    "filePath": "webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java",
+                    "violationSpecifier": "S139:webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java:46:0:46:90"
+                },
+                {
+                    "endLine": 18,
+                    "endColumn": 70,
+                    "startColumn": 0,
+                    "startLine": 18,
+                    "filePath": "webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java",
+                    "violationSpecifier": "S139:webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java:18:0:18:70"
+                }
+            ],
+            "ruleName": "Comments should not be located at the end of lines of code",
+            "ruleKey": "S139"
+        },
+        {
+            "warningLocations": [{
+                "endLine": 7,
+                "endColumn": 21,
+                "startColumn": 9,
+                "startLine": 7,
+                "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/SessionStore.java",
+                "violationSpecifier": "S1186:webapp-runner-main/src/main/java/webapp/runner/launch/SessionStore.java:7:9:7:21"
+            }],
+            "ruleName": "Methods should not be empty",
+            "ruleKey": "S1186"
+        },
+        {
+            "warningLocations": [
+                {
+                    "endLine": 114,
+                    "endColumn": 40,
+                    "startColumn": 35,
+                    "startLine": 114,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/CommandLineParams.java",
+                    "violationSpecifier": "S3052:webapp-runner-main/src/main/java/webapp/runner/launch/CommandLineParams.java:114:35:114:40"
+                },
+                {
+                    "endLine": 198,
+                    "endColumn": 54,
+                    "startColumn": 50,
+                    "startLine": 198,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/CommandLineParams.java",
+                    "violationSpecifier": "S3052:webapp-runner-main/src/main/java/webapp/runner/launch/CommandLineParams.java:198:50:198:54"
+                },
+                {
+                    "endLine": 169,
+                    "endColumn": 47,
+                    "startColumn": 42,
+                    "startLine": 169,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/CommandLineParams.java",
+                    "violationSpecifier": "S3052:webapp-runner-main/src/main/java/webapp/runner/launch/CommandLineParams.java:169:42:169:47"
+                },
+                {
+                    "endLine": 138,
+                    "endColumn": 47,
+                    "startColumn": 42,
+                    "startLine": 138,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/CommandLineParams.java",
+                    "violationSpecifier": "S3052:webapp-runner-main/src/main/java/webapp/runner/launch/CommandLineParams.java:138:42:138:47"
+                },
+                {
+                    "endLine": 40,
+                    "endColumn": 41,
+                    "startColumn": 36,
+                    "startLine": 40,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/CommandLineParams.java",
+                    "violationSpecifier": "S3052:webapp-runner-main/src/main/java/webapp/runner/launch/CommandLineParams.java:40:36:40:41"
+                },
+                {
+                    "endLine": 174,
+                    "endColumn": 36,
+                    "startColumn": 32,
+                    "startLine": 174,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/CommandLineParams.java",
+                    "violationSpecifier": "S3052:webapp-runner-main/src/main/java/webapp/runner/launch/CommandLineParams.java:174:32:174:36"
+                },
+                {
+                    "endLine": 206,
+                    "endColumn": 37,
+                    "startColumn": 32,
+                    "startLine": 206,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/CommandLineParams.java",
+                    "violationSpecifier": "S3052:webapp-runner-main/src/main/java/webapp/runner/launch/CommandLineParams.java:206:32:206:37"
+                },
+                {
+                    "endLine": 209,
+                    "endColumn": 34,
+                    "startColumn": 29,
+                    "startLine": 209,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/CommandLineParams.java",
+                    "violationSpecifier": "S3052:webapp-runner-main/src/main/java/webapp/runner/launch/CommandLineParams.java:209:29:209:34"
+                },
+                {
+                    "endLine": 164,
+                    "endColumn": 46,
+                    "startColumn": 41,
+                    "startLine": 164,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/CommandLineParams.java",
+                    "violationSpecifier": "S3052:webapp-runner-main/src/main/java/webapp/runner/launch/CommandLineParams.java:164:41:164:46"
+                }
+            ],
+            "ruleName": "Fields should not be initialized to default values",
+            "ruleKey": "S3052"
+        },
+        {
+            "warningLocations": [
+                {
+                    "endLine": 64,
+                    "endColumn": 25,
+                    "startColumn": 21,
+                    "startLine": 64,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S3776:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:64:21:64:25"
+                },
+                {
+                    "endLine": 15,
+                    "endColumn": 35,
+                    "startColumn": 14,
+                    "startLine": 15,
+                    "filePath": "webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java",
+                    "violationSpecifier": "S3776:webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java:15:14:15:35"
+                }
+            ],
+            "ruleName": "Cognitive Complexity of methods should not be too high",
+            "ruleKey": "S3776"
+        },
+        {
+            "warningLocations": [{
+                "endLine": 41,
+                "endColumn": 18,
+                "startColumn": 8,
+                "startLine": 41,
+                "filePath": "webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java",
+                "violationSpecifier": "S1643:webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java:41:8:41:18"
+            }],
+            "ruleName": "Strings should not be concatenated using '+' in a loop",
+            "ruleKey": "S1643"
+        },
+        {
+            "warningLocations": [
+                {
+                    "endLine": 137,
+                    "endColumn": 37,
+                    "startColumn": 31,
+                    "startLine": 137,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1132:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:137:31:137:37"
+                },
+                {
+                    "endLine": 139,
+                    "endColumn": 38,
+                    "startColumn": 31,
+                    "startLine": 139,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1132:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:139:31:139:38"
+                },
+                {
+                    "endLine": 132,
+                    "endColumn": 31,
+                    "startColumn": 24,
+                    "startLine": 132,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1132:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:132:24:132:31"
+                }
+            ],
+            "ruleName": "Strings literals should be placed on the left side when checking for equality",
+            "ruleKey": "S1132"
+        },
+        {
+            "warningLocations": [{
+                "endLine": 81,
+                "endColumn": 80,
+                "startColumn": 79,
+                "startLine": 81,
+                "filePath": "webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java",
+                "violationSpecifier": "S2959:webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java:81:79:81:80"
+            }],
+            "ruleName": "Unnecessary semicolons should be omitted",
+            "ruleKey": "S2959"
+        },
+        {
+            "warningLocations": [
+                {
+                    "endLine": 58,
+                    "endColumn": 92,
+                    "startColumn": 8,
+                    "startLine": 58,
+                    "filePath": "webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java",
+                    "violationSpecifier": "S3457:webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java:58:8:58:92"
+                },
+                {
+                    "endLine": 88,
+                    "endColumn": 92,
+                    "startColumn": 8,
+                    "startLine": 88,
+                    "filePath": "webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java",
+                    "violationSpecifier": "S3457:webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java:88:8:88:92"
+                }
+            ],
+            "ruleName": "Printf-style format strings should be used correctly",
+            "ruleKey": "S3457"
+        },
+        {
+            "warningLocations": [
+                {
+                    "endLine": 395,
+                    "endColumn": 45,
+                    "startColumn": 14,
+                    "startLine": 395,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S4142:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:395:14:395:45"
+                },
+                {
+                    "endLine": 407,
+                    "endColumn": 46,
+                    "startColumn": 14,
+                    "startLine": 407,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S4142:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:407:14:407:46"
+                }
+            ],
+            "ruleName": "Duplicate values should not be passed as arguments",
+            "ruleKey": "S4142"
+        },
+        {
+            "warningLocations": [
+                {
+                    "endLine": 69,
+                    "endColumn": 16,
+                    "startColumn": 10,
+                    "startLine": 69,
+                    "filePath": "webapp-runner-main/src/test/java/webapp/runner/launch/TomcatBaseDirResolutionTest.java",
+                    "violationSpecifier": "S4042:webapp-runner-main/src/test/java/webapp/runner/launch/TomcatBaseDirResolutionTest.java:69:10:69:16"
+                },
+                {
+                    "endLine": 209,
+                    "endColumn": 22,
+                    "startColumn": 16,
+                    "startLine": 209,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S4042:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:209:16:209:22"
+                },
+                {
+                    "endLine": 26,
+                    "endColumn": 32,
+                    "startColumn": 26,
+                    "startLine": 26,
+                    "filePath": "webapp-runner-main/src/test/java/webapp/runner/launch/TomcatBaseDirResolutionTest.java",
+                    "violationSpecifier": "S4042:webapp-runner-main/src/test/java/webapp/runner/launch/TomcatBaseDirResolutionTest.java:26:26:26:32"
+                }
+            ],
+            "ruleName": "\"java.nio.Files#delete\" should be preferred",
+            "ruleKey": "S4042"
+        },
+        {
+            "warningLocations": [{
+                "endLine": 77,
+                "endColumn": 33,
+                "startColumn": 15,
+                "startLine": 77,
+                "filePath": "webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java",
+                "violationSpecifier": "S2325:webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java:77:15:77:33"
+            }],
+            "ruleName": "\"private\" and \"final\" methods that don't access instance data should be \"static\"",
+            "ruleKey": "S2325"
+        },
+        {
+            "warningLocations": [
+                {
+                    "endLine": 35,
+                    "endColumn": 10,
+                    "startColumn": 6,
+                    "startLine": 35,
+                    "filePath": "webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java",
+                    "violationSpecifier": "S1108:webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java:35:6:35:10"
+                },
+                {
+                    "endLine": 139,
+                    "endColumn": 12,
+                    "startColumn": 8,
+                    "startLine": 139,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1108:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:139:8:139:12"
+                },
+                {
+                    "endLine": 46,
+                    "endColumn": 10,
+                    "startColumn": 6,
+                    "startLine": 46,
+                    "filePath": "webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java",
+                    "violationSpecifier": "S1108:webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java:46:6:46:10"
+                },
+                {
+                    "endLine": 137,
+                    "endColumn": 12,
+                    "startColumn": 8,
+                    "startLine": 137,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1108:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:137:8:137:12"
+                },
+                {
+                    "endLine": 399,
+                    "endColumn": 10,
+                    "startColumn": 6,
+                    "startLine": 399,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1108:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:399:6:399:10"
+                },
+                {
+                    "endLine": 23,
+                    "endColumn": 10,
+                    "startColumn": 6,
+                    "startLine": 23,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/SessionStore.java",
+                    "violationSpecifier": "S1108:webapp-runner-main/src/main/java/webapp/runner/launch/SessionStore.java:23:6:23:10"
+                },
+                {
+                    "endLine": 52,
+                    "endColumn": 11,
+                    "startColumn": 6,
+                    "startLine": 52,
+                    "filePath": "webapp-runner-main/src/test/java/webapp/runner/launch/TomcatBaseDirResolutionTest.java",
+                    "violationSpecifier": "S1108:webapp-runner-main/src/test/java/webapp/runner/launch/TomcatBaseDirResolutionTest.java:52:6:52:11"
+                },
+                {
+                    "endLine": 347,
+                    "endColumn": 11,
+                    "startColumn": 6,
+                    "startLine": 347,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1108:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:347:6:347:11"
+                },
+                {
+                    "endLine": 25,
+                    "endColumn": 10,
+                    "startColumn": 6,
+                    "startLine": 25,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/SessionStore.java",
+                    "violationSpecifier": "S1108:webapp-runner-main/src/main/java/webapp/runner/launch/SessionStore.java:25:6:25:10"
+                },
+                {
+                    "endLine": 443,
+                    "endColumn": 23,
+                    "startColumn": 18,
+                    "startLine": 443,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1108:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:443:18:443:23"
+                },
+                {
+                    "endLine": 163,
+                    "endColumn": 12,
+                    "startColumn": 8,
+                    "startLine": 163,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1108:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:163:8:163:12"
+                },
+                {
+                    "endLine": 230,
+                    "endColumn": 10,
+                    "startColumn": 6,
+                    "startLine": 230,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1108:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:230:6:230:10"
+                },
+                {
+                    "endLine": 57,
+                    "endColumn": 13,
+                    "startColumn": 8,
+                    "startLine": 57,
+                    "filePath": "webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java",
+                    "violationSpecifier": "S1108:webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java:57:8:57:13"
+                },
+                {
+                    "endLine": 40,
+                    "endColumn": 12,
+                    "startColumn": 8,
+                    "startLine": 40,
+                    "filePath": "webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java",
+                    "violationSpecifier": "S1108:webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java:40:8:40:12"
+                },
+                {
+                    "endLine": 223,
+                    "endColumn": 12,
+                    "startColumn": 8,
+                    "startLine": 223,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1108:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:223:8:223:12"
+                },
+                {
+                    "endLine": 27,
+                    "endColumn": 10,
+                    "startColumn": 6,
+                    "startLine": 27,
+                    "filePath": "webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java",
+                    "violationSpecifier": "S1108:webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java:27:6:27:10"
+                },
+                {
+                    "endLine": 56,
+                    "endColumn": 10,
+                    "startColumn": 6,
+                    "startLine": 56,
+                    "filePath": "webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java",
+                    "violationSpecifier": "S1108:webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java:56:6:56:10"
+                },
+                {
+                    "endLine": 87,
+                    "endColumn": 13,
+                    "startColumn": 8,
+                    "startLine": 87,
+                    "filePath": "webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java",
+                    "violationSpecifier": "S1108:webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java:87:8:87:13"
+                },
+                {
+                    "endLine": 38,
+                    "endColumn": 12,
+                    "startColumn": 8,
+                    "startLine": 38,
+                    "filePath": "webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java",
+                    "violationSpecifier": "S1108:webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java:38:8:38:12"
+                }
+            ],
+            "ruleName": "Close curly brace and the next \"else\", \"catch\" and \"finally\" keywords should be on two different lines",
+            "ruleKey": "S1108"
+        },
+        {
+            "warningLocations": [
+                {
+                    "endLine": 76,
+                    "endColumn": 46,
+                    "startColumn": 45,
+                    "startLine": 76,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:76:45:76:46"
+                },
+                {
+                    "endLine": 93,
+                    "endColumn": 93,
+                    "startColumn": 92,
+                    "startLine": 93,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:93:92:93:93"
+                },
+                {
+                    "endLine": 440,
+                    "endColumn": 39,
+                    "startColumn": 38,
+                    "startLine": 440,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:440:38:440:39"
+                },
+                {
+                    "endLine": 437,
+                    "endColumn": 26,
+                    "startColumn": 25,
+                    "startLine": 437,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:437:25:437:26"
+                },
+                {
+                    "endLine": 238,
+                    "endColumn": 46,
+                    "startColumn": 45,
+                    "startLine": 238,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:238:45:238:46"
+                },
+                {
+                    "endLine": 245,
+                    "endColumn": 55,
+                    "startColumn": 54,
+                    "startLine": 245,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:245:54:245:55"
+                },
+                {
+                    "endLine": 387,
+                    "endColumn": 91,
+                    "startColumn": 90,
+                    "startLine": 387,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:387:90:387:91"
+                },
+                {
+                    "endLine": 60,
+                    "endColumn": 55,
+                    "startColumn": 54,
+                    "startLine": 60,
+                    "filePath": "webapp-runner-main/src/test/java/webapp/runner/launch/TomcatBaseDirResolutionTest.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/test/java/webapp/runner/launch/TomcatBaseDirResolutionTest.java:60:54:60:55"
+                },
+                {
+                    "endLine": 64,
+                    "endColumn": 59,
+                    "startColumn": 58,
+                    "startLine": 64,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:64:58:64:59"
+                },
+                {
+                    "endLine": 208,
+                    "endColumn": 29,
+                    "startColumn": 28,
+                    "startLine": 208,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:208:28:208:29"
+                },
+                {
+                    "endLine": 223,
+                    "endColumn": 14,
+                    "startColumn": 13,
+                    "startLine": 223,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:223:13:223:14"
+                },
+                {
+                    "endLine": 294,
+                    "endColumn": 38,
+                    "startColumn": 37,
+                    "startLine": 294,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:294:37:294:38"
+                },
+                {
+                    "endLine": 363,
+                    "endColumn": 20,
+                    "startColumn": 19,
+                    "startLine": 363,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:363:19:363:20"
+                },
+                {
+                    "endLine": 101,
+                    "endColumn": 38,
+                    "startColumn": 37,
+                    "startLine": 101,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:101:37:101:38"
+                },
+                {
+                    "endLine": 319,
+                    "endColumn": 93,
+                    "startColumn": 92,
+                    "startLine": 319,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:319:92:319:93"
+                },
+                {
+                    "endLine": 36,
+                    "endColumn": 47,
+                    "startColumn": 46,
+                    "startLine": 36,
+                    "filePath": "webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java",
+                    "violationSpecifier": "S1106:webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java:36:46:36:47"
+                },
+                {
+                    "endLine": 30,
+                    "endColumn": 53,
+                    "startColumn": 52,
+                    "startLine": 30,
+                    "filePath": "webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java",
+                    "violationSpecifier": "S1106:webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java:30:52:30:53"
+                },
+                {
+                    "endLine": 335,
+                    "endColumn": 93,
+                    "startColumn": 92,
+                    "startLine": 335,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:335:92:335:93"
+                },
+                {
+                    "endLine": 5,
+                    "endColumn": 27,
+                    "startColumn": 26,
+                    "startLine": 5,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/SessionStore.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/SessionStore.java:5:26:5:27"
+                },
+                {
+                    "endLine": 7,
+                    "endColumn": 25,
+                    "startColumn": 24,
+                    "startLine": 7,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/SessionStore.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/SessionStore.java:7:24:7:25"
+                },
+                {
+                    "endLine": 158,
+                    "endColumn": 43,
+                    "startColumn": 42,
+                    "startLine": 158,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:158:42:158:43"
+                },
+                {
+                    "endLine": 17,
+                    "endColumn": 31,
+                    "startColumn": 30,
+                    "startLine": 17,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/SessionStore.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/SessionStore.java:17:30:17:31"
+                },
+                {
+                    "endLine": 172,
+                    "endColumn": 45,
+                    "startColumn": 44,
+                    "startLine": 172,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:172:44:172:45"
+                },
+                {
+                    "endLine": 25,
+                    "endColumn": 12,
+                    "startColumn": 11,
+                    "startLine": 25,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/SessionStore.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/SessionStore.java:25:11:25:12"
+                },
+                {
+                    "endLine": 23,
+                    "endColumn": 46,
+                    "startColumn": 45,
+                    "startLine": 23,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/SessionStore.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/SessionStore.java:23:45:23:46"
+                },
+                {
+                    "endLine": 20,
+                    "endColumn": 58,
+                    "startColumn": 57,
+                    "startLine": 20,
+                    "filePath": "webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java",
+                    "violationSpecifier": "S1106:webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java:20:57:20:58"
+                },
+                {
+                    "endLine": 81,
+                    "endColumn": 84,
+                    "startColumn": 83,
+                    "startLine": 81,
+                    "filePath": "webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java",
+                    "violationSpecifier": "S1106:webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java:81:83:81:84"
+                },
+                {
+                    "endLine": 25,
+                    "endColumn": 28,
+                    "startColumn": 27,
+                    "startLine": 25,
+                    "filePath": "webapp-runner-main/src/test/java/webapp/runner/launch/TomcatBaseDirResolutionTest.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/test/java/webapp/runner/launch/TomcatBaseDirResolutionTest.java:25:27:25:28"
+                },
+                {
+                    "endLine": 74,
+                    "endColumn": 43,
+                    "startColumn": 42,
+                    "startLine": 74,
+                    "filePath": "webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java",
+                    "violationSpecifier": "S1106:webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java:74:42:74:43"
+                },
+                {
+                    "endLine": 290,
+                    "endColumn": 44,
+                    "startColumn": 43,
+                    "startLine": 290,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:290:43:290:44"
+                },
+                {
+                    "endLine": 6,
+                    "endColumn": 56,
+                    "startColumn": 55,
+                    "startLine": 6,
+                    "filePath": "webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java",
+                    "violationSpecifier": "S1106:webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java:6:55:6:56"
+                },
+                {
+                    "endLine": 439,
+                    "endColumn": 21,
+                    "startColumn": 20,
+                    "startLine": 439,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:439:20:439:21"
+                },
+                {
+                    "endLine": 375,
+                    "endColumn": 38,
+                    "startColumn": 37,
+                    "startLine": 375,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:375:37:375:38"
+                },
+                {
+                    "endLine": 373,
+                    "endColumn": 24,
+                    "startColumn": 23,
+                    "startLine": 373,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:373:23:373:24"
+                },
+                {
+                    "endLine": 6,
+                    "endColumn": 66,
+                    "startColumn": 65,
+                    "startLine": 6,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/valves/StdoutAccessLogValve.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/valves/StdoutAccessLogValve.java:6:65:6:66"
+                },
+                {
+                    "endLine": 122,
+                    "endColumn": 47,
+                    "startColumn": 46,
+                    "startLine": 122,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:122:46:122:47"
+                },
+                {
+                    "endLine": 48,
+                    "endColumn": 64,
+                    "startColumn": 63,
+                    "startLine": 48,
+                    "filePath": "webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java",
+                    "violationSpecifier": "S1106:webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java:48:63:48:64"
+                },
+                {
+                    "endLine": 278,
+                    "endColumn": 51,
+                    "startColumn": 50,
+                    "startLine": 278,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:278:50:278:51"
+                },
+                {
+                    "endLine": 286,
+                    "endColumn": 59,
+                    "startColumn": 58,
+                    "startLine": 286,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:286:58:286:59"
+                },
+                {
+                    "endLine": 20,
+                    "endColumn": 42,
+                    "startColumn": 41,
+                    "startLine": 20,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/SessionStore.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/SessionStore.java:20:41:20:42"
+                },
+                {
+                    "endLine": 195,
+                    "endColumn": 60,
+                    "startColumn": 59,
+                    "startLine": 195,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:195:59:195:60"
+                },
+                {
+                    "endLine": 341,
+                    "endColumn": 54,
+                    "startColumn": 53,
+                    "startLine": 341,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:341:53:341:54"
+                },
+                {
+                    "endLine": 46,
+                    "endColumn": 65,
+                    "startColumn": 64,
+                    "startLine": 46,
+                    "filePath": "webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java",
+                    "violationSpecifier": "S1106:webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java:46:64:46:65"
+                },
+                {
+                    "endLine": 15,
+                    "endColumn": 53,
+                    "startColumn": 52,
+                    "startLine": 15,
+                    "filePath": "webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java",
+                    "violationSpecifier": "S1106:webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java:15:52:15:53"
+                },
+                {
+                    "endLine": 24,
+                    "endColumn": 23,
+                    "startColumn": 22,
+                    "startLine": 24,
+                    "filePath": "webapp-runner-main/src/test/java/webapp/runner/launch/TomcatBaseDirResolutionTest.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/test/java/webapp/runner/launch/TomcatBaseDirResolutionTest.java:24:22:24:23"
+                },
+                {
+                    "endLine": 57,
+                    "endColumn": 38,
+                    "startColumn": 37,
+                    "startLine": 57,
+                    "filePath": "webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java",
+                    "violationSpecifier": "S1106:webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java:57:37:57:38"
+                },
+                {
+                    "endLine": 106,
+                    "endColumn": 37,
+                    "startColumn": 36,
+                    "startLine": 106,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:106:36:106:37"
+                },
+                {
+                    "endLine": 9,
+                    "endColumn": 25,
+                    "startColumn": 24,
+                    "startLine": 9,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/valves/StdoutAccessLogValve.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/valves/StdoutAccessLogValve.java:9:24:9:25"
+                },
+                {
+                    "endLine": 35,
+                    "endColumn": 12,
+                    "startColumn": 11,
+                    "startLine": 35,
+                    "filePath": "webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java",
+                    "violationSpecifier": "S1106:webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java:35:11:35:12"
+                },
+                {
+                    "endLine": 266,
+                    "endColumn": 47,
+                    "startColumn": 46,
+                    "startLine": 266,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:266:46:266:47"
+                },
+                {
+                    "endLine": 24,
+                    "endColumn": 87,
+                    "startColumn": 86,
+                    "startLine": 24,
+                    "filePath": "webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java",
+                    "violationSpecifier": "S1106:webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java:24:86:24:87"
+                },
+                {
+                    "endLine": 347,
+                    "endColumn": 29,
+                    "startColumn": 28,
+                    "startLine": 347,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:347:28:347:29"
+                },
+                {
+                    "endLine": 37,
+                    "endColumn": 59,
+                    "startColumn": 58,
+                    "startLine": 37,
+                    "filePath": "webapp-runner-main/src/test/java/webapp/runner/launch/TomcatBaseDirResolutionTest.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/test/java/webapp/runner/launch/TomcatBaseDirResolutionTest.java:37:58:37:59"
+                },
+                {
+                    "endLine": 77,
+                    "endColumn": 37,
+                    "startColumn": 36,
+                    "startLine": 77,
+                    "filePath": "webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java",
+                    "violationSpecifier": "S1106:webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java:77:36:77:37"
+                },
+                {
+                    "endLine": 38,
+                    "endColumn": 58,
+                    "startColumn": 57,
+                    "startLine": 38,
+                    "filePath": "webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java",
+                    "violationSpecifier": "S1106:webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java:38:57:38:58"
+                },
+                {
+                    "endLine": 52,
+                    "endColumn": 29,
+                    "startColumn": 28,
+                    "startLine": 52,
+                    "filePath": "webapp-runner-main/src/test/java/webapp/runner/launch/TomcatBaseDirResolutionTest.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/test/java/webapp/runner/launch/TomcatBaseDirResolutionTest.java:52:28:52:29"
+                },
+                {
+                    "endLine": 60,
+                    "endColumn": 19,
+                    "startColumn": 18,
+                    "startLine": 60,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:60:18:60:19"
+                },
+                {
+                    "endLine": 91,
+                    "endColumn": 50,
+                    "startColumn": 49,
+                    "startLine": 91,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:91:49:91:50"
+                },
+                {
+                    "endLine": 8,
+                    "endColumn": 44,
+                    "startColumn": 43,
+                    "startLine": 8,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/valves/StdoutAccessLogValve.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/valves/StdoutAccessLogValve.java:8:43:8:44"
+                },
+                {
+                    "endLine": 34,
+                    "endColumn": 31,
+                    "startColumn": 30,
+                    "startLine": 34,
+                    "filePath": "webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java",
+                    "violationSpecifier": "S1106:webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java:34:30:34:31"
+                },
+                {
+                    "endLine": 49,
+                    "endColumn": 9,
+                    "startColumn": 8,
+                    "startLine": 49,
+                    "filePath": "webapp-runner-main/src/test/java/webapp/runner/launch/TomcatBaseDirResolutionTest.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/test/java/webapp/runner/launch/TomcatBaseDirResolutionTest.java:49:8:49:9"
+                },
+                {
+                    "endLine": 79,
+                    "endColumn": 11,
+                    "startColumn": 10,
+                    "startLine": 79,
+                    "filePath": "webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java",
+                    "violationSpecifier": "S1106:webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java:79:10:79:11"
+                },
+                {
+                    "endLine": 56,
+                    "endColumn": 12,
+                    "startColumn": 11,
+                    "startLine": 56,
+                    "filePath": "webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java",
+                    "violationSpecifier": "S1106:webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java:56:11:56:12"
+                },
+                {
+                    "endLine": 149,
+                    "endColumn": 46,
+                    "startColumn": 45,
+                    "startLine": 149,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:149:45:149:46"
+                },
+                {
+                    "endLine": 438,
+                    "endColumn": 33,
+                    "startColumn": 32,
+                    "startLine": 438,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:438:32:438:33"
+                },
+                {
+                    "endLine": 16,
+                    "endColumn": 42,
+                    "startColumn": 41,
+                    "startLine": 16,
+                    "filePath": "webapp-runner-main/src/test/java/webapp/runner/launch/TomcatBaseDirResolutionTest.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/test/java/webapp/runner/launch/TomcatBaseDirResolutionTest.java:16:41:16:42"
+                },
+                {
+                    "endLine": 241,
+                    "endColumn": 35,
+                    "startColumn": 34,
+                    "startLine": 241,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:241:34:241:35"
+                },
+                {
+                    "endLine": 36,
+                    "endColumn": 87,
+                    "startColumn": 86,
+                    "startLine": 36,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/SessionStore.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/SessionStore.java:36:86:36:87"
+                },
+                {
+                    "endLine": 68,
+                    "endColumn": 23,
+                    "startColumn": 22,
+                    "startLine": 68,
+                    "filePath": "webapp-runner-main/src/test/java/webapp/runner/launch/TomcatBaseDirResolutionTest.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/test/java/webapp/runner/launch/TomcatBaseDirResolutionTest.java:68:22:68:23"
+                },
+                {
+                    "endLine": 137,
+                    "endColumn": 41,
+                    "startColumn": 40,
+                    "startLine": 137,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:137:40:137:41"
+                },
+                {
+                    "endLine": 15,
+                    "endColumn": 32,
+                    "startColumn": 31,
+                    "startLine": 15,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/CommandLineParams.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/CommandLineParams.java:15:31:15:32"
+                },
+                {
+                    "endLine": 154,
+                    "endColumn": 40,
+                    "startColumn": 39,
+                    "startLine": 154,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:154:39:154:40"
+                },
+                {
+                    "endLine": 205,
+                    "endColumn": 89,
+                    "startColumn": 88,
+                    "startLine": 205,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:205:88:205:89"
+                },
+                {
+                    "endLine": 163,
+                    "endColumn": 14,
+                    "startColumn": 13,
+                    "startLine": 163,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:163:13:163:14"
+                },
+                {
+                    "endLine": 15,
+                    "endColumn": 87,
+                    "startColumn": 86,
+                    "startLine": 15,
+                    "filePath": "webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java",
+                    "violationSpecifier": "S1106:webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java:15:86:15:87"
+                },
+                {
+                    "endLine": 18,
+                    "endColumn": 52,
+                    "startColumn": 51,
+                    "startLine": 18,
+                    "filePath": "webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java",
+                    "violationSpecifier": "S1106:webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java:18:51:18:52"
+                },
+                {
+                    "endLine": 185,
+                    "endColumn": 24,
+                    "startColumn": 23,
+                    "startLine": 185,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:185:23:185:24"
+                },
+                {
+                    "endLine": 259,
+                    "endColumn": 51,
+                    "startColumn": 50,
+                    "startLine": 259,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:259:50:259:51"
+                },
+                {
+                    "endLine": 44,
+                    "endColumn": 65,
+                    "startColumn": 64,
+                    "startLine": 44,
+                    "filePath": "webapp-runner-main/src/test/java/webapp/runner/launch/TomcatBaseDirResolutionTest.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/test/java/webapp/runner/launch/TomcatBaseDirResolutionTest.java:44:64:44:65"
+                },
+                {
+                    "endLine": 144,
+                    "endColumn": 48,
+                    "startColumn": 47,
+                    "startLine": 144,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:144:47:144:48"
+                },
+                {
+                    "endLine": 432,
+                    "endColumn": 52,
+                    "startColumn": 51,
+                    "startLine": 432,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:432:51:432:52"
+                },
+                {
+                    "endLine": 160,
+                    "endColumn": 48,
+                    "startColumn": 47,
+                    "startLine": 160,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:160:47:160:48"
+                },
+                {
+                    "endLine": 35,
+                    "endColumn": 50,
+                    "startColumn": 49,
+                    "startLine": 35,
+                    "filePath": "webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java",
+                    "violationSpecifier": "S1106:webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java:35:49:35:50"
+                },
+                {
+                    "endLine": 272,
+                    "endColumn": 49,
+                    "startColumn": 48,
+                    "startLine": 272,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:272:48:272:49"
+                },
+                {
+                    "endLine": 87,
+                    "endColumn": 31,
+                    "startColumn": 30,
+                    "startLine": 87,
+                    "filePath": "webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java",
+                    "violationSpecifier": "S1106:webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java:87:30:87:31"
+                },
+                {
+                    "endLine": 345,
+                    "endColumn": 9,
+                    "startColumn": 8,
+                    "startLine": 345,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:345:8:345:9"
+                },
+                {
+                    "endLine": 355,
+                    "endColumn": 63,
+                    "startColumn": 62,
+                    "startLine": 355,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:355:62:355:63"
+                },
+                {
+                    "endLine": 31,
+                    "endColumn": 55,
+                    "startColumn": 54,
+                    "startLine": 31,
+                    "filePath": "webapp-runner-main/src/test/java/webapp/runner/launch/TomcatBaseDirResolutionTest.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/test/java/webapp/runner/launch/TomcatBaseDirResolutionTest.java:31:54:31:55"
+                },
+                {
+                    "endLine": 302,
+                    "endColumn": 51,
+                    "startColumn": 50,
+                    "startLine": 302,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:302:50:302:51"
+                },
+                {
+                    "endLine": 443,
+                    "endColumn": 56,
+                    "startColumn": 55,
+                    "startLine": 443,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:443:55:443:56"
+                },
+                {
+                    "endLine": 243,
+                    "endColumn": 77,
+                    "startColumn": 76,
+                    "startLine": 243,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:243:76:243:77"
+                },
+                {
+                    "endLine": 242,
+                    "endColumn": 62,
+                    "startColumn": 61,
+                    "startLine": 242,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:242:61:242:62"
+                },
+                {
+                    "endLine": 27,
+                    "endColumn": 61,
+                    "startColumn": 60,
+                    "startLine": 27,
+                    "filePath": "webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java",
+                    "violationSpecifier": "S1106:webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java:27:60:27:61"
+                },
+                {
+                    "endLine": 115,
+                    "endColumn": 35,
+                    "startColumn": 34,
+                    "startLine": 115,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:115:34:115:35"
+                },
+                {
+                    "endLine": 40,
+                    "endColumn": 14,
+                    "startColumn": 13,
+                    "startLine": 40,
+                    "filePath": "webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java",
+                    "violationSpecifier": "S1106:webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java:40:13:40:14"
+                },
+                {
+                    "endLine": 40,
+                    "endColumn": 48,
+                    "startColumn": 47,
+                    "startLine": 40,
+                    "filePath": "webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java",
+                    "violationSpecifier": "S1106:webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java:40:47:40:48"
+                },
+                {
+                    "endLine": 70,
+                    "endColumn": 33,
+                    "startColumn": 32,
+                    "startLine": 70,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:70:32:70:33"
+                },
+                {
+                    "endLine": 16,
+                    "endColumn": 85,
+                    "startColumn": 84,
+                    "startLine": 16,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/SessionStore.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/SessionStore.java:16:84:16:85"
+                },
+                {
+                    "endLine": 399,
+                    "endColumn": 100,
+                    "startColumn": 99,
+                    "startLine": 399,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:399:99:399:100"
+                },
+                {
+                    "endLine": 135,
+                    "endColumn": 30,
+                    "startColumn": 29,
+                    "startLine": 135,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:135:29:135:30"
+                },
+                {
+                    "endLine": 139,
+                    "endColumn": 42,
+                    "startColumn": 41,
+                    "startLine": 139,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:139:41:139:42"
+                },
+                {
+                    "endLine": 217,
+                    "endColumn": 41,
+                    "startColumn": 40,
+                    "startLine": 217,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:217:40:217:41"
+                },
+                {
+                    "endLine": 230,
+                    "endColumn": 12,
+                    "startColumn": 11,
+                    "startLine": 230,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:230:11:230:12"
+                },
+                {
+                    "endLine": 70,
+                    "endColumn": 68,
+                    "startColumn": 67,
+                    "startLine": 70,
+                    "filePath": "webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java",
+                    "violationSpecifier": "S1106:webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java:70:67:70:68"
+                },
+                {
+                    "endLine": 132,
+                    "endColumn": 64,
+                    "startColumn": 63,
+                    "startLine": 132,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:132:63:132:64"
+                },
+                {
+                    "endLine": 46,
+                    "endColumn": 11,
+                    "startColumn": 10,
+                    "startLine": 46,
+                    "filePath": "webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java",
+                    "violationSpecifier": "S1106:webapp-runner-redis/src/main/java/webapp/runner/launch/RedisSessionStore.java:46:10:46:11"
+                },
+                {
+                    "endLine": 29,
+                    "endColumn": 60,
+                    "startColumn": 59,
+                    "startLine": 29,
+                    "filePath": "webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java",
+                    "violationSpecifier": "S1106:webapp-runner-memcached/src/main/java/webapp/runner/launch/MemcacheSessionStore.java:29:59:29:60"
+                },
+                {
+                    "endLine": 127,
+                    "endColumn": 54,
+                    "startColumn": 53,
+                    "startLine": 127,
+                    "filePath": "webapp-runner-main/src/main/java/webapp/runner/launch/Main.java",
+                    "violationSpecifier": "S1106:webapp-runner-main/src/main/java/webapp/runner/launch/Main.java:127:53:127:54"
+                }
+            ],
+            "ruleName": "An open curly brace should be located at the beginning of a line",
+            "ruleKey": "S1106"
+        }
+    ],
+    "miningEndTime": "Tue Sep 05 19:38:44 UTC 2023"
+}
