@@ -2,6 +2,7 @@ package se.kth.assertgroup.codar;
 
 import picocli.CommandLine;
 import se.kth.assertgroup.codar.gpt.PromptType;
+import se.kth.assertgroup.codar.repair.FixScale;
 import se.kth.assertgroup.codar.repair.GPTRepair;
 
 import java.io.File;
@@ -36,6 +37,12 @@ public class CoDarMain implements Callable<Integer> {
             description = "The type of prompt that should be sent to Codex.")
     PromptType promptType;
 
+    @CommandLine.Option(
+            names = {Constants.ARG_FIX_SCALE},
+            description = "The scale of the fix (METHOD/FILE).",
+            defaultValue = "METHOD")
+    FixScale fixScale;
+
     @Override
     public Integer call() throws Exception {
         GPTRepair gptRepair = new GPTRepair();
@@ -43,7 +50,7 @@ public class CoDarMain implements Callable<Integer> {
             System.out.println("Rule " + rule + " is not handled by CoDar.");
             return 0;
         }
-        gptRepair.repair(rootDir, mineRes, rule, promptType);
+        gptRepair.repair(rootDir, mineRes, rule, promptType, fixScale);
         return 0;
     }
 

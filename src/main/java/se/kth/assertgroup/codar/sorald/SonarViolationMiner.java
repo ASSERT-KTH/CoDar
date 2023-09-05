@@ -4,6 +4,7 @@ import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import se.kth.assertgroup.codar.Constants;
+import se.kth.assertgroup.codar.repair.FixScale;
 import se.kth.assertgroup.codar.sorald.models.ViolationScope;
 import se.kth.assertgroup.codar.utils.PH;
 
@@ -17,7 +18,7 @@ public class SonarViolationMiner {
 
     private MineResParser mineResParser = new MineResParser();
 
-    public long countViolations(File root, ViolationScope vs, String rule)
+    public long countViolations(File root, ViolationScope vs, String rule, FixScale fixScale)
             throws IOException, InterruptedException, ParseException {
         File mineRes = Files.createTempFile("tmp-mine-res", "json").toFile();
         File srcParent = root.toPath().resolve(vs.getSrcPath()).getParent().toFile();
@@ -26,6 +27,6 @@ public class SonarViolationMiner {
                 "--stats-output-file", mineRes.getPath());
 
         return mineResParser.countViolations(srcParent, new ViolationScope(vs.getSrcPath(), vs.getStartLine(), vs.getEndLine()),
-                rule, mineRes);
+                rule, mineRes, fixScale);
     }
 }

@@ -94,11 +94,11 @@ public class GPTRepair {
      * @param mineRes The output file of Sorald mining command.
      * @param rule    The ID of the rule whose violations should be fixed
      */
-    public void repair(File root, File mineRes, String rule, PromptType promptType)
+    public void repair(File root, File mineRes, String rule, PromptType promptType, FixScale fixScale)
             throws IOException, ParseException, InterruptedException {
         MineResParser mineResParser = new MineResParser();
         Map<String, Map<ViolationScope, Set<Integer>>> ruleToViolations =
-                mineResParser.getRuleToScopeViolations(root, mineRes);
+                mineResParser.getRuleToScopeViolations(root, mineRes, fixScale);
 
         for (Map.Entry<String, Map<ViolationScope, Set<Integer>>> e : ruleToViolations.entrySet()) {
             String curRule = e.getKey();
@@ -107,7 +107,7 @@ public class GPTRepair {
             if ((rule == null && isHandled(curRule, promptType)) || curRule.equals(rule)) {
                 for (Map.Entry<ViolationScope, Set<Integer>> scopeViolations : scopeToViolations.entrySet()) {
                     int numberOfAddedLines = repairAndGetNumberOfAddedLines(root, scopeViolations.getKey(),
-                            scopeViolations.getValue(), rule, promptType);
+                            scopeViolations.getValue(), rule, promptType, fixScale);
                     updateRuleToScopeViolations(ruleToViolations, scopeViolations, numberOfAddedLines);
                 }
             }
@@ -154,7 +154,8 @@ public class GPTRepair {
                     ViolationScope vs,
                     Set<Integer> buggyLines,
                     String rule,
-                    PromptType promptType
+                    PromptType promptType,
+                    FixScale fixScale
             )
             throws IOException, ParseException, InterruptedException {
         File src = new File(root.getPath() + File.separator + vs.getSrcPath());
@@ -174,7 +175,7 @@ public class GPTRepair {
         int currentConversationLen = 0;
         boolean repeatedResponse = false;
 
-        long originalIssuesCnt = miner.countViolations(root, vs, rule);
+        long originalIssuesCnt = miner.countViolations(root, vs, rule, fixScale);
         long bestIssuesCnt = originalIssuesCnt;
         int bestAnswerLineCntDiff = 0;
 
@@ -234,7 +235,7 @@ public class GPTRepair {
 
                 String failureMessage = getMvnFailureMessage(root);
 
-                long remainingIssuesCnt = failureMessage != null ? -1 : miner.countViolations(root, vs, rule);
+                long remainingIssuesCnt = failureMessage != null ? -1 : miner.countViolations(root, vs, rule, fixScale);
 
                 if(failureMessage == null && remainingIssuesCnt < bestIssuesCnt){
                     bestIssuesCnt = remainingIssuesCnt;

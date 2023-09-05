@@ -3,6 +3,7 @@ package se.kth.assertgroup.codar.sorald;
 import org.apache.commons.lang3.tuple.Pair;
 import org.json.simple.parser.ParseException;
 import org.junit.jupiter.api.Test;
+import se.kth.assertgroup.codar.repair.FixScale;
 import se.kth.assertgroup.codar.sorald.ViolationScopeFinder;
 
 import java.io.IOException;
@@ -17,7 +18,8 @@ class ViolationScopeFinderTest {
         Set<Pair<Integer, Integer>> scopes=
                 new ViolationScopeFinder().extractScopes(
                         getClass().getClassLoader()
-                                .getResource("sorald/src_ex/ClassLoadingUtil.java").getPath().toString()
+                                .getResource("sorald/src_ex/ClassLoadingUtil.java").getPath().toString(),
+                        FixScale.METHOD
                 );
         assertTrue(scopes.size() > 0);
     }

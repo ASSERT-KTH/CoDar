@@ -5,6 +5,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import se.kth.assertgroup.codar.repair.FixScale;
 import se.kth.assertgroup.codar.sorald.models.ViolationScope;
 
 import java.io.File;
@@ -16,13 +17,14 @@ public class MineResParser {
     public Map<ViolationScope, Map<String, Set<Integer>>> getCodeScopeToViolations
             (
                     File srcRoot,
-                    File mineResFile
+                    File mineResFile,
+                    FixScale fixScale
             )
             throws IOException, ParseException {
         Map<String, Map<String, Set<Integer>>> ruleToViolations = getRuleToViolations(mineResFile);
 
         final Map<String, Set<Pair<Integer, Integer>>> fileToScopes =
-                getRelevantFileScopesForAllRules(srcRoot, ruleToViolations);
+                getRelevantFileScopesForAllRules(srcRoot, ruleToViolations, fixScale);
 
         final Map<ViolationScope, Map<String, Set<Integer>>> res = new HashMap<>();
 
@@ -55,10 +57,11 @@ public class MineResParser {
     public Map<String, Map<ViolationScope, Set<Integer>>> getRuleToScopeViolations
             (
                     File srcRoot,
-                    File mineResFile
+                    File mineResFile,
+                    FixScale fixScale
             ) throws IOException, ParseException {
         Map<ViolationScope, Map<String, Set<Integer>>> scopeToViolations =
-                getCodeScopeToViolations(srcRoot, mineResFile);
+                getCodeScopeToViolations(srcRoot, mineResFile, fixScale);
 
         Map<String, Map<ViolationScope, Set<Integer>>> res = new HashMap<>();
 
@@ -84,14 +87,14 @@ public class MineResParser {
     private Map<String, Set<Pair<Integer, Integer>>> getRelevantFileScopesForAllRules
             (
                     File srcRoot,
-                    Map<String, Map<String, Set<Integer>>> ruleToViolations
+                    Map<String, Map<String, Set<Integer>>> ruleToViolations,
+                    FixScale fixScale
             ) {
         final Map<String, Set<Pair<Integer, Integer>>> fileToScopes = new HashMap<>();
 
 
-        final ViolationScopeFinder scopeFinder = new ViolationScopeFinder();
         ruleToViolations.forEach((rule, fileToLines) -> {
-            fileToScopes.putAll(getRelevantFileScopes(srcRoot, fileToLines));
+            fileToScopes.putAll(getRelevantFileScopes(srcRoot, fileToLines, fixScale));
         });
         return fileToScopes;
     }
@@ -99,14 +102,16 @@ public class MineResParser {
     private Map<String, Set<Pair<Integer, Integer>>> getRelevantFileScopes
             (
                     File srcRoot,
-                    Map<String, Set<Integer>> fileToViolationLInes
+                    Map<String, Set<Integer>> fileToViolationLInes,
+                    FixScale fixScale
             ) {
         final Map<String, Set<Pair<Integer, Integer>>> fileToScopes = new HashMap<>();
 
         final ViolationScopeFinder scopeFinder = new ViolationScopeFinder();
         fileToViolationLInes.forEach((file, lines) -> {
             if (!fileToScopes.containsKey(file)) {
-                fileToScopes.put(file, scopeFinder.extractScopes(srcRoot.getPath() + File.separatorChar + file));
+                fileToScopes.put(file, scopeFinder.extractScopes(srcRoot.getPath() + File.separatorChar + file,
+                        fixScale));
             }
         });
         return fileToScopes;
@@ -116,7 +121,8 @@ public class MineResParser {
             (
                     File srcRoot,
                     File mineResFile,
-                    String rule
+                    String rule,
+                    FixScale fixScale
             )
             throws IOException, ParseException {
         Map<String, Set<Integer>> fileToViolationLines = getRuleToViolations(mineResFile).get(rule);
@@ -125,7 +131,7 @@ public class MineResParser {
             return new HashMap<>();
 
         final Map<String, Set<Pair<Integer, Integer>>> fileToScopes =
-                getRelevantFileScopes(srcRoot, fileToViolationLines);
+                getRelevantFileScopes(srcRoot, fileToViolationLines, fixScale);
 
         final Map<ViolationScope, Set<Integer>> res = new HashMap<>();
 
@@ -148,9 +154,9 @@ public class MineResParser {
         return res;
     }
 
-    public long countViolations(File srcRoot, ViolationScope targetScope, String rule, File mineResFile)
+    public long countViolations(File srcRoot, ViolationScope targetScope, String rule, File mineResFile, FixScale fixScale)
             throws IOException, ParseException {
-        Map<ViolationScope, Set<Integer>> scopesToViolations = getCodeScopeToViolations(srcRoot, mineResFile, rule);
+        Map<ViolationScope, Set<Integer>> scopesToViolations = getCodeScopeToViolations(srcRoot, mineResFile, rule, fixScale);
         Optional<ViolationScope> intersectingBuggyScope =
                 scopesToViolations.keySet().stream().filter(sc -> targetScope.getStartLine().equals(sc.getStartLine()))
                         .findFirst();
@@ -212,7 +218,8 @@ public class MineResParser {
         Map<ViolationScope, Map<String, Set<Integer>>> ruleToViolations =
                 new MineResParser().getCodeScopeToViolations(
                         new File("/home/khaes/tmp/sds/"),
-                        new File("/home/khaes/tmp/mine-sds.json"));
+                        new File("/home/khaes/tmp/mine-sds.json"),
+                        FixScale.METHOD);
     }
 
 }

@@ -9,6 +9,7 @@ public class Constants {
     public static final String ARG_MINE_RES = "--mine-res";
     public static final String ARG_RULE = "--rule";
     public static final String ARG_PROMPT_TYPE = "--prompt-type";
+    public static final String ARG_FIX_SCALE = "--fix-scale";
 
     public static final String PROMPT_TEMPLATE_BASE = "repair_prompts/";
     public static final String PROMPT_SETUP_PATH = "other_prompts/repair_setup_prompt";
